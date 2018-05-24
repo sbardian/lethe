@@ -1,0 +1,13 @@
+{
+  "extends": ["config:base"],
+  "commitMessage": "Update {{depName}} to {{newVersion}}",
+  "automergeType": "branch-push",
+  "automerge": true,
+  "ignoreDeps": ["react", "react-native", "react-navigation"],
+  "major": {
+    "automerge": false
+  },
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "requiredStatusChecks": null
+}

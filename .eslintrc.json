@@ -1,0 +1,14 @@
+{
+  "env": {
+    "jest": true
+  },
+  "extends": ["airbnb", "prettier"],
+  "globals": {
+    "__DEV__": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": "off"
+  }
+}
