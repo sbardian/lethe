@@ -14,7 +14,7 @@ import {
   Right,
 } from 'native-base';
 
-export class HomeScreen extends Component {
+export class InvitationsScreen extends Component {
   render() {
     return (
       <Container>
@@ -29,12 +29,12 @@ export class HomeScreen extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>HomeScreen</Title>
+            <Title>InvitationsScreen</Title>
           </Body>
           <Right />
         </Header>
         <Content padder>
-          <Text>HomeScreen</Text>
+          <Text>InvitationsScreen</Text>
         </Content>
       </Container>
     );
