@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Image, StatusBar } from 'react-native';
 import { Text, Container, List, ListItem, Content } from 'native-base';
 
-const routes = ['Home', 'Lists', 'Invitations'];
+const routes = ['Login', 'Home', 'Lists', 'Invitations'];
 export class SideBar extends Component {
   render() {
     return (

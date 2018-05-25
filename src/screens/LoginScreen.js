@@ -7,23 +7,17 @@ import {
   Container,
   Body,
   Content,
+  Form,
   Header,
+  Input,
+  Item,
   Title,
   Left,
   Icon,
   Right,
 } from 'native-base';
 
-export class ListsScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      token: 'default',
-    };
-  }
-
-  componentDidMount() {}
-
+export class LoginScreen extends Component {
   render() {
     return (
       <Container>
@@ -38,13 +32,20 @@ export class ListsScreen extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>ListScreen</Title>
+            <Title>LoginScreen</Title>
           </Body>
           <Right />
         </Header>
         <Content padder>
-          <Text>ListScreen</Text>
-          <Text>{this.state.token}</Text>
+          <Text>LoginScreen</Text>
+          <Form>
+            <Item>
+              <Input placeholder="Username" />
+            </Item>
+            <Item last>
+              <Input placeholder="Password" />
+            </Item>
+          </Form>
         </Content>
       </Container>
     );
