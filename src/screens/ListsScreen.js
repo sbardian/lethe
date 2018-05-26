@@ -13,30 +13,18 @@ import {
   Right,
 } from 'native-base';
 import { Lists } from '../components';
+import { Screen } from '../screens';
 
 export class ListsScreen extends Component {
   render() {
     return (
-      <Container>
-        <StatusBar />
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.toggleDrawer()}
-            >
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Lists</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content padder>
-          <Lists />
-        </Content>
-      </Container>
+      <Screen
+        headerButtonAction={() => this.props.navigation.toggleDrawer()}
+        headerIcon={<Icon name="menu" />}
+        headerTitle="Home"
+      >
+        <Lists />
+      </Screen>
     );
   }
 }

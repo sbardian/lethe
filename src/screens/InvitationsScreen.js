@@ -14,30 +14,18 @@ import {
   Right,
 } from 'native-base';
 import { Invitations } from '../components';
+import { Screen } from '../screens';
 
 export class InvitationsScreen extends Component {
   render() {
     return (
-      <Container>
-        <StatusBar />
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.toggleDrawer()}
-            >
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Invitations</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content padder>
-          <Invitations />
-        </Content>
-      </Container>
+      <Screen
+        headerButtonAction={() => this.props.navigation.toggleDrawer()}
+        headerIcon={<Icon name="menu" />}
+        headerTitle="Home"
+      >
+        <Invitations />
+      </Screen>
     );
   }
 }

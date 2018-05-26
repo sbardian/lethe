@@ -1,26 +1,10 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { StatusBar } from 'react-native';
-import {
-  Button,
-  Text,
-  Container,
-  Body,
-  Content,
-  Form,
-  Header,
-  Input,
-  Item,
-  Title,
-  Left,
-  Icon,
-  Right,
-  Label,
-} from 'native-base';
+import { Button, Text, Form, Input, Item, Icon, Label } from 'native-base';
 import { TokenContext } from '../context';
+import { Screen } from '../screens';
 
 const LOGIN = gql`
   mutation userLogin($username: String!, $password: String!) {
@@ -68,64 +52,51 @@ export class LoginScreen extends Component {
             return null;
           }
           return (
-            <Container>
-              <StatusBar />
-              <Header>
-                <Left>
+            <Screen
+              headerButtonAction={() => this.props.navigation.toggleDrawer()}
+              headerIcon={<Icon name="menu" />}
+              headerTitle="Home"
+            >
+              <Text>LoginScreen</Text>
+              <Form>
+                <Item floatingLabel>
+                  <Label>Username</Label>
+                  <Input
+                    id="username"
+                    onChangeText={value => this.onUsernameChange(value)}
+                  />
+                </Item>
+                <Item floatingLabel last>
+                  <Label>Password</Label>
+                  <Input
+                    id="password"
+                    secureTextEntry
+                    onChangeText={value => this.onPasswordChange(value)}
+                  />
+                </Item>
+              </Form>
+              <Mutation
+                mutation={LOGIN}
+                onCompleted={data => setToken(data.login.token)}
+              >
+                {(userLogin, { loading }) => (
                   <Button
-                    transparent
-                    onPress={() => this.props.navigation.toggleDrawer()}
+                    disabled={loading}
+                    onPress={async () => {
+                      await userLogin({
+                        variables: {
+                          username: this.state.username,
+                          password: this.state.password,
+                        },
+                      });
+                    }}
                   >
-                    <Icon name="menu" />
+                    <Text>Login</Text>
                   </Button>
-                </Left>
-                <Body>
-                  <Title>Login</Title>
-                </Body>
-                <Right />
-              </Header>
-              <Content padder>
-                <Text>LoginScreen</Text>
-                <Form>
-                  <Item floatingLabel>
-                    <Label>Username</Label>
-                    <Input
-                      id="username"
-                      onChangeText={value => this.onUsernameChange(value)}
-                    />
-                  </Item>
-                  <Item floatingLabel last>
-                    <Label>Password</Label>
-                    <Input
-                      id="password"
-                      secureTextEntry
-                      onChangeText={value => this.onPasswordChange(value)}
-                    />
-                  </Item>
-                </Form>
-                <Mutation
-                  mutation={LOGIN}
-                  onCompleted={data => setToken(data.login.token)}
-                >
-                  {(userLogin, { loading }) => (
-                    <Button
-                      disabled={loading}
-                      onPress={async () => {
-                        await userLogin({
-                          variables: {
-                            username: this.state.username,
-                            password: this.state.password,
-                          },
-                        });
-                      }}
-                    >
-                      <Text>Login</Text>
-                    </Button>
-                  )}
-                </Mutation>
-                <Text>{this.state.token}</Text>
-              </Content>
-            </Container>
+                )}
+              </Mutation>
+              <Text>{this.state.token}</Text>
+            </Screen>
           );
         }}
       </TokenContext.Consumer>
