@@ -16,11 +16,7 @@ const GET_MY_INFO = gql`
 
 export const MyInfo = () => (
   <Query query={GET_MY_INFO}>
-    {({
-      loading,
-      error,
-      data: { getMyInfo: { id, email, username } = {} },
-    }) => {
+    {({ loading, error, data: { getMyInfo: { username } = {} } }) => {
       if (loading) {
         return <Text>Loading . . . </Text>;
       }

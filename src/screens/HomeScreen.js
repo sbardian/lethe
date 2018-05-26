@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import {
   Button,
-  Text,
   Container,
   Body,
   Content,
@@ -17,7 +16,6 @@ import { MyInfo } from '../components';
 
 export class HomeScreen extends Component {
   render() {
-    console.log('rendering HomeScreen');
     return (
       <Container>
         <StatusBar />
@@ -31,7 +29,7 @@ export class HomeScreen extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>HomeScreen</Title>
+            <Title>Home</Title>
           </Body>
           <Right />
         </Header>

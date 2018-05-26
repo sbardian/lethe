@@ -13,6 +13,7 @@ import {
   Icon,
   Right,
 } from 'native-base';
+import { Invitations } from '../components';
 
 export class InvitationsScreen extends Component {
   render() {
@@ -29,12 +30,12 @@ export class InvitationsScreen extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>InvitationsScreen</Title>
+            <Title>Invitations</Title>
           </Body>
           <Right />
         </Header>
         <Content padder>
-          <Text>InvitationsScreen</Text>
+          <Invitations />
         </Content>
       </Container>
     );

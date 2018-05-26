@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import {
   Button,
-  Text,
   Container,
   Body,
   Content,
@@ -13,17 +12,9 @@ import {
   Icon,
   Right,
 } from 'native-base';
+import { Lists } from '../components';
 
 export class ListsScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      token: 'default',
-    };
-  }
-
-  componentDidMount() {}
-
   render() {
     return (
       <Container>
@@ -38,13 +29,12 @@ export class ListsScreen extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>ListScreen</Title>
+            <Title>Lists</Title>
           </Body>
           <Right />
         </Header>
         <Content padder>
-          <Text>ListScreen</Text>
-          <Text>{this.state.token}</Text>
+          <Lists />
         </Content>
       </Container>
     );
