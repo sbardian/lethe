@@ -63,6 +63,7 @@ export class LoginScreen extends Component {
       <TokenContext.Consumer>
         {({ token, setToken }) => {
           if (token) {
+            console.log('token update in login');
             this.props.navigation.navigate('Home');
             return null;
           }

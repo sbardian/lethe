@@ -43,7 +43,8 @@ export default class App extends Component {
                 token ||
                 (await AsyncStorage.getItem('@letheStore:token')) ||
                 undefined;
-              setToken(authToken);
+              // TODO: setToken here causing issues. . . loop, fix dumas
+              // setToken(authToken);
               // return the headers to the context so httpLink can read them
               return {
                 headers: {

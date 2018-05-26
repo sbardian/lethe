@@ -13,9 +13,11 @@ import {
   Icon,
   Right,
 } from 'native-base';
+import { MyInfo } from '../components';
 
 export class HomeScreen extends Component {
   render() {
+    console.log('rendering HomeScreen');
     return (
       <Container>
         <StatusBar />
@@ -34,7 +36,7 @@ export class HomeScreen extends Component {
           <Right />
         </Header>
         <Content padder>
-          <Text>HomeScreen</Text>
+          <MyInfo />
         </Content>
       </Container>
     );
