@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
-import { createDrawerNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import {
   LoginScreen,
   HomeScreen,
   ListsScreen,
   InvitationsScreen,
+  SignupScreen,
 } from '../screens';
-import { SideBar } from '../components';
 
-export const Navigator = createDrawerNavigator(
-  {
-    Login: { screen: LoginScreen },
-    Home: { screen: HomeScreen },
-    Lists: { screen: ListsScreen },
-    Invitations: { screen: InvitationsScreen },
-  },
-  {
-    contentComponent: props => <SideBar {...props} />,
-  },
-);
+export const Navigator = createStackNavigator({
+  Login: { screen: LoginScreen },
+  Home: { screen: HomeScreen },
+  Lists: { screen: ListsScreen },
+  Invitations: { screen: InvitationsScreen },
+  Signup: { screen: SignupScreen },
+});

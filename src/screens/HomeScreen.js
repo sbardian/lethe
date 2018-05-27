@@ -1,38 +1,87 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
-import { Icon, Text, Thumbnail, Button } from 'native-base';
-import { MyInfo, Lists } from '../components';
+import { Icon, Text } from 'native-base';
 import { Screen } from '../screens';
 
-const styles = {
-  alignCenter: {
-    alignSelf: 'center',
-  },
-};
-
 export class HomeScreen extends Component {
+  static navigationOptions = {
+    title: 'Home',
+    headerStyle: {
+      backgroundColor: '#DE2439',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
+
   render() {
     return (
-      <Screen
-        headerButtonAction={() => this.props.navigation.toggleDrawer()}
-        headerIcon={<Icon name="menu" />}
-        headerTitle="Home"
-      >
+      <Screen>
         <Grid>
-          <Row size={1} style={styles.alignCenter}>
-            <Thumbnail
-              large
-              source={require('../images/background-grid.png')}
-            />
+          <Row
+            onPress={() => this.props.navigation.navigate('Profile')}
+            style={{ backgroundColor: '#F6B10B' }}
+          >
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Icon
+                type="FontAwesome"
+                name="user-circle-o"
+                style={{ color: 'white', fontSize: 64 }}
+              />
+              <Text style={{ color: 'white', fontSize: 24 }}>Profile</Text>
+            </View>
           </Row>
-          <Row size={1} style={styles.alignCenter}>
-            <MyInfo />
-          </Row>
-          <Row size={2} style={styles.alignCenter}>
-            <Text>Lists</Text>
 
-            <Lists />
+          <Row
+            onPress={() => this.props.navigation.navigate('Lists')}
+            style={{ backgroundColor: '#BAD500' }}
+          >
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Icon
+                type="Feather"
+                name="list"
+                style={{ color: 'white', fontSize: 64 }}
+              />
+              <Text style={{ color: 'white', fontSize: 24 }}>Lists</Text>
+            </View>
+          </Row>
+
+          <Row
+            onPress={() => this.props.navigation.navigate('Invitations')}
+            style={{ backgroundColor: '#992F43' }}
+          >
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Icon
+                type="MaterialIcons"
+                name="insert-invitation"
+                style={{ color: 'white', fontSize: 64 }}
+              />
+              <Text style={{ color: 'white', fontSize: 24 }}>Invitations</Text>
+            </View>
           </Row>
         </Grid>
       </Screen>

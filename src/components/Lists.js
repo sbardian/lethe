@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Text, List, ListItem, Icon, Left, Right } from 'native-base';
@@ -26,21 +25,19 @@ export const Lists = () => (
         return <Text>Error: ${error.message}</Text>;
       }
       return (
-        <View>
-          <List
-            dataArray={lists}
-            renderRow={list => (
-              <ListItem>
-                <Left>
-                  <Text>{list.title}</Text>
-                </Left>
-                <Right>
-                  <Icon name="arrow-forward" />
-                </Right>
-              </ListItem>
-            )}
-          />
-        </View>
+        <List
+          dataArray={lists}
+          renderRow={list => (
+            <ListItem>
+              <Left>
+                <Text>{list.title}</Text>
+              </Left>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+          )}
+        />
       );
     }}
   </Query>

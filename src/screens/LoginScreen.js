@@ -28,7 +28,7 @@ const LOGIN = gql`
 
 const screenStyles = {
   screen: {
-    backgroundColor: 'black',
+    backgroundColor: '#1A1A1A',
   },
 };
 
@@ -41,6 +41,17 @@ export class LoginScreen extends Component {
       password: '',
     };
   }
+
+  static navigationOptions = {
+    title: 'Login',
+    headerStyle: {
+      backgroundColor: '#D60C86',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
 
   componentDidMount() {
     // TODO: check for token in localstorage and set state?
@@ -70,20 +81,14 @@ export class LoginScreen extends Component {
             return null;
           }
           return (
-            <Screen
-              headerButtonAction={() => this.props.navigation.toggleDrawer()}
-              showHeader={false}
-              headerIcon={<Icon name="menu" />}
-              headerTitle="Login"
-              screenStyles={screenStyles.screen}
-            >
+            <Screen screenStyles={screenStyles.screen}>
               <View style={{ alignSelf: 'center' }}>
                 <Thumbnail
                   style={{
                     width: 200,
                     height: 200,
                     padding: 50,
-                    marginTop: 100,
+                    marginTop: 88,
                   }}
                   source={require('../images/brian.png')}
                 />
@@ -115,6 +120,7 @@ export class LoginScreen extends Component {
                   <Button
                     full
                     light
+                    bordered
                     disabled={loading}
                     onPress={async () => {
                       await userLogin({
@@ -129,6 +135,15 @@ export class LoginScreen extends Component {
                   </Button>
                 )}
               </Mutation>
+              <Button
+                full
+                light
+                bordered
+                style={{ marginTop: 20 }}
+                onPress={() => this.props.navigation.navigate('Signup')}
+              >
+                <Text>Sign Up</Text>
+              </Button>
             </Screen>
           );
         }}

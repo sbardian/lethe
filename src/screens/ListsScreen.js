@@ -1,29 +1,31 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
-import {
-  Button,
-  Container,
-  Body,
-  Content,
-  Header,
-  Title,
-  Left,
-  Icon,
-  Right,
-} from 'native-base';
+import { Text } from 'native-base';
+import { Row, Grid } from 'react-native-easy-grid';
 import { Lists } from '../components';
 import { Screen } from '../screens';
 
 export class ListsScreen extends Component {
+  static navigationOptions = {
+    title: 'Lists',
+    headerStyle: {
+      backgroundColor: '#BAD500',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
+
   render() {
     return (
-      <Screen
-        headerButtonAction={() => this.props.navigation.toggleDrawer()}
-        headerIcon={<Icon name="menu" />}
-        headerTitle="Home"
-      >
-        <Lists />
+      <Screen>
+        <Grid>
+          <Row>
+            <Text>Lists</Text>
+            <Lists />
+          </Row>
+        </Grid>
       </Screen>
     );
   }
