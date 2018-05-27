@@ -2,7 +2,19 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { Button, Text, Form, Input, Item, Icon, Label } from 'native-base';
+import { View } from 'react-native';
+import {
+  Button,
+  Text,
+  Form,
+  Input,
+  Item,
+  Icon,
+  Label,
+  Thumbnail,
+  Grid,
+  Row,
+} from 'native-base';
 import { TokenContext } from '../context';
 import { Screen } from '../screens';
 
@@ -13,6 +25,12 @@ const LOGIN = gql`
     }
   }
 `;
+
+const screenStyles = {
+  screen: {
+    backgroundColor: 'black',
+  },
+};
 
 export class LoginScreen extends Component {
   constructor(props) {
@@ -54,21 +72,35 @@ export class LoginScreen extends Component {
           return (
             <Screen
               headerButtonAction={() => this.props.navigation.toggleDrawer()}
+              showHeader={false}
               headerIcon={<Icon name="menu" />}
-              headerTitle="Home"
+              headerTitle="Login"
+              screenStyles={screenStyles.screen}
             >
-              <Text>LoginScreen</Text>
-              <Form>
+              <View style={{ alignSelf: 'center' }}>
+                <Thumbnail
+                  style={{
+                    width: 200,
+                    height: 200,
+                    padding: 50,
+                    marginTop: 100,
+                  }}
+                  source={require('../images/brian.png')}
+                />
+              </View>
+              <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
                 <Item floatingLabel>
                   <Label>Username</Label>
                   <Input
+                    style={{ color: 'white' }}
                     id="username"
                     onChangeText={value => this.onUsernameChange(value)}
                   />
                 </Item>
-                <Item floatingLabel last>
+                <Item floatingLabel>
                   <Label>Password</Label>
                   <Input
+                    style={{ color: 'white' }}
                     id="password"
                     secureTextEntry
                     onChangeText={value => this.onPasswordChange(value)}
@@ -81,6 +113,8 @@ export class LoginScreen extends Component {
               >
                 {(userLogin, { loading }) => (
                   <Button
+                    full
+                    light
                     disabled={loading}
                     onPress={async () => {
                       await userLogin({
@@ -95,7 +129,6 @@ export class LoginScreen extends Component {
                   </Button>
                 )}
               </Mutation>
-              <Text>{this.state.token}</Text>
             </Screen>
           );
         }}
