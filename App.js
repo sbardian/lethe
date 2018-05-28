@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
+import { Root } from 'native-base';
 import Expo from 'expo';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
@@ -32,39 +33,41 @@ export default class App extends Component {
       return <Expo.AppLoading />;
     }
     return (
-      <TokenProvider>
-        <TokenContext.Consumer>
-          {({ token, setToken }) => {
-            const httpLink = createHttpLink({
-              uri: 'http://localhost:9999/graphql',
-            });
-            const authLink = setContext(async (_, { headers }) => {
-              const authToken =
-                token ||
-                (await AsyncStorage.getItem('@letheStore:token')) ||
-                undefined;
-              // TODO: setToken here causing issues. . . loop, fix dumas
-              // setToken(authToken);
-              // return the headers to the context so httpLink can read them
-              return {
-                headers: {
-                  ...headers,
-                  authorization: authToken ? `Bearer ${authToken}` : '',
-                },
-              };
-            });
-            const client = new ApolloClient({
-              link: authLink.concat(httpLink),
-              cache: new InMemoryCache(),
-            });
-            return (
-              <ApolloProvider client={client}>
-                <Navigator />
-              </ApolloProvider>
-            );
-          }}
-        </TokenContext.Consumer>
-      </TokenProvider>
+      <Root>
+        <TokenProvider>
+          <TokenContext.Consumer>
+            {({ token, setToken }) => {
+              const httpLink = createHttpLink({
+                uri: 'http://localhost:9999/graphql',
+              });
+              const authLink = setContext(async (_, { headers }) => {
+                const authToken =
+                  token ||
+                  (await AsyncStorage.getItem('@letheStore:token')) ||
+                  undefined;
+                // TODO: setToken here causing issues. . . loop, fix dumas
+                // setToken(authToken);
+                // return the headers to the context so httpLink can read them
+                return {
+                  headers: {
+                    ...headers,
+                    authorization: authToken ? `Bearer ${authToken}` : '',
+                  },
+                };
+              });
+              const client = new ApolloClient({
+                link: authLink.concat(httpLink),
+                cache: new InMemoryCache(),
+              });
+              return (
+                <ApolloProvider client={client}>
+                  <Navigator />
+                </ApolloProvider>
+              );
+            }}
+          </TokenContext.Consumer>
+        </TokenProvider>
+      </Root>
     );
   }
 }
