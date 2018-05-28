@@ -3,18 +3,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { View } from 'react-native';
-import {
-  Button,
-  Text,
-  Form,
-  Input,
-  Item,
-  Icon,
-  Label,
-  Thumbnail,
-  Grid,
-  Row,
-} from 'native-base';
+import { Button, Text, Form, Input, Item, Label, Thumbnail } from 'native-base';
 import { TokenContext } from '../context';
 import { Screen } from '../screens';
 
