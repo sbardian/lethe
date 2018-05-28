@@ -33,15 +33,6 @@ const screenStyles = {
 };
 
 export class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      token: 'notLoggedIn',
-      username: '',
-      password: '',
-    };
-  }
-
   static navigationOptions = {
     title: 'Login',
     headerStyle: {
@@ -52,6 +43,15 @@ export class LoginScreen extends Component {
       fontWeight: 'bold',
     },
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: 'notLoggedIn',
+      username: '',
+      password: '',
+    };
+  }
 
   componentDidMount() {
     // TODO: check for token in localstorage and set state?
