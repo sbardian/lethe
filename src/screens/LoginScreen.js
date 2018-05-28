@@ -54,7 +54,6 @@ export class LoginScreen extends Component {
   }
 
   onPasswordChange(value) {
-    console.log('password value = ', value);
     this.setState({
       password: value,
     });
