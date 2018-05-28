@@ -1,18 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { Query, Mutation } from 'react-apollo';
-import {
-  Text,
-  Content,
-  Card,
-  CardItem,
-  Body,
-  Icon,
-  Left,
-  Right,
-  Toast,
-} from 'native-base';
-import { AcceptInvitationIcon } from './';
+import { Query } from 'react-apollo';
+import { Text, Content, Card, CardItem, Body, Left, Right } from 'native-base';
+import { AcceptInvitationIcon, DeclineInvitationIcon } from './';
 
 const GET_MY_INVITATIONS = gql`
   {
@@ -33,18 +23,6 @@ const GET_INVITER = gql`
     getUser(userId: $userId) {
       id
       username
-    }
-  }
-`;
-
-const ACCEPT_INVITATION = gql`
-  mutation acceptInvitation($invitationId: String!) {
-    acceptInvitation(invitationId: $invitationId) {
-      id
-      inviter
-      invitee
-      list
-      title
     }
   }
 `;
@@ -70,13 +48,7 @@ export const Invitations = () => (
                 </Left>
                 <Right>
                   <AcceptInvitationIcon invitation={invitation} />
-                  <Icon
-                    onPress={() => {
-                      console.log('dont join list');
-                    }}
-                    type="MaterialIcons"
-                    name="delete"
-                  />
+                  <DeclineInvitationIcon invitation={invitation} />
                 </Right>
               </CardItem>
               <CardItem bordered>
