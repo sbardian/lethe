@@ -4,3 +4,4 @@ export { ListsScreen } from './ListsScreen';
 export { InvitationsScreen } from './InvitationsScreen';
 export { Screen } from './Screen';
 export { SignupScreen } from './SignupScreen';
+export { AddListScreen } from './AddListScreen';
