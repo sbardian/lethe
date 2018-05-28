@@ -12,6 +12,7 @@ import {
   Right,
   Toast,
 } from 'native-base';
+import { AcceptInvitationIcon } from './';
 
 const GET_MY_INVITATIONS = gql`
   {
@@ -68,31 +69,7 @@ export const Invitations = () => (
                   <Text>Title: {invitation.title}</Text>
                 </Left>
                 <Right>
-                  <Mutation
-                    mutation={ACCEPT_INVITATION}
-                    onCompleted={() =>
-                      Toast.show({
-                        text: 'List joined!',
-                        buttonText: 'Okay',
-                        type: 'success',
-                        position: 'bottom',
-                      })
-                    }
-                  >
-                    {(acceptInvitation, { loading }) => (
-                      <Icon
-                        disabled={loading}
-                        onPress={async () => {
-                          console.log('join list');
-                          await acceptInvitation({
-                            variables: { invitationId: invitation.id },
-                          });
-                        }}
-                        type="Ionicons"
-                        name="md-add-circle"
-                      />
-                    )}
-                  </Mutation>
+                  <AcceptInvitationIcon invitation={invitation} />
                   <Icon
                     onPress={() => {
                       console.log('dont join list');
