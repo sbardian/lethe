@@ -6,10 +6,10 @@ import { Text, List, ListItem, Icon, Left, Right } from 'native-base';
 const GET_MY_LISTS = gql`
   {
     getMyInfo {
-      id
       lists {
         id
         title
+        owner
       }
     }
   }
