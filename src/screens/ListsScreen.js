@@ -1,9 +1,9 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Fab, Icon } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Lists } from '../components';
 import { Screen } from '../screens';
+import { AddListFab } from '../components';
 
 export class ListsScreen extends Component {
   static navigationOptions = {
@@ -19,19 +19,7 @@ export class ListsScreen extends Component {
 
   render() {
     return (
-      <Screen
-        fab={
-          <Fab
-            style={{ backgroundColor: '#BAD500' }}
-            position="bottomRight"
-            onPress={() => {
-              console.log('add list');
-            }}
-          >
-            <Icon name="add" />
-          </Fab>
-        }
-      >
+      <Screen fab={<AddListFab />}>
         <Grid>
           <Row>
             <Lists />
