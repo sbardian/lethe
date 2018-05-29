@@ -16,7 +16,7 @@ const GET_MY_LISTS = gql`
   }
 `;
 
-export const Lists = () => (
+export const Lists = ({ navigation }) => (
   <Query query={GET_MY_LISTS}>
     {({ loading, error, data: { getMyInfo: { lists } = [] } }) => {
       if (loading) {
@@ -30,8 +30,12 @@ export const Lists = () => (
           data={lists}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={[s.pa3, s.bb]}
-              onPress={() => console.log('list item pressed')}
+              style={[s.pa3, s.bb, s.bb__red]}
+              onPress={() =>
+                navigation.navigate('Items', {
+                  list: item,
+                })
+              }
             >
               <View>
                 <Text>{item.title}</Text>

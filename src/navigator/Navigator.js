@@ -6,6 +6,7 @@ import {
   InvitationsScreen,
   SignupScreen,
   AddListScreen,
+  ItemsScreen,
 } from '../screens';
 
 export const Navigator = createStackNavigator({
@@ -15,4 +16,5 @@ export const Navigator = createStackNavigator({
   AddList: { screen: AddListScreen },
   Invitations: { screen: InvitationsScreen },
   Signup: { screen: SignupScreen },
+  Items: { screen: ItemsScreen },
 });

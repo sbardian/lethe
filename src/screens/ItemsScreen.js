@@ -1,12 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import { Text } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
-import { AddListFab, Lists } from '../components';
+import { AddListFab } from '../components';
 import { Screen } from '../screens';
 
-export class ListsScreen extends Component {
+export class ItemsScreen extends Component {
   static navigationOptions = {
-    title: 'Lists',
+    title: 'Items',
     headerStyle: {
       backgroundColor: '#BAD500',
     },
@@ -17,11 +18,15 @@ export class ListsScreen extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    const list = navigation.getParam('list', {
+      list: { id: 'No List', title: 'No List' },
+    });
     return (
       <Screen fab={<AddListFab navigation={this.props.navigation} />}>
         <Grid>
           <Row>
-            <Lists navigation={this.props.navigation} />
+            <Text>{list.title} list items: </Text>
           </Row>
         </Grid>
       </Screen>
