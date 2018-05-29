@@ -5644,7 +5644,7 @@ react-native-safe-module@^1.1.0:
   dependencies:
     dedent "^0.6.0"
 
-react-native-style-tachyons@3.7.0:
+react-native-style-tachyons@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/react-native-style-tachyons/-/react-native-style-tachyons-3.7.0.tgz#23ad9f83f56b3efc32674c9861dd8cb762adf71b"
   dependencies:

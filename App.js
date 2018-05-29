@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
+import NativeTachyons from 'react-native-style-tachyons';
+import { AsyncStorage, StyleSheet } from 'react-native';
 import { Root } from 'native-base';
 import Expo from 'expo';
 import { ApolloClient } from 'apollo-client';
@@ -9,6 +10,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import { TokenProvider, TokenContext } from './src/context';
 import { Navigator } from './src/navigator';
+
+NativeTachyons.build({}, StyleSheet);
 
 export default class App extends Component {
   constructor() {

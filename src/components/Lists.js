@@ -1,7 +1,8 @@
 import React from 'react';
+import { FlatList, TouchableOpacity, View, Text } from 'react-native';
+import { styles as s } from 'react-native-style-tachyons';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Text, List, ListItem, Icon, Left, Right } from 'native-base';
 
 const GET_MY_LISTS = gql`
   {
@@ -25,18 +26,19 @@ export const Lists = () => (
         return <Text>Error: ${error.message}</Text>;
       }
       return (
-        <List
-          dataArray={lists}
-          renderRow={list => (
-            <ListItem>
-              <Left>
-                <Text>{list.title}</Text>
-              </Left>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
+        <FlatList
+          data={lists}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={[s.pa3, s.bb]}
+              onPress={() => console.log('list item pressed')}
+            >
+              <View>
+                <Text>{item.title}</Text>
+              </View>
+            </TouchableOpacity>
           )}
+          keyExtractor={item => item.id}
         />
       );
     }}
