@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Text } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
-import { AddListFab } from '../components';
+import { ItemsFab } from '../components';
 import { Screen } from '../screens';
 
 export class ItemsScreen extends Component {
@@ -23,7 +23,7 @@ export class ItemsScreen extends Component {
       list: { id: 'No List', title: 'No List' },
     });
     return (
-      <Screen fab={<AddListFab navigation={this.props.navigation} />}>
+      <Screen fab={<ItemsFab navigation={navigation} />}>
         <Grid>
           <Row>
             <Text>{list.title} list items: </Text>

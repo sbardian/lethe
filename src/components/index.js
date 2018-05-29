@@ -5,3 +5,4 @@ export { AcceptInvitationIcon } from './AcceptInvitationIcon';
 export { DeclineInvitationIcon } from './DeclineInvitationIcon';
 export { FabBase } from './FabBase';
 export { AddListFab } from './AddListFab';
+export { ItemsFab } from './ItemsFab';
