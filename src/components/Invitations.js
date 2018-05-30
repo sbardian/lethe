@@ -7,7 +7,6 @@ import { AcceptInvitationIcon, DeclineInvitationIcon } from './';
 const GET_MY_INVITATIONS = gql`
   {
     getMyInfo {
-      id
       invitations {
         id
         inviter
@@ -53,24 +52,7 @@ export const Invitations = () => (
               </CardItem>
               <CardItem bordered>
                 <Body>
-                  <Query
-                    query={GET_INVITER}
-                    variables={{ userId: invitation.inviter }}
-                  >
-                    {({
-                      loading,
-                      error,
-                      data: { getUser: { username } = 'User Not Found' },
-                    }) => {
-                      if (loading) {
-                        return <Text>Loading . . . </Text>;
-                      }
-                      if (error) {
-                        return <Text>Error: ${error.message}</Text>;
-                      }
-                      return <Text>From: {username}</Text>;
-                    }}
-                  </Query>
+                  <Text>From: {invitation.inviter}</Text>
                 </Body>
               </CardItem>
             </Content>
