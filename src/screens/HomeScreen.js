@@ -9,7 +9,7 @@ export class HomeScreen extends Component {
   static navigationOptions = {
     title: 'Home',
     headerStyle: {
-      backgroundColor: '#DE2439',
+      backgroundColor: '#5e525c',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
@@ -23,7 +23,7 @@ export class HomeScreen extends Component {
         <Grid>
           <Row
             onPress={() => this.props.navigation.navigate('Profile')}
-            style={{ backgroundColor: '#F6B10B' }}
+            style={{ backgroundColor: '#7b6ed6' }}
           >
             <View
               style={{
@@ -44,7 +44,7 @@ export class HomeScreen extends Component {
 
           <Row
             onPress={() => this.props.navigation.navigate('Lists')}
-            style={{ backgroundColor: '#BAD500' }}
+            style={{ backgroundColor: '#13cd4a' }}
           >
             <View
               style={{
@@ -65,7 +65,7 @@ export class HomeScreen extends Component {
 
           <Row
             onPress={() => this.props.navigation.navigate('Invitations')}
-            style={{ backgroundColor: '#992F43' }}
+            style={{ backgroundColor: '#ec4401' }}
           >
             <View
               style={{

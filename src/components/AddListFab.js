@@ -3,7 +3,7 @@ import { FabBase } from './';
 
 export const AddListFab = ({ navigation }) => (
   <FabBase
-    backgroundColor="#BAD500"
+    backgroundColor="#13cd4a"
     position="bottomRight"
     onPress={() => navigation.navigate('AddList')}
     iconName="add"

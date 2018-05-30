@@ -40,7 +40,8 @@
     "react-native-device-detection": "0.2.0",
     "react-native-easy-grid": "0.1.17",
     "react-native-style-tachyons": "3.7.0",
-    "react-navigation": "^2.0.2"
+    "react-navigation": "^2.0.2",
+    "rn-viewpager": "^1.2.9"
   },
   "devDependencies": {
     "babel-eslint": "8.2.3",

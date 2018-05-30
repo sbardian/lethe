@@ -22,6 +22,9 @@ export default class App extends Component {
   }
 
   async componentWillMount() {
+    await Expo.Asset.fromModule(
+      require('./src/images/brian.png'),
+    ).downloadAsync();
     await Expo.Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
@@ -41,6 +44,9 @@ export default class App extends Component {
           <TokenContext.Consumer>
             {({ token, setToken }) => {
               const httpLink = createHttpLink({
+                // android
+                //  uri: 'http://10.0.3.2:9999/graphql',
+                // ios
                 uri: 'http://localhost:9999/graphql',
               });
               const authLink = setContext(async (_, { headers }) => {
