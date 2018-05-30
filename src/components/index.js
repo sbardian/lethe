@@ -6,3 +6,4 @@ export { DeclineInvitationIcon } from './DeclineInvitationIcon';
 export { FabBase } from './FabBase';
 export { AddListFab } from './AddListFab';
 export { ItemsFab } from './ItemsFab';
+export { AddListForm } from './AddListForm';
