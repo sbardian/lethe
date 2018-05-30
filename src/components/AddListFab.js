@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Icon } from 'native-base';
 import { FabBase } from './';
 
 export const AddListFab = ({ navigation }) => (
