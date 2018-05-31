@@ -42,6 +42,7 @@ export class LoginForm extends Component {
             <Input
               style={{ color: 'white' }}
               id="username"
+              autoCapitalize="none"
               onChangeText={value => this.onUsernameChange(value)}
             />
           </Item>
@@ -51,13 +52,14 @@ export class LoginForm extends Component {
               style={{ color: 'white' }}
               id="password"
               secureTextEntry
+              autoCapitalize="none"
               onChangeText={value => this.onPasswordChange(value)}
             />
           </Item>
         </Form>
         <Mutation
           mutation={LOGIN}
-          onCompleted={data => this.props.onSetToken(token)}
+          onCompleted={data => this.props.onSetToken(data.login.token)}
         >
           {(userLogin, { loading }) => (
             <Button
