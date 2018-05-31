@@ -9,3 +9,4 @@ export { ItemsFab } from './ItemsFab';
 export { AddListForm } from './AddListForm';
 export { Logo } from './Logo';
 export { LoginForm } from './LoginForm';
+export { CreateAccountForm } from './CreateAccountForm';
