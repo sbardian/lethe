@@ -13,7 +13,7 @@ import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
 import { Button, Text, Form, Input, Item, Label } from 'native-base';
 import { TokenContext } from '../context';
 import { Screen } from './';
-import { Logo } from '../components';
+import { Logo, LoginForm } from '../components';
 
 const styles = StyleSheet.create({
   screen: {
@@ -41,14 +41,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const LOGIN = gql`
-  mutation userLogin($username: String!, $password: String!) {
-    login(loginInput: { username: $username, password: $password }) {
-      token
-    }
-  }
-`;
-
 export class LoginScreen extends Component {
   static navigationOptions = {
     title: 'Login',
@@ -70,8 +62,6 @@ export class LoginScreen extends Component {
     this.state = {
       menu_expanded: false,
       token: 'notLoggedIn',
-      username: '',
-      password: '',
       slidePage: 0,
       loading: true,
     };
@@ -82,18 +72,6 @@ export class LoginScreen extends Component {
       loading: false,
     });
     this.animateImage();
-  }
-
-  onUsernameChange(value) {
-    this.setState({
-      username: value,
-    });
-  }
-
-  onPasswordChange(value) {
-    this.setState({
-      password: value,
-    });
   }
 
   openMenu(item) {
@@ -266,52 +244,7 @@ export class LoginScreen extends Component {
                         }
                       >
                         <View>
-                          <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-                            <Item floatingLabel>
-                              <Label style={{ color: 'white' }}>Username</Label>
-                              <Input
-                                style={{ color: 'white' }}
-                                id="username"
-                                onChangeText={value =>
-                                  this.onUsernameChange(value)
-                                }
-                              />
-                            </Item>
-                            <Item floatingLabel>
-                              <Label style={{ color: 'white' }}>Password</Label>
-                              <Input
-                                style={{ color: 'white' }}
-                                id="password"
-                                secureTextEntry
-                                onChangeText={value =>
-                                  this.onPasswordChange(value)
-                                }
-                              />
-                            </Item>
-                          </Form>
-                          <Mutation
-                            mutation={LOGIN}
-                            onCompleted={data => setToken(data.login.token)}
-                          >
-                            {(userLogin, { loading }) => (
-                              <Button
-                                block
-                                light
-                                style={{ marginRight: 20, marginLeft: 20 }}
-                                disabled={loading}
-                                onPress={async () => {
-                                  await userLogin({
-                                    variables: {
-                                      username: this.state.username,
-                                      password: this.state.password,
-                                    },
-                                  });
-                                }}
-                              >
-                                <Text>Login</Text>
-                              </Button>
-                            )}
-                          </Mutation>
+                          <LoginForm onSetToken={setToken} />
                         </View>
                         <View>
                           <Text>Sign Up</Text>
