@@ -13,7 +13,7 @@ import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
 import { Button, Text, Form, Input, Item, Label } from 'native-base';
 import { TokenContext } from '../context';
 import { Screen } from './';
-import { Logo, LoginForm } from '../components';
+import { Logo, LoginForm, CreateAccountForm } from '../components';
 
 const styles = StyleSheet.create({
   screen: {
@@ -247,21 +247,7 @@ export class LoginScreen extends Component {
                           <LoginForm onSetToken={setToken} />
                         </View>
                         <View>
-                          <Text>Sign Up</Text>
-                          <Button
-                            block
-                            light
-                            style={{
-                              marginTop: 20,
-                              marginRight: 20,
-                              marginLeft: 20,
-                            }}
-                            onPress={() =>
-                              this.props.navigation.navigate('Signup')
-                            }
-                          >
-                            <Text>Sign Up</Text>
-                          </Button>
+                          <CreateAccountForm onSetToken={setToken} />
                         </View>
                       </IndicatorViewPager>
                     </View>
