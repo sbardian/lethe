@@ -96,9 +96,9 @@ export class CreateAccountForm extends Component {
         </Form>
         <Mutation
           mutation={SIGN_UP}
-          onCompleted={data => this.props.onSetToken(data.login.token)}
+          onCompleted={data => this.props.onSetToken(data.signup.token)}
         >
-          {(userLogin, { loading }) => {
+          {(signUp, { loading }) => {
             if (
               username &&
               email &&
