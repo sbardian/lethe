@@ -23,7 +23,7 @@ export class ItemsScreen extends Component {
       list: { id: 'No List', title: 'No List' },
     });
     return (
-      <Screen fab={<ItemsFab navigation={navigation} />}>
+      <Screen fab={<ItemsFab navigation={navigation} list={list} />}>
         <Grid>
           <Row>
             <Text>{list.title} list items: </Text>
