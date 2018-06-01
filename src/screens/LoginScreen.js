@@ -6,14 +6,11 @@ import {
   Easing,
   TouchableOpacity,
 } from 'react-native';
-import { styles as s } from 'react-native-style-tachyons';
-import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
 import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
-import { Button, Text, Form, Input, Item, Label } from 'native-base';
+import { Button, Text } from 'native-base';
 import { TokenContext } from '../context';
 import { Screen } from './';
-import { Logo, LoginForm, CreateAccountForm } from '../components';
+import { LoginForm, CreateAccountForm } from '../components';
 
 const styles = StyleSheet.create({
   screen: {
@@ -32,13 +29,6 @@ const styles = StyleSheet.create({
   tip_menu: {
     flexDirection: 'row',
   },
-  button: {
-    backgroundColor: '#fff',
-  },
-  button_label: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
 });
 
 export class LoginScreen extends Component {
@@ -50,16 +40,11 @@ export class LoginScreen extends Component {
     this.imageMarginTop = new Animated.Value(0);
     this.state = {
       menu_expanded: false,
-      token: 'notLoggedIn',
       slidePage: 0,
-      loading: true,
     };
   }
 
   componentDidMount() {
-    this.setState({
-      loading: false,
-    });
     this.animateImage();
   }
 
@@ -100,7 +85,7 @@ export class LoginScreen extends Component {
     this.imageBounce.setValue(0);
     Animated.spring(this.imageBounce, {
       toValue: 1,
-      friction: 4,
+      friction: 3,
     }).start();
   }
 
@@ -150,7 +135,6 @@ export class LoginScreen extends Component {
       <TokenContext.Consumer>
         {({ token, setToken }) => {
           if (token) {
-            console.log('token update in login');
             this.props.navigation.navigate('Home');
             return null;
           }
