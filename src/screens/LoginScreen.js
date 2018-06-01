@@ -42,17 +42,6 @@ const styles = StyleSheet.create({
 });
 
 export class LoginScreen extends Component {
-  static navigationOptions = {
-    title: 'Login',
-    headerStyle: {
-      backgroundColor: '#7b6ed6',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };
-
   constructor(props) {
     super(props);
     this.slideMenu = new Animated.Value(0);
