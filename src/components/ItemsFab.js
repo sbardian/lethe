@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import { Alert } from 'react-native';
 import { Icon, Fab, Button } from 'native-base';
-import { ApolloConsumer, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import { adopt } from 'react-adopt';
 
 const DELETE_LIST = gql`
   mutation deleteList($listId: String!) {
     deleteList(listId: $listId) {
+      id
+      title
+    }
+  }
+`;
+
+const UPDATE_LIST = gql`
+  mutation updateList($listId: String!, $title: String!) {
+    updateList(listId: $listId, title: $title) {
       id
       title
     }
@@ -25,6 +35,66 @@ const GET_MY_LISTS = gql`
   }
 `;
 
+const deleteListMutation = ({ navigation, render }) => (
+  <Mutation
+    mutation={DELETE_LIST}
+    update={(cache, { data }) => {
+      const cacheData = cache.readQuery({ query: GET_MY_LISTS });
+      const newCacheData = cacheData.getMyInfo.lists.filter(
+        casheList => casheList.id !== data.deleteList.id,
+      );
+      cache.writeQuery({
+        query: GET_MY_LISTS,
+        data: {
+          getMyInfo: {
+            __typename: 'User',
+            lists: [...newCacheData],
+          },
+        },
+      });
+    }}
+    onCompleted={() => {
+      navigation.navigate('Lists');
+    }}
+  >
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+);
+
+const updateListMutation = ({ navigation, render }) => (
+  <Mutation
+    mutation={UPDATE_LIST}
+    update={(cache, { data }) => {
+      const cacheData = cache.readQuery({ query: GET_MY_LISTS });
+      cacheData.getMyInfo.lists.filter(
+        casheList => casheList.id === data.updateList.id,
+        (listItem, index, orgArray) => {
+          orgArray.splice(index, 1);
+          cache.writeQuery({
+            query: GET_MY_LISTS,
+            data: {
+              getMyInfo: {
+                __typename: 'User',
+                lists: [...orgArray, data.updateList],
+              },
+            },
+          });
+        },
+      );
+    }}
+    onCompleted={() => {
+      navigation.navigate('Lists');
+    }}
+  >
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+);
+
+const ListMutations = adopt({
+  deleteList: deleteListMutation,
+  updateList: updateListMutation,
+});
+
 export class ItemsFab extends Component {
   constructor(props) {
     super(props);
@@ -36,28 +106,8 @@ export class ItemsFab extends Component {
   render() {
     const { navigation, list } = this.props;
     return (
-      <Mutation
-        mutation={DELETE_LIST}
-        update={(cache, { data }) => {
-          const cacheData = cache.readQuery({ query: GET_MY_LISTS });
-          const newCacheData = cacheData.getMyInfo.lists.filter(
-            casheList => casheList.id !== data.deleteList.id,
-          );
-          cache.writeQuery({
-            query: GET_MY_LISTS,
-            data: {
-              getMyInfo: {
-                __typename: 'User',
-                lists: [...newCacheData],
-              },
-            },
-          });
-        }}
-        onCompleted={() => {
-          navigation.navigate('Lists');
-        }}
-      >
-        {deleteList => (
+      <ListMutations navigation={navigation}>
+        {({ deleteList, updateList }) => (
           <Fab
             active={this.state.active}
             backgroundColor="#BAD500"
@@ -83,7 +133,7 @@ export class ItemsFab extends Component {
                     {
                       text: 'OK',
                       onPress: async () =>
-                        deleteList({
+                        deleteList.mutation({
                           variables: {
                             listId: list.id,
                           },
@@ -96,7 +146,33 @@ export class ItemsFab extends Component {
             >
               <Icon name="delete-circle" type="MaterialCommunityIcons" />
             </Button>
-            <Button style={{ backgroundColor: '#3B5998' }}>
+            <Button
+              style={{ backgroundColor: '#3B5998' }}
+              onPress={() =>
+                Alert.alert(
+                  'Update List',
+                  `Are you sure you want to update ${list.title} list?`,
+                  [
+                    {
+                      text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'OK',
+                      onPress: async () =>
+                        updateList.mutation({
+                          variables: {
+                            listId: list.id,
+                            title: 'NEWNEW',
+                          },
+                        }),
+                    },
+                  ],
+                  { cancelable: false },
+                )
+              }
+            >
               <Icon name="edit" type="FontAwesome" />
             </Button>
             <Button disabled style={{ backgroundColor: '#34A34F' }}>
@@ -104,7 +180,7 @@ export class ItemsFab extends Component {
             </Button>
           </Fab>
         )}
-      </Mutation>
+      </ListMutations>
     );
   }
 }
