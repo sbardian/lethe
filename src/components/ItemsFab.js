@@ -149,28 +149,9 @@ export class ItemsFab extends Component {
             <Button
               style={{ backgroundColor: '#3B5998' }}
               onPress={() =>
-                Alert.alert(
-                  'Update List',
-                  `Are you sure you want to update ${list.title} list?`,
-                  [
-                    {
-                      text: 'Cancel',
-                      onPress: () => console.log('Cancel Pressed'),
-                      style: 'cancel',
-                    },
-                    {
-                      text: 'OK',
-                      onPress: async () =>
-                        updateList.mutation({
-                          variables: {
-                            listId: list.id,
-                            title: 'NEWNEW',
-                          },
-                        }),
-                    },
-                  ],
-                  { cancelable: false },
-                )
+                navigation.navigate('EditList', {
+                  list,
+                })
               }
             >
               <Icon name="edit" type="FontAwesome" />

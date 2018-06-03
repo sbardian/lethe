@@ -6,6 +6,7 @@ import {
   SignupScreen,
   AddListScreen,
   ItemsScreen,
+  EditListScreen,
 } from '../screens';
 
 const appRoutes = {
@@ -15,6 +16,7 @@ const appRoutes = {
   Invitations: { screen: InvitationsScreen },
   Signup: { screen: SignupScreen },
   Items: { screen: ItemsScreen },
+  EditList: { screen: EditListScreen },
 };
 
 export const AppNavigator = createStackNavigator(appRoutes);
