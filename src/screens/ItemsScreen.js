@@ -32,6 +32,7 @@ export class ItemsScreen extends Component {
         list,
       };
     }
+    return null;
   }
 
   render() {
