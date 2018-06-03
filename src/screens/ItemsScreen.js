@@ -17,11 +17,26 @@ export class ItemsScreen extends Component {
     },
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: { id: 'No List', title: 'No List' },
+    };
+  }
+
+  static getDerivedStateFromProps(props) {
+    const { navigation } = props;
+    const list = navigation.getParam('list');
+    if (list) {
+      return {
+        list,
+      };
+    }
+  }
+
   render() {
     const { navigation } = this.props;
-    const list = navigation.getParam('list', {
-      list: { id: 'No List', title: 'No List' },
-    });
+    const { list } = this.state;
     return (
       <Screen fab={<ItemsFab navigation={navigation} list={list} />}>
         <Grid>

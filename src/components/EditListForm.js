@@ -30,6 +30,7 @@ export class EditListForm extends Component {
     super(props);
     this.state = {
       title: '',
+      list: undefined,
     };
   }
 
@@ -73,8 +74,8 @@ export class EditListForm extends Component {
               },
             );
           }}
-          onCompleted={() => {
-            navigation.navigate('Items', { list });
+          onCompleted={data => {
+            navigation.navigate('Items', { list: data.updateList });
           }}
         >
           {(updateList, { loading }) => (
