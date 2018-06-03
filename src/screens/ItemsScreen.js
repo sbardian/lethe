@@ -9,7 +9,7 @@ export class ItemsScreen extends Component {
   static navigationOptions = {
     title: 'Items',
     headerStyle: {
-      backgroundColor: '#BAD500',
+      backgroundColor: '#660066',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {

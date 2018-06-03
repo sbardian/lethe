@@ -114,7 +114,7 @@ export class ItemsFab extends Component {
             position="bottomRight"
             direction="up"
             containerStyle={{}}
-            style={{ backgroundColor: '#BAD500' }}
+            style={{ backgroundColor: '#660066' }}
             onPress={() => this.setState({ active: !this.state.active })}
           >
             <Icon name="dots-three-horizontal" type="Entypo" />
