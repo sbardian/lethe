@@ -74,7 +74,7 @@ export class EditListForm extends Component {
             );
           }}
           onCompleted={() => {
-            navigation.goBack();
+            navigation.navigate('Items', { list });
           }}
         >
           {(updateList, { loading }) => (
