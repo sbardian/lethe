@@ -114,7 +114,7 @@ export class ItemsFab extends Component {
             position="bottomRight"
             direction="up"
             containerStyle={{}}
-            style={{ backgroundColor: '#5067FF' }}
+            style={{ backgroundColor: '#BAD500' }}
             onPress={() => this.setState({ active: !this.state.active })}
           >
             <Icon name="dots-three-horizontal" type="Entypo" />
@@ -147,17 +147,20 @@ export class ItemsFab extends Component {
               <Icon name="delete-circle" type="MaterialCommunityIcons" />
             </Button>
             <Button
-              style={{ backgroundColor: '#3B5998' }}
+              style={{ backgroundColor: '#F6B10B' }}
               onPress={() =>
                 navigation.navigate('EditList', {
                   list,
                 })
               }
             >
-              <Icon name="edit" type="FontAwesome" />
+              <Icon name="edit" type="MaterialIcons" />
             </Button>
             <Button disabled style={{ backgroundColor: '#34A34F' }}>
-              <Icon name="add-to-list" type="Entypo" />
+              <Icon name="playlist-plus" type="MaterialCommunityIcons" />
+            </Button>
+            <Button disabled style={{ backgroundColor: '#3B5998' }}>
+              <Icon name="share" type="MaterialIcons" />
             </Button>
           </Fab>
         )}
