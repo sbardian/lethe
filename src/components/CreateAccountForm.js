@@ -43,6 +43,7 @@ export class CreateAccountForm extends Component {
         pageScroll: props.pageScroll,
       };
     }
+    return null;
   }
 
   componentDidUpdate() {
@@ -78,25 +79,25 @@ export class CreateAccountForm extends Component {
     this.emailBounce.setValue(1);
     this.passwordBounce.setValue(1);
     this.passwordConfBounce.setValue(1);
-    Animated.stagger(200, [
+    Animated.stagger(100, [
       Animated.timing(this.usernameBounce, {
         toValue: 0,
-        duration: 500,
+        duration: 300,
         easing: Easing.in,
       }),
       Animated.timing(this.emailBounce, {
         toValue: 0,
-        duration: 500,
+        duration: 300,
         easing: Easing.in,
       }),
       Animated.timing(this.passwordBounce, {
         toValue: 0,
-        duration: 500,
+        duration: 300,
         easing: Easing.in,
       }),
       Animated.timing(this.passwordConfBounce, {
         toValue: 0,
-        duration: 500,
+        duration: 300,
         easing: Easing.in,
       }),
     ]).start();
