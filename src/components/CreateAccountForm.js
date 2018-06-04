@@ -37,7 +37,6 @@ export class CreateAccountForm extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('props = ', props, ', state = ', state);
     if (props.pageScroll !== state.pageScroll) {
       return {
         pageScroll: props.pageScroll,
