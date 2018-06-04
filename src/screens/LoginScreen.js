@@ -41,6 +41,7 @@ export class LoginScreen extends Component {
     this.state = {
       menu_expanded: false,
       slidePage: 0,
+      pageScroll: false,
     };
   }
 
@@ -115,6 +116,12 @@ export class LoginScreen extends Component {
       duration: 300,
       easing: Easing.linear,
     }).start();
+  }
+
+  pageScroll() {
+    this.setState({
+      pageScroll: !this.state.pageScroll,
+    });
   }
 
   render() {
@@ -207,6 +214,7 @@ export class LoginScreen extends Component {
                       <IndicatorViewPager
                         initialPage={this.state.slidePage}
                         style={{ height: 400 }}
+                        onPageScroll={() => this.pageScroll()}
                         indicator={
                           <PagerDotIndicator
                             pageCount={2}
@@ -217,10 +225,16 @@ export class LoginScreen extends Component {
                         }
                       >
                         <View>
-                          <LoginForm onSetToken={setToken} />
+                          <LoginForm
+                            pageScroll={this.state.pageScroll}
+                            onSetToken={setToken}
+                          />
                         </View>
                         <View>
-                          <CreateAccountForm onSetToken={setToken} />
+                          <CreateAccountForm
+                            pageScroll={this.state.pageScroll}
+                            onSetToken={setToken}
+                          />
                         </View>
                       </IndicatorViewPager>
                     </View>
