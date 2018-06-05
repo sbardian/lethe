@@ -74,10 +74,10 @@ export class CreateAccountForm extends Component {
   }
 
   animate() {
-    this.usernameBounce.setValue(1);
-    this.emailBounce.setValue(1);
-    this.passwordBounce.setValue(1);
-    this.passwordConfBounce.setValue(1);
+    // this.usernameBounce.setValue(1);
+    // this.emailBounce.setValue(1);
+    // this.passwordBounce.setValue(1);
+    // this.passwordConfBounce.setValue(1);
     Animated.stagger(100, [
       Animated.timing(this.usernameBounce, {
         toValue: 0,
