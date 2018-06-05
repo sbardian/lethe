@@ -16,7 +16,12 @@ const appRoutes = {
   AddList: { screen: AddListScreen },
   Invitations: { screen: InvitationsScreen },
   Signup: { screen: SignupScreen },
-  Items: { screen: ItemsScreen },
+  Items: {
+    screen: ItemsScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.list.title}`,
+    }),
+  },
   EditList: { screen: EditListScreen },
   AddListItem: { screen: AddListItemScreen },
 };

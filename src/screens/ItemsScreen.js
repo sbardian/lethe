@@ -7,7 +7,6 @@ import { Screen } from '../screens';
 
 export class ItemsScreen extends Component {
   static navigationOptions = {
-    title: 'Items',
     headerStyle: {
       backgroundColor: '#660066',
     },
