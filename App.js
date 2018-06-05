@@ -11,7 +11,16 @@ import { ApolloProvider } from 'react-apollo';
 import { TokenProvider, TokenContext } from './src/context';
 import { Navigator } from './src/navigator';
 
-NativeTachyons.build({}, StyleSheet);
+NativeTachyons.build(
+  {
+    colors: {
+      palette: {
+        white: '#FFFFFF',
+      },
+    },
+  },
+  StyleSheet,
+);
 
 export default class App extends Component {
   constructor() {
