@@ -128,11 +128,7 @@ export const Items = ({ navigation, listId }) => (
             >
               <TouchableOpacity
                 style={[s.pa3]}
-                onPress={() =>
-                  navigation.navigate('Items', {
-                    list: item,
-                  })
-                }
+                onPress={() => console.log('item pressed')}
               >
                 <View>
                   <Text>{item.title}</Text>

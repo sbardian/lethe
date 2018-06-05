@@ -156,7 +156,14 @@ export class ItemsFab extends Component {
             >
               <Icon name="edit" type="MaterialIcons" />
             </Button>
-            <Button disabled style={{ backgroundColor: '#34A34F' }}>
+            <Button
+              onPress={() =>
+                navigation.navigate('AddListItem', {
+                  list,
+                })
+              }
+              style={{ backgroundColor: '#34A34F' }}
+            >
               <Icon name="playlist-plus" type="MaterialCommunityIcons" />
             </Button>
             <Button disabled style={{ backgroundColor: '#3B5998' }}>

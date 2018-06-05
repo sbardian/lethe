@@ -11,3 +11,4 @@ export { LoginForm } from './LoginForm';
 export { CreateAccountForm } from './CreateAccountForm';
 export { EditListForm } from './EditListForm';
 export { Items } from './Items';
+export { AddListItemForm } from './AddListItemForm';
