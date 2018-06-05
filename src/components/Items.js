@@ -56,7 +56,6 @@ export const Items = ({ navigation, listId }) => (
                           query: GET_LIST_ITEMS,
                           variables: { id_is: listId },
                         });
-                        console.log('cache = ', cacheData, ', data = ', data);
                         const newCacheData = cacheData.getLists[0].items.filter(
                           casheItem => casheItem.id !== data.deleteItem.id,
                         );
