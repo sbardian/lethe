@@ -32,6 +32,10 @@ const styles = StyleSheet.create({
 });
 
 export class LoginScreen extends Component {
+  static navigationOptions = {
+    header: null,
+  };
+
   constructor(props) {
     super(props);
     this.slideMenu = new Animated.Value(0);
