@@ -8,3 +8,4 @@ export { AddListScreen } from './AddListScreen';
 export { ItemsScreen } from './ItemsScreen';
 export { EditListScreen } from './EditListScreen';
 export { AddListItemScreen } from './AddListItemScreen';
+export { SendInvitationScreen } from './SendInvitationScreen';

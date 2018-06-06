@@ -8,6 +8,7 @@ import {
   ItemsScreen,
   EditListScreen,
   AddListItemScreen,
+  SendInvitationScreen,
 } from '../screens';
 
 const appRoutes = {
@@ -24,6 +25,12 @@ const appRoutes = {
   },
   EditList: { screen: EditListScreen },
   AddListItem: { screen: AddListItemScreen },
+  SendInvitation: {
+    screen: SendInvitationScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: `Invite to ${navigation.state.params.list.title}`,
+    }),
+  },
 };
 
 export const AppNavigator = createStackNavigator(appRoutes);

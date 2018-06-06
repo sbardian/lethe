@@ -166,7 +166,14 @@ export class ItemsFab extends Component {
             >
               <Icon name="playlist-plus" type="MaterialCommunityIcons" />
             </Button>
-            <Button disabled style={{ backgroundColor: '#3B5998' }}>
+            <Button
+              onPress={() =>
+                navigation.navigate('SendInvitation', {
+                  list,
+                })
+              }
+              style={{ backgroundColor: '#3B5998' }}
+            >
               <Icon name="share" type="MaterialIcons" />
             </Button>
           </Fab>
