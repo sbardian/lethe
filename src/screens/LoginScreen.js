@@ -45,7 +45,7 @@ export class LoginScreen extends Component {
     this.state = {
       menu_expanded: false,
       slidePage: 0,
-      pageScroll: false,
+      pageScroll: true,
     };
   }
 
@@ -58,6 +58,7 @@ export class LoginScreen extends Component {
       {
         menu_expanded: true,
         slidePage: item,
+        pageScroll: false,
       },
       () => {
         this.slideMenu.setValue(0);
@@ -124,7 +125,7 @@ export class LoginScreen extends Component {
 
   pageScroll() {
     this.setState({
-      pageScroll: !this.state.pageScroll,
+      pageScroll: false,
     });
   }
 
