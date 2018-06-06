@@ -176,6 +176,12 @@ export class ItemsFab extends Component {
             >
               <Icon name="share" type="MaterialIcons" />
             </Button>
+            <Button
+              onPress={() => console.log('See members of this list')}
+              style={{ backgroundColor: '#7b6ed6' }}
+            >
+              <Icon type="Feather" name="users" />
+            </Button>
           </Fab>
         )}
       </ListMutations>
