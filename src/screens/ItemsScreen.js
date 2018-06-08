@@ -1,19 +1,36 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Text } from 'native-base';
+import { Text, Button, Icon } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
 import { ItemsFab, Items } from '../components';
 import { Screen } from '../screens';
 
 export class ItemsScreen extends Component {
-  static navigationOptions = {
-    headerStyle: {
-      backgroundColor: '#660066',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+  static navigationOptions = ({ navigation }) => {
+    const list = navigation.getParam('list');
+    return {
+      headerStyle: {
+        backgroundColor: '#660066',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerRight: (
+        <Button
+          transparent
+          onPress={() =>
+            navigation.navigate('ListSettings', {
+              list,
+            })
+          }
+          title="Info"
+          color="#fff"
+        >
+          <Icon style={{ color: 'white' }} name="settings" type="Octicons" />
+        </Button>
+      ),
+    };
   };
 
   constructor(props) {
