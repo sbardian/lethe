@@ -82,14 +82,16 @@ export class UpdateTitleButton extends Component {
             buttonText: 'Ok',
             type: 'success',
             position: 'bottom',
+            duration: 3000,
           });
         }}
         onError={data => {
           Toast.show({
             text: `List title update failed`,
             buttonText: 'Ok',
-            type: 'error',
+            type: 'danger',
             position: 'bottom',
+            duration: 3000,
           });
         }}
       >

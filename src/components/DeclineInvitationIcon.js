@@ -24,6 +24,16 @@ export const DeclineInvitationIcon = ({ invitation }) => (
         buttonText: 'Okay',
         type: 'warning',
         position: 'bottom',
+        duration: 3000,
+      })
+    }
+    onError={error =>
+      Toast.show({
+        text: `An error has occured: ${error.message}`,
+        buttonText: 'Okay',
+        type: 'danger',
+        position: 'bottom',
+        duration: 3000,
       })
     }
   >

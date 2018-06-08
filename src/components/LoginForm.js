@@ -18,8 +18,6 @@ export class LoginForm extends Component {
     this.state = {
       username: '',
       password: '',
-      loginError: false,
-      errorMsg: '',
     };
   }
 
@@ -61,12 +59,10 @@ export class LoginForm extends Component {
         </Form>
         <Mutation
           mutation={LOGIN}
+          errorPolicy="all"
           onCompleted={data => this.props.onSetToken(data.login.token)}
-          onError={() => {
-            this.setState({ loginError: true });
-          }}
         >
-          {(userLogin, { loading }) => (
+          {(userLogin, { loading, error }) => (
             <View>
               <Button
                 block
@@ -84,9 +80,9 @@ export class LoginForm extends Component {
               >
                 <Text>Login</Text>
               </Button>
-              {this.state.loginError && (
+              {error && (
                 <Text style={{ color: 'white', alignSelf: 'center' }}>
-                  Invalid username or password
+                  {error.message}
                 </Text>
               )}
             </View>

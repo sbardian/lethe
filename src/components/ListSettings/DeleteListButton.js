@@ -79,14 +79,16 @@ export class DeleteListButton extends Component {
             type: 'success',
             position: 'bottom',
             onClose: () => navigation.navigate('Lists'),
+            duration: 3000,
           });
         }}
-        onError={data => {
+        onError={error => {
           Toast.show({
-            text: `Failed to delete list.`,
+            text: `Delete Failed: ${error.message}`,
             buttonText: 'Ok',
-            type: 'error',
+            type: 'danger',
             position: 'bottom',
+            duration: 3000,
           });
         }}
       >
