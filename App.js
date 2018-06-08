@@ -4,7 +4,9 @@ import { AsyncStorage, StyleSheet } from 'react-native';
 import { Root } from 'native-base';
 import Expo from 'expo';
 import { ApolloClient } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
+import { onError } from 'apollo-link-error';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
@@ -74,8 +76,30 @@ export default class App extends Component {
                   },
                 };
               });
+
+              const errorLink = onError(
+                ({ graphQLErrors, networkError, response }) => {
+                  if (graphQLErrors)
+                    graphQLErrors.map(({ message, locations, path }) => {
+                      console.log(
+                        `YOOOO: [GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}, Response: ${response}<<<END>>>`,
+                      );
+                      return message;
+                    });
+                  if (networkError)
+                    console.log(`[Network error]: ${networkError}`);
+                  console.log(
+                    'GOT AN ERROR ITS NOT GQL OR NETWORK!: ',
+                    response,
+                  );
+                },
+              );
+
+              // const link = ApolloLink.concat(httpLink, authLink, errorLink);
+
               const client = new ApolloClient({
-                link: authLink.concat(httpLink),
+                link: authLink.concat(httpLink, errorLink),
+                // link: ApolloLink.from([httpLink, authLink, errorLink]),
                 cache: new InMemoryCache(),
               });
               return (
