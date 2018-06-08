@@ -18,6 +18,8 @@ export class LoginForm extends Component {
     this.state = {
       username: '',
       password: '',
+      loginError: false,
+      errorMsg: '',
     };
   }
 
@@ -60,24 +62,34 @@ export class LoginForm extends Component {
         <Mutation
           mutation={LOGIN}
           onCompleted={data => this.props.onSetToken(data.login.token)}
+          onError={() => {
+            this.setState({ loginError: true });
+          }}
         >
           {(userLogin, { loading }) => (
-            <Button
-              block
-              light
-              style={{ marginRight: 20, marginLeft: 20 }}
-              disabled={loading}
-              onPress={async () => {
-                await userLogin({
-                  variables: {
-                    username: this.state.username,
-                    password: this.state.password,
-                  },
-                });
-              }}
-            >
-              <Text>Login</Text>
-            </Button>
+            <View>
+              <Button
+                block
+                light
+                style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
+                disabled={loading}
+                onPress={async () => {
+                  await userLogin({
+                    variables: {
+                      username: this.state.username,
+                      password: this.state.password,
+                    },
+                  });
+                }}
+              >
+                <Text>Login</Text>
+              </Button>
+              {this.state.loginError && (
+                <Text style={{ color: 'white', alignSelf: 'center' }}>
+                  Invalid username or password
+                </Text>
+              )}
+            </View>
           )}
         </Mutation>
       </View>
