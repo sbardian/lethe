@@ -9,6 +9,7 @@ import {
   EditListScreen,
   AddListItemScreen,
   SendInvitationScreen,
+  ListSettingsScreen,
 } from '../screens';
 
 const appRoutes = {
@@ -30,6 +31,9 @@ const appRoutes = {
     navigationOptions: ({ navigation }) => ({
       title: `Invite to ${navigation.state.params.list.title}`,
     }),
+  },
+  ListSettings: {
+    screen: ListSettingsScreen,
   },
 };
 

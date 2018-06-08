@@ -13,3 +13,4 @@ export { EditListForm } from './EditListForm';
 export { Items } from './Items';
 export { AddListItemForm } from './AddListItemForm';
 export { SendInvitationForm } from './SendInvitationForm';
+export { ListSettings } from './ListSettings/ListSettings';
