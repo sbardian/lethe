@@ -40,15 +40,14 @@ export class ItemsScreen extends Component {
     };
   }
 
-  static getDerivedStateFromProps(props) {
-    const { navigation } = props;
+  componentDidMount() {
+    const { navigation } = this.props;
     const list = navigation.getParam('list');
     if (list) {
-      return {
+      this.setState({
         list,
-      };
+      });
     }
-    return null;
   }
 
   render() {

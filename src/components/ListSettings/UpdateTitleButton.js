@@ -1,11 +1,10 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { Animated, Easing, View } from 'react-native';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { Button, Form, Input, Item, Label, Text, Toast } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Button, Icon, Text, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 
 const UPDATE_LIST = gql`
@@ -34,7 +33,26 @@ export class UpdateTitleButton extends Component {
     super(props);
   }
 
+  spinValue = new Animated.Value(0);
+
+  componentDidMount() {
+    this.animateLoading();
+  }
+
+  animateLoading() {
+    this.spinValue.setValue(0);
+    Animated.timing(this.spinValue, {
+      toValue: 1,
+      duration: 4000,
+      easing: Easing.linear,
+    }).start(() => this.animateLoading());
+  }
+
   render() {
+    const spin = this.spinValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg'],
+    });
     const { list, title, titleNotChanged, onTitleSave } = this.props;
     return (
       <Mutation
@@ -58,21 +76,29 @@ export class UpdateTitleButton extends Component {
           );
         }}
         onCompleted={data => {
+          onTitleSave(data.updateList.title);
           Toast.show({
             text: `List title has been updated.`,
             buttonText: 'Ok',
             type: 'success',
             position: 'bottom',
-            onClose: () => onTitleSave(data.updateList.title),
+          });
+        }}
+        onError={data => {
+          Toast.show({
+            text: `List title update failed`,
+            buttonText: 'Ok',
+            type: 'error',
+            position: 'bottom',
           });
         }}
       >
-        {updateList => (
-          <View>
+        {(updateList, { loading }) => (
+          <View style={[s.flx_row, s.jcsa, s.aic]}>
             <Button
-              bordered
               style={[s.mt3]}
               warning
+              transparent
               disabled={titleNotChanged}
               onPress={async () => {
                 await updateList({
@@ -83,7 +109,16 @@ export class UpdateTitleButton extends Component {
                 });
               }}
             >
-              <Text>Update</Text>
+              {loading && (
+                <Animated.View style={{ transform: [{ rotate: spin }] }}>
+                  <Icon
+                    name="loading"
+                    type="MaterialCommunityIcons"
+                    style={{ color: '#f0ad4e' }}
+                  />
+                </Animated.View>
+              )}
+              {!loading && <Icon name="edit-3" type="Feather" />}
             </Button>
           </View>
         )}
