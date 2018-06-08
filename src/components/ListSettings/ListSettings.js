@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Form, Input, Item, Label } from 'native-base';
+import { Form, Input, Item, Label, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { styles as s } from 'react-native-style-tachyons';
 import { UpdateTitleButton } from './UpdateTitleButton';
+import { DeleteListButton } from './DeleteListButton';
 
 // const DELETE_LIST = gql`
 //   mutation deleteList($listId: String!) {
@@ -69,29 +70,23 @@ export class ListSettings extends Component {
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-          <Grid>
-            <Row>
-              <Col size={3}>
-                <Item stackedLabel>
-                  <Label>Title</Label>
-                  <Input
-                    placeholder={list.title}
-                    id="ListTitle"
-                    onChangeText={value => this.onTitleChange(value)}
-                  />
-                </Item>
-              </Col>
-              <Col size={1}>
-                <UpdateTitleButton
-                  list={list}
-                  title={title}
-                  titleNotChanged={titleNotChanged}
-                  onTitleSave={() => this.handleTitleSave()}
-                />
-              </Col>
-            </Row>
-          </Grid>
+          <Item stackedLabel>
+            <Label>Title</Label>
+            <Input
+              placeholder={list.title}
+              id="ListTitle"
+              onChangeText={value => this.onTitleChange(value)}
+            />
+          </Item>
+          <UpdateTitleButton
+            list={list}
+            title={title}
+            titleNotChanged={titleNotChanged}
+            onTitleSave={() => this.handleTitleSave()}
+          />
         </Form>
+        <Text style={{ color: 'red' }}>Delete this list?</Text>
+        <DeleteListButton navigation={navigation} list={list} title={title} />
       </View>
     );
   }
