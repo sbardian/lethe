@@ -82,24 +82,17 @@ export default class App extends Component {
                   if (graphQLErrors)
                     graphQLErrors.map(({ message, locations, path }) => {
                       console.log(
-                        `YOOOO: [GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}, Response: ${response}<<<END>>>`,
+                        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}, Response: ${response}<<<END>>>`,
                       );
                       return message;
                     });
                   if (networkError)
                     console.log(`[Network error]: ${networkError}`);
-                  console.log(
-                    'GOT AN ERROR ITS NOT GQL OR NETWORK!: ',
-                    response,
-                  );
                 },
               );
 
-              // const link = ApolloLink.concat(httpLink, authLink, errorLink);
-
               const client = new ApolloClient({
                 link: authLink.concat(httpLink, errorLink),
-                // link: ApolloLink.from([httpLink, authLink, errorLink]),
                 cache: new InMemoryCache(),
               });
               return (
