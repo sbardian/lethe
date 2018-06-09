@@ -59,7 +59,7 @@ export default class App extends Component {
                 //  uri: 'http://10.0.3.2:9999/graphql',
                 // ios
                 // uri: 'http://localhost:9999/graphql',
-                uri: 'https://letheapi-gsooqfdffu.now.sh/graphql',
+                uri: 'https://letheapi-gvyjqrnqvi.now.sh/graphql',
               });
               const authLink = setContext(async (_, { headers }) => {
                 const authToken =
@@ -88,6 +88,9 @@ export default class App extends Component {
                     });
                   if (networkError)
                     console.log(`[Network error]: ${networkError}`);
+                  else {
+                    console.log(response);
+                  }
                 },
               );
 
