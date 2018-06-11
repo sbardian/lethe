@@ -45,7 +45,8 @@ export class ListMembers extends Component {
           const owner = getLists[0].owner;
           return (
             <View>
-              <View style={[s.flx_row, s.jcfe, s.pr3]}>
+              <View style={[s.flx_row, s.jcsb, s.pr3]}>
+                <Text style={[s.asc, s.pl3]}>List Users</Text>
                 <Icon name="add" />
               </View>
               <FlatList
