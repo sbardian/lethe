@@ -16,6 +16,7 @@ import { styles as s } from 'react-native-style-tachyons';
 const GET_LIST_USERS = gql`
   query getLists($id_is: String!) {
     getLists(id_is: $id_is) {
+      owner
       users {
         id
         email
@@ -41,6 +42,7 @@ export class ListMembers extends Component {
           if (error) {
             return <Text>Error: ${error.message}</Text>;
           }
+          const owner = getLists[0].owner;
           return (
             <View>
               <View style={[s.flx_row, s.jcfe, s.pr3]}>
@@ -52,6 +54,7 @@ export class ListMembers extends Component {
                   <View style={[s.flx_row, s.jcsb, s.pa3, s.bb, s.bg_white]}>
                     <Text>{item.username}</Text>
                     <Text>{item.email}</Text>
+                    {owner === item.id ? <Text>Owner</Text> : ''}
                     <Icon name="delete" type="Feather" />
                   </View>
                 )}
