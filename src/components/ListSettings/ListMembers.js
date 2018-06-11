@@ -42,18 +42,22 @@ export class ListMembers extends Component {
             return <Text>Error: ${error.message}</Text>;
           }
           return (
-            <FlatList
-              data={getLists[0].users}
-              renderItem={({ item }) => (
-                <TouchableOpacity style={[s.pa3, s.bb, s.bg_white]}>
-                  <View>
+            <View>
+              <View style={[s.flx_row, s.jcfe, s.pr3]}>
+                <Icon name="add" />
+              </View>
+              <FlatList
+                data={getLists[0].users}
+                renderItem={({ item }) => (
+                  <View style={[s.flx_row, s.jcsb, s.pa3, s.bb, s.bg_white]}>
                     <Text>{item.username}</Text>
                     <Text>{item.email}</Text>
+                    <Icon name="delete" type="Feather" />
                   </View>
-                </TouchableOpacity>
-              )}
-              keyExtractor={item => item.id}
-            />
+                )}
+                keyExtractor={item => item.id}
+              />
+            </View>
           );
         }}
       </Query>
