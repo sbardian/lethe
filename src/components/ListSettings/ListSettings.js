@@ -1,45 +1,9 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Form, Input, Item, Label, Text } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
-import { styles as s } from 'react-native-style-tachyons';
 import { UpdateTitleButton } from './UpdateTitleButton';
 import { DeleteListButton } from './DeleteListButton';
-
-// const DELETE_LIST = gql`
-//   mutation deleteList($listId: String!) {
-//     deleteList(listId: $listId) {
-//       id
-//       title
-//     }
-//   }
-// `;
-
-// const deleteListMutation = ({ navigation, render }) => (
-//   <Mutation
-//     mutation={DELETE_LIST}
-//     update={(cache, { data }) => {
-//       const cacheData = cache.readQuery({ query: GET_MY_LISTS });
-//       const newCacheData = cacheData.getMyInfo.lists.filter(
-//         casheList => casheList.id !== data.deleteList.id,
-//       );
-//       cache.writeQuery({
-//         query: GET_MY_LISTS,
-//         data: {
-//           getMyInfo: {
-//             __typename: 'User',
-//             lists: [...newCacheData],
-//           },
-//         },
-//       });
-//     }}
-//     onCompleted={() => {
-//       navigation.navigate('Lists');
-//     }}
-//   >
-//     {(mutation, result) => render({ mutation, result })}
-//   </Mutation>
-// );
+import { ListMembers } from './ListMembers';
 
 export class ListSettings extends Component {
   constructor(props) {
@@ -88,10 +52,9 @@ export class ListSettings extends Component {
             paddingRight: 20,
             flexDirection: 'row',
             justifyContent: 'space-between',
-            flexGrow: 1,
           }}
         >
-          <Item stackedLabel>
+          <Item style={{ flexGrow: 1 }} stackedLabel>
             <Label>Title</Label>
             <Input
               placeholder={list.title}
@@ -106,6 +69,9 @@ export class ListSettings extends Component {
             onTitleSave={() => this.handleTitleSave()}
           />
         </Form>
+        <View style={{ paddingBottom: 40 }}>
+          <ListMembers list={list} />
+        </View>
         <Form
           style={{
             paddingBottom: 40,
@@ -113,10 +79,9 @@ export class ListSettings extends Component {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'flex-end',
-            flexGrow: 1,
           }}
         >
-          <Item stackedLabel>
+          <Item style={{ flexGrow: 1 }} stackedLabel>
             <Label>Enter the list name to delete.</Label>
             <Input
               id="DeleteListTitle"
