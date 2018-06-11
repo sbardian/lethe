@@ -53,7 +53,7 @@ export class DeleteListButton extends Component {
       inputRange: [0, 1],
       outputRange: ['0deg', '360deg'],
     });
-    const { list, navigation } = this.props;
+    const { active, list, navigation } = this.props;
     return (
       <Mutation
         mutation={DELETE_LIST}
@@ -98,6 +98,7 @@ export class DeleteListButton extends Component {
               style={[s.mt3]}
               warning
               transparent
+              disabled={active}
               onPress={async () =>
                 deleteList({
                   variables: {

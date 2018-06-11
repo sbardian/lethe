@@ -47,6 +47,7 @@ export class ListSettings extends Component {
     this.state = {
       title: props.list.title,
       titleNotChanged: true,
+      deleteConfirmed: true,
     };
   }
 
@@ -55,6 +56,18 @@ export class ListSettings extends Component {
       title: value,
       titleNotChanged: false,
     });
+  }
+
+  onDeleteTitleChange(value) {
+    if (this.props.list.title === value) {
+      this.setState({
+        deleteConfirmed: false,
+      });
+    } else {
+      this.setState({
+        deleteConfirmed: true,
+      });
+    }
   }
 
   handleTitleSave(value) {
@@ -66,10 +79,18 @@ export class ListSettings extends Component {
 
   render() {
     const { list, navigation } = this.props;
-    const { titleNotChanged, title } = this.state;
+    const { titleNotChanged, title, deleteConfirmed } = this.state;
     return (
       <View>
-        <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
+        <Form
+          style={{
+            paddingBottom: 40,
+            paddingRight: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            flexGrow: 1,
+          }}
+        >
           <Item stackedLabel>
             <Label>Title</Label>
             <Input
@@ -85,8 +106,30 @@ export class ListSettings extends Component {
             onTitleSave={() => this.handleTitleSave()}
           />
         </Form>
-        <Text style={{ color: 'red' }}>Delete this list?</Text>
-        <DeleteListButton navigation={navigation} list={list} title={title} />
+        <Form
+          style={{
+            paddingBottom: 40,
+            paddingRight: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            flexGrow: 1,
+          }}
+        >
+          <Item stackedLabel>
+            <Label>Enter the list name to delete.</Label>
+            <Input
+              id="DeleteListTitle"
+              onChangeText={value => this.onDeleteTitleChange(value)}
+            />
+          </Item>
+          <DeleteListButton
+            active={deleteConfirmed}
+            navigation={navigation}
+            list={list}
+            title={title}
+          />
+        </Form>
       </View>
     );
   }
