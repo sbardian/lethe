@@ -82,7 +82,7 @@ export class ListSettings extends Component {
           }}
         >
           <Item style={{ flexGrow: 1 }} stackedLabel>
-            <Label>Enter the list name to delete.</Label>
+            <Label>Enter the title name to delete.</Label>
             <Input
               id="DeleteListTitle"
               onChangeText={value => this.onDeleteTitleChange(value)}
