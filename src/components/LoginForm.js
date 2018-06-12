@@ -61,33 +61,36 @@ export class LoginForm extends Component {
           mutation={LOGIN}
           errorPolicy="all"
           onCompleted={data => this.props.onSetToken(data.login.token)}
-          onError={() => console.log('Login error')}
+          onError={error => console.log('Login error: ', error)}
         >
-          {(userLogin, { loading, error }) => (
-            <View>
-              <Button
-                block
-                light
-                style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
-                disabled={loading}
-                onPress={async () => {
-                  await userLogin({
-                    variables: {
-                      username: this.state.username,
-                      password: this.state.password,
-                    },
-                  });
-                }}
-              >
-                <Text>Login</Text>
-              </Button>
-              {error && (
-                <Text style={{ color: 'white', alignSelf: 'center' }}>
-                  {error.message}
-                </Text>
-              )}
-            </View>
-          )}
+          {(userLogin, { loading, error }) => {
+            console.log('error = ', error);
+            return (
+              <View>
+                <Button
+                  block
+                  light
+                  style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
+                  disabled={loading}
+                  onPress={async () => {
+                    await userLogin({
+                      variables: {
+                        username: this.state.username,
+                        password: this.state.password,
+                      },
+                    });
+                  }}
+                >
+                  <Text>Login</Text>
+                </Button>
+                {error && (
+                  <Text style={{ color: 'white', alignSelf: 'center' }}>
+                    {error.message}
+                  </Text>
+                )}
+              </View>
+            );
+          }}
         </Mutation>
       </View>
     );
