@@ -25,40 +25,6 @@ NativeTachyons.build(
   StyleSheet,
 );
 
-// class CatchLink extends ApolloLink {
-//   request(operation, forward) {
-//     // will pass the operation to the next observable
-//     const observable = forward(operation);
-
-//     return new Observable(observer => {
-//       const subscription = observable.subscribe({
-//         next: observer.next.bind(observer),
-//         error: error => {
-//           // reroute errors as proper data
-//           observer.next({
-//             data: {
-//               error: {
-//                 dawg: 'shit',
-//               },
-//             },
-//             error: {
-//               message: 'tada',
-//               dawg: 'shit',
-//             },
-//           });
-//         },
-//         complete: observer.complete.bind(observer),
-//       });
-
-//       // cleanup funciton, which is accessed through the unsubscribe
-//       return () => {
-//         // cleanup the inner observables subscripton
-//         subscription.unsubscribe();
-//       };
-//     });
-//   }
-// }
-
 export default class App extends Component {
   constructor() {
     super();
@@ -96,6 +62,7 @@ export default class App extends Component {
                 // uri: 'http://localhost:9999/graphql',
                 uri: 'https://letheapi-wpiliyouat.now.sh/graphql',
               });
+
               const authLink = setContext(async (_, { headers }) => {
                 console.log('running auth link');
                 const authToken =
@@ -113,64 +80,25 @@ export default class App extends Component {
                 };
               });
 
-              // const authLink = new ApolloLink(async (operation, forward) => {
-              //   // add the authorization to the headers
-              //   const authToken =
-              //     token ||
-              //     (await AsyncStorage.getItem('@letheStore:token')) ||
-              //     undefined;
-              //   operation.setContext({
-              //     headers: {
-              //       authorization: authToken ? `Bearer ${authToken}` : null,
-              //     },
-              //   });
-
-              //   return forward(operation);
-              // });
-
-              // const errorLink = new ApolloLink((operation, forward) => {
-              //   console.log('starting request for ', operation.operationName);
-
-              //   const observable = forward(operation);
-
-              //   return new Observable(observer => {
-              //     const subscription = observable.subscribe({
-              //       next: observer.next.bind(observer),
-              //       error: error => {
-              //         observer.next({
-              //           data: {
-              //             error,
+              // const errorLink = new ApolloLink((operation, forward) =>
+              //   forward(operation).map(response => {
+              //     let newResponse = {};
+              //     if (response.errors) {
+              //       newResponse = {
+              //         ...response,
+              //         errors: [
+              //           {
+              //             message: 'fuck you',
               //           },
-              //         });
-              //       },
-              //       complete: observer.complete.bind(observer),
-              //     });
+              //         ],
+              //       };
+              //     }
+              //     console.log('newResponse = ', newResponse);
+              //     return newResponse;
+              //   }),
+              // );
 
-              //     return () => {
-              //       subscription.unsubscribe();
-              //     };
-              //   });
-              // });
-
-              const errorLink = new ApolloLink((operation, forward) =>
-                forward(operation).map(response => {
-                  let newResponse = {};
-                  if (response.errors) {
-                    newResponse = {
-                      ...response,
-                      errors: [
-                        {
-                          message: 'fuck you',
-                        },
-                      ],
-                    };
-                  }
-                  console.log('newResponse = ', newResponse);
-                  return newResponse;
-                }),
-              );
-
-              const link = from([authLink, errorLink, httpLink]);
+              const link = from([authLink, /* errorLink, */ httpLink]);
 
               const client = new ApolloClient({
                 link,
