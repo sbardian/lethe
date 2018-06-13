@@ -91,15 +91,17 @@ export class SendInvitationForm extends Component {
               buttonText: 'Ok',
               type: 'success',
               position: 'bottom',
+              duration: 3000,
               onClose: () => navigation.navigate('Items', { listId: list.id }),
             });
           }}
-          onError={() => {
+          onError={error => {
             Toast.show({
-              text: `Failed to send invitation`,
+              text: `Failed to send invitation: ${error.message}`,
               buttonText: 'Ok',
               type: 'danger',
               position: 'bottom',
+              duration: 3000,
               onClose: () => navigation.navigate('Items', { listId: list.id }),
             });
           }}
@@ -110,23 +112,15 @@ export class SendInvitationForm extends Component {
                 full
                 light
                 disabled={loading}
-                onPress={async () => {
-                  console.log(
-                    'title = ',
-                    this.state.title,
-                    ', invitee = ',
-                    this.state.invitee,
-                    ', list.id = ',
-                    list.id,
-                  );
-                  return await createInvitation({
+                onPress={async () =>
+                  createInvitation({
                     variables: {
                       listId: list.id,
                       title: this.state.title,
                       invitee: this.state.invitee,
                     },
-                  });
-                }}
+                  })
+                }
               >
                 <Text>OK</Text>
               </Button>

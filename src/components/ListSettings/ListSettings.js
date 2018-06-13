@@ -70,7 +70,7 @@ export class ListSettings extends Component {
           />
         </Form>
         <View style={{ paddingBottom: 40 }}>
-          <ListMembers list={list} />
+          <ListMembers navigation={navigation} list={list} />
         </View>
         <Form
           style={{

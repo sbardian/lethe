@@ -27,12 +27,8 @@ const GET_LIST_USERS = gql`
 `;
 
 export class ListMembers extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const { list } = this.props;
+    const { list, navigation } = this.props;
     return (
       <Query query={GET_LIST_USERS} variables={{ id_is: list.id }}>
         {({ loading, error, data: { getLists = [] } }) => {
@@ -42,12 +38,21 @@ export class ListMembers extends Component {
           if (error) {
             return <Text>Error: ${error.message}</Text>;
           }
-          const owner = getLists[0].owner;
+          const [{ owner }] = getLists;
           return (
             <View>
               <View style={[s.flx_row, s.jcsb, s.pr3]}>
                 <Text style={[s.asc, s.pl3]}>List Users</Text>
-                <Icon name="add" />
+                <Button
+                  onPress={() =>
+                    navigation.navigate('SendInvitation', {
+                      list,
+                    })
+                  }
+                  style={{ backgroundColor: 'transparent' }}
+                >
+                  <Icon name="add" style={{ color: '#666' }} />
+                </Button>
               </View>
               <FlatList
                 data={getLists[0].users}
