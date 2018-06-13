@@ -142,7 +142,7 @@ export class CreateAccountForm extends Component {
               },
             ]}
           >
-            <Item floatingLabel>
+            <Item stackedLabel>
               <Label style={{ color: 'white' }}>Username</Label>
               <Input
                 style={{ color: 'white' }}
@@ -164,7 +164,7 @@ export class CreateAccountForm extends Component {
               },
             ]}
           >
-            <Item floatingLabel>
+            <Item stackedLabel>
               <Label style={{ color: 'white' }}>Email</Label>
               <Input
                 style={{ color: 'white' }}
@@ -186,7 +186,7 @@ export class CreateAccountForm extends Component {
               },
             ]}
           >
-            <Item floatingLabel>
+            <Item stackedLabel>
               <Label style={{ color: 'white' }}>Password</Label>
               <Input
                 style={{ color: 'white' }}
@@ -209,7 +209,7 @@ export class CreateAccountForm extends Component {
               },
             ]}
           >
-            <Item floatingLabel>
+            <Item stackedLabel>
               <Label style={{ color: 'white' }}>Password Confirmation</Label>
               <Input
                 style={{ color: 'white' }}

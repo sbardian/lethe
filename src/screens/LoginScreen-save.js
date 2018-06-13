@@ -81,7 +81,7 @@ export class LoginScreen extends Component {
                 />
               </View>
               <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-                <Item floatingLabel>
+                <Item stackedLabel>
                   <Label>Username</Label>
                   <Input
                     style={{ color: 'white' }}
@@ -89,7 +89,7 @@ export class LoginScreen extends Component {
                     onChangeText={value => this.onUsernameChange(value)}
                   />
                 </Item>
-                <Item floatingLabel>
+                <Item stackedLabel>
                   <Label>Password</Label>
                   <Input
                     style={{ color: 'white' }}

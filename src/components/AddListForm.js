@@ -45,7 +45,7 @@ export class AddListForm extends Component {
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-          <Item floatingLabel>
+          <Item stackedLabel>
             <Label>Title</Label>
             <Input
               id="ListTitle"
