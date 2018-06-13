@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Form, Input, Item, Label, Text } from 'native-base';
+import { Form, Input, Item, Label } from 'native-base';
 import { UpdateTitleButton } from './UpdateTitleButton';
 import { DeleteListButton } from './DeleteListButton';
 import { ListMembers } from './ListMembers';

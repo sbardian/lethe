@@ -42,7 +42,10 @@ export class ListMembers extends Component {
           return (
             <View>
               <View style={[s.flx_row, s.jcsb, s.pr3]}>
-                <Text style={[s.asc, s.pl3]}>List Users</Text>
+                <View style={[s.flx_row, s.jcfs, s.pa3]}>
+                  <Icon style={[s.f5, s.ltext]} type="Feather" name="users" />
+                  <Text style={[s.asc, s.pl3, s.pr3, s.ltext]}>List Users</Text>
+                </View>
                 <Button
                   onPress={() =>
                     navigation.navigate('SendInvitation', {
@@ -51,7 +54,11 @@ export class ListMembers extends Component {
                   }
                   style={{ backgroundColor: 'transparent' }}
                 >
-                  <Icon name="add" style={{ color: '#666' }} />
+                  <Icon
+                    name="person-add"
+                    type="MaterialIcons"
+                    style={{ color: '#666' }}
+                  />
                 </Button>
               </View>
               <FlatList
