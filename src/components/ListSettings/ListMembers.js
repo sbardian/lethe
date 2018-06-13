@@ -57,7 +57,9 @@ export class ListMembers extends Component {
               <FlatList
                 data={getLists[0].users}
                 renderItem={({ item }) => (
-                  <View style={[s.flx_row, s.jcsb, s.pa3, s.bb, s.bg_white]}>
+                  <View
+                    style={[s.flx_row, s.jcsb, s.aic, s.pa2, s.bg_white, s.ma1]}
+                  >
                     <Text>{item.username}</Text>
                     <Text>{item.email}</Text>
                     {owner === item.id ? <Text>Owner</Text> : ''}
