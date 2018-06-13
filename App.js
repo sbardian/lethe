@@ -64,7 +64,6 @@ export default class App extends Component {
               });
 
               const authLink = setContext(async (_, { headers }) => {
-                console.log('running auth link');
                 const authToken =
                   token ||
                   (await AsyncStorage.getItem('@letheStore:token')) ||
