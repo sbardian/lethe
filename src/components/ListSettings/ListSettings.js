@@ -69,9 +69,6 @@ export class ListSettings extends Component {
             onTitleSave={() => this.handleTitleSave()}
           />
         </Form>
-        <View style={{ paddingBottom: 40 }}>
-          <ListMembers navigation={navigation} list={list} />
-        </View>
         <Form
           style={{
             paddingBottom: 40,
@@ -82,7 +79,7 @@ export class ListSettings extends Component {
           }}
         >
           <Item style={{ flexGrow: 1 }} stackedLabel>
-            <Label>Enter the title name to delete.</Label>
+            <Label>Enter list title to confirm delele:</Label>
             <Input
               id="DeleteListTitle"
               onChangeText={value => this.onDeleteTitleChange(value)}
@@ -95,6 +92,9 @@ export class ListSettings extends Component {
             title={title}
           />
         </Form>
+        <View style={{ paddingBottom: 40 }}>
+          <ListMembers navigation={navigation} list={list} />
+        </View>
       </View>
     );
   }
