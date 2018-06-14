@@ -27,7 +27,7 @@
     "apollo-link-http": "1.5.4",
     "apollo-link-schema": "1.1.0",
     "apollo-link-state": "0.4.1",
-    "expo": "^28.0.0",
+    "expo": "28.0.0",
     "faker": "4.1.0",
     "graphql": "0.13.2",
     "graphql-subscriptions": "0.5.8",
