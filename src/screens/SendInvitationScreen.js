@@ -16,7 +16,7 @@ export class SendInvitationScreen extends Component {
   render() {
     const { navigation } = this.props;
     const list = navigation.getParam('list', {
-      list: { id: 'No List', title: 'No List' },
+      list: { id: '0', title: 'No List' },
     });
     return (
       <Screen>

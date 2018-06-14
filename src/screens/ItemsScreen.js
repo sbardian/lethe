@@ -36,7 +36,7 @@ export class ItemsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: { id: 'No List', title: 'No List' },
+      list: { id: '0', title: 'No List' },
     };
   }
 
