@@ -92,7 +92,7 @@ export class SendInvitationForm extends Component {
               type: 'success',
               position: 'bottom',
               duration: 3000,
-              onClose: () => navigation.navigate('Items', { listId: list.id }),
+              onClose: () => navigation.navigate('ListSettings', { list }),
             });
           }}
           onError={error => {
