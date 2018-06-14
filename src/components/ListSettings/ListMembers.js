@@ -1,17 +1,12 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import {
-  Animated,
-  Easing,
-  FlatList,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, FlatList, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import { Button, Icon, Text, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
+import { adopt } from 'react-adopt';
 
 const GET_LIST_USERS = gql`
   query getLists($id_is: String!) {
@@ -26,19 +21,77 @@ const GET_LIST_USERS = gql`
   }
 `;
 
+const REMOVE_FROM_LIST = gql`
+  mutation REMOVE_FROM_LIST($listId: String!, $userId: String!) {
+    removeFromList(listId: $listId, userId: $userId) {
+      id
+      username
+      email
+    }
+  }
+`;
+
+const GetUsers = ({ list, render }) => (
+  <Query query={GET_LIST_USERS} variables={{ id_is: list.id }}>
+    {render}
+  </Query>
+);
+
+const RemoveUser = ({ render }) => (
+  <Mutation
+    mutation={REMOVE_FROM_LIST}
+    update={() => console.log('updating after removing user')}
+    onComplete={() => {
+      Toast.show({
+        text: `User removed from list.`,
+        buttonText: 'Ok',
+        type: 'success',
+        position: 'bottom',
+        duration: 3000,
+      });
+    }}
+    onError={error => {
+      Toast.show({
+        text: `List title update failed: ${error.message}`,
+        buttonText: 'Ok',
+        type: 'danger',
+        position: 'bottom',
+        duration: 3000,
+      });
+    }}
+    // update={(cache, { data }) => {
+    //   const cacheData = cache.readQuery({ query: REMOVE_FROM_LIST });
+    //   const newCacheData = cacheData.getMyInfo.lists.filter(
+    //     casheList => casheList.id !== data.deleteList.id,
+    //   );
+    //   cache.writeQuery({
+    //     query: GET_MY_LISTS,
+    //     data: {
+    //       getMyInfo: {
+    //         __typename: 'User',
+    //         lists: [...newCacheData],
+    //       },
+    //     },
+    //   });
+    // }}
+  >
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+);
+
+const Composed = adopt({
+  getUsers: GetUsers,
+  removeFromList: RemoveUser,
+});
+
 export class ListMembers extends Component {
   render() {
     const { list, navigation } = this.props;
     return (
-      <Query query={GET_LIST_USERS} variables={{ id_is: list.id }}>
-        {({ loading, error, data: { getLists = [] } }) => {
-          if (loading) {
-            return <Text>Loading . . . </Text>;
-          }
-          if (error) {
-            return <Text>Error: ${error.message}</Text>;
-          }
-          const [{ owner }] = getLists;
+      <Composed list={list}>
+        {({ getUsers, removeFromList }) => {
+          if (getUsers.loading) return null;
+          const [{ owner, users }] = getUsers.data.getLists;
           return (
             <View>
               <View style={[s.flx_row, s.jcsb, s.pr3]}>
@@ -62,15 +115,44 @@ export class ListMembers extends Component {
                 </Button>
               </View>
               <FlatList
-                data={getLists[0].users}
+                data={users}
                 renderItem={({ item }) => (
                   <View
                     style={[s.flx_row, s.jcsb, s.aic, s.pa2, s.bg_white, s.ma1]}
                   >
                     <Text>{item.username}</Text>
                     <Text>{item.email}</Text>
-                    {owner === item.id ? <Text>Owner</Text> : ''}
-                    <Icon name="delete" type="Feather" />
+                    {owner === item.id ? <Text>Owner</Text> : null}
+                    <TouchableOpacity
+                      onPress={() =>
+                        Alert.alert(
+                          'Remove User',
+                          `Are you sure you want to remove ${
+                            item.username
+                          } from list?`,
+                          [
+                            {
+                              text: 'Cancel',
+                              onPress: () => console.log('Cancel Pressed'),
+                              style: 'cancel',
+                            },
+                            {
+                              text: 'OK',
+                              onPress: async () =>
+                                removeFromList.mutation({
+                                  variables: {
+                                    listId: list.id,
+                                    userId: item.id,
+                                  },
+                                }),
+                            },
+                          ],
+                          { cancelable: false },
+                        )
+                      }
+                    >
+                      <Icon name="delete" type="Feather" />
+                    </TouchableOpacity>
                   </View>
                 )}
                 keyExtractor={item => item.id}
@@ -78,7 +160,7 @@ export class ListMembers extends Component {
             </View>
           );
         }}
-      </Query>
+      </Composed>
     );
   }
 }

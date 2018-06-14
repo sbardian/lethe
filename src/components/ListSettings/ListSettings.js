@@ -44,6 +44,7 @@ export class ListSettings extends Component {
   render() {
     const { list, navigation } = this.props;
     const { titleNotChanged, title, deleteConfirmed } = this.state;
+    if (!list) return null;
     return (
       <View>
         <Form
