@@ -94,7 +94,7 @@ export class ListMembers extends Component {
           const [{ owner, users }] = getUsers.data.getLists;
           return (
             <View>
-              <View style={[s.flx_row, s.jcsb, s.pr3]}>
+              <View style={[s.flx_row, s.jcsb]}>
                 <View style={[s.flx_row, s.jcfs, s.pa3]}>
                   <Icon style={[s.f5, s.ltext]} type="Feather" name="users" />
                   <Text style={[s.asc, s.pl3, s.pr3, s.ltext]}>List Users</Text>

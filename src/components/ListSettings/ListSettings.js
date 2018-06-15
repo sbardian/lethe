@@ -50,7 +50,6 @@ export class ListSettings extends Component {
         <Form
           style={{
             paddingBottom: 40,
-            paddingRight: 20,
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}
@@ -73,7 +72,6 @@ export class ListSettings extends Component {
         <Form
           style={{
             paddingBottom: 40,
-            paddingRight: 20,
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'flex-end',
