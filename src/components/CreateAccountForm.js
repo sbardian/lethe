@@ -142,11 +142,12 @@ export class CreateAccountForm extends Component {
               },
             ]}
           >
-            <Item stackedLabel>
+            <Item floatingLabel>
               <Label style={{ color: 'white' }}>Username</Label>
               <Input
                 style={{ color: 'white' }}
                 id="username"
+                value={this.state.username}
                 autoCapitalize="none"
                 onChangeText={value => this.onUsernameChange(value)}
               />
@@ -164,11 +165,12 @@ export class CreateAccountForm extends Component {
               },
             ]}
           >
-            <Item stackedLabel>
+            <Item floatingLabel>
               <Label style={{ color: 'white' }}>Email</Label>
               <Input
                 style={{ color: 'white' }}
                 id="email"
+                value={this.state.email}
                 autoCapitalize="none"
                 onChangeText={value => this.onEmailChange(value)}
               />
@@ -186,11 +188,12 @@ export class CreateAccountForm extends Component {
               },
             ]}
           >
-            <Item stackedLabel>
+            <Item floatingLabel>
               <Label style={{ color: 'white' }}>Password</Label>
               <Input
                 style={{ color: 'white' }}
                 id="password"
+                value={this.state.password}
                 secureTextEntry
                 autoCapitalize="none"
                 onChangeText={value => this.onPasswordChange(value)}
@@ -209,11 +212,12 @@ export class CreateAccountForm extends Component {
               },
             ]}
           >
-            <Item stackedLabel>
+            <Item floatingLabel>
               <Label style={{ color: 'white' }}>Password Confirmation</Label>
               <Input
                 style={{ color: 'white' }}
                 id="passwordConf"
+                value={this.state.passwordConf}
                 secureTextEntry
                 autoCapitalize="none"
                 onChangeText={value => this.onPasswordConfChange(value)}

@@ -37,20 +37,22 @@ export class LoginForm extends Component {
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-          <Item stackedLabel>
+          <Item floatingLabel>
             <Label style={{ color: 'white' }}>Username</Label>
             <Input
               style={{ color: 'white' }}
               id="username"
+              value={this.state.username}
               autoCapitalize="none"
               onChangeText={value => this.onUsernameChange(value)}
             />
           </Item>
-          <Item stackedLabel>
+          <Item floatingLabel>
             <Label style={{ color: 'white' }}>Password</Label>
             <Input
               style={{ color: 'white' }}
               id="password"
+              value={this.state.password}
               secureTextEntry
               autoCapitalize="none"
               onChangeText={value => this.onPasswordChange(value)}
