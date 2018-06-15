@@ -30,7 +30,6 @@ export class EditListForm extends Component {
     super(props);
     this.state = {
       title: '',
-      list: undefined,
     };
   }
 
