@@ -9,6 +9,8 @@ import Swipeout from 'react-native-swipeout';
 const GET_LIST_ITEMS = gql`
   query getLists($id_is: String!) {
     getLists(id_is: $id_is) {
+      id
+      title
       items {
         id
         title
@@ -38,7 +40,7 @@ export const Items = ({ navigation, listId }) => (
       }
       return (
         <FlatList
-          data={getLists[0].items}
+          data={getLists.items}
           renderItem={({ item }) => (
             <Swipeout
               autoClose
