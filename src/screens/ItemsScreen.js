@@ -1,13 +1,14 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Text, Button, Icon } from 'native-base';
+import { Button, Icon } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
 import { ItemsFab, Items } from '../components';
 import { Screen } from '../screens';
 
 export class ItemsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    const list = navigation.getParam('list');
+    const listId = navigation.getParam('listId');
+    const title = navigation.getParam('title');
     return {
       headerStyle: {
         backgroundColor: '#660066',
@@ -21,7 +22,8 @@ export class ItemsScreen extends Component {
           transparent
           onPress={() =>
             navigation.navigate('ListSettings', {
-              list,
+              listId,
+              title,
             })
           }
           title="Info"
@@ -33,31 +35,15 @@ export class ItemsScreen extends Component {
     };
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: { id: '0', title: 'No List' },
-    };
-  }
-
-  componentDidMount() {
-    const { navigation } = this.props;
-    const list = navigation.getParam('list');
-    if (list) {
-      this.setState({
-        list,
-      });
-    }
-  }
-
   render() {
     const { navigation } = this.props;
-    const { list } = this.state;
+    const listId = navigation.getParam('listId');
     return (
-      <Screen fab={<ItemsFab navigation={navigation} list={list} />}>
+      <Screen>
+        {/* <Screen fab={<ItemsFab navigation={navigation} listId={listId} />}> */}
         <Grid>
           <Row>
-            <Items listId={list.id} navigation={navigation} />
+            <Items listId={listId} navigation={navigation} />
           </Row>
         </Grid>
       </Screen>

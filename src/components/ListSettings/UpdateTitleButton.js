@@ -16,23 +16,20 @@ const UPDATE_LIST = gql`
   }
 `;
 
-const GET_MY_LISTS = gql`
-  {
-    getMyInfo {
-      lists {
-        id
-        title
-        owner
-      }
-    }
-  }
-`;
+// const GET_MY_LISTS = gql`
+//   {
+//     getMyInfo {
+//       id
+//       lists {
+//         id
+//         title
+//         owner
+//       }
+//     }
+//   }
+// `;
 
 export class UpdateTitleButton extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   spinValue = new Animated.Value(0);
 
   componentDidMount() {
@@ -53,28 +50,28 @@ export class UpdateTitleButton extends Component {
       inputRange: [0, 1],
       outputRange: ['0deg', '360deg'],
     });
-    const { list, title, titleNotChanged, onTitleSave } = this.props;
+    const { listId, newTitle, titleNotChanged, onTitleSave } = this.props;
     return (
       <Mutation
         mutation={UPDATE_LIST}
-        update={(cache, { data }) => {
-          const cacheData = cache.readQuery({ query: GET_MY_LISTS });
-          cacheData.getMyInfo.lists.filter(
-            casheList => casheList.id === data.updateList.id,
-            (listItem, index, orgArray) => {
-              orgArray.splice(index, 1);
-              cache.writeQuery({
-                query: GET_MY_LISTS,
-                data: {
-                  getMyInfo: {
-                    __typename: 'User',
-                    lists: [...orgArray, data.updateList],
-                  },
-                },
-              });
-            },
-          );
-        }}
+        // update={(cache, { data }) => {
+        //   const cacheData = cache.readQuery({ query: GET_MY_LISTS });
+        //   cacheData.getMyInfo.lists.filter(
+        //     casheList => casheList.id === data.updateList.id,
+        //     (listItem, index, orgArray) => {
+        //       orgArray.splice(index, 1);
+        //       cache.writeQuery({
+        //         query: GET_MY_LISTS,
+        //         data: {
+        //           getMyInfo: {
+        //             __typename: 'User',
+        //             lists: [...orgArray, data.updateList],
+        //           },
+        //         },
+        //       });
+        //     },
+        //   );
+        // }}
         onCompleted={data => {
           onTitleSave(data.updateList.title);
           Toast.show({
@@ -105,8 +102,8 @@ export class UpdateTitleButton extends Component {
               onPress={async () => {
                 await updateList({
                   variables: {
-                    listId: list.id,
-                    title,
+                    listId,
+                    title: newTitle,
                   },
                 });
               }}
@@ -130,19 +127,13 @@ export class UpdateTitleButton extends Component {
 }
 
 UpdateTitleButton.propTypes = {
-  list: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    users: PropTypes.array,
-    items: PropTypes.array,
-    owner: PropTypes.string,
-  }).isRequired,
-  title: PropTypes.string,
+  listId: PropTypes.string.isRequired,
+  newTitle: PropTypes.string,
   titleNotChanged: PropTypes.bool,
   onTitleSave: PropTypes.func.isRequired,
 };
 
 UpdateTitleButton.defaultProps = {
   titleNotChanged: false,
-  title: '',
+  newTitle: '',
 };

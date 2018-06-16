@@ -38,9 +38,10 @@ export const Items = ({ navigation, listId }) => (
       if (error) {
         return <Text>Error: ${error.message}</Text>;
       }
+      const { items } = getLists[0];
       return (
         <FlatList
-          data={getLists.items}
+          data={items}
           renderItem={({ item }) => (
             <Swipeout
               autoClose

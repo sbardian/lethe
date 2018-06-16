@@ -11,6 +11,7 @@ import { adopt } from 'react-adopt';
 const GET_LIST_USERS = gql`
   query getLists($id_is: String!) {
     getLists(id_is: $id_is) {
+      id
       owner
       users {
         id
@@ -31,8 +32,8 @@ const REMOVE_FROM_LIST = gql`
   }
 `;
 
-const GetUsers = ({ list, render }) => (
-  <Query query={GET_LIST_USERS} variables={{ id_is: list.id }}>
+const GetUsers = ({ listId, render }) => (
+  <Query query={GET_LIST_USERS} variables={{ id_is: listId }}>
     {render}
   </Query>
 );
@@ -86,12 +87,14 @@ const Composed = adopt({
 
 export class ListMembers extends Component {
   render() {
-    const { list, navigation } = this.props;
+    const { listId, navigation } = this.props;
     return (
-      <Composed list={list}>
+      <Composed listId={listId}>
         {({ getUsers, removeFromList }) => {
-          if (getUsers.loading) return null;
-          const [{ owner, users }] = getUsers.data.getLists;
+          if (getUsers.loading) {
+            return <Text>Loading...</Text>;
+          }
+          const { owner, users } = getUsers.data.getLists[0];
           return (
             <View>
               <View style={[s.flx_row, s.jcsb]}>
@@ -102,7 +105,7 @@ export class ListMembers extends Component {
                 <Button
                   onPress={() =>
                     navigation.navigate('SendInvitation', {
-                      list,
+                      listId,
                     })
                   }
                   style={{ backgroundColor: 'transparent' }}
@@ -141,7 +144,7 @@ export class ListMembers extends Component {
                               onPress: async () =>
                                 removeFromList.mutation({
                                   variables: {
-                                    listId: list.id,
+                                    listId,
                                     userId: item.id,
                                   },
                                 }),

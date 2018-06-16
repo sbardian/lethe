@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Form, Input, Item, Label } from 'native-base';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import { Form, Input, Item, Label, Text } from 'native-base';
 import { UpdateTitleButton } from './UpdateTitleButton';
 import { DeleteListButton } from './DeleteListButton';
 import { ListMembers } from './ListMembers';
+
+const GET_LIST = gql`
+  query getLists($id_is: String!) {
+    getLists(id_is: $id_is) {
+      id
+      title
+    }
+  }
+`;
 
 export class ListSettings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: props.list.title,
+      newTitle: '',
+      orgTitle: this.props.title,
       titleNotChanged: true,
       deleteConfirmed: true,
     };
@@ -17,13 +29,13 @@ export class ListSettings extends Component {
 
   onTitleChange(value) {
     this.setState({
-      title: value,
+      newTitle: value,
       titleNotChanged: false,
     });
   }
 
   onDeleteTitleChange(value) {
-    if (this.props.list.title === value) {
+    if (this.state.orgTitle === value) {
       this.setState({
         deleteConfirmed: false,
       });
@@ -36,65 +48,77 @@ export class ListSettings extends Component {
 
   handleTitleSave(value) {
     this.setState({
-      title: value,
+      newTitle: value,
       titleNotChanged: true,
     });
   }
 
   render() {
-    const { list, navigation } = this.props;
-    const { titleNotChanged, title, deleteConfirmed } = this.state;
-    if (!list) return null;
+    const { listId, navigation } = this.props;
+    const { titleNotChanged, deleteConfirmed, newTitle, orgTitle } = this.state;
     return (
-      <View>
-        <Form
-          style={{
-            paddingBottom: 40,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Item style={{ flexGrow: 1 }} stackedLabel>
-            <Label>Title</Label>
-            <Input
-              placeholder={list.title}
-              id="ListTitle"
-              onChangeText={value => this.onTitleChange(value)}
-            />
-          </Item>
-          <UpdateTitleButton
-            list={list}
-            title={title}
-            titleNotChanged={titleNotChanged}
-            onTitleSave={() => this.handleTitleSave()}
-          />
-        </Form>
-        <Form
-          style={{
-            paddingBottom: 40,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-          }}
-        >
-          <Item style={{ flexGrow: 1 }} stackedLabel>
-            <Label>Enter list title to confirm delele:</Label>
-            <Input
-              id="DeleteListTitle"
-              onChangeText={value => this.onDeleteTitleChange(value)}
-            />
-          </Item>
-          <DeleteListButton
-            active={deleteConfirmed}
-            navigation={navigation}
-            list={list}
-            title={title}
-          />
-        </Form>
-        <View style={{ paddingBottom: 40 }}>
-          <ListMembers navigation={navigation} list={list} />
-        </View>
-      </View>
+      <Query query={GET_LIST} variables={{ id_is: listId }}>
+        {({ loading, error, data: { getLists = [] } }) => {
+          if (loading) {
+            return <Text>Loading . . . </Text>;
+          }
+          if (error) {
+            return <Text>Error: ${error.message}</Text>;
+          }
+          const { id } = getLists[0];
+          return (
+            <View>
+              <Form
+                style={{
+                  paddingBottom: 40,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Item style={{ flexGrow: 1 }} stackedLabel>
+                  <Label>Title</Label>
+                  <Input
+                    placeholder={orgTitle}
+                    id="ListTitle"
+                    onChangeText={value => this.onTitleChange(value)}
+                  />
+                </Item>
+                <UpdateTitleButton
+                  listId={id}
+                  newTitle={newTitle}
+                  titleNotChanged={titleNotChanged}
+                  onTitleSave={() => this.handleTitleSave()}
+                />
+              </Form>
+              <Form
+                style={{
+                  paddingBottom: 40,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-end',
+                }}
+              >
+                <Item style={{ flexGrow: 1 }} stackedLabel>
+                  <Label>Enter list title to confirm delele:</Label>
+                  <Input
+                    id="DeleteListTitle"
+                    onChangeText={value => this.onDeleteTitleChange(value)}
+                  />
+                </Item>
+                <DeleteListButton
+                  active={deleteConfirmed}
+                  navigation={navigation}
+                  listId={id}
+                  title={orgTitle}
+                />
+              </Form>
+              <View style={{ paddingBottom: 40 }}>
+                {<ListMembers navigation={navigation} listId={id} />}
+              </View>
+            </View>
+          );
+        }}
+      </Query>
     );
   }
 }

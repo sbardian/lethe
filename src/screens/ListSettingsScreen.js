@@ -17,12 +17,11 @@ export class ListSettingsScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    const list = navigation.getParam('list', {
-      list: { id: '0', title: 'No List' },
-    });
+    const listId = navigation.getParam('listId');
+    const title = navigation.getParam('title');
     return (
       <Screen>
-        <ListSettings list={list} navigation={this.props.navigation} />
+        <ListSettings title={title} listId={listId} navigation={navigation} />
       </Screen>
     );
   }

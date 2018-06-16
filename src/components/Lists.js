@@ -33,7 +33,8 @@ export const Lists = ({ navigation }) => (
               style={[s.pa3, s.bb, s.bg_white]}
               onPress={() =>
                 navigation.navigate('Items', {
-                  list: item,
+                  listId: item.id,
+                  title: item.title,
                 })
               }
             >

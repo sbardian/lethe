@@ -21,7 +21,7 @@ const appRoutes = {
   Items: {
     screen: ItemsScreen,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.list.title}`,
+      title: `${navigation.state.params.title}`,
     }),
   },
   EditList: { screen: EditListScreen },
@@ -29,7 +29,7 @@ const appRoutes = {
   SendInvitation: {
     screen: SendInvitationScreen,
     navigationOptions: ({ navigation }) => ({
-      title: `Invite to ${navigation.state.params.list.title}`,
+      title: `Invite to ${navigation.state.params.title}`,
     }),
   },
   ListSettings: {
