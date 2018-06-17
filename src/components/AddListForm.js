@@ -17,6 +17,7 @@ const ADD_LIST = gql`
 const GET_MY_LISTS = gql`
   {
     getMyInfo {
+      id
       lists {
         id
         title
@@ -55,18 +56,18 @@ export class AddListForm extends Component {
         </Form>
         <Mutation
           mutation={ADD_LIST}
-          update={(cache, { data }) => {
-            const cacheData = cache.readQuery({ query: GET_MY_LISTS });
-            cache.writeQuery({
-              query: GET_MY_LISTS,
-              data: {
-                getMyInfo: {
-                  __typename: 'User',
-                  lists: [...cacheData.getMyInfo.lists, data.createNewList],
-                },
-              },
-            });
-          }}
+          // update={(cache, { data }) => {
+          //   const cacheData = cache.readQuery({ query: GET_MY_LISTS });
+          //   cache.writeQuery({
+          //     query: GET_MY_LISTS,
+          //     data: {
+          //       getMyInfo: {
+          //         __typename: 'User',
+          //         lists: [...cacheData.getMyInfo.lists, data.createNewList],
+          //       },
+          //     },
+          //   });
+          // }}
           onCompleted={() => {
             navigation.navigate('Lists');
           }}
@@ -78,6 +79,7 @@ export class AddListForm extends Component {
               disabled={loading}
               onPress={async () => {
                 await createNewList({
+                  refetchQueries: [{ query: GET_MY_LISTS }],
                   variables: {
                     title: this.state.title,
                   },
