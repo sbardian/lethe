@@ -15,12 +15,10 @@ export class SendInvitationScreen extends Component {
   };
   render() {
     const { navigation } = this.props;
-    const list = navigation.getParam('list', {
-      list: { id: '0', title: 'No List' },
-    });
+    const listId = navigation.getParam('listId');
     return (
       <Screen>
-        <SendInvitationForm list={list} navigation={navigation} />
+        <SendInvitationForm listId={listId} navigation={navigation} />
       </Screen>
     );
   }
