@@ -15,6 +15,20 @@ const ACCEPT_INVITATION = gql`
   }
 `;
 
+const GET_MY_INVITATIONS = gql`
+  {
+    getMyInfo {
+      id
+      invitations {
+        id
+        inviter
+        invitee
+        title
+      }
+    }
+  }
+`;
+
 export const AcceptInvitationIcon = ({ invitation }) => (
   <Mutation
     mutation={ACCEPT_INVITATION}
@@ -43,6 +57,11 @@ export const AcceptInvitationIcon = ({ invitation }) => (
         onPress={async () => {
           console.log('join list');
           await acceptInvitation({
+            refetchQueries: [
+              {
+                query: GET_MY_INVITATIONS,
+              },
+            ],
             variables: { invitationId: invitation.id },
           });
         }}

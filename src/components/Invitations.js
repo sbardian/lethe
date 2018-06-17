@@ -7,6 +7,7 @@ import { AcceptInvitationIcon, DeclineInvitationIcon } from './';
 const GET_MY_INVITATIONS = gql`
   {
     getMyInfo {
+      id
       invitations {
         id
         inviter

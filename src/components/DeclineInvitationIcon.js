@@ -15,6 +15,20 @@ const DECLINE_INVITATION = gql`
   }
 `;
 
+const GET_MY_INVITATIONS = gql`
+  {
+    getMyInfo {
+      id
+      invitations {
+        id
+        inviter
+        invitee
+        title
+      }
+    }
+  }
+`;
+
 export const DeclineInvitationIcon = ({ invitation }) => (
   <Mutation
     mutation={DECLINE_INVITATION}
@@ -43,6 +57,11 @@ export const DeclineInvitationIcon = ({ invitation }) => (
         onPress={async () => {
           console.log('decline invitation');
           await declineInvitation({
+            refetchQueries: [
+              {
+                query: GET_MY_INVITATIONS,
+              },
+            ],
             variables: { invitationId: invitation.id },
           });
         }}
