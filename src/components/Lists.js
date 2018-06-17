@@ -7,6 +7,7 @@ import { Query } from 'react-apollo';
 const GET_MY_LISTS = gql`
   {
     getMyInfo {
+      id
       lists {
         id
         title
