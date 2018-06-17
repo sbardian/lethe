@@ -16,19 +16,6 @@ const UPDATE_LIST = gql`
   }
 `;
 
-// const GET_MY_LISTS = gql`
-//   {
-//     getMyInfo {
-//       id
-//       lists {
-//         id
-//         title
-//         owner
-//       }
-//     }
-//   }
-// `;
-
 export class UpdateTitleButton extends Component {
   spinValue = new Animated.Value(0);
 
@@ -54,24 +41,6 @@ export class UpdateTitleButton extends Component {
     return (
       <Mutation
         mutation={UPDATE_LIST}
-        // update={(cache, { data }) => {
-        //   const cacheData = cache.readQuery({ query: GET_MY_LISTS });
-        //   cacheData.getMyInfo.lists.filter(
-        //     casheList => casheList.id === data.updateList.id,
-        //     (listItem, index, orgArray) => {
-        //       orgArray.splice(index, 1);
-        //       cache.writeQuery({
-        //         query: GET_MY_LISTS,
-        //         data: {
-        //           getMyInfo: {
-        //             __typename: 'User',
-        //             lists: [...orgArray, data.updateList],
-        //           },
-        //         },
-        //       });
-        //     },
-        //   );
-        // }}
         onCompleted={data => {
           onTitleSave(data.updateList.title);
           Toast.show({

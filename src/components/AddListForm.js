@@ -56,18 +56,6 @@ export class AddListForm extends Component {
         </Form>
         <Mutation
           mutation={ADD_LIST}
-          // update={(cache, { data }) => {
-          //   const cacheData = cache.readQuery({ query: GET_MY_LISTS });
-          //   cache.writeQuery({
-          //     query: GET_MY_LISTS,
-          //     data: {
-          //       getMyInfo: {
-          //         __typename: 'User',
-          //         lists: [...cacheData.getMyInfo.lists, data.createNewList],
-          //       },
-          //     },
-          //   });
-          // }}
           onCompleted={() => {
             navigation.navigate('Lists');
           }}

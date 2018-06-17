@@ -66,24 +66,6 @@ export class SendInvitationForm extends Component {
         </Form>
         <Mutation
           mutation={SEND_INVITATION}
-          // update={(cache, { data }) => {
-          //   const cacheData = cache.readQuery({ query: GET_MY_LISTS });
-          //   cacheData.getMyInfo.lists.filter(
-          //     casheList => casheList.id === data.updateList.id,
-          //     (listItem, index, orgArray) => {
-          //       orgArray.splice(index, 1);
-          //       cache.writeQuery({
-          //         query: GET_MY_LISTS,
-          //         data: {
-          //           getMyInfo: {
-          //             __typename: 'User',
-          //             lists: [...orgArray, data.updateList],
-          //           },
-          //         },
-          //       });
-          //     },
-          //   );
-          // }}
           onCompleted={data => {
             console.log('data = ', data);
             Toast.show({
