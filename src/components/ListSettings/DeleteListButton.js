@@ -16,18 +16,18 @@ const DELETE_LIST = gql`
   }
 `;
 
-// const GET_MY_LISTS = gql`
-//   {
-//     getMyInfo {
-//       id
-//       lists {
-//         id
-//         title
-//         owner
-//       }
-//     }
-//   }
-// `;
+const GET_MY_LISTS = gql`
+  {
+    getMyInfo {
+      id
+      lists {
+        id
+        title
+        owner
+      }
+    }
+  }
+`;
 
 export class DeleteListButton extends Component {
   componentDidMount() {
@@ -69,15 +69,16 @@ export class DeleteListButton extends Component {
         //     },
         //   });
         // }}
-        onCompleted={data => {
-          Toast.show({
-            text: `List ${data.deleteList.title} has been deleted.`,
-            buttonText: 'Ok',
-            type: 'success',
-            position: 'bottom',
-            onClose: () => navigation.navigate('Lists'),
-            duration: 3000,
-          });
+        onCompleted={() => {
+          navigation.navigate('Lists');
+          // Toast.show({
+          //   text: `List ${data.deleteList.title} has been deleted.`,
+          //   buttonText: 'Ok',
+          //   type: 'success',
+          //   position: 'bottom',
+          //   onClose: () => navigation.navigate('Lists'),
+          //   duration: 3000,
+          // });
         }}
         onError={error => {
           Toast.show({
@@ -98,6 +99,7 @@ export class DeleteListButton extends Component {
               disabled={active}
               onPress={async () =>
                 deleteList({
+                  refetchQueries: [{ query: GET_MY_LISTS }],
                   variables: {
                     listId,
                   },
