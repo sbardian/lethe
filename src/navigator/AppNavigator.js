@@ -9,10 +9,12 @@ import {
   AddListItemScreen,
   SendInvitationScreen,
   ListSettingsScreen,
+  ProfileScreen,
 } from '../screens';
 
 const appRoutes = {
   Home: { screen: HomeScreen },
+  Profile: { screen: ProfileScreen },
   Lists: { screen: ListsScreen },
   AddList: { screen: AddListScreen },
   Invitations: { screen: InvitationsScreen },

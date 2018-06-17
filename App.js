@@ -37,6 +37,8 @@ export default class App extends Component {
   async componentWillMount() {
     await Expo.Asset.fromModule(
       require('./src/images/brian.png'),
+      require('./src/images/background.png'),
+      require('./src/images/defaultProfile.jpg'),
     ).downloadAsync();
     await Expo.Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
