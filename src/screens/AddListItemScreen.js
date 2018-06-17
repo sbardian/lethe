@@ -17,12 +17,10 @@ export class AddListItemScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    const list = navigation.getParam('list', {
-      list: { id: '0', title: 'No List' },
-    });
+    const listId = navigation.getParam('listId');
     return (
       <Screen>
-        <AddListItemForm list={list} navigation={navigation} />
+        <AddListItemForm listId={listId} navigation={navigation} />
       </Screen>
     );
   }

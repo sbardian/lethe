@@ -5,8 +5,8 @@ import { Mutation } from 'react-apollo';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
 
 const ADD_ITEM = gql`
-  mutation createNewItem($list: String!, $title: String!) {
-    createNewItem(ItemInfo: { list: $list, title: $title }) {
+  mutation createNewItem($listId: String!, $title: String!) {
+    createNewItem(ItemInfo: { list: $listId, title: $title }) {
       id
       title
       creator
@@ -17,6 +17,8 @@ const ADD_ITEM = gql`
 const GET_LIST_ITEMS = gql`
   query getLists($id_is: String!) {
     getLists(id_is: $id_is) {
+      id
+      title
       items {
         id
         title
@@ -25,6 +27,7 @@ const GET_LIST_ITEMS = gql`
     }
   }
 `;
+
 export class AddListItemForm extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +43,7 @@ export class AddListItemForm extends Component {
   }
 
   render() {
-    const { navigation, list } = this.props;
+    const { navigation, listId } = this.props;
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
@@ -54,25 +57,6 @@ export class AddListItemForm extends Component {
         </Form>
         <Mutation
           mutation={ADD_ITEM}
-          update={(cache, { data }) => {
-            const cacheData = cache.readQuery({
-              query: GET_LIST_ITEMS,
-              variables: { id_is: list.id },
-            });
-            console.log('cache = ', cacheData, ', data = ', data);
-            cache.writeQuery({
-              query: GET_LIST_ITEMS,
-              variables: { id_is: list.id },
-              data: {
-                getLists: [
-                  {
-                    __typename: 'List',
-                    items: [...cacheData.getLists[0].items, data.createNewItem],
-                  },
-                ],
-              },
-            });
-          }}
           onCompleted={() => {
             navigation.goBack();
           }}
@@ -84,9 +68,17 @@ export class AddListItemForm extends Component {
               disabled={loading}
               onPress={async () => {
                 createNewItem({
+                  refetchQueries: [
+                    {
+                      query: GET_LIST_ITEMS,
+                      variables: {
+                        id_is: listId,
+                      },
+                    },
+                  ],
                   variables: {
                     title: this.state.title,
-                    list: list.id,
+                    listId,
                   },
                 });
               }}

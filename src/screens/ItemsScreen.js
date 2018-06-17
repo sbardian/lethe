@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Button, Icon } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
-import { ItemsFab, Items } from '../components';
+import { AddItemFab, Items } from '../components';
 import { Screen } from '../screens';
 
 export class ItemsScreen extends Component {
@@ -39,8 +39,7 @@ export class ItemsScreen extends Component {
     const { navigation } = this.props;
     const listId = navigation.getParam('listId');
     return (
-      <Screen>
-        {/* <Screen fab={<ItemsFab navigation={navigation} listId={listId} />}> */}
+      <Screen fab={<AddItemFab navigation={navigation} listId={listId} />}>
         <Grid>
           <Row>
             <Items listId={listId} navigation={navigation} />
