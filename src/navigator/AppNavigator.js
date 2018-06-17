@@ -6,7 +6,6 @@ import {
   SignupScreen,
   AddListScreen,
   ItemsScreen,
-  EditListScreen,
   AddListItemScreen,
   SendInvitationScreen,
   ListSettingsScreen,
@@ -24,7 +23,6 @@ const appRoutes = {
       title: `${navigation.state.params.title}`,
     }),
   },
-  EditList: { screen: EditListScreen },
   AddListItem: { screen: AddListItemScreen },
   SendInvitation: {
     screen: SendInvitationScreen,

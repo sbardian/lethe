@@ -6,7 +6,6 @@ export { Screen } from './Screen';
 export { SignupScreen } from './SignupScreen';
 export { AddListScreen } from './AddListScreen';
 export { ItemsScreen } from './ItemsScreen';
-export { EditListScreen } from './EditListScreen';
 export { AddListItemScreen } from './AddListItemScreen';
 export { SendInvitationScreen } from './SendInvitationScreen';
 export { ListSettingsScreen } from './ListSettingsScreen';
