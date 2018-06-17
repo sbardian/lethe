@@ -52,34 +52,8 @@ export const Items = ({ navigation, listId }) => (
                 {
                   backgroundColor: '#fff',
                   component: (
-                    <Mutation
-                      mutation={DELETE_ITEM}
-                      update={(cache, { data }) => {
-                        const cacheData = cache.readQuery({
-                          query: GET_LIST_ITEMS,
-                          variables: { id_is: listId },
-                        });
-                        const newCacheData = cacheData.getLists[0].items.filter(
-                          casheItem => casheItem.id !== data.deleteItem.id,
-                        );
-                        cache.writeQuery({
-                          query: GET_LIST_ITEMS,
-                          variables: { id_is: listId },
-                          data: {
-                            getLists: [
-                              {
-                                __typename: 'List',
-                                items: [...newCacheData],
-                              },
-                            ],
-                          },
-                        });
-                      }}
-                      onCompleted={() => {
-                        navigation.goBack();
-                      }}
-                    >
-                      {(deleteItem, { loading }) => (
+                    <Mutation mutation={DELETE_ITEM}>
+                      {deleteItem => (
                         <View
                           style={{
                             flex: 1,
@@ -91,6 +65,14 @@ export const Items = ({ navigation, listId }) => (
                             disabled={loading}
                             onPress={async () =>
                               deleteItem({
+                                refetchQueries: [
+                                  {
+                                    query: GET_LIST_ITEMS,
+                                    variables: {
+                                      id_is: listId,
+                                    },
+                                  },
+                                ],
                                 variables: { itemId: item.id },
                               })
                             }
