@@ -4,6 +4,7 @@ import { Alert, Image, ImageBackground, StyleSheet, View } from 'react-native';
 import { Button, Text } from 'native-base';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { oneLine } from 'common-tags';
 import { ImagePicker, Permissions } from 'expo';
 
 const GET_MY_INFO = gql`
@@ -65,7 +66,8 @@ export class Profile extends Component {
       });
       Alert.alert(
         'Profile Image',
-        `You have not granted permission to access your images, you will not be able to update your profile image.`,
+        oneLine`You have not granted permission to access your images, 
+        you will not be able to update your profile image.`,
         [
           {
             text: 'Cancel',
