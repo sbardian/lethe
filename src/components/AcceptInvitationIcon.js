@@ -19,6 +19,11 @@ const GET_MY_INVITATIONS = gql`
   {
     getMyInfo {
       id
+      lists {
+        id
+        title
+        owner
+      }
       invitations {
         id
         inviter
