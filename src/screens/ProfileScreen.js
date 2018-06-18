@@ -8,7 +8,7 @@ export class ProfileScreen extends Component {
   static navigationOptions = {
     title: 'Profile',
     headerStyle: {
-      backgroundColor: '#13cd4a',
+      backgroundColor: '#6A8289',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
