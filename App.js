@@ -63,8 +63,8 @@ export default class App extends Component {
                 // android
                 //  uri: 'http://10.0.3.2:9999/graphql',
                 // ios
-                uri: 'http://localhost:9999/graphql',
-                // uri: 'https://letheapi-oshypkvbju.now.sh/graphql',
+                // uri: 'http://localhost:9999/graphql',
+                uri: 'https://letheapi-gsytncjngh.now.sh/graphql',
               });
 
               const authLink = setContext(async (_, { headers }) => {
