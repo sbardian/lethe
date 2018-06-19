@@ -2,10 +2,11 @@
 import React, { Component } from 'react';
 import { Alert, Image, ImageBackground, StyleSheet, View } from 'react-native';
 import { Button, Text } from 'native-base';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { oneLine } from 'common-tags';
 import { ImagePicker, Permissions } from 'expo';
+import { ReactNativeFile } from 'apollo-upload-client';
 
 const GET_MY_INFO = gql`
   {
@@ -13,6 +14,15 @@ const GET_MY_INFO = gql`
       id
       username
       email
+    }
+  }
+`;
+
+const UPLOAD_PROFILE_IMAGE = gql`
+  mutation profileImageUpload($file: Upload!) {
+    profileImageUpload(file: $file) {
+      encoding
+      mimetype
     }
   }
 `;
@@ -54,6 +64,7 @@ export class Profile extends Component {
     super(props);
     this.state = {
       image: null,
+      fileToUpload: null,
       profileStatus: true,
     };
   }
@@ -93,7 +104,11 @@ export class Profile extends Component {
       allowsEditing: true,
       aspect: [4, 3],
     });
-    if (!pickerResult.cancelled) this.setState({ image: pickerResult.uri });
+    if (!pickerResult.cancelled) {
+      const file = new ReactNativeFile({ ...pickerResult, name: 'test' });
+      console.log('file = ', file);
+      this.setState({ image: pickerResult, fileToUpload: file });
+    }
   };
 
   render() {
@@ -140,9 +155,28 @@ export class Profile extends Component {
                     }}
                   >
                     <Image
-                      source={{ uri: image }}
+                      source={{ uri: image.uri }}
                       style={{ width: 250, height: 250 }}
                     />
+                    <Mutation
+                      mutation={UPLOAD_PROFILE_IMAGE}
+                      onComplete={data => console.log('Success!: ', data)}
+                      onError={error => console.log('Error!: ', error)}
+                    >
+                      {profileImageUpload => (
+                        <Button
+                          onPress={() =>
+                            profileImageUpload({
+                              variables: {
+                                file: this.state.fileToUpload,
+                              },
+                            })
+                          }
+                        >
+                          <Text>Upload!</Text>
+                        </Button>
+                      )}
+                    </Mutation>
                   </View>
                 )}
               </View>

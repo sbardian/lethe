@@ -11,6 +11,7 @@ import { onError } from 'apollo-link-error';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
+import { createUploadLink } from 'apollo-upload-client';
 import { TokenProvider, TokenContext } from './src/context';
 import { Navigator } from './src/navigator';
 
@@ -58,12 +59,12 @@ export default class App extends Component {
         <TokenProvider>
           <TokenContext.Consumer>
             {({ token, setToken }) => {
-              const httpLink = createHttpLink({
+              const httpLink = createUploadLink({
                 // android
                 //  uri: 'http://10.0.3.2:9999/graphql',
                 // ios
-                // uri: 'http://localhost:9999/graphql',
-                uri: 'https://letheapi-pxmrxldqmj.now.sh/graphql',
+                uri: 'http://localhost:9999/graphql',
+                // uri: 'https://letheapi-oshypkvbju.now.sh/graphql',
               });
 
               const authLink = setContext(async (_, { headers }) => {
