@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   footer_menu: {
     bottom: -350,
     flex: 1,
-    height: 500,
+    height: 600,
     backgroundColor: '#7b6ed6',
   },
   tip_menu: {
