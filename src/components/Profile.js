@@ -60,13 +60,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   userImage: {
-    backgroundColor: '#666',
+    backgroundColor: 'transparent',
     borderColor: 'white',
     borderRadius: 85,
     borderWidth: 3,
     height: 170,
     marginBottom: 15,
     width: 170,
+    overflow: 'hidden',
   },
 });
 
