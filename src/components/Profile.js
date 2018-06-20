@@ -151,7 +151,10 @@ export class Profile extends Component {
                   style={styles.backgroundImage}
                 >
                   <View style={styles.profileImage}>
-                    <TouchableOpacity onPress={this.pickImage}>
+                    <TouchableOpacity
+                      disabled={this.state.profileStatus}
+                      onPress={this.pickImage}
+                    >
                       <Image
                         style={styles.userImage}
                         source={
