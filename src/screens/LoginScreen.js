@@ -132,7 +132,7 @@ export class LoginScreen extends Component {
   render() {
     const verticalAxis = this.slideMenu.interpolate({
       inputRange: [0, 1],
-      outputRange: [0, -300],
+      outputRange: [0, -240],
     });
     const size = this.shrink.interpolate({
       inputRange: [0, 1],

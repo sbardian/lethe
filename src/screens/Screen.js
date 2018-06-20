@@ -4,7 +4,7 @@ import { Container, Content } from 'native-base';
 
 export const Screen = ({ screenStyles, children, fab }) => (
   <Container style={screenStyles}>
-    <Content contentContainerStyle={{ flex: 1 }}>{children}</Content>
+    <Content>{children}</Content>
     {fab}
   </Container>
 );
