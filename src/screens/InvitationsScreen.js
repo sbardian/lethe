@@ -18,11 +18,7 @@ export class InvitationsScreen extends Component {
   render() {
     return (
       <Screen>
-        <Grid>
-          <Row>
-            <Invitations />
-          </Row>
-        </Grid>
+        <Invitations />
       </Screen>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { Icon, Toast } from 'native-base';
+import { Button, Icon, Text, Toast } from 'native-base';
 
 const ACCEPT_INVITATION = gql`
   mutation acceptInvitation($invitationId: String!) {
@@ -57,7 +57,10 @@ export const AcceptInvitationIcon = ({ invitation }) => (
     }
   >
     {(acceptInvitation, { loading }) => (
-      <Icon
+      <Button
+        iconLeft
+        light
+        info
         disabled={loading}
         onPress={async () => {
           console.log('join list');
@@ -70,9 +73,10 @@ export const AcceptInvitationIcon = ({ invitation }) => (
             variables: { invitationId: invitation.id },
           });
         }}
-        type="Ionicons"
-        name="md-add-circle"
-      />
+      >
+        <Icon type="Ionicons" name="md-add-circle" />
+        <Text>Accept</Text>
+      </Button>
     )}
   </Mutation>
 );

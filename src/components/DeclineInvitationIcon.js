@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { Icon, Toast } from 'native-base';
+import { Button, Icon, Text, Toast } from 'native-base';
 
 const DECLINE_INVITATION = gql`
   mutation declineInvitation($invitationId: String!) {
@@ -52,7 +52,10 @@ export const DeclineInvitationIcon = ({ invitation }) => (
     }
   >
     {(declineInvitation, { loading }) => (
-      <Icon
+      <Button
+        iconLeft
+        light
+        info
         disabled={loading}
         onPress={async () => {
           console.log('decline invitation');
@@ -65,9 +68,10 @@ export const DeclineInvitationIcon = ({ invitation }) => (
             variables: { invitationId: invitation.id },
           });
         }}
-        type="MaterialIcons"
-        name="delete"
-      />
+      >
+        <Icon type="MaterialIcons" name="delete" />
+        <Text>Decline</Text>
+      </Button>
     )}
   </Mutation>
 );
