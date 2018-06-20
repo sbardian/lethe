@@ -7,7 +7,9 @@ const ACCEPT_INVITATION = gql`
   mutation acceptInvitation($invitationId: String!) {
     acceptInvitation(invitationId: $invitationId) {
       id
-      inviter
+      inviter {
+        id
+      }
       invitee
       list
       title
@@ -26,7 +28,9 @@ const GET_MY_INVITATIONS = gql`
       }
       invitations {
         id
-        inviter
+        inviter {
+          id
+        }
         invitee
         title
       }
@@ -34,7 +38,7 @@ const GET_MY_INVITATIONS = gql`
   }
 `;
 
-export const AcceptInvitationIcon = ({ invitation }) => (
+export const AcceptInvitationIcon = ({ invitationId }) => (
   <Mutation
     mutation={ACCEPT_INVITATION}
     onCompleted={() =>
@@ -70,7 +74,7 @@ export const AcceptInvitationIcon = ({ invitation }) => (
                 query: GET_MY_INVITATIONS,
               },
             ],
-            variables: { invitationId: invitation.id },
+            variables: { invitationId },
           });
         }}
       >

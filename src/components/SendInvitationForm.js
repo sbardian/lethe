@@ -12,7 +12,11 @@ const SEND_INVITATION = gql`
   ) {
     createInvitation(listId: $listId, invitee: $invitee, title: $title) {
       id
-      inviter
+      inviter {
+        id
+        username
+        profileImageUrl
+      }
       invitee
       list
       title

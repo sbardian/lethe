@@ -7,7 +7,9 @@ const DECLINE_INVITATION = gql`
   mutation declineInvitation($invitationId: String!) {
     deleteInvitation(invitationId: $invitationId) {
       id
-      inviter
+      inviter {
+        id
+      }
       invitee
       list
       title
@@ -21,7 +23,9 @@ const GET_MY_INVITATIONS = gql`
       id
       invitations {
         id
-        inviter
+        inviter {
+          id
+        }
         invitee
         title
       }
@@ -29,7 +33,7 @@ const GET_MY_INVITATIONS = gql`
   }
 `;
 
-export const DeclineInvitationIcon = ({ invitation }) => (
+export const DeclineInvitationIcon = ({ invitationId }) => (
   <Mutation
     mutation={DECLINE_INVITATION}
     onCompleted={() =>
@@ -65,7 +69,7 @@ export const DeclineInvitationIcon = ({ invitation }) => (
                 query: GET_MY_INVITATIONS,
               },
             ],
-            variables: { invitationId: invitation.id },
+            variables: { invitationId },
           });
         }}
       >

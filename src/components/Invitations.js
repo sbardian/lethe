@@ -22,7 +22,12 @@ const GET_MY_INVITATIONS = gql`
       id
       invitations {
         id
-        inviter
+        inviter {
+          id
+          username
+          email
+          profileImageUrl
+        }
         invitee
         title
       }
@@ -49,6 +54,7 @@ export const Invitations = () => (
       if (error) {
         return <Text>Error: ${error.message}</Text>;
       }
+      console.log('invitations: ', invitations);
       return (
         <FlatList
           bordered
@@ -60,12 +66,13 @@ export const Invitations = () => (
                   circle
                   small
                   style={{ marginRight: 10 }}
-                  source={{
-                    uri:
-                      'https://facebook.github.io/react-native/docs/assets/favicon.png',
-                  }}
+                  source={
+                    item.inviter.profileImageUrl
+                      ? { uri: `https://${item.inviter.profileImageUrl}` }
+                      : require('../images/defaultProfile.jpg')
+                  }
                 />
-                <Text>{`Invitation from ${item.inviter}:`}</Text>
+                <Text>{`Invitation from ${item.inviter.username}:`}</Text>
               </CardItem>
               <CardItem>
                 <Body>
@@ -73,8 +80,8 @@ export const Invitations = () => (
                 </Body>
               </CardItem>
               <View style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}>
-                <AcceptInvitationIcon invitation={item} />
-                <DeclineInvitationIcon invitation={item} />
+                <AcceptInvitationIcon invitationId={item.id} />
+                <DeclineInvitationIcon invitationId={item.id} />
               </View>
             </Card>
           )}
