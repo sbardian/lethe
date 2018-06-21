@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
-import { Button, Text } from 'native-base';
+import { Container, Content, Button, Text } from 'native-base';
 import { TokenContext } from '../context';
 import { Screen } from './';
 import { LoginForm, CreateAccountForm } from '../components';
@@ -132,7 +132,7 @@ export class LoginScreen extends Component {
   render() {
     const verticalAxis = this.slideMenu.interpolate({
       inputRange: [0, 1],
-      outputRange: [0, -240],
+      outputRange: [0, -350],
     });
     const size = this.shrink.interpolate({
       inputRange: [0, 1],
@@ -151,102 +151,104 @@ export class LoginScreen extends Component {
             return null;
           }
           return (
-            <Screen style={[styles.screen]}>
-              <View style={[styles.container]}>
-                <View style={{ alignSelf: 'center' }}>
-                  <TouchableOpacity onPress={() => this.hideMenu()}>
-                    <Animated.Image
-                      style={{
-                        padding: 50,
-                        marginTop: imageMargin,
-                        width: size,
-                        height: size,
-                        transform: [{ scale: this.imageBounce }],
-                      }}
-                      source={require('../images/brian.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
-                {!this.state.menu_expanded && (
-                  <View>
-                    <View
-                      style={{
-                        justifyContent: 'center',
-                        marginTop: 150,
-                        marginBottom: 20,
-                      }}
-                    >
-                      <Button full light onPress={() => this.openMenu(1)}>
-                        <Text>Create Account</Text>
-                      </Button>
-                    </View>
-                    <View>
-                      <Text
+            <Container>
+              <Content contentContainerStyle={{ flex: 1 }}>
+                <View style={[styles.container]}>
+                  <View style={{ alignSelf: 'center' }}>
+                    <TouchableOpacity onPress={() => this.hideMenu()}>
+                      <Animated.Image
                         style={{
-                          color: '#666',
-                          alignSelf: 'center',
+                          padding: 50,
+                          marginTop: imageMargin,
+                          width: size,
+                          height: size,
+                          transform: [{ scale: this.imageBounce }],
+                        }}
+                        source={require('../images/brian.png')}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  {!this.state.menu_expanded && (
+                    <View>
+                      <View
+                        style={{
+                          justifyContent: 'center',
+                          marginTop: 150,
                           marginBottom: 20,
                         }}
                       >
-                        ------------- or -------------
-                      </Text>
-                    </View>
-                    <View>
-                      <Button
-                        full
-                        style={{ backgroundColor: '#5e525c' }}
-                        onPress={() => this.openMenu(0)}
-                      >
-                        <Text>Login</Text>
-                      </Button>
-                    </View>
-                  </View>
-                )}
-                <Animated.View
-                  style={[
-                    styles.footer_menu,
-                    {
-                      transform: [
-                        {
-                          translateY: verticalAxis,
-                        },
-                      ],
-                    },
-                  ]}
-                >
-                  {this.state.menu_expanded && (
-                    <View style={{ flex: 1 }}>
-                      <IndicatorViewPager
-                        initialPage={this.state.slidePage}
-                        style={{ height: 400 }}
-                        onPageScroll={() => this.pageScroll()}
-                        indicator={
-                          <PagerDotIndicator
-                            pageCount={2}
-                            style={{ height: 40, top: -40 }}
-                            dotStyle={{ backgroundColor: '#666' }}
-                            selectedDotStyle={{ backgroundColor: '#7b6ed6' }}
-                          />
-                        }
-                      >
-                        <View>
-                          <LoginForm
-                            pageScroll={this.state.pageScroll}
-                            onSetToken={setToken}
-                          />
-                        </View>
-                        <View>
-                          <CreateAccountForm
-                            pageScroll={this.state.pageScroll}
-                            onSetToken={setToken}
-                          />
-                        </View>
-                      </IndicatorViewPager>
+                        <Button full light onPress={() => this.openMenu(1)}>
+                          <Text>Create Account</Text>
+                        </Button>
+                      </View>
+                      <View>
+                        <Text
+                          style={{
+                            color: '#666',
+                            alignSelf: 'center',
+                            marginBottom: 20,
+                          }}
+                        >
+                          ------------- or -------------
+                        </Text>
+                      </View>
+                      <View>
+                        <Button
+                          full
+                          style={{ backgroundColor: '#5e525c' }}
+                          onPress={() => this.openMenu(0)}
+                        >
+                          <Text>Login</Text>
+                        </Button>
+                      </View>
                     </View>
                   )}
-                </Animated.View>
-              </View>
-            </Screen>
+                  <Animated.View
+                    style={[
+                      styles.footer_menu,
+                      {
+                        transform: [
+                          {
+                            translateY: verticalAxis,
+                          },
+                        ],
+                      },
+                    ]}
+                  >
+                    {this.state.menu_expanded && (
+                      <View style={{ flex: 1 }}>
+                        <IndicatorViewPager
+                          initialPage={this.state.slidePage}
+                          style={{ height: 400 }}
+                          onPageScroll={() => this.pageScroll()}
+                          indicator={
+                            <PagerDotIndicator
+                              pageCount={2}
+                              style={{ height: 40, top: -40 }}
+                              dotStyle={{ backgroundColor: '#666' }}
+                              selectedDotStyle={{ backgroundColor: '#7b6ed6' }}
+                            />
+                          }
+                        >
+                          <View>
+                            <LoginForm
+                              pageScroll={this.state.pageScroll}
+                              onSetToken={setToken}
+                            />
+                          </View>
+                          <View>
+                            <CreateAccountForm
+                              pageScroll={this.state.pageScroll}
+                              onSetToken={setToken}
+                            />
+                          </View>
+                        </IndicatorViewPager>
+                      </View>
+                    )}
+                  </Animated.View>
+                </View>
+              </Content>
+            </Container>
           );
         }}
       </TokenContext.Consumer>
