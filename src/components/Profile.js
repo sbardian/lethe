@@ -130,6 +130,7 @@ export class Profile extends Component {
       const file = new ReactNativeFile({
         ...pickerResult,
         name: `profileImage.${ext}`,
+        type: `image/${ext}`,
       });
       this.setState({ image: pickerResult, fileToUpload: file });
     }
