@@ -1,19 +1,46 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
-import { Container, Content, Icon, Text } from 'native-base';
+import { Button, Container, Content, Icon, Text } from 'native-base';
+import { TokenContext } from '../context';
 
 export class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Home',
-    headerStyle: {
-      backgroundColor: '#5e525c',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Home',
+      headerStyle: {
+        backgroundColor: '#5e525c',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerRight: (
+        <TokenContext.Consumer>
+          {({ removeToken }) => {
+            return (
+              <Button
+                transparent
+                onPress={() => {
+                  removeToken();
+                  navigation.navigate('Login');
+                  return null;
+                }}
+                title="Info"
+                color="#fff"
+              >
+                <Icon
+                  style={{ color: 'white' }}
+                  name="logout"
+                  type="SimpleLineIcons"
+                />
+              </Button>
+            );
+          }}
+        </TokenContext.Consumer>
+      ),
+    };
   };
 
   render() {

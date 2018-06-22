@@ -67,20 +67,40 @@ export default class App extends Component {
                 uri: 'https://letheapi-eenzvgobnj.now.sh/graphql',
               });
 
+              if (!token) {
+                AsyncStorage.getItem('@letheStore:token').then(authToken => {
+                  if (authToken) {
+                    console.log('found token in storage: ', authToken);
+                    return setToken(authToken);
+                  }
+                  return Promise.resolve();
+                });
+              }
+
               const authLink = setContext(async (_, { headers }) => {
-                const authToken =
-                  token ||
-                  (await AsyncStorage.getItem('@letheStore:token')) ||
-                  undefined;
+                // await AsyncStorage.removeItem('@letheStore:token');
+                if (token) {
+                  return {
+                    headers: {
+                      ...headers,
+                      authorization: `Bearer ${token}`,
+                    },
+                  };
+                }
+
+                // const authToken =
+                //   token ||
+                //   (await AsyncStorage.getItem('@letheStore:token')) ||
+                //   undefined;
                 // TODO: setToken here causing issues. . . loop, fix dumas
                 // setToken(authToken);
                 // return the headers to the context so httpLink can read them
-                return {
-                  headers: {
-                    ...headers,
-                    authorization: authToken ? `Bearer ${authToken}` : '',
-                  },
-                };
+                // return {
+                //   headers: {
+                //     ...headers,
+                //     authorization: authToken ? `Bearer ${authToken}` : '',
+                //   },
+                // };
               });
 
               // const errorLink = new ApolloLink((operation, forward) =>
