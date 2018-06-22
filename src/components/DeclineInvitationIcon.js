@@ -62,7 +62,6 @@ export const DeclineInvitationIcon = ({ invitationId }) => (
         info
         disabled={loading}
         onPress={async () => {
-          console.log('decline invitation');
           await declineInvitation({
             refetchQueries: [
               {

@@ -112,7 +112,6 @@ export class Profile extends Component {
   }
 
   onImageUploadSuccess = () => {
-    console.log('returning to null');
     this.setState({
       image: null,
     });

@@ -54,7 +54,6 @@ export const Invitations = () => (
       if (error) {
         return <Text>Error: ${error.message}</Text>;
       }
-      console.log('invitations: ', invitations);
       return (
         <FlatList
           bordered

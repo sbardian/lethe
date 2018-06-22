@@ -63,7 +63,6 @@ export class LoginForm extends Component {
           mutation={LOGIN}
           errorPolicy="all"
           onCompleted={data => {
-            console.log('login successful token = ', data.login.token);
             this.props.onSetToken(data.login.token);
           }}
           onError={error => console.log('Login error: ', error)}

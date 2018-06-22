@@ -21,7 +21,6 @@ export class TokenProvider extends Component {
       token,
     });
     try {
-      console.log('setting token in storage: ', token);
       await AsyncStorage.setItem('@letheStore:token', token);
     } catch (error) {
       throw new Error('Error storing token.');

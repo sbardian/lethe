@@ -84,7 +84,6 @@ export class SendInvitationForm extends Component {
               <Mutation
                 mutation={SEND_INVITATION}
                 onCompleted={data => {
-                  console.log('data = ', data);
                   Toast.show({
                     text: `Invitation has been successfully sent`,
                     buttonText: 'Ok',

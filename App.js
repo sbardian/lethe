@@ -70,7 +70,6 @@ export default class App extends Component {
               if (!token) {
                 AsyncStorage.getItem('@letheStore:token').then(authToken => {
                   if (authToken) {
-                    console.log('found token in storage: ', authToken);
                     return setToken(authToken);
                   }
                   return Promise.resolve();

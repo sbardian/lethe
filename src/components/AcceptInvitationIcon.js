@@ -67,7 +67,6 @@ export const AcceptInvitationIcon = ({ invitationId }) => (
         info
         disabled={loading}
         onPress={async () => {
-          console.log('join list');
           await acceptInvitation({
             refetchQueries: [
               {
