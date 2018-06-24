@@ -10,3 +10,4 @@ export { AddListItemScreen } from './AddListItemScreen';
 export { SendInvitationScreen } from './SendInvitationScreen';
 export { ListSettingsScreen } from './ListSettingsScreen';
 export { ProfileScreen } from './ProfileScreen';
+export { EditItemScreen } from './EditItemScreen';

@@ -10,6 +10,7 @@ import {
   SendInvitationScreen,
   ListSettingsScreen,
   ProfileScreen,
+  EditItemScreen,
 } from '../screens';
 
 const appRoutes = {
@@ -34,6 +35,9 @@ const appRoutes = {
   },
   ListSettings: {
     screen: ListSettingsScreen,
+  },
+  EditItem: {
+    screen: EditItemScreen,
   },
 };
 

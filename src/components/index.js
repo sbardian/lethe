@@ -13,3 +13,4 @@ export { SendInvitationForm } from './SendInvitationForm';
 export { ListSettings } from './ListSettings/ListSettings';
 export { AddItemFab } from './AddItemFab';
 export { Profile } from './Profile';
+export { EditItemForm } from './EditItemForm';

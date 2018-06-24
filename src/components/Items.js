@@ -29,7 +29,7 @@ const DELETE_ITEM = gql`
   }
 `;
 
-export const Items = ({ navigation, listId }) => (
+export const Items = ({ navigation, listId, close = true }) => (
   <Query query={GET_LIST_ITEMS} variables={{ id_is: listId }}>
     {({ loading, error, data: { getLists = [] } }) => {
       if (loading) {
@@ -44,7 +44,7 @@ export const Items = ({ navigation, listId }) => (
           data={items}
           renderItem={({ item }) => (
             <Swipeout
-              autoClose
+              close={true}
               backgroundColor="#ffffff"
               style={[s.jcc, s.bb]}
               buttonWidth={50}
@@ -98,7 +98,11 @@ export const Items = ({ navigation, listId }) => (
                         justifyContent: 'center',
                       }}
                     >
-                      <TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate('EditItem', { item, listId })
+                        }
+                      >
                         <Icon
                           style={{ color: '#171574' }}
                           name="edit"
