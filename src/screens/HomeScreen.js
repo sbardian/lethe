@@ -1,9 +1,19 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { View, AsyncStorage } from 'react-native';
+import gql from 'graphql-tag';
+import { Subscription } from 'apollo-client';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Button, Container, Content, Icon, Text } from 'native-base';
 import { TokenContext } from '../context';
+
+const GET_MESSAGES = gql`
+  subscription {
+    message {
+      message
+    }
+  }
+`;
 
 export class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -47,6 +57,11 @@ export class HomeScreen extends Component {
     return (
       <Container>
         <Content contentContainerStyle={{ flex: 1 }}>
+          <Subscription subscription={GET_MESSAGES}>
+            {({ data: { commentAdded }, loading }) => (
+              <h4>New comment: {!loading && commentAdded.content}</h4>
+            )}
+          </Subscription>
           <Grid>
             <Row
               onPress={() => this.props.navigation.navigate('Profile')}
