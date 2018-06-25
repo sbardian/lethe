@@ -79,8 +79,8 @@ export const Items = ({ navigation, listId, close = true }) => (
                           >
                             <Icon
                               style={{ color: '#bd1b29' }}
-                              name="delete"
-                              type="MaterialIcons"
+                              name="delete-forever"
+                              type="MaterialCommunityIcons"
                             />
                           </TouchableOpacity>
                         </View>
@@ -104,9 +104,9 @@ export const Items = ({ navigation, listId, close = true }) => (
                         }
                       >
                         <Icon
-                          style={{ color: '#171574' }}
-                          name="edit"
-                          type="MaterialIcons"
+                          style={{ color: '#13cd4a' }}
+                          name="edit-3"
+                          type="Feather"
                         />
                       </TouchableOpacity>
                     </View>
