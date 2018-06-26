@@ -144,7 +144,7 @@ export class Profile extends Component {
   };
 
   render() {
-    let { image } = this.state;
+    let { image, editUsername } = this.state;
     return (
       <Query query={GET_MY_INFO}>
         {({ loading, error, data: { getMyInfo } = [] }) => {
@@ -173,12 +173,12 @@ export class Profile extends Component {
                         }
                       />
                     </TouchableOpacity>
-                    {!this.state.editUsername && (
+                    {!editUsername && (
                       <TouchableOpacity onPress={this.enableUsernameEdit}>
                         <Text style={styles.text}>{username}</Text>
                       </TouchableOpacity>
                     )}
-                    {this.state.editUsername && (
+                    {editUsername && (
                       <Form
                         style={{
                           paddingBottom: 40,
@@ -187,8 +187,9 @@ export class Profile extends Component {
                         }}
                       >
                         <Item style={{ flexGrow: 1 }} stackedLabel>
-                          <Label>Username</Label>
+                          <Label style={[s.white]}>Username</Label>
                           <Input
+                            style={[s.white]}
                             placeholder={username}
                             id="ListTitle"
                             onChangeText={value =>
@@ -196,10 +197,14 @@ export class Profile extends Component {
                             }
                           />
                         </Item>
-                        <Icon style={[s.mt4]} name="edit-3" type="Feather" />
+                        <Icon
+                          style={[s.mt4, s.white]}
+                          name="edit-3"
+                          type="Feather"
+                        />
                         <TouchableOpacity onPress={this.enableUsernameEdit}>
                           <Icon
-                            style={[s.mt4]}
+                            style={[s.mt4, s.white]}
                             name="cancel"
                             type="MaterialIcons"
                           />
