@@ -8,12 +8,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Button, Text } from 'native-base';
+import { Button, Text, Icon, Form, Item, Label, Input } from 'native-base';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { oneLine } from 'common-tags';
 import { ImagePicker, Permissions } from 'expo';
 import { ReactNativeFile } from 'apollo-upload-client';
+import { styles as s } from 'react-native-style-tachyons';
 
 const GET_MY_INFO = gql`
   {
@@ -78,6 +79,7 @@ export class Profile extends Component {
       image: null,
       fileToUpload: null,
       profileStatus: true,
+      editUsername: false,
     };
   }
 
@@ -135,6 +137,12 @@ export class Profile extends Component {
     }
   };
 
+  enableUsernameEdit = () => {
+    this.setState({
+      editUsername: !this.state.editUsername,
+    });
+  };
+
   render() {
     let { image } = this.state;
     return (
@@ -165,7 +173,39 @@ export class Profile extends Component {
                         }
                       />
                     </TouchableOpacity>
-                    <Text style={styles.text}>{username}</Text>
+                    {!this.state.editUsername && (
+                      <TouchableOpacity onPress={this.enableUsernameEdit}>
+                        <Text style={styles.text}>{username}</Text>
+                      </TouchableOpacity>
+                    )}
+                    {this.state.editUsername && (
+                      <Form
+                        style={{
+                          paddingBottom: 40,
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <Item style={{ flexGrow: 1 }} stackedLabel>
+                          <Label>Username</Label>
+                          <Input
+                            placeholder={username}
+                            id="ListTitle"
+                            onChangeText={value =>
+                              console.log('new username: ', value)
+                            }
+                          />
+                        </Item>
+                        <Icon style={[s.mt4]} name="edit-3" type="Feather" />
+                        <TouchableOpacity onPress={this.enableUsernameEdit}>
+                          <Icon
+                            style={[s.mt4]}
+                            name="cancel"
+                            type="MaterialIcons"
+                          />
+                        </TouchableOpacity>
+                      </Form>
+                    )}
                   </View>
                 </ImageBackground>
               </View>
