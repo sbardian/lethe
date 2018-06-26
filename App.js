@@ -61,23 +61,38 @@ export default class App extends Component {
         <TokenProvider>
           <TokenContext.Consumer>
             {({ token, setToken }) => {
+              if (!token) {
+                AsyncStorage.getItem('@letheStore:token').then(authToken => {
+                  if (authToken) {
+                    return setToken(authToken);
+                  }
+                  return Promise.resolve();
+                });
+              }
+
               const httpLink = createUploadLink({
+                // const httpLink = createHttpLink({
                 // android
                 //  uri: 'http://10.0.3.2:9999/graphql',
                 // ios
-                // uri: 'http://localhost:9999/graphql',
-                uri: 'https://letheapi-eenzvgobnj.now.sh/graphql',
+                uri: 'http://localhost:9999/graphql',
+                // uri: 'https://letheapi-eenzvgobnj.now.sh/graphql',
               });
 
               const wsLink = new WebSocketLink({
-                uri: `ws://letheapi-eenzvgobnj.now.sh/graphql`,
+                uri: 'ws://localhost:9999/graphql',
+                // uri: `ws://letheapi-eenzvgobnj.now.sh/graphql`,
                 options: {
                   reconnect: true,
+                  connectionParams: {
+                    token,
+                  },
                 },
               });
 
               const terminatingLink = split(
                 ({ query }) => {
+                  console.log('checking query');
                   const { kind, operation } = getMainDefinition(query);
                   return (
                     kind === 'OperationDefinition' &&
@@ -87,15 +102,6 @@ export default class App extends Component {
                 wsLink,
                 httpLink,
               );
-
-              if (!token) {
-                AsyncStorage.getItem('@letheStore:token').then(authToken => {
-                  if (authToken) {
-                    return setToken(authToken);
-                  }
-                  return Promise.resolve();
-                });
-              }
 
               const authLink = setContext(async (_, { headers }) => {
                 // await AsyncStorage.removeItem('@letheStore:token');
