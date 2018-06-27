@@ -70,6 +70,16 @@ const styles = StyleSheet.create({
     width: 170,
     overflow: 'hidden',
   },
+  saveUserImage: {
+    backgroundColor: 'transparent',
+    borderColor: 'red',
+    borderRadius: 85,
+    borderWidth: 3,
+    height: 170,
+    marginBottom: 15,
+    width: 170,
+    overflow: 'hidden',
+  },
 });
 
 export class Profile extends Component {
@@ -78,7 +88,7 @@ export class Profile extends Component {
     this.state = {
       image: null,
       fileToUpload: null,
-      profileStatus: true,
+      permissionStatus: true,
       editUsername: false,
     };
   }
@@ -87,7 +97,7 @@ export class Profile extends Component {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     if (status !== 'granted') {
       this.setState({
-        profileStatus: true,
+        permissionStatus: true,
       });
       Alert.alert(
         'Profile Image',
@@ -108,7 +118,7 @@ export class Profile extends Component {
       );
     } else {
       this.setState({
-        profileStatus: false,
+        permissionStatus: false,
       });
     }
   }
@@ -133,7 +143,7 @@ export class Profile extends Component {
         name: `profileImage.${ext}`,
         type: `image/${ext}`,
       });
-      this.setState({ image: pickerResult, fileToUpload: file });
+      this.setState({ image: pickerResult.uri, fileToUpload: file });
     }
   };
 
@@ -144,7 +154,7 @@ export class Profile extends Component {
   };
 
   render() {
-    let { image, editUsername } = this.state;
+    let { image, editUsername, permissionStatus } = this.state;
     return (
       <Query query={GET_MY_INFO}>
         {({ loading, error, data: { getMyInfo } = [] }) => {
@@ -161,18 +171,50 @@ export class Profile extends Component {
                 >
                   <View style={styles.profileImage}>
                     <TouchableOpacity
-                      disabled={this.state.profileStatus}
+                      disabled={permissionStatus}
                       onPress={this.pickImage}
                     >
-                      <Image
-                        style={styles.userImage}
-                        source={
-                          profileImageUrl
-                            ? { uri: `https://${profileImageUrl}` }
-                            : require('../images/defaultProfile.jpg')
-                        }
-                      />
+                      {!image && (
+                        <Image
+                          style={styles.userImage}
+                          source={
+                            profileImageUrl
+                              ? { uri: `https://${profileImageUrl}` }
+                              : require('../images/defaultProfile.jpg')
+                          }
+                        />
+                      )}
                     </TouchableOpacity>
+                    <Mutation
+                      mutation={UPLOAD_PROFILE_IMAGE}
+                      onCompleted={this.onImageUploadSuccess}
+                      onError={error => console.log('Error!: ', error)}
+                    >
+                      {profileImageUpload => (
+                        <TouchableOpacity
+                          disabled={permissionStatus}
+                          onPress={() =>
+                            profileImageUpload({
+                              refetchQueries: [
+                                {
+                                  query: GET_MY_INFO,
+                                },
+                              ],
+                              variables: {
+                                file: this.state.fileToUpload,
+                              },
+                            })
+                          }
+                        >
+                          {image && (
+                            <Image
+                              style={styles.saveUserImage}
+                              source={{ uri: image }}
+                            />
+                          )}
+                        </TouchableOpacity>
+                      )}
+                    </Mutation>
                     {!editUsername && (
                       <TouchableOpacity onPress={this.enableUsernameEdit}>
                         <Text style={styles.text}>{username}</Text>
@@ -216,38 +258,6 @@ export class Profile extends Component {
               </View>
               <View style={styles.contentContainer}>
                 <Text>Email: {email}</Text>
-                {this.state.image && (
-                  <View style={styles.contentContainer}>
-                    <Image
-                      source={{ uri: image.uri }}
-                      style={{ width: 250, height: 250 }}
-                    />
-                    <Mutation
-                      mutation={UPLOAD_PROFILE_IMAGE}
-                      onCompleted={this.onImageUploadSuccess}
-                      onError={error => console.log('Error!: ', error)}
-                    >
-                      {profileImageUpload => (
-                        <Button
-                          onPress={() =>
-                            profileImageUpload({
-                              refetchQueries: [
-                                {
-                                  query: GET_MY_INFO,
-                                },
-                              ],
-                              variables: {
-                                file: this.state.fileToUpload,
-                              },
-                            })
-                          }
-                        >
-                          <Text>Upload!</Text>
-                        </Button>
-                      )}
-                    </Mutation>
-                  </View>
-                )}
               </View>
             </View>
           );
