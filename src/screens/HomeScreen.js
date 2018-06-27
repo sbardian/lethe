@@ -74,17 +74,12 @@ export class HomeScreen extends Component {
                   {({
                     data = { messageCreated: { content: 'nothing...' } },
                     loading,
-                  }) => {
-                    console.log(
-                      'messageCreated = ',
-                      data.messageCreated.content,
-                    );
-                    return (
-                      <Text>
-                        New comment: {!loading && data.messageCreated.content}
-                      </Text>
-                    );
-                  }}
+                  }) => (
+                    // console.log(data.messageCreated.content);
+                    <Text>
+                      New comment: {!loading && data.messageCreated.content}
+                    </Text>
+                  )}
                 </Subscription>
                 <Icon
                   type="FontAwesome"

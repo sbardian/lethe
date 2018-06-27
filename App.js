@@ -73,15 +73,19 @@ export default class App extends Component {
               const httpLink = createUploadLink({
                 // const httpLink = createHttpLink({
                 // android
-                //  uri: 'http://10.0.3.2:9999/graphql',
+                // uri: 'http://10.0.3.2:9999/graphql',
                 // ios
-                uri: 'http://localhost:9999/graphql',
-                // uri: 'https://letheapi-eenzvgobnj.now.sh/graphql',
+                // uri: 'http://localhost:9999/graphql',
+                uri: 'https://letheapi-tlvcihykjw.now.sh/graphql',
               });
 
               const wsLink = new WebSocketLink({
-                uri: 'ws://localhost:9999/graphql',
-                // uri: `ws://letheapi-eenzvgobnj.now.sh/graphql`,
+                // android
+                // uri: 'ws://10.0.3.2:9999/graphql',
+                // ios
+                // uri: 'ws://localhost:9999/graphql',
+                // now
+                uri: `ws://letheapi-tlvcihykjw.now.sh/graphql`,
                 options: {
                   reconnect: true,
                   connectionParams: {
