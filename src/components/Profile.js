@@ -15,6 +15,8 @@ import { oneLine } from 'common-tags';
 import { ImagePicker, Permissions } from 'expo';
 import { ReactNativeFile } from 'apollo-upload-client';
 import { styles as s } from 'react-native-style-tachyons';
+import defaultImage from '../images/defaultProfile.jpg';
+import backgroundImage from '../images/background.png';
 
 const GET_MY_INFO = gql`
   {
@@ -71,8 +73,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   saveUserImage: {
+    display: 'flex',
     backgroundColor: 'transparent',
-    borderColor: 'red',
+    borderColor: 'green',
     borderRadius: 85,
     borderWidth: 3,
     height: 170,
@@ -154,7 +157,13 @@ export class Profile extends Component {
   };
 
   render() {
-    let { image, editUsername, permissionStatus } = this.state;
+    let {
+      image,
+      defaultImage,
+      editUsername,
+      permissionStatus,
+      fileToUpload,
+    } = this.state;
     return (
       <Query query={GET_MY_INFO}>
         {({ loading, error, data: { getMyInfo } = [] }) => {
@@ -166,7 +175,7 @@ export class Profile extends Component {
             <View style={styles.container}>
               <View style={styles.headerContainer}>
                 <ImageBackground
-                  source={require('../images/background.png')}
+                  source={backgroundImage}
                   style={styles.backgroundImage}
                 >
                   <View style={styles.profileImage}>
@@ -180,7 +189,7 @@ export class Profile extends Component {
                           source={
                             profileImageUrl
                               ? { uri: `https://${profileImageUrl}` }
-                              : require('../images/defaultProfile.jpg')
+                              : defaultImage
                           }
                         />
                       )}
@@ -201,7 +210,7 @@ export class Profile extends Component {
                                 },
                               ],
                               variables: {
-                                file: this.state.fileToUpload,
+                                file: fileToUpload,
                               },
                             })
                           }
