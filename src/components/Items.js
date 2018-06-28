@@ -104,7 +104,7 @@ export const Items = ({ navigation, listId, close = true }) => (
                         }
                       >
                         <Icon
-                          style={{ color: '#13cd4a' }}
+                          style={{ color: '#f0ad4e' }}
                           name="edit-3"
                           type="Feather"
                         />
