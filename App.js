@@ -76,7 +76,7 @@ export default class App extends Component {
                 // uri: 'http://10.0.3.2:9999/graphql',
                 // ios
                 // uri: 'http://localhost:9999/graphql',
-                uri: 'https://letheapi-lkniqgdidl.now.sh/graphql',
+                uri: 'https://letheapi-mmfmwkptgd.now.sh/graphql',
               });
 
               const wsLink = new WebSocketLink({
@@ -85,7 +85,7 @@ export default class App extends Component {
                 // ios
                 // uri: 'ws://localhost:9999/graphql',
                 // now
-                uri: `https://letheapi-lkniqgdidl.now.sh/subscriptions`,
+                uri: `https://letheapi-mmfmwkptgd.now.sh/subscriptions`,
                 options: {
                   reconnect: true,
                   connectionParams: {
@@ -117,39 +117,7 @@ export default class App extends Component {
                     },
                   };
                 }
-
-                // const authToken =
-                //   token ||
-                //   (await AsyncStorage.getItem('@letheStore:token')) ||
-                //   undefined;
-                // TODO: setToken here causing issues. . . loop, fix dumas
-                // setToken(authToken);
-                // return the headers to the context so httpLink can read them
-                // return {
-                //   headers: {
-                //     ...headers,
-                //     authorization: authToken ? `Bearer ${authToken}` : '',
-                //   },
-                // };
               });
-
-              // const errorLink = new ApolloLink((operation, forward) =>
-              //   forward(operation).map(response => {
-              //     let newResponse = {};
-              //     if (response.errors) {
-              //       newResponse = {
-              //         ...response,
-              //         errors: [
-              //           {
-              //             message: 'fuck you',
-              //           },
-              //         ],
-              //       };
-              //     }
-              //     console.log('newResponse = ', newResponse);
-              //     return newResponse;
-              //   }),
-              // );
 
               const link = from([authLink, /* errorLink, */ terminatingLink]);
 

@@ -60,7 +60,7 @@ export const Items = ({ navigation, listId, close = true }) => (
           const { id, list } = subscriptionData.data.itemAdded;
           console.log('prev = ', prev);
           if (
-            prev.getLists[0].id === list &&
+            // prev.getLists[0].id === list &&
             !prev.getLists[0].items.some(item => item.id === id)
           ) {
             console.log('match. . . adding new item');

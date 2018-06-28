@@ -7,14 +7,6 @@ import { Row, Grid } from 'react-native-easy-grid';
 import { Button, Container, Content, Icon, Text } from 'native-base';
 import { TokenContext } from '../context';
 
-const GET_MESSAGES = gql`
-  subscription {
-    messageCreated {
-      content
-    }
-  }
-`;
-
 export class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -70,17 +62,6 @@ export class HomeScreen extends Component {
                   alignItems: 'center',
                 }}
               >
-                <Subscription subscription={GET_MESSAGES}>
-                  {({
-                    data = { messageCreated: { content: 'nothing...' } },
-                    loading,
-                  }) => (
-                    // console.log(data.messageCreated.content);
-                    <Text>
-                      New comment: {!loading && data.messageCreated.content}
-                    </Text>
-                  )}
-                </Subscription>
                 <Icon
                   type="FontAwesome"
                   name="user-circle-o"
