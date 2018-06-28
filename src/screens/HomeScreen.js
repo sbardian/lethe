@@ -1,6 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { View, AsyncStorage } from 'react-native';
+import gql from 'graphql-tag';
+import { Subscription } from 'react-apollo';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Button, Container, Content, Icon, Text } from 'native-base';
 import { TokenContext } from '../context';

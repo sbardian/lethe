@@ -15,7 +15,19 @@ const GET_LIST_ITEMS = gql`
         id
         title
         creator
+        list
       }
+    }
+  }
+`;
+
+const ITEMS_SUBSCRIPTION = gql`
+  subscription onItemAdded($listId: String!) {
+    itemAdded(listId: $listId) {
+      id
+      title
+      creator
+      list
     }
   }
 `;
@@ -31,13 +43,43 @@ const DELETE_ITEM = gql`
 
 export const Items = ({ navigation, listId, close = true }) => (
   <Query query={GET_LIST_ITEMS} variables={{ id_is: listId }}>
-    {({ loading, error, data: { getLists = [] } }) => {
+    {({ subscribeToMore, loading, error, data: { getLists = [] } }) => {
       if (loading) {
         return <Text>Loading . . . </Text>;
       }
       if (error) {
         return <Text>Error: ${error.message}</Text>;
       }
+      subscribeToMore({
+        document: ITEMS_SUBSCRIPTION,
+        variables: { listId },
+        updateQuery: (prev, { subscriptionData }) => {
+          console.log('subscripton running');
+          if (!subscriptionData.data) return prev;
+          console.log('itemAdded: ', subscriptionData.data.itemAdded);
+          const { id, list } = subscriptionData.data.itemAdded;
+          console.log('prev = ', prev);
+          if (
+            // prev.getLists[0].id === list &&
+            !prev.getLists[0].items.some(item => item.id === id)
+          ) {
+            console.log('match. . . adding new item');
+            const newItem = Object.assign({}, prev, {
+              getLists: [
+                {
+                  ...prev.getLists[0],
+                  items: [
+                    { ...subscriptionData.data.itemAdded },
+                    ...prev.getLists[0].items,
+                  ],
+                },
+              ],
+            });
+            console.log('newItem = ', newItem);
+            return newItem;
+          }
+        },
+      });
       const { items } = getLists[0];
       return (
         <FlatList

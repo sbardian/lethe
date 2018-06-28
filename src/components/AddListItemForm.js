@@ -10,6 +10,7 @@ const ADD_ITEM = gql`
       id
       title
       creator
+      list
     }
   }
 `;
@@ -23,6 +24,7 @@ const GET_LIST_ITEMS = gql`
         id
         title
         creator
+        list
       }
     }
   }
