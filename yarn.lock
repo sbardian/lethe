@@ -768,7 +768,7 @@ apollo-link-state@0.4.1:
     apollo-utilities "^1.0.8"
     graphql-anywhere "^4.1.0-alpha.0"
 
-apollo-link-ws@^1.0.8:
+apollo-link-ws@1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/apollo-link-ws/-/apollo-link-ws-1.0.8.tgz#ac1de8f29e92418728479a9a523af9f75b9ccc8b"
   dependencies:
