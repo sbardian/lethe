@@ -2,18 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "format": "prettier --write \"**/*.{js,json,md}\"",
-    "lint": "eslint .",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{json,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "lint": "eslint ."
   },
   "private": true,
   "dependencies": {

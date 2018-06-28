@@ -73,9 +73,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   saveUserImage: {
-    display: 'flex',
     backgroundColor: 'transparent',
-    borderColor: 'green',
+    borderColor: '#f0ad4e',
     borderRadius: 85,
     borderWidth: 3,
     height: 170,
@@ -171,6 +170,8 @@ export class Profile extends Component {
           if (error) return <Text>Error {error.message}</Text>;
 
           const { id, username, email, profileImageUrl } = getMyInfo;
+          let myImage = profileImageUrl;
+
           return (
             <View style={styles.container}>
               <View style={styles.headerContainer}>
@@ -187,8 +188,8 @@ export class Profile extends Component {
                         <Image
                           style={styles.userImage}
                           source={
-                            profileImageUrl
-                              ? { uri: `https://${profileImageUrl}` }
+                            myImage
+                              ? { uri: `https://${myImage}` }
                               : defaultImage
                           }
                         />
@@ -196,8 +197,18 @@ export class Profile extends Component {
                     </TouchableOpacity>
                     <Mutation
                       mutation={UPLOAD_PROFILE_IMAGE}
-                      onCompleted={this.onImageUploadSuccess}
+                      onCompleted={() => {
+                        myImage = null;
+                        this.onImageUploadSuccess();
+                      }}
                       onError={error => console.log('Error!: ', error)}
+                      optimisticResponse={{
+                        __typename: 'Mutation',
+                        profileImageUpload: {
+                          __typename: 'User',
+                          profileImageUrl: image,
+                        },
+                      }}
                     >
                       {profileImageUpload => (
                         <TouchableOpacity
@@ -216,10 +227,13 @@ export class Profile extends Component {
                           }
                         >
                           {image && (
-                            <Image
-                              style={styles.saveUserImage}
-                              source={{ uri: image }}
-                            />
+                            <View style={styles.profileImage}>
+                              <Image
+                                style={styles.saveUserImage}
+                                source={{ uri: image }}
+                              />
+                              <Text>Click image to confirm and upload</Text>
+                            </View>
                           )}
                         </TouchableOpacity>
                       )}
