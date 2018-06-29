@@ -21,7 +21,7 @@ const GET_LIST_ITEMS = gql`
   }
 `;
 
-const ITEMS_SUBSCRIPTION = gql`
+const ITEM_ADDED = gql`
   subscription onItemAdded($listId: String!) {
     itemAdded(listId: $listId) {
       id
@@ -51,7 +51,7 @@ export const Items = ({ navigation, listId, close = true }) => (
         return <Text>Error: ${error.message}</Text>;
       }
       subscribeToMore({
-        document: ITEMS_SUBSCRIPTION,
+        document: ITEM_ADDED,
         variables: { listId },
         updateQuery: (prev, { subscriptionData }) => {
           console.log('subscripton running');
