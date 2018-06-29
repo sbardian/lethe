@@ -76,16 +76,16 @@ export default class App extends Component {
                 // uri: 'http://10.0.3.2:9999/graphql',
                 // ios
                 // uri: 'http://localhost:9999/graphql',
-                uri: 'https://letheapi-vbkipxhmsh.now.sh/graphql',
+                uri: 'https://letheapi-swuldisvrl.now.sh/graphql',
               });
 
               const wsLink = new WebSocketLink({
                 // android
-                // uri: 'ws://10.0.3.2:9999/graphql',
+                // uri: 'wss://10.0.3.2:9999/subscriptions',
                 // ios
-                // uri: 'ws://localhost:9999/graphql',
+                // uri: 'wss://localhost:9999/subscriptions',
                 // now
-                uri: `wss://letheapi-vbkipxhmsh.now.sh/subscriptions`,
+                uri: `wss://letheapi-swuldisvrl.now.sh/subscriptions`,
                 options: {
                   reconnect: true,
                   connectionParams: {
@@ -96,7 +96,6 @@ export default class App extends Component {
 
               const terminatingLink = split(
                 ({ query }) => {
-                  console.log('checking query');
                   const { kind, operation } = getMainDefinition(query);
                   return (
                     kind === 'OperationDefinition' &&
