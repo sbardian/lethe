@@ -32,6 +32,17 @@ const ITEM_ADDED = gql`
   }
 `;
 
+const ITEM_DELETED = gql`
+  subscription onItemDeleted($listId: String!) {
+    itemDeleted(listId: $listId) {
+      id
+      title
+      creator
+      list
+    }
+  }
+`;
+
 const DELETE_ITEM = gql`
   mutation deleteItem($itemId: String!) {
     deleteItem(itemId: $itemId) {
@@ -54,17 +65,12 @@ export const Items = ({ navigation, listId, close = true }) => (
         document: ITEM_ADDED,
         variables: { listId },
         updateQuery: (prev, { subscriptionData }) => {
-          console.log('subscripton running');
           if (!subscriptionData.data) return prev;
-          console.log('itemAdded: ', subscriptionData.data.itemAdded);
-          const { id, list } = subscriptionData.data.itemAdded;
-          console.log('prev = ', prev);
-          if (
-            // prev.getLists[0].id === list &&
-            !prev.getLists[0].items.some(item => item.id === id)
-          ) {
+          console.log('Running itemAdded: ', subscriptionData.data.itemAdded);
+          const { id } = subscriptionData.data.itemAdded;
+          if (!prev.getLists[0].items.some(item => item.id === id)) {
             console.log('match. . . adding new item');
-            const newItem = Object.assign({}, prev, {
+            const newItems = Object.assign({}, prev, {
               getLists: [
                 {
                   ...prev.getLists[0],
@@ -75,8 +81,33 @@ export const Items = ({ navigation, listId, close = true }) => (
                 },
               ],
             });
-            console.log('newItem = ', newItem);
-            return newItem;
+            console.log('newItem = ', newItems);
+            return newItems;
+          }
+        },
+      });
+      subscribeToMore({
+        document: ITEM_DELETED,
+        variables: { listId },
+        updateQuery: (prev, { subscriptionData }) => {
+          if (!subscriptionData.data) return prev;
+          console.log('Running itemDeleted: ', subscriptionData.data);
+          const { id } = subscriptionData.data.itemDeleted;
+          if (prev.getLists[0].items.some(item => item.id === id)) {
+            const filteredItems = prev.getLists[0].items.filter(
+              item => item.id !== id,
+            );
+            console.log('match. . . removing item');
+            const newItems = Object.assign({}, prev, {
+              getLists: [
+                {
+                  ...prev.getLists[0],
+                  items: [...filteredItems],
+                },
+              ],
+            });
+            console.log('newItem = ', newItems);
+            return newItems;
           }
         },
       });
