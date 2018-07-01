@@ -43,6 +43,17 @@ const ITEM_DELETED = gql`
   }
 `;
 
+const ITEM_EDITED = gql`
+  subscription onItemEdited($listId: String!) {
+    itemEdited(listId: $listId) {
+      id
+      title
+      creator
+      list
+    }
+  }
+`;
+
 const DELETE_ITEM = gql`
   mutation deleteItem($itemId: String!) {
     deleteItem(itemId: $itemId) {
@@ -81,7 +92,7 @@ export const Items = ({ navigation, listId, close = true }) => (
                 },
               ],
             });
-            console.log('newItem = ', newItems);
+            console.log('newItems = ', newItems);
             return newItems;
           }
         },
@@ -106,7 +117,34 @@ export const Items = ({ navigation, listId, close = true }) => (
                 },
               ],
             });
-            console.log('newItem = ', newItems);
+            console.log('newItems = ', newItems);
+            return newItems;
+          }
+        },
+      });
+      subscribeToMore({
+        document: ITEM_EDITED,
+        variables: { listId },
+        updateQuery: (prev, { subscriptionData }) => {
+          if (!subscriptionData.data) return prev;
+          console.log('Running itemEdited: ', subscriptionData.data);
+          const { id } = subscriptionData.data.itemEdited;
+          if (prev.getLists[0].items.some(item => item.id === id)) {
+            const noneEditItems = prev.getLists[0].items.filter(
+              item => item.id === id,
+            );
+            const newItems = Object.assign({}, prev, {
+              getLists: [
+                {
+                  ...prev.getLists[0],
+                  items: [
+                    ...noneEditItems,
+                    { ...subscriptionData.data.itemEdited },
+                  ],
+                },
+              ],
+            });
+            console.log('newItems = ', newItems);
             return newItems;
           }
         },
