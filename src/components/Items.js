@@ -77,7 +77,6 @@ export const Items = ({ navigation, listId, close = true }) => (
         variables: { listId },
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-          console.log('Running itemAdded: ', subscriptionData.data.itemAdded);
           const { id } = subscriptionData.data.itemAdded;
           if (!prev.getLists[0].items.some(item => item.id === id)) {
             console.log('match. . . adding new item');
@@ -92,7 +91,6 @@ export const Items = ({ navigation, listId, close = true }) => (
                 },
               ],
             });
-            console.log('newItems = ', newItems);
             return newItems;
           }
         },
@@ -102,7 +100,6 @@ export const Items = ({ navigation, listId, close = true }) => (
         variables: { listId },
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-          console.log('Running itemDeleted: ', subscriptionData.data);
           const { id } = subscriptionData.data.itemDeleted;
           if (prev.getLists[0].items.some(item => item.id === id)) {
             const filteredItems = prev.getLists[0].items.filter(
@@ -117,7 +114,6 @@ export const Items = ({ navigation, listId, close = true }) => (
                 },
               ],
             });
-            console.log('newItems = ', newItems);
             return newItems;
           }
         },
@@ -127,7 +123,6 @@ export const Items = ({ navigation, listId, close = true }) => (
         variables: { listId },
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-          console.log('Running itemEdited: ', subscriptionData.data);
           const { id } = subscriptionData.data.itemEdited;
           if (prev.getLists[0].items.some(item => item.id === id)) {
             const noneEditItems = prev.getLists[0].items.filter(
@@ -144,7 +139,6 @@ export const Items = ({ navigation, listId, close = true }) => (
                 },
               ],
             });
-            console.log('newItems = ', newItems);
             return newItems;
           }
         },
