@@ -131,7 +131,7 @@ export const Items = ({ navigation, listId, close = true }) => (
           const { id } = subscriptionData.data.itemEdited;
           if (prev.getLists[0].items.some(item => item.id === id)) {
             const noneEditItems = prev.getLists[0].items.filter(
-              item => item.id === id,
+              item => item.id !== id,
             );
             const newItems = Object.assign({}, prev, {
               getLists: [
