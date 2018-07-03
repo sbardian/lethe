@@ -17,15 +17,52 @@ const GET_MY_LISTS = gql`
   }
 `;
 
+const LIST_DELETED = gql`
+  subscription onListDeleted {
+    listDeleted {
+      id
+      title
+      owner
+    }
+  }
+`;
+
 export const Lists = ({ navigation }) => (
   <Query query={GET_MY_LISTS}>
-    {({ loading, error, data: { getMyInfo: { lists } = [] } }) => {
+    {({
+      subscribeToMore,
+      loading,
+      error,
+      data: { getMyInfo: { lists } = [] },
+    }) => {
       if (loading) {
         return <Text>Loading . . . </Text>;
       }
       if (error) {
         return <Text>Error: ${error.message}</Text>;
       }
+      subscribeToMore({
+        document: LIST_DELETED,
+        updateQuery: (prev, { subscriptionData }) => {
+          if (!subscriptionData.data) return prev;
+          // console.log('list: ', prev);
+          const { id } = subscriptionData.data.listDeleted;
+          if (prev.getMyInfo.lists.some(list => list.id === id)) {
+            console.log('match... list deleted');
+            const filteredLists = prev.getMyInfo.lists.filter(
+              list => list.id !== id,
+            );
+            const newLists = Object.assign({}, prev, {
+              getMyInfo: {
+                ...prev.getMyInfo,
+                lists: [...filteredLists],
+              },
+            });
+            console.log('newLists = ', newLists);
+            return newLists;
+          }
+        },
+      });
       return (
         <FlatList
           data={lists}
