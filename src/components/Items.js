@@ -79,7 +79,6 @@ export const Items = ({ navigation, listId, close = true }) => (
           if (!subscriptionData.data) return prev;
           const { id } = subscriptionData.data.itemAdded;
           if (!prev.getLists[0].items.some(item => item.id === id)) {
-            console.log('match. . . adding new item');
             const newItems = Object.assign({}, prev, {
               getLists: [
                 {
@@ -105,7 +104,6 @@ export const Items = ({ navigation, listId, close = true }) => (
             const filteredItems = prev.getLists[0].items.filter(
               item => item.id !== id,
             );
-            console.log('match. . . removing item');
             const newItems = Object.assign({}, prev, {
               getLists: [
                 {

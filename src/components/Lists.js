@@ -45,10 +45,8 @@ export const Lists = ({ navigation }) => (
         document: LIST_DELETED,
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-          // console.log('list: ', prev);
           const { id } = subscriptionData.data.listDeleted;
           if (prev.getMyInfo.lists.some(list => list.id === id)) {
-            console.log('match... list deleted');
             const filteredLists = prev.getMyInfo.lists.filter(
               list => list.id !== id,
             );
@@ -58,7 +56,6 @@ export const Lists = ({ navigation }) => (
                 lists: [...filteredLists],
               },
             });
-            console.log('newLists = ', newLists);
             return newLists;
           }
         },
