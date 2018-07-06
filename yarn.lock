@@ -4896,9 +4896,9 @@ native-base-shoutem-theme@0.2.2:
     lodash "^4.10.1"
     prop-types "^15.5.10"
 
-native-base@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/native-base/-/native-base-2.6.1.tgz#119a4152ffdb36d01055a75f370f6c19011e1970"
+native-base@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/native-base/-/native-base-2.7.0.tgz#698f8f965e19f24ed6bd43ea1d90ad6d58d26989"
   dependencies:
     blueimp-md5 "^2.5.0"
     clamp "^1.0.1"
@@ -4910,7 +4910,7 @@ native-base@2.6.1:
     print-message "^2.1.0"
     prop-types "^15.5.10"
     react-native-drawer "2.5.0"
-    react-native-easy-grid "0.1.17"
+    react-native-easy-grid "0.2.0"
     react-native-keyboard-aware-scroll-view "0.5.0"
     react-native-vector-icons "~4.5.0"
     react-tween-state "^0.1.5"
@@ -5624,12 +5624,6 @@ react-native-drawer@2.5.0:
   dependencies:
     prop-types "^15.5.8"
     tween-functions "^1.0.1"
-
-react-native-easy-grid@0.1.17:
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/react-native-easy-grid/-/react-native-easy-grid-0.1.17.tgz#fad8cb371d465828c1c71daa4d8b513d33253452"
-  dependencies:
-    lodash "^4.11.1"
 
 react-native-easy-grid@0.2.0:
   version "0.2.0"
