@@ -103,12 +103,12 @@ export class ListMembers extends Component {
                   <Text style={[s.asc, s.pl3, s.pr3, s.ltext]}>List Users</Text>
                 </View>
                 <Button
+                  transparent
                   onPress={() =>
                     navigation.navigate('SendInvitation', {
                       listId,
                     })
                   }
-                  style={{ backgroundColor: 'transparent' }}
                 >
                   <Icon
                     name="person-add"
