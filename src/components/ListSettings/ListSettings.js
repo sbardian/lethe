@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import { styles as s } from 'react-native-style-tachyons';
 import { Form, Input, Item, Label, Text } from 'native-base';
 import { UpdateTitleButton } from './UpdateTitleButton';
 import { DeleteListButton } from './DeleteListButton';
@@ -68,49 +69,41 @@ export class ListSettings extends Component {
           const { id } = getLists[0];
           return (
             <View>
-              <Form
-                style={{
-                  paddingBottom: 40,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Item style={{ flexGrow: 1 }} stackedLabel>
-                  <Label>Title</Label>
-                  <Input
-                    placeholder={orgTitle}
-                    id="ListTitle"
-                    onChangeText={value => this.onTitleChange(value)}
+              <Form>
+                <View style={[s.flx_row, s.jcsb, s.pb4]}>
+                  <Item style={[s.jcfs]} stackedLabel>
+                    <Label>Title</Label>
+                    <Input
+                      placeholder={orgTitle}
+                      id="ListTitle"
+                      onChangeText={value => this.onTitleChange(value)}
+                    />
+                  </Item>
+                  <UpdateTitleButton
+                    listId={id}
+                    newTitle={newTitle}
+                    titleNotChanged={titleNotChanged}
+                    onTitleSave={() => this.handleTitleSave()}
                   />
-                </Item>
-                <UpdateTitleButton
-                  listId={id}
-                  newTitle={newTitle}
-                  titleNotChanged={titleNotChanged}
-                  onTitleSave={() => this.handleTitleSave()}
-                />
+                </View>
               </Form>
-              <Form
-                style={{
-                  paddingBottom: 40,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-end',
-                }}
-              >
-                <Item style={{ flexGrow: 1 }} stackedLabel>
-                  <Label>Enter list title to confirm delele:</Label>
-                  <Input
-                    id="DeleteListTitle"
-                    onChangeText={value => this.onDeleteTitleChange(value)}
+              <Form>
+                <View style={[s.flx_row, s.jcsb, s.pb4]}>
+                  <Item style={[s.jcfs]} stackedLabel>
+                    <Label>Enter list title to confirm delete:</Label>
+                    <Input
+                      placeholder={orgTitle}
+                      id="DeleteListTitle"
+                      onChangeText={value => this.onDeleteTitleChange(value)}
+                    />
+                  </Item>
+                  <DeleteListButton
+                    active={deleteConfirmed}
+                    navigation={navigation}
+                    listId={id}
+                    title={orgTitle}
                   />
-                </Item>
-                <DeleteListButton
-                  active={deleteConfirmed}
-                  navigation={navigation}
-                  listId={id}
-                  title={orgTitle}
-                />
+                </View>
               </Form>
               <View style={{ paddingBottom: 40 }}>
                 {<ListMembers navigation={navigation} listId={id} />}
