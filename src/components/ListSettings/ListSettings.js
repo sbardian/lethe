@@ -74,6 +74,7 @@ export class ListSettings extends Component {
                   <Item style={[s.jcfs]} stackedLabel>
                     <Label>Title</Label>
                     <Input
+                      autoCapitalize="none"
                       placeholder={orgTitle}
                       id="ListTitle"
                       onChangeText={value => this.onTitleChange(value)}
@@ -92,6 +93,7 @@ export class ListSettings extends Component {
                   <Item style={[s.jcfs]} stackedLabel>
                     <Label>Enter list title to confirm delete:</Label>
                     <Input
+                      autoCapitalize="none"
                       placeholder={orgTitle}
                       id="DeleteListTitle"
                       onChangeText={value => this.onDeleteTitleChange(value)}
