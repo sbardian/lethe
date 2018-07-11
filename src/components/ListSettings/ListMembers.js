@@ -121,7 +121,14 @@ export class ListMembers extends Component {
                 data={users}
                 renderItem={({ item }) => (
                   <View
-                    style={[s.flx_row, s.jcsb, s.aic, s.pa2, s.bg_white, s.ma1]}
+                    style={[
+                      s.flx_row,
+                      s.jcsb,
+                      s.aic,
+                      s.pa2,
+                      s.bg_offWhite,
+                      s.ma1,
+                    ]}
                   >
                     <Text>{item.username}</Text>
                     <Text>{item.email}</Text>

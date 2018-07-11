@@ -22,6 +22,7 @@ NativeTachyons.build(
     colors: {
       palette: {
         white: '#FFFFFF',
+        offWhite: '#e1e1e1',
         ltext: '#666',
       },
     },
