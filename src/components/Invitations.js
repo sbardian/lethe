@@ -45,15 +45,55 @@ const GET_INVITER = gql`
   }
 `;
 
+const INVITATION_ADDED = gql`
+  subscription invitationAdded {
+    invitationAdded {
+      id
+      title
+      invitee
+      inviter {
+        id
+        username
+        email
+        profileImageUrl
+      }
+    }
+  }
+`;
+
 export const Invitations = () => (
   <Query query={GET_MY_INVITATIONS}>
-    {({ loading, error, data: { getMyInfo: { invitations } = [] } }) => {
+    {({
+      subscribeToMore,
+      loading,
+      error,
+      data: { getMyInfo: { invitations } = [] },
+    }) => {
       if (loading) {
         return <Text>Loading . . . </Text>;
       }
       if (error) {
         return <Text>Error: ${error.message}</Text>;
       }
+      subscribeToMore({
+        document: INVITATION_ADDED,
+        updateQuery: (prev, { subscriptionData }) => {
+          if (!subscriptionData.data) return prev;
+          const { id } = subscriptionData.data.invitationAdded;
+          if (!prev.getMyInfo.invitations.some(invite => invite.id === id)) {
+            const newInvitations = Object.assign({}, prev, {
+              getMyInfo: {
+                ...prev.getMyInfo,
+                invitations: [
+                  { ...subscriptionData.data.invitationAdded },
+                  ...prev.getMyInfo.invitations,
+                ],
+              },
+            });
+            return newInvitations;
+          }
+        },
+      });
       return (
         <FlatList
           bordered
