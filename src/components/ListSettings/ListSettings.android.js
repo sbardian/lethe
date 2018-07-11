@@ -70,8 +70,8 @@ export class ListSettings extends Component {
           return (
             <View>
               <Form>
-                <View style={[s.flx_row, s.jcsb, s.pb4]}>
-                  <Item style={[s.jcfs]} stackedLabel>
+                <View style={[s.flx_row, s.jcsa, s.pb4, s.pr3, s.pl3]}>
+                  <Item stackedLabel>
                     <Label>Title</Label>
                     <Input
                       autoCapitalize="none"
@@ -89,8 +89,8 @@ export class ListSettings extends Component {
                 </View>
               </Form>
               <Form>
-                <View style={[s.flx_row, s.jcsb, s.pb4]}>
-                  <Item style={[s.jcfs]} stackedLabel>
+                <View style={[s.flx_row, s.jcsa, s.pb4, s.pr3, s.pl3]}>
+                  <Item stackedLabel>
                     <Label>Enter list title to confirm delete:</Label>
                     <Input
                       autoCapitalize="none"

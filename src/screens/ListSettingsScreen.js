@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { ListSettings } from '../components';
+import { ListSettings } from '../components/ListSettings/ListSettings';
 import { Screen } from '../screens';
 
 export class ListSettingsScreen extends Component {
