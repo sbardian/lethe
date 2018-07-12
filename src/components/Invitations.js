@@ -62,8 +62,8 @@ const INVITATION_ADDED = gql`
 `;
 
 const INVITATION_DELETED = gql`
-  subscription invitationAdded {
-    invitationAdded {
+  subscription invitationDeleted {
+    invitationDeleted {
       id
       title
       invitee
@@ -113,7 +113,7 @@ export const Invitations = () => (
       subscribeToMore({
         document: INVITATION_DELETED,
         updateQuery: (prev, { subscriptionData }) => {
-          if (!subscriptionData.data.invitationDeleted) return prev;
+          if (!subscriptionData.data) return prev;
           console.log('subscriptionData: ', subscriptionData);
           const { id } = subscriptionData.data.invitationDeleted;
           if (prev.getMyInfo.invitations.some(invite => invite.id === id)) {
@@ -157,7 +157,10 @@ export const Invitations = () => (
               </CardItem>
               <View style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}>
                 <AcceptInvitationIcon invitationId={item.id} />
-                <DeclineInvitationIcon invitationId={item.id} />
+                <DeclineInvitationIcon
+                  buttonText="Decline"
+                  invitationId={item.id}
+                />
               </View>
             </Card>
           )}

@@ -33,7 +33,7 @@ const GET_MY_INVITATIONS = gql`
   }
 `;
 
-export const DeclineInvitationIcon = ({ invitationId }) => (
+export const DeclineInvitationIcon = ({ invitationId, buttonText }) => (
   <Mutation
     mutation={DECLINE_INVITATION}
     onCompleted={() =>
@@ -73,7 +73,7 @@ export const DeclineInvitationIcon = ({ invitationId }) => (
         }}
       >
         <Icon type="MaterialIcons" name="delete" />
-        <Text>Decline</Text>
+        <Text>{buttonText}</Text>
       </Button>
     )}
   </Mutation>
