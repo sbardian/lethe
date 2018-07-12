@@ -61,6 +61,22 @@ const INVITATION_ADDED = gql`
   }
 `;
 
+const INVITATION_DELETED = gql`
+  subscription invitationAdded {
+    invitationAdded {
+      id
+      title
+      invitee
+      inviter {
+        id
+        username
+        email
+        profileImageUrl
+      }
+    }
+  }
+`;
+
 export const Invitations = () => (
   <Query query={GET_MY_INVITATIONS}>
     {({
@@ -90,6 +106,27 @@ export const Invitations = () => (
                 ],
               },
             });
+            return newInvitations;
+          }
+        },
+      });
+      subscribeToMore({
+        document: INVITATION_DELETED,
+        updateQuery: (prev, { subscriptionData }) => {
+          if (!subscriptionData.data.invitationDeleted) return prev;
+          console.log('subscriptionData: ', subscriptionData);
+          const { id } = subscriptionData.data.invitationDeleted;
+          if (prev.getMyInfo.invitations.some(invite => invite.id === id)) {
+            const filteredInvitations = prev.getMyInfo.invitations.filter(
+              invite => invite.id !== id,
+            );
+            const newInvitations = Object.assign({}, prev, {
+              getMyInfo: {
+                ...prev.getMyInfo,
+                invitations: [...filteredInvitations],
+              },
+            });
+            console.log('newInvitations: ', newInvitations);
             return newInvitations;
           }
         },
