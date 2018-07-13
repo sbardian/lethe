@@ -17,6 +17,31 @@ const DECLINE_INVITATION = gql`
   }
 `;
 
+const GET_MY_INFO = gql`
+  {
+    getMyInfo {
+      id
+      username
+      email
+      profileImageUrl
+      lists {
+        title
+        invitations {
+          id
+          title
+          invitee
+          inviter {
+            id
+            username
+            profileImageUrl
+            email
+          }
+        }
+      }
+    }
+  }
+`;
+
 const GET_MY_INVITATIONS = gql`
   {
     getMyInfo {
@@ -66,6 +91,9 @@ export const DeclineInvitationIcon = ({ invitationId, buttonText }) => (
             refetchQueries: [
               {
                 query: GET_MY_INVITATIONS,
+              },
+              {
+                query: GET_MY_INFO,
               },
             ],
             variables: { invitationId },
