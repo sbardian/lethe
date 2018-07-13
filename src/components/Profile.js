@@ -33,39 +33,6 @@ import defaultImage from '../images/defaultProfile.jpg';
 import backgroundImage from '../images/background.png';
 import { DeclineInvitationIcon } from './DeclineInvitationIcon';
 
-const GET_MY_INFO = gql`
-  {
-    getMyInfo {
-      id
-      username
-      email
-      profileImageUrl
-      lists {
-        title
-        invitations {
-          id
-          title
-          invitee
-          inviter {
-            id
-            username
-            profileImageUrl
-            email
-          }
-        }
-      }
-    }
-  }
-`;
-
-const UPLOAD_PROFILE_IMAGE = gql`
-  mutation profileImageUpload($file: Upload!) {
-    profileImageUpload(file: $file) {
-      profileImageUrl
-    }
-  }
-`;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -112,6 +79,39 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 });
+
+const GET_MY_INFO = gql`
+  {
+    getMyInfo {
+      id
+      username
+      email
+      profileImageUrl
+      lists {
+        title
+        invitations {
+          id
+          title
+          invitee
+          inviter {
+            id
+            username
+            profileImageUrl
+            email
+          }
+        }
+      }
+    }
+  }
+`;
+
+const UPLOAD_PROFILE_IMAGE = gql`
+  mutation profileImageUpload($file: Upload!) {
+    profileImageUpload(file: $file) {
+      profileImageUrl
+    }
+  }
+`;
 
 export class Profile extends Component {
   constructor(props) {
@@ -194,7 +194,7 @@ export class Profile extends Component {
     } = this.state;
     return (
       <Query query={GET_MY_INFO}>
-        {({ loading, error, data: { getMyInfo } = [] }) => {
+        {({ subscribeToMore, loading, error, data: { getMyInfo } = [] }) => {
           if (loading) return <Text>Loading...</Text>;
           if (error) return <Text>Error {error.message}</Text>;
 
