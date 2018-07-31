@@ -9,7 +9,6 @@ import {
 import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
 import { Container, Content, Button, Text } from 'native-base';
 import { TokenContext } from '../context';
-import { Screen } from './';
 import { LoginForm, CreateAccountForm } from '../components';
 
 const styles = StyleSheet.create({

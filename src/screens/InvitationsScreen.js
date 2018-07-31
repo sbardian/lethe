@@ -1,8 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Row, Grid } from 'react-native-easy-grid';
 import { Invitations } from '../components';
-import { Screen } from '../screens';
+import { Screen } from './Screen';
 
 export class InvitationsScreen extends Component {
   static navigationOptions = {
@@ -15,6 +14,7 @@ export class InvitationsScreen extends Component {
       fontWeight: 'bold',
     },
   };
+
   render() {
     return (
       <Screen>

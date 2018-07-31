@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Button, Icon } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
 import { AddItemFab, Items } from '../components';
-import { Screen } from '../screens';
+import { Screen } from './Screen';
 
 export class ItemsScreen extends Component {
   static navigationOptions = ({ navigation }) => {

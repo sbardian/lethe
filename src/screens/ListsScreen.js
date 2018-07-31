@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Row, Grid } from 'react-native-easy-grid';
 import { AddListFab, Lists } from '../components';
-import { Screen } from '../screens';
+import { Screen } from './Screen';
 
 export class ListsScreen extends Component {
   static navigationOptions = {

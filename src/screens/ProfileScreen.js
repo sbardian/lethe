@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Profile } from '../components';
-import { Screen } from '../screens';
+import { Screen } from './Screen';
 
 export class ProfileScreen extends Component {
   static navigationOptions = {

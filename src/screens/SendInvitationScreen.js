@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { SendInvitationForm } from '../components';
-import { Screen } from '../screens';
+import { Screen } from './Screen';
 
 export class SendInvitationScreen extends Component {
   static navigationOptions = {
@@ -13,6 +13,7 @@ export class SendInvitationScreen extends Component {
       fontWeight: 'bold',
     },
   };
+
   render() {
     const { navigation } = this.props;
     const listId = navigation.getParam('listId');

@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { Text } from 'native-base';
-import { Screen } from '../screens';
+import { Screen } from './Screen';
 
 export class SignupScreen extends Component {
   render() {

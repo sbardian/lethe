@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { AddListItemForm } from '../components';
-import { Screen } from '../screens';
+import { Screen } from './Screen';
 
 export class AddListItemScreen extends Component {
   static navigationOptions = {

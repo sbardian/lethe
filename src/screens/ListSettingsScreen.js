@@ -1,7 +1,7 @@
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+// eslint-disable-next-line import/no-unresolved
 import { ListSettings } from '../components/ListSettings/ListSettings';
-import { Screen } from '../screens';
+import { Screen } from './Screen';
 
 export class ListSettingsScreen extends Component {
   static navigationOptions = {
