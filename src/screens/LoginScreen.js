@@ -42,7 +42,7 @@ export class LoginScreen extends Component {
     this.shrink = new Animated.Value(0);
     this.imageMarginTop = new Animated.Value(0);
     this.state = {
-      menu_expanded: false,
+      menuExpanded: false,
       slidePage: 0,
       pageScroll: true,
     };
@@ -55,7 +55,7 @@ export class LoginScreen extends Component {
   openMenu(item) {
     this.setState(
       {
-        menu_expanded: true,
+        menuExpanded: true,
         slidePage: item,
         pageScroll: false,
       },
@@ -73,7 +73,7 @@ export class LoginScreen extends Component {
   hideMenu() {
     this.setState(
       {
-        menu_expanded: false,
+        menuExpanded: false,
       },
       () => {
         this.slideMenu.setValue(1);
@@ -149,6 +149,7 @@ export class LoginScreen extends Component {
             this.props.navigation.navigate('Home');
             return null;
           }
+          const { menuExpanded, slidePage, pageScroll } = this.state;
           return (
             <Container>
               <Content contentContainerStyle={{ flex: 1 }}>
@@ -167,7 +168,7 @@ export class LoginScreen extends Component {
                       />
                     </TouchableOpacity>
                   </View>
-                  {!this.state.menu_expanded && (
+                  {!menuExpanded && (
                     <View>
                       <View
                         style={{
@@ -210,13 +211,14 @@ export class LoginScreen extends Component {
                       },
                     ]}
                   >
-                    {this.state.menu_expanded && (
+                    {menuExpanded && (
                       <View style={{ flex: 1 }}>
                         <IndicatorViewPager
-                          initialPage={this.state.slidePage}
+                          initialPage={slidePage}
                           style={{ height: 400 }}
                           onPageScroll={() => this.pageScroll()}
                           indicator={
+                            // eslint-disable-next-line react/jsx-wrap-multilines
                             <PagerDotIndicator
                               pageCount={2}
                               style={{ height: 40, top: -40 }}
@@ -227,13 +229,13 @@ export class LoginScreen extends Component {
                         >
                           <View>
                             <LoginForm
-                              pageScroll={this.state.pageScroll}
+                              pageScroll={pageScroll}
                               onSetToken={setToken}
                             />
                           </View>
                           <View>
                             <CreateAccountForm
-                              pageScroll={this.state.pageScroll}
+                              pageScroll={pageScroll}
                               onSetToken={setToken}
                             />
                           </View>
