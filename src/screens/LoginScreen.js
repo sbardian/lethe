@@ -172,28 +172,24 @@ export class LoginScreen extends Component {
                       <View
                         style={{
                           justifyContent: 'center',
+                          paddingRight: 20,
+                          paddingLeft: 20,
                           marginTop: 150,
-                          marginBottom: 20,
+                          marginBottom: 32,
                         }}
                       >
-                        <Button full light onPress={() => this.openMenu(1)}>
+                        <Button
+                          block
+                          style={{ backgroundColor: '#5e525c' }}
+                          onPress={() => this.openMenu(1)}
+                        >
                           <Text>Create Account</Text>
                         </Button>
                       </View>
-                      <View>
-                        <Text
-                          style={{
-                            color: '#666',
-                            alignSelf: 'center',
-                            marginBottom: 20,
-                          }}
-                        >
-                          ------------- or -------------
-                        </Text>
-                      </View>
-                      <View>
+                      <View />
+                      <View style={{ paddingLeft: 20, paddingRight: 20 }}>
                         <Button
-                          full
+                          block
                           style={{ backgroundColor: '#5e525c' }}
                           onPress={() => this.openMenu(0)}
                         >
