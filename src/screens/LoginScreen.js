@@ -180,7 +180,7 @@ export class LoginScreen extends Component {
                       >
                         <Button
                           block
-                          style={{ backgroundColor: '#5e525c' }}
+                          style={{ backgroundColor: '#7b6ed6' }}
                           onPress={() => this.openMenu(1)}
                         >
                           <Text>Create Account</Text>
@@ -190,7 +190,7 @@ export class LoginScreen extends Component {
                       <View style={{ paddingLeft: 20, paddingRight: 20 }}>
                         <Button
                           block
-                          style={{ backgroundColor: '#5e525c' }}
+                          style={{ backgroundColor: '#7b6ed6' }}
                           onPress={() => this.openMenu(0)}
                         >
                           <Text>Login</Text>
