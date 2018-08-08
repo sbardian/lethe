@@ -43,6 +43,7 @@ export class AddListForm extends Component {
 
   render() {
     const { navigation } = this.props;
+    const { title } = this.state;
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
@@ -62,14 +63,15 @@ export class AddListForm extends Component {
         >
           {(createNewList, { loading }) => (
             <Button
-              full
+              block
               light
+              style={{ marginLeft: 20, marginRight: 20 }}
               disabled={loading}
               onPress={async () => {
                 await createNewList({
                   refetchQueries: [{ query: GET_MY_LISTS }],
                   variables: {
-                    title: this.state.title,
+                    title,
                   },
                 });
               }}
