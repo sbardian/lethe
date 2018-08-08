@@ -55,6 +55,7 @@ export class EditItemForm extends Component {
 
   render() {
     const { navigation, listId, item } = this.props;
+    const { title } = this.state;
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
@@ -75,8 +76,9 @@ export class EditItemForm extends Component {
         >
           {(updateItem, { loading }) => (
             <Button
-              full
+              block
               light
+              style={{ marginLeft: 20, marginRight: 20 }}
               disabled={loading}
               onPress={async () => {
                 updateItem({
@@ -89,7 +91,7 @@ export class EditItemForm extends Component {
                     },
                   ],
                   variables: {
-                    title: this.state.title,
+                    title,
                     itemId: item.id,
                   },
                 });
