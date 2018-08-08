@@ -202,7 +202,7 @@ export class Profile extends Component {
 
           let myImage = profileImageUrl;
 
-          let invitationsArray = [];
+          const invitationsArray = [];
 
           lists.filter(list => {
             if (list.invitations.length > 0) {
@@ -285,14 +285,8 @@ export class Profile extends Component {
                       </TouchableOpacity>
                     )}
                     {editUsername && (
-                      <Form
-                        style={{
-                          paddingBottom: 40,
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                        }}
-                      >
-                        <Item style={{ flexGrow: 1 }} stackedLabel>
+                      <View style={[s.flx_row, s.pa3, s.jcsb]}>
+                        <Item style={[s.flx_i]} stackedLabel>
                           <Label style={[s.white]}>Username</Label>
                           <Input
                             style={[s.white]}
@@ -304,18 +298,18 @@ export class Profile extends Component {
                           />
                         </Item>
                         <Icon
-                          style={[s.mt4, s.white]}
-                          name="edit-3"
+                          style={[s.white, s.pt4]}
+                          name="edit-2"
                           type="Feather"
                         />
                         <TouchableOpacity onPress={this.enableUsernameEdit}>
                           <Icon
-                            style={[s.mt4, s.white]}
+                            style={[s.white, s.pt4]}
                             name="cancel"
                             type="MaterialIcons"
                           />
                         </TouchableOpacity>
-                      </Form>
+                      </View>
                     )}
                   </View>
                 </ImageBackground>
