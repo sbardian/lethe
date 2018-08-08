@@ -46,6 +46,7 @@ export class AddListItemForm extends Component {
 
   render() {
     const { navigation, listId } = this.props;
+    const { title } = this.state;
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
@@ -65,8 +66,9 @@ export class AddListItemForm extends Component {
         >
           {(createNewItem, { loading }) => (
             <Button
-              full
+              block
               light
+              style={{ marginRight: 20, marginLeft: 20 }}
               disabled={loading}
               onPress={async () => {
                 createNewItem({
@@ -79,7 +81,7 @@ export class AddListItemForm extends Component {
                     },
                   ],
                   variables: {
-                    title: this.state.title,
+                    title,
                     listId,
                   },
                 });
