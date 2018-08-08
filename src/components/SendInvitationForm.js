@@ -56,6 +56,7 @@ export class SendInvitationForm extends Component {
 
   render() {
     const { listId, navigation } = this.props;
+    const { invitee, title } = this.state;
     return (
       <Query query={GET_LIST} variables={{ id_is: listId }}>
         {({ loading, error, data: { getLists = [] } }) => {
@@ -108,22 +109,28 @@ export class SendInvitationForm extends Component {
                 {(createInvitation, { loading }) => (
                   <View>
                     <Button
-                      full
+                      block
                       light
+                      style={{ marginLeft: 20, marginRight: 20 }}
                       disabled={loading}
                       onPress={async () =>
                         createInvitation({
                           variables: {
                             listId,
-                            title: this.state.title,
-                            invitee: this.state.invitee,
+                            title,
+                            invitee,
                           },
                         })
                       }
                     >
                       <Text>OK</Text>
                     </Button>
-                    <Button full light onPress={() => navigation.goBack()}>
+                    <Button
+                      block
+                      light
+                      style={{ margin: 20 }}
+                      onPress={() => navigation.goBack()}
+                    >
                       <Text>Cancel</Text>
                     </Button>
                   </View>

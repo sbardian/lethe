@@ -60,6 +60,7 @@ export class AddListItemForm extends Component {
         </Form>
         <Mutation
           mutation={ADD_ITEM}
+          g
           onCompleted={() => {
             navigation.goBack();
           }}
@@ -68,7 +69,7 @@ export class AddListItemForm extends Component {
             <Button
               block
               light
-              style={{ marginRight: 20, marginLeft: 20 }}
+              style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
               disabled={loading}
               onPress={async () => {
                 createNewItem({
