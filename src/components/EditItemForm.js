@@ -78,7 +78,7 @@ export class EditItemForm extends Component {
             <Button
               block
               light
-              style={{ marginLeft: 20, marginRight: 20 }}
+              style={{ marginLeft: 20, marginRight: 20, marginBottom: 20 }}
               disabled={loading}
               onPress={async () => {
                 updateItem({
