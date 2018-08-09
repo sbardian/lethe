@@ -7,7 +7,7 @@ export class InvitationsScreen extends Component {
   static navigationOptions = {
     title: 'Invitations',
     headerStyle: {
-      backgroundColor: '#FF5254',
+      backgroundColor: '#CEE879',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {

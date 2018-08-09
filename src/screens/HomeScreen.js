@@ -94,7 +94,7 @@ export class HomeScreen extends Component {
 
             <Row
               onPress={() => this.props.navigation.navigate('Invitations')}
-              style={{ backgroundColor: '#FF5254' }}
+              style={{ backgroundColor: '#CEE879' }}
             >
               <View
                 style={{
