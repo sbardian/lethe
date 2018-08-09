@@ -7,7 +7,7 @@ export class AddListItemScreen extends Component {
   static navigationOptions = {
     title: 'Add List Item',
     headerStyle: {
-      backgroundColor: '#13cd4a',
+      backgroundColor: '#5CACC4',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {

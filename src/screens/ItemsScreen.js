@@ -11,7 +11,7 @@ export class ItemsScreen extends Component {
     const title = navigation.getParam('title');
     return {
       headerStyle: {
-        backgroundColor: '#660066',
+        backgroundColor: '#5CACC4',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { FabBase } from './';
+import { FabBase } from './FabBase';
 
 export const AddItemFab = ({ navigation, listId }) => (
   <FabBase
-    backgroundColor="#13cd4a"
+    backgroundColor="#5CACC4"
     position="bottomRight"
     onPress={() => navigation.navigate('AddListItem', { listId })}
     iconName="add"

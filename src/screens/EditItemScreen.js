@@ -7,7 +7,7 @@ export class EditItemScreen extends Component {
   static navigationOptions = {
     title: 'Edit Item',
     headerStyle: {
-      backgroundColor: '#13cd4a',
+      backgroundColor: '#5CACC4',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {

@@ -52,7 +52,7 @@ export class HomeScreen extends Component {
           <Grid>
             <Row
               onPress={() => this.props.navigation.navigate('Profile')}
-              style={{ backgroundColor: '#7b6ed6' }}
+              style={{ backgroundColor: '#5CACC4' }}
             >
               <View
                 style={{
@@ -73,7 +73,7 @@ export class HomeScreen extends Component {
 
             <Row
               onPress={() => this.props.navigation.navigate('Lists')}
-              style={{ backgroundColor: '#13cd4a' }}
+              style={{ backgroundColor: '#8CD19D' }}
             >
               <View
                 style={{
@@ -94,7 +94,7 @@ export class HomeScreen extends Component {
 
             <Row
               onPress={() => this.props.navigation.navigate('Invitations')}
-              style={{ backgroundColor: '#ec4401' }}
+              style={{ backgroundColor: '#FF5254' }}
             >
               <View
                 style={{

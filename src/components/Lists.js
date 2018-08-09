@@ -65,7 +65,7 @@ export const Lists = ({ navigation }) => (
           data={lists}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={[s.pa3, s.bb, s.bg_white]}
+              style={[s.pa3, s.bb, s.b__ltext, s.bg_white]}
               onPress={() =>
                 navigation.navigate('Items', {
                   listId: item.id,
@@ -74,7 +74,7 @@ export const Lists = ({ navigation }) => (
               }
             >
               <View>
-                <Text>{item.title}</Text>
+                <Text style={[s.ltext]}>{item.title}</Text>
               </View>
             </TouchableOpacity>
           )}

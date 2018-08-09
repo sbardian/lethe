@@ -6,7 +6,7 @@ import { Screen } from './Screen';
 export class SendInvitationScreen extends Component {
   static navigationOptions = {
     headerStyle: {
-      backgroundColor: '#ec4401',
+      backgroundColor: '#FF5254',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {

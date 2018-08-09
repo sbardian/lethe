@@ -7,7 +7,7 @@ export class ListSettingsScreen extends Component {
   static navigationOptions = {
     title: 'Settings',
     headerStyle: {
-      backgroundColor: '#13cd4a',
+      backgroundColor: '#8CD19D',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
