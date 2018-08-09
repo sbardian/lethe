@@ -5813,9 +5813,9 @@ react-native-safe-module@^1.1.0:
   dependencies:
     dedent "^0.6.0"
 
-react-native-style-tachyons@3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/react-native-style-tachyons/-/react-native-style-tachyons-3.8.0.tgz#d216c9aef96fcb2c2bfec691ee6e1ee94086851b"
+react-native-style-tachyons@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-style-tachyons/-/react-native-style-tachyons-4.0.0.tgz#279679b9ad310cfa62646681d43271af09a5e0a2"
   dependencies:
     color "^3.0.0"
     css-color-names "0.0.4"
