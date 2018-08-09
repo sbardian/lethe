@@ -1,10 +1,17 @@
 import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+  TouchableHighlight,
+} from 'react-native';
 import { Icon } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
-import Swipeout from 'react-native-swipeout';
+// import Swipeout from 'react-native-swipeout';
+import Swipeable from 'react-native-swipeable';
 
 const GET_LIST_ITEMS = gql`
   query getLists($id_is: String!) {
@@ -143,92 +150,81 @@ export const Items = ({ navigation, listId, close = true }) => (
       });
       const { items } = getLists[0];
       return (
-        <FlatList
-          data={items}
-          renderItem={({ item }) => (
-            <Swipeout
-              close={true}
-              backgroundColor="#ffffff"
-              style={[s.jcc, s.bb]}
-              buttonWidth={50}
-              right={[
-                {
-                  backgroundColor: '#fff',
-                  component: (
-                    <Mutation mutation={DELETE_ITEM}>
-                      {deleteItem => (
-                        <View
-                          style={{
-                            flex: 1,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          <TouchableOpacity
-                            disabled={loading}
-                            onPress={async () =>
-                              deleteItem({
-                                refetchQueries: [
-                                  {
-                                    query: GET_LIST_ITEMS,
-                                    variables: {
-                                      id_is: listId,
-                                    },
-                                  },
-                                ],
-                                variables: { itemId: item.id },
-                              })
-                            }
-                          >
-                            <Icon
-                              style={{ color: '#bd1b29' }}
-                              name="delete-forever"
-                              type="MaterialCommunityIcons"
-                            />
-                          </TouchableOpacity>
-                        </View>
-                      )}
-                    </Mutation>
-                  ),
-                },
-                {
-                  backgroundColor: '#fff',
-                  component: (
-                    <View
-                      style={{
-                        flex: 1,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
+        <Mutation mutation={DELETE_ITEM}>
+          {deleteItem => (
+            <FlatList
+              data={items}
+              renderItem={({ item }) => (
+                <Swipeable
+                  style={[s.jcc, s.bb, s.b__ltext]}
+                  rightButtonWidth={60}
+                  rightButtons={[
+                    <TouchableOpacity
+                      style={{ flexGrow: 1 }}
+                      onPress={() =>
+                        navigation.navigate('EditItem', { item, listId })
+                      }
                     >
-                      <TouchableOpacity
-                        onPress={() =>
-                          navigation.navigate('EditItem', { item, listId })
-                        }
+                      <View
+                        style={{
+                          flexGrow: 1,
+                          justifyContent: 'center',
+                          paddingLeft: 16,
+                          backgroundColor: '#FCB653',
+                        }}
+                      >
+                        <Icon style={[s.white]} name="edit-2" type="Feather" />
+                      </View>
+                    </TouchableOpacity>,
+
+                    <TouchableOpacity
+                      style={{ flexGrow: 1 }}
+                      disabled={loading}
+                      onPress={async () =>
+                        deleteItem({
+                          refetchQueries: [
+                            {
+                              query: GET_LIST_ITEMS,
+                              variables: {
+                                id_is: listId,
+                              },
+                            },
+                          ],
+                          variables: { itemId: item.id },
+                        })
+                      }
+                    >
+                      <View
+                        style={{
+                          flexGrow: 1,
+                          justifyContent: 'center',
+                          paddingLeft: 16,
+                          backgroundColor: '#FF5254',
+                        }}
                       >
                         <Icon
-                          style={{ color: '#f0ad4e' }}
-                          name="edit-3"
-                          type="Feather"
+                          style={[s.white]}
+                          name="delete-forever"
+                          type="MaterialCommunityIcons"
                         />
-                      </TouchableOpacity>
+                      </View>
+                    </TouchableOpacity>,
+                  ]}
+                >
+                  <TouchableOpacity
+                    style={[s.pa3]}
+                    onPress={() => console.log('item pressed')}
+                  >
+                    <View>
+                      <Text style={[s.ltext]}>{item.title}</Text>
                     </View>
-                  ),
-                },
-              ]}
-            >
-              <TouchableOpacity
-                style={[s.pa3]}
-                onPress={() => console.log('item pressed')}
-              >
-                <View>
-                  <Text>{item.title}</Text>
-                </View>
-              </TouchableOpacity>
-            </Swipeout>
+                  </TouchableOpacity>
+                </Swipeable>
+              )}
+              keyExtractor={item => item.id}
+            />
           )}
-          keyExtractor={item => item.id}
-        />
+        </Mutation>
       );
     }}
   </Query>
