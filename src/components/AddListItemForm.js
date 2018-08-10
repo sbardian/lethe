@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
@@ -96,3 +97,12 @@ export class AddListItemForm extends Component {
     );
   }
 }
+
+AddListItemForm.displayName = 'AddListItemForm';
+
+AddListItemForm.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  listId: PropTypes.string.isRequired,
+};
