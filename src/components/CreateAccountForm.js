@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Animated, StyleSheet, View, Easing } from 'react-native';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
@@ -64,7 +65,8 @@ export class CreateAccountForm extends Component {
   }
 
   animate() {
-    if (this.props.pageScroll) {
+    const { pageScroll } = this.props;
+    if (pageScroll) {
       this.usernameBounce.setValue(1);
       this.emailBounce.setValue(1);
       this.passwordBounce.setValue(1);
@@ -126,7 +128,9 @@ export class CreateAccountForm extends Component {
     });
 
     let valid = true;
+    const { onSetToken } = this.props;
     const { username, email, password, passwordConf } = this.state;
+
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
@@ -147,7 +151,7 @@ export class CreateAccountForm extends Component {
               <Input
                 style={{ color: 'white' }}
                 id="username"
-                value={this.state.username}
+                value={username}
                 autoCapitalize="none"
                 onChangeText={value => this.onUsernameChange(value)}
               />
@@ -170,7 +174,7 @@ export class CreateAccountForm extends Component {
               <Input
                 style={{ color: 'white' }}
                 id="email"
-                value={this.state.email}
+                value={email}
                 autoCapitalize="none"
                 onChangeText={value => this.onEmailChange(value)}
               />
@@ -193,7 +197,7 @@ export class CreateAccountForm extends Component {
               <Input
                 style={{ color: 'white' }}
                 id="password"
-                value={this.state.password}
+                value={password}
                 secureTextEntry
                 autoCapitalize="none"
                 onChangeText={value => this.onPasswordChange(value)}
@@ -217,7 +221,7 @@ export class CreateAccountForm extends Component {
               <Input
                 style={{ color: 'white' }}
                 id="passwordConf"
-                value={this.state.passwordConf}
+                value={passwordConf}
                 secureTextEntry
                 autoCapitalize="none"
                 onChangeText={value => this.onPasswordConfChange(value)}
@@ -227,9 +231,9 @@ export class CreateAccountForm extends Component {
         </Form>
         <Mutation
           mutation={SIGN_UP}
-          onCompleted={data => this.props.onSetToken(data.signup.token)}
+          onCompleted={data => onSetToken(data.signup.token)}
         >
-          {(signUp, { loading }) => {
+          {signUp => {
             if (
               username &&
               email &&
@@ -248,9 +252,9 @@ export class CreateAccountForm extends Component {
                 onPress={async () => {
                   await signUp({
                     variables: {
-                      username: this.state.username,
-                      email: this.state.email,
-                      password: this.state.password,
+                      username,
+                      email,
+                      password,
                     },
                   });
                 }}
@@ -264,3 +268,10 @@ export class CreateAccountForm extends Component {
     );
   }
 }
+
+CreateAccountForm.displayName = 'CreateAccountForm';
+
+CreateAccountForm.propTypes = {
+  onSetToken: PropTypes.func.isRequired,
+  pageScroll: PropTypes.bool.isRequired,
+};
