@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
@@ -44,6 +45,7 @@ export class AddListForm extends Component {
   render() {
     const { navigation } = this.props;
     const { title } = this.state;
+
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
@@ -84,3 +86,11 @@ export class AddListForm extends Component {
     );
   }
 }
+
+AddListForm.displayName = 'AddListForm';
+
+AddListForm.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
