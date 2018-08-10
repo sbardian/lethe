@@ -1,5 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { SendInvitationForm } from '../components';
 import { Screen } from './Screen';
 
@@ -24,3 +25,11 @@ export class SendInvitationScreen extends Component {
     );
   }
 }
+
+SendInvitationForm.displayName = 'SendInvitaionForm';
+
+SendInvitationForm.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
