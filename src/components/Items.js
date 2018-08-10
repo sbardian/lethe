@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  FlatList,
-  Text,
-  TouchableOpacity,
-  View,
-  TouchableHighlight,
-} from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
 import { Icon } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
-// import Swipeout from 'react-native-swipeout';
 import Swipeable from 'react-native-swipeable';
 
 const GET_LIST_ITEMS = gql`
@@ -70,7 +64,7 @@ const DELETE_ITEM = gql`
   }
 `;
 
-export const Items = ({ navigation, listId, close = true }) => (
+export const Items = ({ navigation, listId }) => (
   <Query query={GET_LIST_ITEMS} variables={{ id_is: listId }}>
     {({ subscribeToMore, loading, error, data: { getLists = [] } }) => {
       if (loading) {
@@ -176,7 +170,6 @@ export const Items = ({ navigation, listId, close = true }) => (
                         <Icon style={[s.white]} name="edit-2" type="Feather" />
                       </View>
                     </TouchableOpacity>,
-
                     <TouchableOpacity
                       style={{ flexGrow: 1 }}
                       disabled={loading}
@@ -229,3 +222,12 @@ export const Items = ({ navigation, listId, close = true }) => (
     }}
   </Query>
 );
+
+Items.displayName = 'Items';
+
+Items.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  listId: PropTypes.string.isRequired,
+};
