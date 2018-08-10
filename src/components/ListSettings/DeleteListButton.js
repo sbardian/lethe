@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Animated, Easing, View } from 'react-native';
 import PropTypes from 'prop-types';
+import { Animated, Easing, View } from 'react-native';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { Button, Icon, Toast } from 'native-base';
@@ -30,11 +30,11 @@ const GET_MY_LISTS = gql`
 `;
 
 export class DeleteListButton extends Component {
+  spinValue = new Animated.Value(0);
+
   componentDidMount() {
     this.animateLoading();
   }
-
-  spinValue = new Animated.Value(0);
 
   animateLoading() {
     this.spinValue.setValue(0);
@@ -51,34 +51,12 @@ export class DeleteListButton extends Component {
       outputRange: ['0deg', '360deg'],
     });
     const { active, listId, navigation } = this.props;
+
     return (
       <Mutation
         mutation={DELETE_LIST}
-        // update={(cache, { data }) => {
-        //   const cacheData = cache.readQuery({ query: GET_MY_LISTS });
-        //   const newCacheData = cacheData.getMyInfo.lists.filter(
-        //     casheList => casheList.id !== data.deleteList.id,
-        //   );
-        //   cache.writeQuery({
-        //     query: GET_MY_LISTS,
-        //     data: {
-        //       getMyInfo: {
-        //         __typename: 'User',
-        //         lists: [...newCacheData],
-        //       },
-        //     },
-        //   });
-        // }}
         onCompleted={() => {
           navigation.navigate('Lists');
-          // Toast.show({
-          //   text: `List ${data.deleteList.title} has been deleted.`,
-          //   buttonText: 'Ok',
-          //   type: 'success',
-          //   position: 'bottom',
-          //   onClose: () => navigation.navigate('Lists'),
-          //   duration: 3000,
-          // });
         }}
         onError={error => {
           Toast.show({
@@ -125,3 +103,13 @@ export class DeleteListButton extends Component {
     );
   }
 }
+
+DeleteListButton.displayName = 'DeleteListButton';
+
+DeleteListButton.propTypes = {
+  active: PropTypes.bool.isRequired,
+  listId: PropTypes.string.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
