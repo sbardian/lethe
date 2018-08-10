@@ -1,10 +1,10 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Animated, Easing, View } from 'react-native';
 import PropTypes from 'prop-types';
+import { Animated, Easing, View } from 'react-native';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { Button, Icon, Text, Toast } from 'native-base';
+import { Button, Icon, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 
 const UPDATE_LIST = gql`
