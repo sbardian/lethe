@@ -10,7 +10,6 @@ import {
   View,
 } from 'react-native';
 import {
-  Button,
   Body,
   Card,
   Thumbnail,
@@ -18,7 +17,6 @@ import {
   H3,
   Text,
   Icon,
-  Form,
   Item,
   Label,
   Input,
@@ -29,7 +27,6 @@ import { oneLine } from 'common-tags';
 import { ImagePicker, Permissions } from 'expo';
 import { ReactNativeFile } from 'apollo-upload-client';
 import { styles as s } from 'react-native-style-tachyons';
-import defaultImage from '../images/defaultProfile.jpg';
 import backgroundImage from '../images/background.png';
 import { DeclineInvitationIcon } from './DeclineInvitationIcon';
 
@@ -47,7 +44,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     justifyContent: 'center',
-    // backgroundColor: '#AE24FD',
     backgroundColor: 'white',
   },
   profileImage: {
@@ -132,7 +128,7 @@ export class Profile extends Component {
       });
       Alert.alert(
         'Profile Image',
-        oneLine`You have not granted permission to access your images, 
+        oneLine`You have not granted permission to access your images,
         you will not be able to update your profile image.`,
         [
           {
@@ -179,26 +175,28 @@ export class Profile extends Component {
   };
 
   enableUsernameEdit = () => {
+    const { editUsername } = this.state;
     this.setState({
-      editUsername: !this.state.editUsername,
+      editUsername: !editUsername,
     });
   };
 
   render() {
-    let {
+    const {
       image,
       defaultImage,
       editUsername,
       permissionStatus,
       fileToUpload,
     } = this.state;
+
     return (
       <Query query={GET_MY_INFO}>
         {({ subscribeToMore, loading, error, data: { getMyInfo } = [] }) => {
           if (loading) return <Text>Loading...</Text>;
           if (error) return <Text>Error {error.message}</Text>;
 
-          const { id, lists, username, email, profileImageUrl } = getMyInfo;
+          const { lists, username, email, profileImageUrl } = getMyInfo;
 
           let myImage = profileImageUrl;
 
@@ -365,3 +363,5 @@ export class Profile extends Component {
     );
   }
 }
+
+Profile.displayName = 'Profile';
