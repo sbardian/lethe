@@ -1,5 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Icon } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
 import { AddItemFab, Items } from '../components';
@@ -38,6 +39,7 @@ export class ItemsScreen extends Component {
   render() {
     const { navigation } = this.props;
     const listId = navigation.getParam('listId');
+
     return (
       <Screen fab={<AddItemFab navigation={navigation} listId={listId} />}>
         <Grid>
@@ -49,3 +51,11 @@ export class ItemsScreen extends Component {
     );
   }
 }
+
+ItemsScreen.displayName = 'ItemsScreen';
+
+ItemsScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
