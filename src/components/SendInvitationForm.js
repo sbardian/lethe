@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
@@ -57,17 +58,25 @@ export class SendInvitationForm extends Component {
   render() {
     const { listId, navigation } = this.props;
     const { invitee, title } = this.state;
+
     return (
       <Query query={GET_LIST} variables={{ id_is: listId }}>
         {({ loading, error, data: { getLists = [] } }) => {
-          const { title } = getLists[0];
+          if (loading) {
+            return <Text>Loading . . . </Text>;
+          }
+          if (error) {
+            return <Text>Error: ${error.message}</Text>;
+          }
+          const { title: defaultTitle } = getLists[0];
+
           return (
             <View>
               <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
                 <Item stackedLabel>
                   <Label>Invitation Title</Label>
                   <Input
-                    placeholder={`Join my list ${title}!`}
+                    placeholder={`Join my list ${defaultTitle}!`}
                     id="InvitationTitle"
                     onChangeText={value => this.onTitleChange(value)}
                   />
@@ -143,3 +152,11 @@ export class SendInvitationForm extends Component {
     );
   }
 }
+SendInvitationForm.displayName = 'SendInvitationForm';
+
+SendInvitationForm.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  listId: PropTypes.string.isRequired,
+};
