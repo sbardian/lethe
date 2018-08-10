@@ -1,5 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { AddListItemForm } from '../components';
 import { Screen } from './Screen';
 
@@ -25,3 +26,11 @@ export class AddListItemScreen extends Component {
     );
   }
 }
+
+AddListItemForm.displayName = 'AddListItemForm';
+
+AddListItemForm.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
