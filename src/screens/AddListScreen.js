@@ -1,5 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { AddListForm } from '../components';
 import { Screen } from './Screen';
 
@@ -16,10 +17,20 @@ export class AddListScreen extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <Screen>
-        <AddListForm navigation={this.props.navigation} />
+        <AddListForm navigation={navigation} />
       </Screen>
     );
   }
 }
+
+AddListScreen.displayName = 'AddListScreen';
+
+AddListScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
