@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { Button, Icon, Text, Toast } from 'native-base';
@@ -83,3 +84,9 @@ export const AcceptInvitationIcon = ({ invitationId }) => (
     )}
   </Mutation>
 );
+
+AcceptInvitationIcon.displayName = 'AcceptInvitationIcon';
+
+AcceptInvitationIcon.propTypes = {
+  invitationId: PropTypes.string.isRequired,
+};
