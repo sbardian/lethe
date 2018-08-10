@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
@@ -34,6 +35,9 @@ export class LoginForm extends Component {
   }
 
   render() {
+    const { username, password } = this.state;
+    const { onSetToken } = this.props;
+
     return (
       <View>
         <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
@@ -42,7 +46,7 @@ export class LoginForm extends Component {
             <Input
               style={{ color: 'white' }}
               id="username"
-              value={this.state.username}
+              value={username}
               autoCapitalize="none"
               onChangeText={value => this.onUsernameChange(value)}
             />
@@ -52,7 +56,7 @@ export class LoginForm extends Component {
             <Input
               style={{ color: 'white' }}
               id="password"
-              value={this.state.password}
+              value={password}
               secureTextEntry
               autoCapitalize="none"
               onChangeText={value => this.onPasswordChange(value)}
@@ -63,7 +67,7 @@ export class LoginForm extends Component {
           mutation={LOGIN}
           errorPolicy="all"
           onCompleted={data => {
-            this.props.onSetToken(data.login.token);
+            onSetToken(data.login.token);
           }}
           onError={error => console.log('Login error: ', error)}
         >
@@ -77,8 +81,8 @@ export class LoginForm extends Component {
                 onPress={async () => {
                   await userLogin({
                     variables: {
-                      username: this.state.username,
-                      password: this.state.password,
+                      username,
+                      password,
                     },
                   });
                 }}
@@ -97,3 +101,9 @@ export class LoginForm extends Component {
     );
   }
 }
+
+LoginForm.displayName = 'LoginForm';
+
+LoginForm.propTypes = {
+  onSetToken: PropTypes.func.isRequired,
+};
