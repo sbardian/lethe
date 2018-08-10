@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
-
-// const ADD_ITEM = gql`
-//   mutation createNewItem($listId: String!, $title: String!) {
-//     createNewItem(ItemInfo: { list: $listId, title: $title }) {
-//       id
-//       title
-//       creator
-//     }
-//   }
-// `;
 
 const UPDATE_ITEM = gql`
   mutation updateItem($itemId: String!, $title: String!) {
@@ -105,3 +96,16 @@ export class EditItemForm extends Component {
     );
   }
 }
+
+EditItemForm.displayName = 'EditItemForm';
+
+EditItemForm.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  listId: PropTypes.string.isRequired,
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
