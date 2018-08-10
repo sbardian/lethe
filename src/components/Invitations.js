@@ -2,19 +2,9 @@ import React from 'react';
 import { FlatList, View } from 'react-native';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import {
-  Text,
-  Content,
-  Card,
-  CardItem,
-  Body,
-  Left,
-  Right,
-  Thumbnail,
-  H3,
-} from 'native-base';
-import { AcceptInvitationIcon, DeclineInvitationIcon } from './';
+import { Text, Card, CardItem, Body, Thumbnail, H3 } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
+import { AcceptInvitationIcon, DeclineInvitationIcon } from './';
 
 const GET_MY_INVITATIONS = gql`
   {
@@ -31,16 +21,6 @@ const GET_MY_INVITATIONS = gql`
         invitee
         title
       }
-    }
-  }
-`;
-
-const GET_INVITER = gql`
-  query getUser($userId: String!) {
-    getUser(userId: $userId) {
-      id
-      username
-      profileImageUrl
     }
   }
 `;
@@ -114,7 +94,6 @@ export const Invitations = () => (
         document: INVITATION_DELETED,
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) return prev;
-          console.log('subscriptionData: ', subscriptionData);
           const { id } = subscriptionData.data.invitationDeleted;
           if (prev.getMyInfo.invitations.some(invite => invite.id === id)) {
             const filteredInvitations = prev.getMyInfo.invitations.filter(
@@ -126,7 +105,6 @@ export const Invitations = () => (
                 invitations: [...filteredInvitations],
               },
             });
-            console.log('newInvitations: ', newInvitations);
             return newInvitations;
           }
         },
@@ -170,3 +148,5 @@ export const Invitations = () => (
     }}
   </Query>
 );
+
+Invitations.displayName = 'Invitations';
