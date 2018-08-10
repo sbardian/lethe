@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FlatList, TouchableOpacity, View, Text } from 'react-native';
 import { styles as s } from 'react-native-style-tachyons';
 import gql from 'graphql-tag';
@@ -84,3 +85,11 @@ export const Lists = ({ navigation }) => (
     }}
   </Query>
 );
+
+Lists.displayName = 'Lists';
+
+Lists.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
