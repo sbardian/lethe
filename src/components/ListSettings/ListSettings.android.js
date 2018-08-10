@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -22,7 +23,7 @@ export class ListSettings extends Component {
     super(props);
     this.state = {
       newTitle: '',
-      orgTitle: this.props.title,
+      orgTitle: props.title,
       titleNotChanged: true,
       deleteConfirmed: true,
     };
@@ -36,7 +37,8 @@ export class ListSettings extends Component {
   }
 
   onDeleteTitleChange(value) {
-    if (this.state.orgTitle === value) {
+    const { orgTitle } = this.state;
+    if (orgTitle === value) {
       this.setState({
         deleteConfirmed: false,
       });
@@ -117,3 +119,13 @@ export class ListSettings extends Component {
     );
   }
 }
+
+ListSettings.displayName = 'ListSettings';
+
+ListSettings.propTypes = {
+  title: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
