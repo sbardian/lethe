@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { FabBase } from './FabBase';
 
 export const AddItemFab = ({ navigation, listId }) => (
@@ -10,3 +11,12 @@ export const AddItemFab = ({ navigation, listId }) => (
     iconType="Ionicons"
   />
 );
+
+AddItemFab.displayName = 'AddItemFab';
+
+AddItemFab.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  listId: PropTypes.string.isRequired,
+};
