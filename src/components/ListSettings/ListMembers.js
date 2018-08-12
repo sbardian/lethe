@@ -38,6 +38,13 @@ const GetUsers = ({ listId, render }) => (
   </Query>
 );
 
+GetUsers.displayName = 'GetUsers';
+
+GetUsers.propTypes = {
+  listId: PropTypes.string.isRequired,
+  render: PropTypes.func.isRequired,
+};
+
 const RemoveUser = ({ render }) => (
   <Mutation
     mutation={REMOVE_FROM_LIST}
@@ -60,25 +67,16 @@ const RemoveUser = ({ render }) => (
         duration: 3000,
       });
     }}
-    // update={(cache, { data }) => {
-    //   const cacheData = cache.readQuery({ query: REMOVE_FROM_LIST });
-    //   const newCacheData = cacheData.getMyInfo.lists.filter(
-    //     casheList => casheList.id !== data.deleteList.id,
-    //   );
-    //   cache.writeQuery({
-    //     query: GET_MY_LISTS,
-    //     data: {
-    //       getMyInfo: {
-    //         __typename: 'User',
-    //         lists: [...newCacheData],
-    //       },
-    //     },
-    //   });
-    // }}
   >
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 );
+
+RemoveUser.displayName = 'RemoveUser';
+
+RemoveUser.propTypes = {
+  render: PropTypes.func.isRequired,
+};
 
 const Composed = adopt({
   getUsers: GetUsers,
@@ -174,3 +172,12 @@ export class ListMembers extends Component {
     );
   }
 }
+
+ListMembers.displayName = 'ListMembers';
+
+ListMembers.propTypes = {
+  listId: PropTypes.string.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
