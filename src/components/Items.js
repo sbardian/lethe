@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Icon } from 'native-base';
@@ -64,164 +64,230 @@ const DELETE_ITEM = gql`
   }
 `;
 
-export const Items = ({ navigation, listId }) => (
-  <Query query={GET_LIST_ITEMS} variables={{ id_is: listId }}>
-    {({ subscribeToMore, loading, error, data: { getLists = [] } }) => {
-      if (loading) {
-        return <Text>Loading . . . </Text>;
-      }
-      if (error) {
-        return <Text>Error: ${error.message}</Text>;
-      }
-      subscribeToMore({
-        document: ITEM_ADDED,
-        variables: { listId },
-        updateQuery: (prev, { subscriptionData }) => {
-          if (!subscriptionData.data) return prev;
-          const { id } = subscriptionData.data.itemAdded;
-          if (!prev.getLists[0].items.some(item => item.id === id)) {
-            const newItems = Object.assign({}, prev, {
-              getLists: [
-                {
-                  ...prev.getLists[0],
-                  items: [
-                    { ...subscriptionData.data.itemAdded },
-                    ...prev.getLists[0].items,
+export class Items extends Component {
+  state = {
+    leftActionActivated: false,
+    toggle: false,
+  };
+
+  onOpen() {
+    console.log('open...');
+    const { checked } = this.state;
+    this.setState({ checked: !checked });
+  }
+
+  onClose() {
+    console.log('close...');
+    const { checked } = this.state;
+    this.setState({ checked: !checked });
+  }
+
+  render() {
+    const { navigation, listId } = this.props;
+    const { leftActionActivated, toggle } = this.state;
+
+    console.log(
+      'leftActionActivated: ',
+      leftActionActivated,
+      ', toggle: ',
+      toggle,
+    );
+
+    return (
+      <Query query={GET_LIST_ITEMS} variables={{ id_is: listId }}>
+        {({ subscribeToMore, loading, error, data: { getLists = [] } }) => {
+          if (loading) {
+            return <Text>Loading . . . </Text>;
+          }
+          if (error) {
+            return <Text>Error: ${error.message}</Text>;
+          }
+          subscribeToMore({
+            document: ITEM_ADDED,
+            variables: { listId },
+            updateQuery: (prev, { subscriptionData }) => {
+              if (!subscriptionData.data) return prev;
+              const { id } = subscriptionData.data.itemAdded;
+              if (!prev.getLists[0].items.some(item => item.id === id)) {
+                const newItems = Object.assign({}, prev, {
+                  getLists: [
+                    {
+                      ...prev.getLists[0],
+                      items: [
+                        { ...subscriptionData.data.itemAdded },
+                        ...prev.getLists[0].items,
+                      ],
+                    },
                   ],
-                },
-              ],
-            });
-            return newItems;
-          }
-        },
-      });
-      subscribeToMore({
-        document: ITEM_DELETED,
-        variables: { listId },
-        updateQuery: (prev, { subscriptionData }) => {
-          if (!subscriptionData.data) return prev;
-          const { id } = subscriptionData.data.itemDeleted;
-          if (prev.getLists[0].items.some(item => item.id === id)) {
-            const filteredItems = prev.getLists[0].items.filter(
-              item => item.id !== id,
-            );
-            const newItems = Object.assign({}, prev, {
-              getLists: [
-                {
-                  ...prev.getLists[0],
-                  items: [...filteredItems],
-                },
-              ],
-            });
-            return newItems;
-          }
-        },
-      });
-      subscribeToMore({
-        document: ITEM_EDITED,
-        variables: { listId },
-        updateQuery: (prev, { subscriptionData }) => {
-          if (!subscriptionData.data) return prev;
-          const { id } = subscriptionData.data.itemEdited;
-          if (prev.getLists[0].items.some(item => item.id === id)) {
-            const noneEditItems = prev.getLists[0].items.filter(
-              item => item.id !== id,
-            );
-            const newItems = Object.assign({}, prev, {
-              getLists: [
-                {
-                  ...prev.getLists[0],
-                  items: [
-                    ...noneEditItems,
-                    { ...subscriptionData.data.itemEdited },
+                });
+                return newItems;
+              }
+            },
+          });
+          subscribeToMore({
+            document: ITEM_DELETED,
+            variables: { listId },
+            updateQuery: (prev, { subscriptionData }) => {
+              if (!subscriptionData.data) return prev;
+              const { id } = subscriptionData.data.itemDeleted;
+              if (prev.getLists[0].items.some(item => item.id === id)) {
+                const filteredItems = prev.getLists[0].items.filter(
+                  item => item.id !== id,
+                );
+                const newItems = Object.assign({}, prev, {
+                  getLists: [
+                    {
+                      ...prev.getLists[0],
+                      items: [...filteredItems],
+                    },
                   ],
-                },
-              ],
-            });
-            return newItems;
-          }
-        },
-      });
-      const { items } = getLists[0];
-      return (
-        <Mutation mutation={DELETE_ITEM}>
-          {deleteItem => (
-            <FlatList
-              data={items}
-              renderItem={({ item }) => (
-                <Swipeable
-                  style={[s.jcc, s.bb, s.b__ltext]}
-                  rightButtonWidth={60}
-                  rightButtons={[
-                    <TouchableOpacity
-                      style={{ flexGrow: 1 }}
-                      onPress={() =>
-                        navigation.navigate('EditItem', { item, listId })
+                });
+                return newItems;
+              }
+            },
+          });
+          subscribeToMore({
+            document: ITEM_EDITED,
+            variables: { listId },
+            updateQuery: (prev, { subscriptionData }) => {
+              if (!subscriptionData.data) return prev;
+              const { id } = subscriptionData.data.itemEdited;
+              if (prev.getLists[0].items.some(item => item.id === id)) {
+                const noneEditItems = prev.getLists[0].items.filter(
+                  item => item.id !== id,
+                );
+                const newItems = Object.assign({}, prev, {
+                  getLists: [
+                    {
+                      ...prev.getLists[0],
+                      items: [
+                        ...noneEditItems,
+                        { ...subscriptionData.data.itemEdited },
+                      ],
+                    },
+                  ],
+                });
+                return newItems;
+              }
+            },
+          });
+          const { items } = getLists[0];
+          return (
+            <Mutation mutation={DELETE_ITEM}>
+              {deleteItem => (
+                <FlatList
+                  data={items}
+                  renderItem={({ item }) => (
+                    /* eslint-disable react/jsx-wrap-multilines */
+                    <Swipeable
+                      style={[s.jcc, s.bb, s.b__ltext]}
+                      rightButtonWidth={60}
+                      leftContent={
+                        <View style={[s.flx_row, s.pa3, s.jcfe, s.bg_green]}>
+                          <Icon style={[s.ltext]} name="check" type="Feather" />
+                        </View>
                       }
-                    >
-                      <View
-                        style={{
-                          flexGrow: 1,
-                          justifyContent: 'center',
-                          paddingLeft: 16,
-                          backgroundColor: '#FCB653',
-                        }}
-                      >
-                        <Icon style={[s.white]} name="edit-2" type="Feather" />
-                      </View>
-                    </TouchableOpacity>,
-                    <TouchableOpacity
-                      style={{ flexGrow: 1 }}
-                      disabled={loading}
-                      onPress={async () =>
-                        deleteItem({
-                          refetchQueries: [
-                            {
-                              query: GET_LIST_ITEMS,
-                              variables: {
-                                id_is: listId,
-                              },
-                            },
-                          ],
-                          variables: { itemId: item.id },
-                        })
+                      onLeftActionActivate={() =>
+                        this.setState({ leftActionActivated: true })
                       }
+                      onLeftActionDeactivate={() =>
+                        this.setState({ leftActionActivated: false })
+                      }
+                      onLeftActionComplete={() =>
+                        this.setState({ toggle: !toggle })
+                      }
+                      leftActionActivationDistance={50}
+                      rightButtons={[
+                        <TouchableOpacity
+                          style={{ flexGrow: 1 }}
+                          onPress={() =>
+                            navigation.navigate('EditItem', { item, listId })
+                          }
+                        >
+                          <View
+                            style={{
+                              flexGrow: 1,
+                              justifyContent: 'center',
+                              paddingLeft: 16,
+                              backgroundColor: '#e1e1e1',
+                            }}
+                          >
+                            <Icon
+                              style={[s.white]}
+                              name="edit"
+                              type="MaterialIcons"
+                            />
+                          </View>
+                        </TouchableOpacity>,
+                        <TouchableOpacity
+                          style={{ flexGrow: 1 }}
+                          disabled={loading}
+                          onPress={async () =>
+                            deleteItem({
+                              refetchQueries: [
+                                {
+                                  query: GET_LIST_ITEMS,
+                                  variables: {
+                                    id_is: listId,
+                                  },
+                                },
+                              ],
+                              variables: { itemId: item.id },
+                            })
+                          }
+                        >
+                          <View
+                            style={{
+                              flexGrow: 1,
+                              justifyContent: 'center',
+                              paddingLeft: 16,
+                              backgroundColor: '#F4311D',
+                            }}
+                          >
+                            <Icon
+                              style={[s.white]}
+                              name="delete-forever"
+                              type="MaterialCommunityIcons"
+                            />
+                          </View>
+                        </TouchableOpacity>,
+                      ]}
                     >
-                      <View
-                        style={{
-                          flexGrow: 1,
-                          justifyContent: 'center',
-                          paddingLeft: 16,
-                          backgroundColor: '#FF5254',
-                        }}
+                      <TouchableOpacity
+                        style={[s.pa3]}
+                        onPress={() => console.log('item pressed')}
                       >
-                        <Icon
-                          style={[s.white]}
-                          name="delete-forever"
-                          type="MaterialCommunityIcons"
-                        />
-                      </View>
-                    </TouchableOpacity>,
-                  ]}
-                >
-                  <TouchableOpacity
-                    style={[s.pa3]}
-                    onPress={() => console.log('item pressed')}
-                  >
-                    <View>
-                      <Text style={[s.ltext]}>{item.title}</Text>
-                    </View>
-                  </TouchableOpacity>
-                </Swipeable>
+                        <View style={[s.flx_row, s.aic]}>
+                          {toggle ? (
+                            <Icon
+                              style={[s.aic, s.pr3, s.ltext]}
+                              type="MaterialCommunityIcons"
+                              name="check-square"
+                            />
+                          ) : (
+                            <Icon
+                              style={[s.aic, s.pr3, s.ltext]}
+                              type="MaterialCommunityIcons"
+                              name="checkbox-blank-outline"
+                            />
+                          )}
+                          <Text style={[s.aic, s.jcc, s.ltext]}>
+                            {item.title}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </Swipeable>
+                  )}
+                  keyExtractor={item => item.id}
+                />
               )}
-              keyExtractor={item => item.id}
-            />
-          )}
-        </Mutation>
-      );
-    }}
-  </Query>
-);
+            </Mutation>
+          );
+        }}
+      </Query>
+    );
+  }
+}
 
 Items.displayName = 'Items';
 
