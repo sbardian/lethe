@@ -5,17 +5,15 @@ import { AsyncStorage, StyleSheet } from 'react-native';
 import { Root } from 'native-base';
 import Expo from 'expo';
 import { ApolloClient } from 'apollo-client';
-import { ApolloLink, Observable, from, split } from 'apollo-link';
+import { from, split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
-import { createHttpLink } from 'apollo-link-http';
-import { onError } from 'apollo-link-error';
 import { setContext } from 'apollo-link-context';
+import { WebSocketLink } from 'apollo-link-ws';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import { createUploadLink } from 'apollo-upload-client';
 import { TokenProvider, TokenContext } from './src/context';
 import { Navigator } from './src/navigator';
-import { WebSocketLink } from 'apollo-link-ws';
 
 NativeTachyons.build(
   {
@@ -23,6 +21,7 @@ NativeTachyons.build(
       palette: {
         white: '#FFFFFF',
         offWhite: '#e1e1e1',
+        green: '#BFEB88',
         ltext: '#666',
       },
     },
