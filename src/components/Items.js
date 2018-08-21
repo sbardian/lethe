@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
@@ -6,6 +7,7 @@ import { styles as s } from 'react-native-style-tachyons';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 import Swipeable from 'react-native-swipeable';
+import { adopt } from 'react-adopt';
 
 const GET_LIST_ITEMS = gql`
   query getLists($id_is: String!) {
@@ -30,6 +32,7 @@ const ITEM_ADDED = gql`
       title
       creator
       list
+      status
     }
   }
 `;
@@ -41,6 +44,7 @@ const ITEM_DELETED = gql`
       title
       creator
       list
+      status
     }
   }
 `;
@@ -52,6 +56,7 @@ const ITEM_EDITED = gql`
       title
       creator
       list
+      status
     }
   }
 `;
@@ -61,15 +66,43 @@ const DELETE_ITEM = gql`
     deleteItem(itemId: $itemId) {
       id
       title
+      creator
+      list
+      status
     }
   }
 `;
 
-export class Items extends Component {
-  onComplete(index) {
-    console.log(`set status of ${index} to true`);
+const UPDATE_ITEM_STATUS = gql`
+  mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
+    updateItem(itemId: $itemId, title: $title, status: $status) {
+      id
+      title
+      creator
+      list
+      status
+    }
   }
+`;
 
+const DeleteItem = ({ render }) => (
+  <Mutation mutation={DELETE_ITEM}>
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+);
+
+const UpdateItem = ({ render }) => (
+  <Mutation mutation={UPDATE_ITEM_STATUS}>
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+);
+
+const ComposedMutations = adopt({
+  deleteItem: DeleteItem,
+  updateItem: UpdateItem,
+});
+
+export class Items extends Component {
   render() {
     const { navigation, listId } = this.props;
 
@@ -154,22 +187,38 @@ export class Items extends Component {
           const { items } = getLists[0];
 
           return (
-            <Mutation mutation={DELETE_ITEM}>
-              {deleteItem => (
-                <FlatList
-                  data={items}
-                  extraData={items}
-                  renderItem={({ item, index }) => (
-                    /* eslint-disable react/jsx-wrap-multilines */
+            <FlatList
+              data={items}
+              extraData={items}
+              renderItem={({ item, index }) => (
+                <ComposedMutations itemId={item.id}>
+                  {({ deleteItem, updateItem }) => (
                     <Swipeable
                       style={[s.jcc, s.bb, s.b__ltext]}
                       rightButtonWidth={60}
                       leftContent={
+                        /* eslint-disable react/jsx-wrap-multilines */
                         <View style={[s.flx_row, s.pa3, s.jcfe, s.bg_green]}>
                           <Icon style={[s.ltext]} name="check" type="Feather" />
                         </View>
                       }
-                      onLeftActionComplete={() => this.onComplete(index)}
+                      onLeftActionComplete={() =>
+                        updateItem.mutation({
+                          refetchQueries: [
+                            {
+                              query: GET_LIST_ITEMS,
+                              variables: {
+                                id_is: listId,
+                              },
+                            },
+                          ],
+                          variables: {
+                            itemId: item.id,
+                            title: item.title,
+                            status: !item.status,
+                          },
+                        })
+                      }
                       leftActionActivationDistance={50}
                       rightButtons={[
                         <TouchableOpacity
@@ -197,7 +246,7 @@ export class Items extends Component {
                           style={{ flexGrow: 1 }}
                           disabled={loading}
                           onPress={async () =>
-                            deleteItem({
+                            deleteItem.mutation({
                               refetchQueries: [
                                 {
                                   query: GET_LIST_ITEMS,
@@ -229,7 +278,7 @@ export class Items extends Component {
                     >
                       <TouchableOpacity
                         style={[s.pa3]}
-                        onPress={() => console.log('item pressed')}
+                        onPress={() => console.log('item pressed: ', index)}
                       >
                         <View style={[s.flx_row, s.aic]}>
                           {item.status ? (
@@ -252,10 +301,10 @@ export class Items extends Component {
                       </TouchableOpacity>
                     </Swipeable>
                   )}
-                  keyExtractor={item => item.id}
-                />
+                </ComposedMutations>
               )}
-            </Mutation>
+              keyExtractor={item => item.id}
+            />
           );
         }}
       </Query>

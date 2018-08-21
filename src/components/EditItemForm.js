@@ -6,7 +6,7 @@ import { Mutation } from 'react-apollo';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
 
 const UPDATE_ITEM = gql`
-  mutation updateItem($itemId: String!, $title: String!, $status: String!) {
+  mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
     updateItem(itemId: $itemId, title: $title, status: $status) {
       id
       title
@@ -25,6 +25,7 @@ const GET_LIST_ITEMS = gql`
       items {
         id
         title
+        list
         creator
         status
       }
