@@ -12,6 +12,7 @@ const ADD_ITEM = gql`
       title
       creator
       list
+      status
     }
   }
 `;
@@ -26,6 +27,7 @@ const GET_LIST_ITEMS = gql`
         title
         creator
         list
+        status
       }
     }
   }

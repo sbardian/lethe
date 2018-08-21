@@ -6,12 +6,13 @@ import { Mutation } from 'react-apollo';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
 
 const UPDATE_ITEM = gql`
-  mutation updateItem($itemId: String!, $title: String!) {
-    updateItem(itemId: $itemId, title: $title) {
+  mutation updateItem($itemId: String!, $title: String!, $status: String!) {
+    updateItem(itemId: $itemId, title: $title, status: $status) {
       id
       title
       list
       creator
+      status
     }
   }
 `;
@@ -25,6 +26,7 @@ const GET_LIST_ITEMS = gql`
         id
         title
         creator
+        status
       }
     }
   }
@@ -84,6 +86,7 @@ export class EditItemForm extends Component {
                   variables: {
                     title,
                     itemId: item.id,
+                    status: item.status,
                   },
                 });
               }}

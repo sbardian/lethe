@@ -17,6 +17,7 @@ const GET_LIST_ITEMS = gql`
         title
         creator
         list
+        status
       }
     }
   }
@@ -65,18 +66,12 @@ const DELETE_ITEM = gql`
 `;
 
 export class Items extends Component {
-  state = {
-    toggle: false,
-  };
-
   onComplete(index) {
-    const { toggle } = this.state;
-    this.setState({ toggle: !toggle });
+    console.log(`set status of ${index} to true`);
   }
 
   render() {
     const { navigation, listId } = this.props;
-    const { toggle } = this.state;
 
     return (
       <Query query={GET_LIST_ITEMS} variables={{ id_is: listId }}>
@@ -157,12 +152,13 @@ export class Items extends Component {
             },
           });
           const { items } = getLists[0];
+
           return (
             <Mutation mutation={DELETE_ITEM}>
               {deleteItem => (
                 <FlatList
                   data={items}
-                  extraData={toggle}
+                  extraData={items}
                   renderItem={({ item, index }) => (
                     /* eslint-disable react/jsx-wrap-multilines */
                     <Swipeable
@@ -233,10 +229,10 @@ export class Items extends Component {
                     >
                       <TouchableOpacity
                         style={[s.pa3]}
-                        onPress={() => console.log('item pressed: ', toggle)}
+                        onPress={() => console.log('item pressed')}
                       >
                         <View style={[s.flx_row, s.aic]}>
-                          {toggle ? (
+                          {item.status ? (
                             <Icon
                               style={[s.aic, s.pr3, s.ltext]}
                               type="Feather"
