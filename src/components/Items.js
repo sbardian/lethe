@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 import Swipeable from 'react-native-swipeable';
 import { adopt } from 'react-adopt';
+import { orderBy } from 'lodash';
 
 const GET_LIST_ITEMS = gql`
   query getLists($id_is: String!) {
@@ -184,12 +185,13 @@ export class Items extends Component {
               }
             },
           });
+
           const { items } = getLists[0];
 
           return (
             <FlatList
-              data={items}
-              extraData={items}
+              data={orderBy(items, ['title'], ['asc'])}
+              extraData={orderBy(items, ['title'], ['asc'])}
               renderItem={({ item, index }) => (
                 <ComposedMutations itemId={item.id}>
                   {({ deleteItem, updateItem }) => (
