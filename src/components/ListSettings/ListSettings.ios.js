@@ -8,6 +8,7 @@ import { Form, Input, Item, Label, Text } from 'native-base';
 import { UpdateTitleButton } from './UpdateTitleButton';
 import { DeleteListButton } from './DeleteListButton';
 import { ListMembers } from './ListMembers';
+import { ListInvitations } from './ListInvitations';
 
 const GET_LIST = gql`
   query getLists($id_is: String!) {
@@ -111,6 +112,9 @@ export class ListSettings extends Component {
               </Form>
               <View style={{ paddingBottom: 40 }}>
                 {<ListMembers navigation={navigation} listId={id} />}
+              </View>
+              <View style={{ paddingBottom: 40 }}>
+                {<ListInvitations navigation={navigation} listId={id} />}
               </View>
             </View>
           );
