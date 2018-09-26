@@ -22,7 +22,7 @@
     "common-tags": "1.8.0",
     "expo": "29.0.1",
     "faker": "4.1.0",
-    "graphql": "0.13.2",
+    "graphql": "14.0.2",
     "graphql-subscriptions": "0.5.8",
     "graphql-tag": "2.9.2",
     "graphql-tools": "3.1.1",
