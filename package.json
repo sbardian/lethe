@@ -20,7 +20,7 @@
     "apollo-upload-client": "8.1.0",
     "apollo-utilities": "1.0.21",
     "common-tags": "1.8.0",
-    "expo": "29.0.1",
+    "expo": "30.0.1",
     "faker": "4.1.0",
     "graphql": "0.13.2",
     "graphql-subscriptions": "0.5.8",
