@@ -76,7 +76,7 @@ export default class App extends Component {
                 // uri: 'http://10.0.3.2:9999/graphql',
                 // ios
                 // uri: 'http://localhost:9999/graphql',
-                uri: 'https://letheapi-yjgjiqkuec.now.sh/graphql',
+                uri: 'https://letheapi-prjwpfgctu.now.sh/graphql',
               });
 
               const wsLink = new WebSocketLink({
@@ -85,7 +85,7 @@ export default class App extends Component {
                 // ios
                 // uri: 'wss://localhost:9999/subscriptions',
                 // now
-                uri: `wss://letheapi-yjgjiqkuec.now.sh/subscriptions`,
+                uri: `wss://letheapi-prjwpfgctu.now.sh/subscriptions`,
                 options: {
                   reconnect: true,
                   connectionParams: {
