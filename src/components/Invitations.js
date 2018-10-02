@@ -1,10 +1,11 @@
+/* eslint-disable global-require */
 import React from 'react';
 import { FlatList, View } from 'react-native';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Text, Card, CardItem, Body, Thumbnail, H3 } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
-import { AcceptInvitationIcon, DeclineInvitationIcon } from './';
+import { AcceptInvitationIcon, DeclineInvitationIcon } from './index';
 
 const GET_MY_INVITATIONS = gql`
   {
@@ -88,6 +89,7 @@ export const Invitations = () => (
             });
             return newInvitations;
           }
+          return prev;
         },
       });
       subscribeToMore({
@@ -107,6 +109,7 @@ export const Invitations = () => (
             });
             return newInvitations;
           }
+          return prev;
         },
       });
       return (

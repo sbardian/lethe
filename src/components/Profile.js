@@ -1,4 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 import {
   Alert,
@@ -133,12 +134,12 @@ export class Profile extends Component {
         [
           {
             text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
+            onPress: () => {},
             style: 'cancel',
           },
           {
             text: 'OK',
-            onPress: () => console.log('Ok Pressed'),
+            onPress: () => {},
           },
         ],
         { cancelable: true },
@@ -192,7 +193,7 @@ export class Profile extends Component {
 
     return (
       <Query query={GET_MY_INFO}>
-        {({ subscribeToMore, loading, error, data: { getMyInfo } = [] }) => {
+        {({ loading, error, data: { getMyInfo } = [] }) => {
           if (loading) return <Text>Loading...</Text>;
           if (error) return <Text>Error {error.message}</Text>;
 
@@ -209,6 +210,7 @@ export class Profile extends Component {
                 invitationsArray.push(newInvitation);
               });
             }
+            return [];
           });
 
           return (
@@ -240,7 +242,7 @@ export class Profile extends Component {
                         myImage = null;
                         this.onImageUploadSuccess();
                       }}
-                      onError={error => console.log('Error!: ', error)}
+                      onError={() => {}}
                       optimisticResponse={{
                         __typename: 'Mutation',
                         profileImageUpload: {
@@ -290,9 +292,7 @@ export class Profile extends Component {
                             style={[s.white]}
                             placeholder={username}
                             id="ListTitle"
-                            onChangeText={value =>
-                              console.log('new username: ', value)
-                            }
+                            onChangeText={() => {}}
                           />
                         </Item>
                         <Icon

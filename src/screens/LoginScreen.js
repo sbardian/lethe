@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   View,
@@ -145,8 +146,9 @@ export class LoginScreen extends Component {
     return (
       <TokenContext.Consumer>
         {({ token, setToken }) => {
+          const { navigation } = this.props;
           if (token) {
-            this.props.navigation.navigate('Home');
+            navigation.navigate('Home');
             return null;
           }
           const { menuExpanded, slidePage, pageScroll } = this.state;
@@ -164,6 +166,7 @@ export class LoginScreen extends Component {
                           height: size,
                           transform: [{ scale: this.imageBounce }],
                         }}
+                        /* eslint-disable-next-line global-require */
                         source={require('../images/brian.png')}
                       />
                     </TouchableOpacity>
@@ -252,3 +255,9 @@ export class LoginScreen extends Component {
     );
   }
 }
+
+LoginScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};

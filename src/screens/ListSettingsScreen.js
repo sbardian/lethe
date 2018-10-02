@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // eslint-disable-next-line import/no-unresolved
 import { ListSettings } from '../components/ListSettings/ListSettings';
 import { Screen } from './Screen';
@@ -26,3 +27,9 @@ export class ListSettingsScreen extends Component {
     );
   }
 }
+
+ListSettingsScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};

@@ -69,7 +69,7 @@ export class LoginForm extends Component {
           onCompleted={data => {
             onSetToken(data.login.token);
           }}
-          onError={error => console.log('Login error: ', error)}
+          onError={() => {}}
         >
           {(userLogin, { loading, error }) => (
             <View>

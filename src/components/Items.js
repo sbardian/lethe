@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 import gql from 'graphql-tag';
@@ -92,11 +92,19 @@ const DeleteItem = ({ render }) => (
   </Mutation>
 );
 
+DeleteItem.propTypes = {
+  render: PropTypes.func.isRequired,
+};
+
 const UpdateItem = ({ render }) => (
   <Mutation mutation={UPDATE_ITEM_STATUS}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 );
+
+UpdateItem.propTypes = {
+  render: PropTypes.func.isRequired,
+};
 
 const ComposedMutations = adopt({
   deleteItem: DeleteItem,
@@ -136,6 +144,7 @@ export class Items extends Component {
                 });
                 return newItems;
               }
+              return prev;
             },
           });
           subscribeToMore({
@@ -158,6 +167,7 @@ export class Items extends Component {
                 });
                 return newItems;
               }
+              return prev;
             },
           });
           subscribeToMore({
@@ -183,6 +193,7 @@ export class Items extends Component {
                 });
                 return newItems;
               }
+              return prev;
             },
           });
 
@@ -192,7 +203,7 @@ export class Items extends Component {
             <FlatList
               data={orderBy(items, ['title'], ['asc'])}
               extraData={orderBy(items, ['title'], ['asc'])}
-              renderItem={({ item, index }) => (
+              renderItem={({ item }) => (
                 <ComposedMutations itemId={item.id}>
                   {({ deleteItem, updateItem }) => (
                     <Swipeable
@@ -278,10 +289,7 @@ export class Items extends Component {
                         </TouchableOpacity>,
                       ]}
                     >
-                      <TouchableOpacity
-                        style={[s.pa3]}
-                        onPress={() => console.log('item pressed: ', index)}
-                      >
+                      <TouchableOpacity style={[s.pa3]} onPress={() => {}}>
                         <View style={[s.flx_row, s.aic]}>
                           {item.status ? (
                             <Icon

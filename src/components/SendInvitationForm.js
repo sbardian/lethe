@@ -93,7 +93,7 @@ export class SendInvitationForm extends Component {
               </Form>
               <Mutation
                 mutation={SEND_INVITATION}
-                onCompleted={data => {
+                onCompleted={() => {
                   Toast.show({
                     text: `Invitation has been successfully sent`,
                     buttonText: 'Ok',
@@ -104,9 +104,9 @@ export class SendInvitationForm extends Component {
                       navigation.navigate('ListSettings', { listId }),
                   });
                 }}
-                onError={error => {
+                onError={mutationError => {
                   Toast.show({
-                    text: `Failed to send invitation: ${error.message}`,
+                    text: `Failed to send invitation: ${mutationError.message}`,
                     buttonText: 'Ok',
                     type: 'danger',
                     position: 'bottom',
@@ -115,13 +115,13 @@ export class SendInvitationForm extends Component {
                   });
                 }}
               >
-                {(createInvitation, { loading }) => (
+                {(createInvitation, { mutationLoading }) => (
                   <View>
                     <Button
                       block
                       light
                       style={{ marginLeft: 20, marginRight: 20 }}
-                      disabled={loading}
+                      disabled={mutationLoading}
                       onPress={async () =>
                         createInvitation({
                           variables: {

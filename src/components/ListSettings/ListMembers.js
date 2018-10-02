@@ -48,7 +48,7 @@ GetUsers.propTypes = {
 const RemoveUser = ({ render }) => (
   <Mutation
     mutation={REMOVE_FROM_LIST}
-    update={() => console.log('updating after removing user')}
+    update={() => {}}
     onComplete={() => {
       Toast.show({
         text: `User removed from list.`,
@@ -141,7 +141,7 @@ export class ListMembers extends Component {
                           [
                             {
                               text: 'Cancel',
-                              onPress: () => console.log('Cancel Pressed'),
+                              onPress: () => {},
                               style: 'cancel',
                             },
                             {
