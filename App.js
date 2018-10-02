@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 import NativeTachyons from 'react-native-style-tachyons';
 import { AsyncStorage, StyleSheet } from 'react-native';
@@ -53,7 +54,8 @@ export default class App extends Component {
   }
 
   render() {
-    if (!this.state.isReady) {
+    const { isReady } = this.state;
+    if (!isReady) {
       return <Expo.AppLoading />;
     }
     return (
@@ -116,6 +118,7 @@ export default class App extends Component {
                     },
                   };
                 }
+                return null;
               });
 
               const link = from([authLink, /* errorLink, */ terminatingLink]);

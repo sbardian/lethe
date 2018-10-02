@@ -27,9 +27,9 @@ export class AddListItemScreen extends Component {
   }
 }
 
-AddListItemForm.displayName = 'AddListItemForm';
+AddListItemScreen.displayName = 'AddListItemForm';
 
-AddListItemForm.propTypes = {
+AddListItemScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,

@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 import { LoginScreen } from '../screens';
-import { stackConfig } from './';
+import { stackConfig } from './config';
 
 const loginRoutes = {
   Login: {

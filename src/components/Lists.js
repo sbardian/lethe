@@ -59,6 +59,7 @@ export const Lists = ({ navigation }) => (
             });
             return newLists;
           }
+          return prev;
         },
       });
       return (

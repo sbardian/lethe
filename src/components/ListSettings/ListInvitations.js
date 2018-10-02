@@ -1,16 +1,8 @@
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, View } from 'react-native';
-import {
-  Body,
-  H3,
-  Icon,
-  Text,
-  TouchableOpacity,
-  Card,
-  Thumbnail,
-  CardItem,
-} from 'native-base';
+import { Body, H3, Icon, Text, Card, Thumbnail, CardItem } from 'native-base';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { styles as s } from 'react-native-style-tachyons';
@@ -40,7 +32,7 @@ export class ListInvitations extends Component {
   state = {};
 
   render() {
-    const { listId, navigation } = this.props;
+    const { listId } = this.props;
 
     return (
       <Query query={GET_LIST_INVITATIONS} variables={{ id_is: listId }}>
@@ -53,8 +45,6 @@ export class ListInvitations extends Component {
           }
 
           const { invitations } = getLists[0];
-
-          console.log('invitations: ', invitations);
 
           return (
             <View>
