@@ -26,9 +26,9 @@ export class SendInvitationScreen extends Component {
   }
 }
 
-SendInvitationForm.displayName = 'SendInvitaionForm';
+SendInvitationScreen.displayName = 'SendInvitaionForm';
 
-SendInvitationForm.propTypes = {
+SendInvitationScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
