@@ -28,6 +28,15 @@ const GET_LIST_INVITATIONS = gql`
   }
 `;
 
+const GET_INVITEE = gql`
+  query getUser($userId: String!) {
+    getUser(userId: $userId) {
+      id
+      username
+    }
+  }
+`;
+
 export class ListInvitations extends Component {
   state = {};
 
@@ -45,6 +54,8 @@ export class ListInvitations extends Component {
           }
 
           const { invitations } = getLists[0];
+
+          console.log('invitation invitee: ', invitations);
 
           return (
             <View>
@@ -64,34 +75,62 @@ export class ListInvitations extends Component {
                 bordered
                 data={invitations}
                 renderItem={({ item }) => (
-                  <Card>
-                    <CardItem header bordered>
-                      <Thumbnail
-                        circle
-                        small
-                        style={{ marginRight: 10 }}
-                        source={
-                          item.inviter.profileImageUrl
-                            ? {
-                                uri: `https://${item.inviter.profileImageUrl}`,
+                  // TODO: make getUser none admin, or make invitee return User not String
+                  <Query
+                    query={GET_INVITEE}
+                    variables={{ userId: item.invitee }}
+                  >
+                    {({
+                      loading: inviteeLoading,
+                      error: inviteeError,
+                      data: { getUser },
+                    }) => {
+                      if (inviteeLoading) {
+                        return <Text>Loading...</Text>;
+                      }
+                      if (inviteeError) {
+                        return <Text>Error loading invitee...</Text>;
+                      }
+                      console.log('invitee: ', getUser);
+
+                      return (
+                        <Card>
+                          <CardItem header bordered>
+                            <Thumbnail
+                              circle
+                              small
+                              style={{ marginRight: 10 }}
+                              source={
+                                item.inviter.profileImageUrl
+                                  ? {
+                                      uri: `https://${
+                                        item.inviter.profileImageUrl
+                                      }`,
+                                    }
+                                  : require('../../images/defaultProfile.jpg')
                               }
-                            : require('../../images/defaultProfile.jpg')
-                        }
-                      />
-                      <Text>{`Invitation from: ${item.inviter.username}`}</Text>
-                    </CardItem>
-                    <CardItem>
-                      <Body>
-                        <H3>{item.title}</H3>
-                      </Body>
-                    </CardItem>
-                    <View style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}>
-                      <DeclineInvitationIcon
-                        buttonText="Delete"
-                        invitationId={item.id}
-                      />
-                    </View>
-                  </Card>
+                            />
+                            <Text>
+                              {`Invitation from: ${item.inviter.username}`}
+                            </Text>
+                          </CardItem>
+                          <CardItem>
+                            <Body>
+                              <H3>{item.title}</H3>
+                            </Body>
+                          </CardItem>
+                          <View
+                            style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}
+                          >
+                            <DeclineInvitationIcon
+                              buttonText="Delete"
+                              invitationId={item.id}
+                            />
+                          </View>
+                        </Card>
+                      );
+                    }}
+                  </Query>
                 )}
                 keyExtractor={item => item.id}
               />
