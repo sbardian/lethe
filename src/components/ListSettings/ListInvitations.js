@@ -33,6 +33,15 @@ const GET_LIST_INVITATIONS = gql`
   }
 `;
 
+const GET_INVITEE = gql`
+  query getUser($userId: String!) {
+    getUser(userId: $userId) {
+      id
+      username
+    }
+  }
+`;
+
 export class ListInvitations extends Component {
   state = {};
 
@@ -50,6 +59,8 @@ export class ListInvitations extends Component {
           }
 
           const { invitations } = getLists[0];
+
+          console.log('invitation invitee: ', invitations);
 
           return (
             <View>
