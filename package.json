@@ -17,7 +17,7 @@
     "apollo-link-schema": "1.1.1",
     "apollo-link-state": "0.4.2",
     "apollo-link-ws": "1.0.9",
-    "apollo-upload-client": "8.1.0",
+    "apollo-upload-client": "9.0.0",
     "apollo-utilities": "1.0.21",
     "common-tags": "1.8.0",
     "expo": "29.0.1",
