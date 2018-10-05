@@ -42,7 +42,7 @@
     "subscriptions-transport-ws": "0.9.15"
   },
   "devDependencies": {
-    "babel-eslint": "8.2.6",
+    "babel-eslint": "10.0.1",
     "babel-plugin-inline-import": "3.0.0",
     "eslint": "5.6.1",
     "eslint-config-airbnb": "17.1.0",
