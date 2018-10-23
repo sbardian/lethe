@@ -47,7 +47,7 @@ export class TokenProvider extends Component {
 }
 
 TokenProvider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.node,
 };
 
 TokenProvider.defaultProps = {

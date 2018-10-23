@@ -19,7 +19,12 @@ const GET_MY_INVITATIONS = gql`
           email
           profileImageUrl
         }
-        invitee
+        invitee {
+          id
+          username
+          email
+          profileImageUrl
+        }
         title
       }
     }
@@ -31,7 +36,12 @@ const INVITATION_ADDED = gql`
     invitationAdded {
       id
       title
-      invitee
+      invitee {
+        id
+        username
+        email
+        profileImageUrl
+      }
       inviter {
         id
         username
@@ -47,7 +57,12 @@ const INVITATION_DELETED = gql`
     invitationDeleted {
       id
       title
-      invitee
+      invitee {
+        id
+        username
+        email
+        profileImageUrl
+      }
       inviter {
         id
         username
@@ -139,6 +154,11 @@ export const Invitations = () => (
               <View style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}>
                 <AcceptInvitationIcon invitationId={item.id} />
                 <DeclineInvitationIcon
+                  buttonProps={{
+                    iconLeft: true,
+                    light: true,
+                    info: true,
+                  }}
                   buttonText="Decline"
                   invitationId={item.id}
                 />

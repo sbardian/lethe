@@ -10,11 +10,11 @@ export const Screen = ({ children, fab }) => (
 );
 
 Screen.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
-  fab: PropTypes.func,
+  children: PropTypes.node,
+  fab: PropTypes.node,
 };
 
 Screen.defaultProps = {
   children: null,
-  fab: () => {},
+  fab: null,
 };

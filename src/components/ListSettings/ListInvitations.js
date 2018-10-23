@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, View } from 'react-native';
-import { Body, H3, Icon, Text, Card, Thumbnail, CardItem } from 'native-base';
+import { Body, Icon, Text, Card, Thumbnail, CardItem } from 'native-base';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { styles as s } from 'react-native-style-tachyons';
@@ -16,7 +16,12 @@ const GET_LIST_INVITATIONS = gql`
       invitations {
         id
         title
-        invitee
+        invitee {
+          id
+          username
+          profileImageUrl
+          email
+        }
         inviter {
           id
           username
@@ -65,7 +70,7 @@ export class ListInvitations extends Component {
                 data={invitations}
                 renderItem={({ item }) => (
                   <Card>
-                    <CardItem header bordered>
+                    <CardItem bordered>
                       <Thumbnail
                         circle
                         small
@@ -78,19 +83,27 @@ export class ListInvitations extends Component {
                             : require('../../images/defaultProfile.jpg')
                         }
                       />
-                      <Text>{`Invitation from: ${item.inviter.username}`}</Text>
+                      <Text style={[s.mr3]}>
+                        {`Invitation from: ${item.inviter.username} to ${
+                          item.invitee.username
+                        }`}
+                      </Text>
+                      <DeclineInvitationIcon
+                        iconColor="#a01c1c"
+                        buttonProps={{
+                          danger: true,
+                          style: {
+                            backgroundColor: 'transparent',
+                          },
+                        }}
+                        invitationId={item.id}
+                      />
                     </CardItem>
                     <CardItem>
                       <Body>
-                        <H3>{item.title}</H3>
+                        <Text>{`Message: ${item.title}`}</Text>
                       </Body>
                     </CardItem>
-                    <View style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}>
-                      <DeclineInvitationIcon
-                        buttonText="Delete"
-                        invitationId={item.id}
-                      />
-                    </View>
                   </Card>
                 )}
                 keyExtractor={item => item.id}
