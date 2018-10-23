@@ -7,21 +7,9 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  FlatList,
   View,
 } from 'react-native';
-import {
-  Body,
-  Card,
-  Thumbnail,
-  CardItem,
-  H3,
-  Text,
-  Icon,
-  Item,
-  Label,
-  Input,
-} from 'native-base';
+import { Text, Icon, Item, Label, Input } from 'native-base';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { oneLine } from 'common-tags';
@@ -29,7 +17,7 @@ import { ImagePicker, Permissions } from 'expo';
 import { ReactNativeFile } from 'apollo-upload-client';
 import { styles as s } from 'react-native-style-tachyons';
 import backgroundImage from '../images/background.png';
-import { DeclineInvitationIcon } from './DeclineInvitationIcon';
+import defaultImage from '../images/defaultProfile.jpg';
 
 const styles = StyleSheet.create({
   container: {
@@ -107,6 +95,7 @@ export class Profile extends Component {
       fileToUpload: null,
       permissionStatus: true,
       editUsername: false,
+      defaultImage,
     };
   }
 
