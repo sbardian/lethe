@@ -18,7 +18,12 @@ const SEND_INVITATION = gql`
         username
         profileImageUrl
       }
-      invitee
+      invitee {
+        id
+        username
+        profileImageUrl
+        email
+      }
       list
       title
     }

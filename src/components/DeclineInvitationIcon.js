@@ -11,7 +11,9 @@ const DECLINE_INVITATION = gql`
       inviter {
         id
       }
-      invitee
+      invitee {
+        id
+      }
       list
       title
     }
@@ -30,7 +32,12 @@ const GET_MY_INFO = gql`
         invitations {
           id
           title
-          invitee
+          invitee {
+            id
+            username
+            profileImageUrl
+            email
+          }
           inviter {
             id
             username
@@ -52,14 +59,21 @@ const GET_MY_INVITATIONS = gql`
         inviter {
           id
         }
-        invitee
+        invitee {
+          id
+        }
         title
       }
     }
   }
 `;
 
-export const DeclineInvitationIcon = ({ invitationId, buttonText }) => (
+export const DeclineInvitationIcon = ({
+  invitationId,
+  buttonText = '',
+  buttonProps,
+  iconColor,
+}) => (
   <Mutation
     mutation={DECLINE_INVITATION}
     onCompleted={() =>
@@ -83,9 +97,7 @@ export const DeclineInvitationIcon = ({ invitationId, buttonText }) => (
   >
     {(declineInvitation, { loading }) => (
       <Button
-        iconLeft
-        light
-        info
+        {...buttonProps}
         disabled={loading}
         onPress={async () => {
           await declineInvitation({
@@ -101,8 +113,12 @@ export const DeclineInvitationIcon = ({ invitationId, buttonText }) => (
           });
         }}
       >
-        <Icon type="MaterialIcons" name="delete" />
-        <Text>{buttonText}</Text>
+        <Icon
+          style={{ color: iconColor }}
+          type="MaterialCommunityIcons"
+          name="delete-forever"
+        />
+        {buttonText && <Text>{buttonText}</Text>}
       </Button>
     )}
   </Mutation>
@@ -112,5 +128,9 @@ DeclineInvitationIcon.displayName = 'DeclineInvitationIcon';
 
 DeclineInvitationIcon.propTypes = {
   invitationId: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
+  buttonText: PropTypes.string,
+};
+
+DeclineInvitationIcon.defaultProps = {
+  buttonText: null,
 };

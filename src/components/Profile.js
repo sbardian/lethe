@@ -86,17 +86,6 @@ const GET_MY_INFO = gql`
       profileImageUrl
       lists {
         title
-        invitations {
-          id
-          title
-          invitee
-          inviter {
-            id
-            username
-            profileImageUrl
-            email
-          }
-        }
       }
     }
   }
@@ -197,21 +186,9 @@ export class Profile extends Component {
           if (loading) return <Text>Loading...</Text>;
           if (error) return <Text>Error {error.message}</Text>;
 
-          const { lists, username, email, profileImageUrl } = getMyInfo;
+          const { username, email, profileImageUrl } = getMyInfo;
 
           let myImage = profileImageUrl;
-
-          const invitationsArray = [];
-
-          lists.filter(list => {
-            if (list.invitations.length > 0) {
-              return list.invitations.forEach(invite => {
-                const newInvitation = { ...invite, listTitle: list.title };
-                invitationsArray.push(newInvitation);
-              });
-            }
-            return [];
-          });
 
           return (
             <View style={styles.container}>
@@ -314,47 +291,6 @@ export class Profile extends Component {
               </View>
               <View style={styles.contentContainer}>
                 <Text>Email: {email}</Text>
-              </View>
-              <View>
-                <FlatList
-                  bordered
-                  data={invitationsArray}
-                  renderItem={({ item }) => (
-                    <Card>
-                      <CardItem header bordered>
-                        <Thumbnail
-                          circle
-                          small
-                          style={{ marginRight: 10 }}
-                          source={
-                            item.inviter.profileImageUrl
-                              ? {
-                                  uri: `https://${
-                                    item.inviter.profileImageUrl
-                                  }`,
-                                }
-                              : require('../images/defaultProfile.jpg')
-                          }
-                        />
-                        <Text>{`Invitation for list: ${item.listTitle}`}</Text>
-                      </CardItem>
-                      <CardItem>
-                        <Body>
-                          <H3>{item.title}</H3>
-                        </Body>
-                      </CardItem>
-                      <View
-                        style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}
-                      >
-                        <DeclineInvitationIcon
-                          buttonText="Delete"
-                          invitationId={item.id}
-                        />
-                      </View>
-                    </Card>
-                  )}
-                  keyExtractor={item => item.id}
-                />
               </View>
             </View>
           );
