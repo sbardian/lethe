@@ -20,7 +20,7 @@
     "apollo-upload-client": "8.1.0",
     "apollo-utilities": "1.0.23",
     "common-tags": "1.8.0",
-    "expo": "29.0.1",
+    "expo": "^30.0.0",
     "faker": "4.1.0",
     "graphql": "0.13.2",
     "graphql-subscriptions": "0.5.8",
@@ -32,12 +32,12 @@
     "react": "16.3.1",
     "react-adopt": "0.6.0",
     "react-apollo": "2.2.4",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-device-detection": "0.2.0",
     "react-native-easy-grid": "0.2.0",
     "react-native-style-tachyons": "4.0.0",
     "react-native-swipeable": "0.6.0",
-    "react-navigation": "~2.3.1",
+    "react-navigation": "^2.13.0",
     "rn-viewpager": "1.2.9",
     "subscriptions-transport-ws": "0.9.15"
   },
@@ -51,7 +51,6 @@
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
     "husky": "1.1.2",
-    "jest": "23.6.0",
     "lint-staged": "7.3.0",
     "prettier": "1.14.3"
   }
