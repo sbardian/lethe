@@ -11,7 +11,12 @@ const ACCEPT_INVITATION = gql`
       inviter {
         id
       }
-      invitee
+      invitee {
+        id
+        username
+        profileImageUrl
+        email
+      }
       list
       title
     }
@@ -32,7 +37,12 @@ const GET_MY_INVITATIONS = gql`
         inviter {
           id
         }
-        invitee
+        invitee {
+          id
+          username
+          profileImageUrl
+          email
+        }
         title
       }
     }
