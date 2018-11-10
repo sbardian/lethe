@@ -17,7 +17,7 @@ import { ImagePicker, Permissions } from 'expo';
 import { ReactNativeFile } from 'apollo-upload-client';
 import { styles as s } from 'react-native-style-tachyons';
 import backgroundImage from '../images/background.png';
-import defaultImage from '../images/defaultProfile.jpg';
+import defaultProfileImage from '../images/defaultProfile.jpg';
 
 const styles = StyleSheet.create({
   container: {
@@ -95,7 +95,7 @@ export class Profile extends Component {
       fileToUpload: null,
       permissionStatus: true,
       editUsername: false,
-      defaultImage,
+      defaultImage: defaultProfileImage,
     };
   }
 
