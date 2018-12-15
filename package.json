@@ -12,7 +12,7 @@
     "apollo-client": "2.4.7",
     "apollo-link": "1.2.6",
     "apollo-link-context": "1.0.12",
-    "apollo-link-error": "1.1.4",
+    "apollo-link-error": "1.1.5",
     "apollo-link-http": "1.5.9",
     "apollo-link-schema": "1.1.4",
     "apollo-link-state": "0.4.2",
