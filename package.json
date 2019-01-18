@@ -18,7 +18,7 @@
     "apollo-link-state": "0.4.2",
     "apollo-link-ws": "1.0.12",
     "apollo-upload-client": "8.1.0",
-    "apollo-utilities": "1.1.1",
+    "apollo-utilities": "1.1.2",
     "common-tags": "1.8.0",
     "expo": "31.0.6",
     "faker": "4.1.0",
