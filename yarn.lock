@@ -862,15 +862,15 @@
     "@types/cross-spawn" "^6.0.0"
     cross-spawn "^6.0.5"
 
-"@expo/traveling-fastlane-darwin@1.7.1":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-darwin/-/traveling-fastlane-darwin-1.7.1.tgz#8fae15172b94802d06dca6917ee78658b9c4d43e"
-  integrity sha512-IXupqO0LnEGBCqorD5MalHSThIcIXZ9awBa8MFXcW1z/vaPqvze7A2cdxWjZkoOqHsq9pbO7m+wq3B/diSRtTw==
+"@expo/traveling-fastlane-darwin@1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-darwin/-/traveling-fastlane-darwin-1.8.0.tgz#da48889a73f555f4d1b7a3cfa33bb76af829d2a8"
+  integrity sha512-bPBWLRVjvbRczhprwL10GPW9WCuAG/vQ+FtrvyCZDOetWNR2IOJUGJCRPjjItLCKZ/FLk4BFb+/yZ0RDjRPv/A==
 
-"@expo/traveling-fastlane-linux@1.7.1":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-linux/-/traveling-fastlane-linux-1.7.1.tgz#141f4c9c904996aeced80470d494566721a9739f"
-  integrity sha512-26la+IP0Z8bm/YEUHPQ9tAfsvEXLKZK4hLZpQRIwTZgyP91DM/3MS4Bwg1TLjpjQ/jMKr3vOjnTSvhIarZy5ew==
+"@expo/traveling-fastlane-linux@1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-linux/-/traveling-fastlane-linux-1.8.0.tgz#c7b866495817bf1f5b8dfe66156ce7232842e184"
+  integrity sha512-O5Uot2/vS2jHesagIprflwTVeIiIF9Z7yRV73ll++KU9m+UmoXHaerw39be1pKFngS14OPRATCMEzUfL6bx/Aw==
 
 "@expo/vector-icons@9.0.0", "@expo/vector-icons@~9.0.0":
   version "9.0.0"
@@ -3460,10 +3460,10 @@ expo-camera@~2.0.0:
     lodash.mapvalues "^4.6.0"
     prop-types "^15.6.0"
 
-expo-cli@2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.11.0.tgz#2fdaf15e790ad46671c80143505ee45c14aa3983"
-  integrity sha512-DwW4PK9noWAhmrCpufRGa7JHb4kK9VdshZ+pPUa7e8sooG4fFN5ZjbKMrroBck+C9LgKpZC0OMXiYUMaGL5mdQ==
+expo-cli@2.11.1:
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.11.1.tgz#2b8e8658e1ee8fde1df40155c21e14832215e052"
+  integrity sha512-GXxP22EznxuesYbdIENflEvjACh7V5s2fauPjB07qh58x9nyVb+NPUZSC98VMl32cGqbGYOZwx9NByk6s+lo2A==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/dev-tools" "^0.3.0"
@@ -3503,8 +3503,8 @@ expo-cli@2.11.0:
     wordwrap "1.0.0"
     xdl "^53.1.0"
   optionalDependencies:
-    "@expo/traveling-fastlane-darwin" "1.7.1"
-    "@expo/traveling-fastlane-linux" "1.7.1"
+    "@expo/traveling-fastlane-darwin" "1.8.0"
+    "@expo/traveling-fastlane-linux" "1.8.0"
 
 expo-constants-interface@~2.0.0:
   version "2.0.0"
