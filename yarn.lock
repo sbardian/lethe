@@ -3965,10 +3965,6 @@ fbemitter@^2.1.1:
   dependencies:
     fbjs "^0.8.4"
 
-fbjs-css-vars@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.1.tgz#836d876e887d702f45610f5ebd2fbeef649527fc"
-
 fbjs-scripts@^0.8.1:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/fbjs-scripts/-/fbjs-scripts-0.8.3.tgz#b854de7a11e62a37f72dab9aaf4d9b53c4a03174"
@@ -4008,19 +4004,6 @@ fbjs@^0.8.0, fbjs@^0.8.16, fbjs@^0.8.4, fbjs@^0.8.9:
     promise "^7.1.1"
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
-
-fbjs@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-1.0.0.tgz#52c215e0883a3c86af2a7a776ed51525ae8e0a5a"
-  dependencies:
-    core-js "^2.4.1"
-    fbjs-css-vars "^1.0.0"
-    isomorphic-fetch "^2.1.1"
-    loose-envify "^1.0.0"
-    object-assign "^4.1.0"
-    promise "^7.1.1"
-    setimmediate "^1.0.5"
-    ua-parser-js "^0.7.18"
 
 figgy-pudding@^3.4.1, figgy-pudding@^3.5.1:
   version "3.5.1"
@@ -5624,10 +5607,6 @@ lodash.filter@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.filter/-/lodash.filter-4.6.0.tgz#668b1d4981603ae1cc5a6fa760143e480b4c4ace"
   integrity sha1-ZosdSYFgOuHMWm+nYBQ+SAtMSs4=
-
-lodash.flowright@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.flowright/-/lodash.flowright-3.5.0.tgz#2b5fff399716d7e7dc5724fe9349f67065184d67"
 
 lodash.isequal@^4.5.0:
   version "4.5.0"
@@ -7483,16 +7462,17 @@ react-adopt@0.6.0:
     react "^16.3.2"
     react-display-name "^0.2.4"
 
-react-apollo@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.4.1.tgz#89db63ebacf01c1603553bb476f089492aaeab2c"
+react-apollo@2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.0.tgz#e66e3763f15173026b63bcc4cb11a0e61f38e908"
+  integrity sha512-AlLPEY7zCRaEiaolBU3HnpfZXmiPUZEPBY8tuK8El7xHgBPAlmURpirFF00BjvZmcU4TP54ghYYrKreuCGCfyw==
   dependencies:
-    fbjs "^1.0.0"
+    apollo-utilities "^1.2.0"
     hoist-non-react-statics "^3.0.0"
-    invariant "^2.2.2"
-    lodash.flowright "^3.5.0"
     lodash.isequal "^4.5.0"
     prop-types "^15.6.0"
+    ts-invariant "^0.2.1"
+    tslib "^1.9.3"
 
 react-clone-referenced-element@^1.0.1:
   version "1.0.1"
