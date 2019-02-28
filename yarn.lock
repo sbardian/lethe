@@ -711,10 +711,10 @@
     mv "~2"
     safe-json-stringify "~1"
 
-"@expo/dev-tools@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.3.2.tgz#a45bfd5832bfc4f9f6616c0341a7656a4a2376c8"
-  integrity sha512-REb6KeyfmjyKUJUvkVdRewerHbprJxZQ8P4RLy87wa9LZnCAr0TDQr6YUWO3qOY/0Ye1whGTBCF9sYsPSqf8yA==
+"@expo/dev-tools@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.3.3.tgz#15ac00413b9087f499cc93afd0391538dd63ea08"
+  integrity sha512-CFtcS+xLQrZFQze1ueAfS2HnxrlNLjKqVQBOMDQY9pckdaeqLxg+B7HKuDQb3AlddhYUMzBHYX5hvgoTvEi3WA==
   dependencies:
     express "4.16.4"
     freeport-async "1.1.1"
@@ -2094,7 +2094,7 @@ bl@^1.0.0:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
-bluebird@^3.5.1, bluebird@^3.5.2, bluebird@^3.5.3:
+bluebird@^3.5.1, bluebird@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
   integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
@@ -2230,7 +2230,7 @@ bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
 
-cacache@^11.0.1, cacache@^11.2.0, cacache@^11.3.2:
+cacache@^11.0.1, cacache@^11.3.2:
   version "11.3.2"
   resolved "https://registry.yarnpkg.com/cacache/-/cacache-11.3.2.tgz#2d81e308e3d258ca38125b676b98b2ac9ce69bfa"
   integrity sha512-E0zP4EPGDOaT2chM08Als91eYnf8Z+eH1awwwVsngUmgppfM5jjJ8l3z5vO5p5w/I3LsiXawb1sW0VY65pQABg==
@@ -3463,13 +3463,13 @@ expo-camera@~2.0.0:
     lodash.mapvalues "^4.6.0"
     prop-types "^15.6.0"
 
-expo-cli@2.11.3:
-  version "2.11.3"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.11.3.tgz#52365269800bc9a0a7d22292bb3a316b54b848c2"
-  integrity sha512-yXaLLlWyTCZBxPvxqTsJQyEyQ6E+EbidES9AIfwKeJ0vwvlVQxj2KBWpBIxySntpsVO2pIpsOdzkHbubDhUgYA==
+expo-cli@2.11.6:
+  version "2.11.6"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.11.6.tgz#9655affcc63378447cac0c57b9d4b9c0cd13f4fc"
+  integrity sha512-PlowTy9KtFfGNUQkDz2zMWlvegxBEpinhff/TVS5kErC+ZPSuT2yUlJOpLRBNVVVY1ZVRw9uIjYrNz4LnOTHjg==
   dependencies:
     "@expo/bunyan" "3.0.2"
-    "@expo/dev-tools" "^0.3.2"
+    "@expo/dev-tools" "^0.3.3"
     "@expo/json-file" "8.1.0"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.3.0"
@@ -3504,7 +3504,7 @@ expo-cli@2.11.3:
     untildify "3.0.3"
     validator "10.5.0"
     wordwrap "1.0.0"
-    xdl "^53.1.2"
+    xdl "^53.1.3"
   optionalDependencies:
     "@expo/traveling-fastlane-darwin" "1.8.0"
     "@expo/traveling-fastlane-linux" "1.8.0"
@@ -6203,17 +6203,17 @@ minimist@~0.0.1:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
-minipass@^2.2.1, minipass@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.3.tgz#a7dcc8b7b833f5d368759cce544dccb55f50f233"
+minipass@2.3.5, minipass@^2.3.4, minipass@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.5.tgz#cacebe492022497f656b0f0f51e2682a9ed2d848"
+  integrity sha512-Gi1W4k059gyRbyVUZQ4mEqLm0YIUiGYfvxhF6SIlk3ui1WVxMTGfGdQ2SInh3PDrRTVvPKgULkpJtT4RH10+VA==
   dependencies:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
 
-minipass@^2.3.4, minipass@^2.3.5:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.5.tgz#cacebe492022497f656b0f0f51e2682a9ed2d848"
-  integrity sha512-Gi1W4k059gyRbyVUZQ4mEqLm0YIUiGYfvxhF6SIlk3ui1WVxMTGfGdQ2SInh3PDrRTVvPKgULkpJtT4RH10+VA==
+minipass@^2.2.1, minipass@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.3.tgz#a7dcc8b7b833f5d368759cce544dccb55f50f233"
   dependencies:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
@@ -6877,39 +6877,6 @@ package-json@^5.0.0:
     registry-auth-token "^3.3.2"
     registry-url "^3.1.0"
     semver "^5.5.0"
-
-pacote@9.2.3:
-  version "9.2.3"
-  resolved "https://registry.yarnpkg.com/pacote/-/pacote-9.2.3.tgz#48cfe87beb9177acd6594355a584a538835424b3"
-  integrity sha512-Y3+yY3nBRAxMlZWvr62XLJxOwCmG9UmkGZkFurWHoCjqF0cZL72cTOCRJTvWw8T4OhJS2RTg13x4oYYriauvEw==
-  dependencies:
-    bluebird "^3.5.2"
-    cacache "^11.2.0"
-    figgy-pudding "^3.5.1"
-    get-stream "^4.1.0"
-    glob "^7.1.3"
-    lru-cache "^4.1.3"
-    make-fetch-happen "^4.0.1"
-    minimatch "^3.0.4"
-    minipass "^2.3.5"
-    mississippi "^3.0.0"
-    mkdirp "^0.5.1"
-    normalize-package-data "^2.4.0"
-    npm-package-arg "^6.1.0"
-    npm-packlist "^1.1.12"
-    npm-pick-manifest "^2.2.3"
-    npm-registry-fetch "^3.8.0"
-    osenv "^0.1.5"
-    promise-inflight "^1.0.1"
-    promise-retry "^1.1.1"
-    protoduck "^5.0.1"
-    rimraf "^2.6.2"
-    safe-buffer "^5.1.2"
-    semver "^5.6.0"
-    ssri "^6.0.1"
-    tar "^4.4.6"
-    unique-filename "^1.1.1"
-    which "^1.3.1"
 
 pacote@9.3.0:
   version "9.3.0"
@@ -8833,7 +8800,7 @@ tar@^4:
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
 
-tar@^4.4.6, tar@^4.4.8:
+tar@^4.4.8:
   version "4.4.8"
   resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.8.tgz#b19eec3fde2a96e64666df9fdb40c5ca1bc3747d"
   integrity sha512-LzHF64s5chPQQS0IYBn9IN5h3i98c12bo4NCO7e0sGM2llXQ3p2FGC5sdENN4cTW48O915Sh+x+EXx7XW96xYQ==
@@ -9404,10 +9371,10 @@ xcode@^0.9.1:
     simple-plist "^0.2.1"
     uuid "3.0.1"
 
-xdl@^53.1.2:
-  version "53.1.2"
-  resolved "https://registry.yarnpkg.com/xdl/-/xdl-53.1.2.tgz#789ddda83296188af8189cd1826cfd6578cb586a"
-  integrity sha512-nO/bI3HeQ3rF3LhkJ4XLNfYpd7nSDfS2fIGzlRdPYdPBBSwgK38nLVNZvZiktOK5KdHRlYRJVRwjuH5TnjAD6w==
+xdl@^53.1.3:
+  version "53.1.3"
+  resolved "https://registry.yarnpkg.com/xdl/-/xdl-53.1.3.tgz#976ff7a6504fc1f19770e591652741670478926d"
+  integrity sha512-LRice5sbJjXhEFLjcgoeHy2OqK+ULhbxHYSYs+gR/+POFinaKffC6xhEhROtf14H0Nx8uJ/Kj+egTuACC4j6oQ==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/json-file" "8.1.0"
@@ -9443,12 +9410,13 @@ xdl@^53.1.2:
     lodash "4.17.10"
     md5hex "1.0.0"
     minimatch "3.0.4"
+    minipass "2.3.5"
     mv "2.1.1"
     ncp "2.0.0"
     node-forge "0.7.6"
     opn "5.4.0"
     p-timeout "2.0.1"
-    pacote "9.2.3"
+    pacote "9.3.0"
     plist "2.1.0"
     probe-image-size "^4.0.0"
     querystring "0.2.0"
