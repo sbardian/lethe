@@ -880,7 +880,14 @@
   resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-linux/-/traveling-fastlane-linux-1.8.2.tgz#1b6040c912b8ac6ef3538fee0d610a19e87ab6cd"
   integrity sha512-jgP/rZzpROEjXxNRRO2n7udIitcRVx+CBHVi3iIOvPsZXvJVuHL7kh7pDNY1JY7WomcFNTwWoO/rvbLhL0bqCg==
 
-"@expo/vector-icons@9.0.0", "@expo/vector-icons@~9.0.0":
+"@expo/vector-icons@10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-10.0.0.tgz#e66729818a802681d7c8c30a0393f44e546c1265"
+  integrity sha512-2xa50wtYCQboArwMKTVUmxppEnLfQb1itsvOe4SO8Wufic6nvWvUPKRTubFdckncebd1aC3xwby01xr6Jybkdg==
+  dependencies:
+    lodash "^4.17.4"
+
+"@expo/vector-icons@~9.0.0":
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-9.0.0.tgz#7f18e21d3edc8b99b76d7d1b8e26b212393e08b3"
   integrity sha512-k5ndrW3oueW5jRDLt3o8iXKmiU+CvvCZPewOvxY7eRMivi8hIr6TkW6tMCGE1vS5fwmXffIkIpKGZkSbX7TxwA==

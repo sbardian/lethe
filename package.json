@@ -6,7 +6,7 @@
   },
   "private": true,
   "dependencies": {
-    "@expo/vector-icons": "9.0.0",
+    "@expo/vector-icons": "10.0.0",
     "apollo-cache-inmemory": "1.5.1",
     "apollo-cache-persist": "0.1.1",
     "apollo-client": "2.5.1",
