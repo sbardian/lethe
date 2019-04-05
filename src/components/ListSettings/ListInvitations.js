@@ -33,6 +33,31 @@ const GET_LIST_INVITATIONS = gql`
   }
 `;
 
+const LIST_SETTINGS_UPDATED = gql`
+  query getLists($id_is: String!) {
+    getLists(id_is: $id_is) {
+      id
+      owner
+      invitations {
+        id
+        title
+        invitee {
+          id
+          username
+          profileImageUrl
+          email
+        }
+        inviter {
+          id
+          username
+          profileImageUrl
+          email
+        }
+      }
+    }
+  }
+`;
+
 export class ListInvitations extends Component {
   state = {};
 
@@ -41,13 +66,22 @@ export class ListInvitations extends Component {
 
     return (
       <Query query={GET_LIST_INVITATIONS} variables={{ id_is: listId }}>
-        {({ loading, error, data: { getLists = [] } }) => {
+        {({ subscribeToMore, loading, error, data: { getLists = [] } }) => {
           if (loading) {
             return <Text>Loading...</Text>;
           }
           if (error) {
             return <Text>Something went wrong, please try again.</Text>;
           }
+
+          subscribeToMore({
+            document: LIST_SETTINGS_UPDATED,
+            variables: { id_is: listId },
+            updateQuery: (prev, { subscriptionData }) => {
+              if (!subscriptionData.data) return prev;
+              return subscriptionData.data;
+            },
+          });
 
           const { invitations } = getLists[0];
 
