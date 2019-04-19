@@ -4998,10 +4998,10 @@ expo-camera@~2.0.0:
     lodash.mapvalues "^4.6.0"
     prop-types "^15.6.0"
 
-expo-cli@2.15.2:
-  version "2.15.2"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.15.2.tgz#ad9514b9c126c3490d83c1ae1d29d787f06a9cd9"
-  integrity sha512-vd7c8qpgyz1bDhjsC23gBRHss8/S8qEu3rkqxbL/IPANmvoFqH0i+48t0bE0INhB2sQXqFB4lW47JEP9bUGQOw==
+expo-cli@2.15.3:
+  version "2.15.3"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.15.3.tgz#dd478f6fc90690639060c9ae0442bcd04f5ecffe"
+  integrity sha512-S08bDtRH9hMTAVM3G489xdXwfMBmk39M2Y7T3H5JCDQOgCgJ2V+NoKOrnx77IY/mEt40Ohu1Jrj0gF+ZjyuqCQ==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^1.0.2"
