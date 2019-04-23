@@ -734,22 +734,22 @@
     mv "~2"
     safe-json-stringify "~1"
 
-"@expo/config@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@expo/config/-/config-1.0.2.tgz#1c2c4683895ecc5407f1a3a8868debeee22904bb"
-  integrity sha512-5xp1RLbIxxNw2MwT+zRKdGNMrsPj4OcmBM5T602yQNRc+kmzXAVAHcpVlSk1QfZ5GylTUmGlwcM5X/yhiTBsGw==
+"@expo/config@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@expo/config/-/config-1.0.3.tgz#7e99eae02f103aa9e2c0597ebef9e509a84ceb7d"
+  integrity sha512-eTX0PedX+x9jjYUlc/dO9lwsLt01V7zDiDsS4n02GVY1X+dLGuq7NiZ3nfazJ3EBE45fJn3lGNydOdRGZFC6lQ==
   dependencies:
     "@expo/json-file" "^8.1.2"
     fs-extra "^7.0.1"
     resolve-from "^4.0.0"
     slugify "^1.3.4"
 
-"@expo/dev-tools@^0.5.4":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.5.4.tgz#2aaf4afc80c13d3b686e67e8b5c41a8ccedf48af"
-  integrity sha512-SyybMd3tI4pGg0QW2w1LkqqqsDYOmuc6zgZxGBphiYFomoLxm7lY6tVO4Dmq6dCaXpaQpTsv5aRUntr08mMYfg==
+"@expo/dev-tools@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.5.5.tgz#9569a05f636238b72a8af723cf76cd02339c6ee4"
+  integrity sha512-rYi+W4CB2n6E0wSEPYxzxP+cfPfCQkrkSZD9qfssESEvsl9oBmPpqg0dQNch3MlEBvhELpQttYUZ3FGbminEmQ==
   dependencies:
-    "@expo/config" "^1.0.2"
+    "@expo/config" "^1.0.3"
     express "4.16.4"
     freeport-async "1.1.1"
     graphql "0.13.2"
@@ -921,10 +921,10 @@
     lodash "^4.17.4"
     react-native-vector-icons "6.0.0"
 
-"@expo/webpack-config@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.5.2.tgz#eafc7ac6ec6581629e40962eafe8d71f7c2eef20"
-  integrity sha512-YcySFO5O++UbBJbP1FNHCQJ+RoIvBkUZ8fVcQ/46mdMSULsZoiNouUG4bJUhFiAdzwbzwIv8psOdp7hhLcCKMQ==
+"@expo/webpack-config@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.5.3.tgz#51b0d376b6404f1eeb61fbe6753868d68dcd6973"
+  integrity sha512-mltsA3jLK4gld7uzjWdzeEVvOQG9fuj1fTFC3zVH/AZrxi8NDWspZOGdtucew20RkqzZTNgLrMiZ+n56n6mGnw==
   dependencies:
     "@babel/core" "^7.0.0"
     "@babel/polyfill" "^7.2.5"
@@ -4998,14 +4998,14 @@ expo-camera@~2.0.0:
     lodash.mapvalues "^4.6.0"
     prop-types "^15.6.0"
 
-expo-cli@2.15.3:
-  version "2.15.3"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.15.3.tgz#dd478f6fc90690639060c9ae0442bcd04f5ecffe"
-  integrity sha512-S08bDtRH9hMTAVM3G489xdXwfMBmk39M2Y7T3H5JCDQOgCgJ2V+NoKOrnx77IY/mEt40Ohu1Jrj0gF+ZjyuqCQ==
+expo-cli@2.15.4:
+  version "2.15.4"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.15.4.tgz#bf9df040d23545f81fe8e0f653c059d8d606035a"
+  integrity sha512-NjBSAQ38NSuYXotY/rarVX3MIQLh5olXrbl3rOCy4JTi6w0a6tOdGCv7pJZbyQ78Gm8Kw03hstvqQ9FchfTqnQ==
   dependencies:
     "@expo/bunyan" "3.0.2"
-    "@expo/config" "^1.0.2"
-    "@expo/dev-tools" "^0.5.4"
+    "@expo/config" "^1.0.3"
+    "@expo/dev-tools" "^0.5.5"
     "@expo/json-file" "^8.1.2"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.4.2"
@@ -5042,7 +5042,7 @@ expo-cli@2.15.3:
     untildify "3.0.3"
     validator "10.5.0"
     wordwrap "1.0.0"
-    xdl "^53.5.3"
+    xdl "^53.5.4"
   optionalDependencies:
     "@expo/traveling-fastlane-darwin" "1.9.3"
     "@expo/traveling-fastlane-linux" "1.9.3"
@@ -13110,19 +13110,19 @@ xcode@^0.9.1:
     simple-plist "^0.2.1"
     uuid "3.0.1"
 
-xdl@^53.5.3:
-  version "53.5.3"
-  resolved "https://registry.yarnpkg.com/xdl/-/xdl-53.5.3.tgz#2aa96cd67772372d9d4abfc54a026a390b0d631b"
-  integrity sha512-zN4/Urah/VyLBA8bdAlDVgsp2EaxMklVx0TMAU86ftuzmgeUBvvLMd5/wVuiVhlNg8sKsav4T/cWTPgk8ukE/Q==
+xdl@^53.5.4:
+  version "53.5.4"
+  resolved "https://registry.yarnpkg.com/xdl/-/xdl-53.5.4.tgz#50e300bb89cd2703f7a458227eba5e4aa3a16863"
+  integrity sha512-1H4xYzm51zQD9KaifOf2ike3DByHGpdIjYM2TRjCBwPbi82mVbeXUiGL+0azYcHCWqE07LnRzMvlcCD9+WhBUg==
   dependencies:
     "@expo/bunyan" "3.0.2"
-    "@expo/config" "^1.0.2"
+    "@expo/config" "^1.0.3"
     "@expo/json-file" "^8.1.2"
     "@expo/ngrok" "2.4.3"
     "@expo/osascript" "^1.9.2"
     "@expo/schemer" "^1.2.4"
     "@expo/spawn-async" "1.4.2"
-    "@expo/webpack-config" "^0.5.2"
+    "@expo/webpack-config" "^0.5.3"
     analytics-node "^2.1.0"
     axios v0.19.0-beta.1
     chalk "2.4.1"
