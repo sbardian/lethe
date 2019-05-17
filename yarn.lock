@@ -1250,10 +1250,10 @@
     resolve-from "^4.0.0"
     slugify "^1.3.4"
 
-"@expo/dev-tools@^0.5.11":
-  version "0.5.11"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.5.11.tgz#5899f6ff79ace432a12d396037ce8d6697f1a8b2"
-  integrity sha512-TiRto8TCMLS0Y6//CkOL5/VTEGsnZXCKPBuG6TcW6kvS8X2VuLwvxlkdbjwYlmNVbH5N5ubSNOZ9tGlkxfojKQ==
+"@expo/dev-tools@^0.5.12":
+  version "0.5.12"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.5.12.tgz#3806fb2abc5c4dd2ea71b8e5ed0b03bc1e9bdaed"
+  integrity sha512-K1pTSIgWwOlB/+gCI/EfEZJdGaAnvJG7YVLsp7nEO2KVYaUQwkiFIzNL5wByIu0ZbTLcXWeduC3Ag1za0/M9BA==
   dependencies:
     "@expo/config" "^1.0.4"
     express "4.16.4"
@@ -5564,14 +5564,14 @@ expo-camera@~2.0.0:
     lodash.mapvalues "^4.6.0"
     prop-types "^15.6.0"
 
-expo-cli@2.17.3:
-  version "2.17.3"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.17.3.tgz#1d4fb88415f0a14726fb78f240d45b04761282b0"
-  integrity sha512-UnKDkeLkRHeI0J2/ZhLKqdZznsjbR05ddNekhn9z3kD+CvFpDjDxRij7xZ1Yb+Goeoq2MplK385TiASMpsyWCg==
+expo-cli@2.18.0:
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.18.0.tgz#495a44e6c7bf0c7bdeb8f49692a28081de22d5e1"
+  integrity sha512-acRy0AlFCjFjdd+p0+N5lS6JElEMlssWKp8Nb+GsnXtnDOWw/x7tpb9kko6ccAHhIl3Gi9+OeSfOvPDgbdT/DA==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^1.0.4"
-    "@expo/dev-tools" "^0.5.11"
+    "@expo/dev-tools" "^0.5.12"
     "@expo/json-file" "^8.1.2"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.4.2"
@@ -5612,7 +5612,7 @@ expo-cli@2.17.3:
     untildify "3.0.3"
     validator "10.5.0"
     wordwrap "1.0.0"
-    xdl "^53.7.3"
+    xdl "^53.7.4"
   optionalDependencies:
     "@expo/traveling-fastlane-darwin" "1.9.4"
     "@expo/traveling-fastlane-linux" "1.9.4"
@@ -13841,10 +13841,10 @@ xcode@^0.9.1:
     simple-plist "^0.2.1"
     uuid "3.0.1"
 
-xdl@^53.7.3:
-  version "53.7.3"
-  resolved "https://registry.yarnpkg.com/xdl/-/xdl-53.7.3.tgz#1fa227062a27a52951383d40f9d905d5a076fd73"
-  integrity sha512-HDiz+AWQwLaf3HsP74eKlSPbVeuWRy3iRExtk8F5qlMaPoUUuWT7YqFERLjP+ynabavuh61Is9HNond5JMAd4A==
+xdl@^53.7.4:
+  version "53.7.4"
+  resolved "https://registry.yarnpkg.com/xdl/-/xdl-53.7.4.tgz#002010c78a3694e84b96aeccf9f0387da32e371a"
+  integrity sha512-jJdpiesDZheQu0vUMSN4kW33OMFhLqEQVmtLldBqSbvDKmexsbBIBj6smtw9RbYy6teiCYQvPm3Y7Hy+puQFiQ==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^1.0.4"
