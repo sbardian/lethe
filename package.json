@@ -27,7 +27,7 @@
     "graphql": "14.3.1",
     "graphql-subscriptions": "1.1.0",
     "graphql-tag": "2.10.1",
-    "graphql-tools": "4.0.4",
+    "graphql-tools": "4.0.5",
     "lodash": "4.17.11",
     "native-base": "2.12.1",
     "prop-types": "15.7.2",
