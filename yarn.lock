@@ -1243,10 +1243,10 @@
     resolve-from "^5.0.0"
     slugify "^1.3.4"
 
-"@expo/dev-tools@^0.5.32":
-  version "0.5.32"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.5.32.tgz#b204db0fa2d18aec4882aff9165519c9db308a08"
-  integrity sha512-B2YXOw8PldWBBLYT8t3JU5ZxDUKw9ih0pQxv7jtOSrktI2ZSpju1twNu0hcACm9PNCQgwZQuVH05mzZBShJ8yg==
+"@expo/dev-tools@^0.5.33":
+  version "0.5.33"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.5.33.tgz#07b15ab23b5ad270139185287dd2b9365dad48fe"
+  integrity sha512-9iSEWHu1AQzgbWh58C1Eg59PqY9DHrU52Q8L0CVcmgT4f0OfV0CTc0DqhGoW8RA8DAykWH2FsSeFQL4pY9rL9Q==
   dependencies:
     "@expo/config" "^2.0.3"
     express "4.16.4"
@@ -1483,10 +1483,10 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@^55.0.8":
-  version "55.0.8"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-55.0.8.tgz#0ada616de697d152fa58a98d1e37dca45897a1f3"
-  integrity sha512-HJjvRMkwJHELS9Uk1znrU7I411Nv+RoX+2gE/kr6RNc19dNdkTPas/LClaD4TcMin3uOhz2kgigzwLbE4Hz37A==
+"@expo/xdl@^55.0.9":
+  version "55.0.9"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-55.0.9.tgz#58eefc8f5520c05335dce2a360adc152375718f1"
+  integrity sha512-4iqJ82klibjEN+xvj4gA0PEp36sxD6mnHXmTpVYw7u9AFhFlgqcAOq/ILP/5eFkyk8jQmRnvYwUZCIBS9hInXw==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^2.0.3"
@@ -5428,18 +5428,18 @@ expo-camera@~2.0.0:
     lodash.mapvalues "^4.6.0"
     prop-types "^15.6.0"
 
-expo-cli@2.20.8:
-  version "2.20.8"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.20.8.tgz#09921ba4e29237f234eeaa63f647a0902ea0f8e9"
-  integrity sha512-incxJbmS4+R6UhR9eMwstDyXejzgxs6EYvRUl2y1KOl8VGshhjWn/aQ2+KV/kXnupLNi/Tfe2oLSUMsNfEkdVg==
+expo-cli@2.20.9:
+  version "2.20.9"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-2.20.9.tgz#1241b027b4e272ebe3f3a596df2041a8a5ea85c0"
+  integrity sha512-7fErddzWeAWSAhwnuXBd2UYT8qnKzkiUWWpsL/s2YkGNbO573afgzYdx6P4WgoJEYeeSEBjm44mopUMOX78dOA==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^2.0.3"
-    "@expo/dev-tools" "^0.5.32"
+    "@expo/dev-tools" "^0.5.33"
     "@expo/json-file" "^8.1.5"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "^55.0.8"
+    "@expo/xdl" "^55.0.9"
     ansi-regex "^4.1.0"
     axios "0.18.0"
     babel-runtime "6.26.0"
