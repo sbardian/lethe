@@ -24,7 +24,7 @@
     "expo-cli": "2.21.1",
     "faker": "4.1.0",
     "global": "4.4.0",
-    "graphql": "14.4.0",
+    "graphql": "14.4.1",
     "graphql-subscriptions": "1.1.0",
     "graphql-tag": "2.10.1",
     "graphql-tools": "4.0.5",
