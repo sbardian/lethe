@@ -39,7 +39,7 @@
     "react-apollo": "2.5.8",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-device-detection": "0.2.0",
-    "react-native-easy-grid": "0.2.1",
+    "react-native-easy-grid": "0.2.2",
     "react-native-style-tachyons": "4.0.0",
     "react-native-swipeable": "0.6.0",
     "react-navigation": "^2.13.0",
