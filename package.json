@@ -27,7 +27,7 @@
     "expo-permissions": "5.0.1",
     "faker": "4.1.0",
     "global": "4.4.0",
-    "graphql": "14.5.0",
+    "graphql": "14.5.1",
     "graphql-subscriptions": "1.1.0",
     "graphql-tag": "2.10.1",
     "graphql-tools": "4.0.5",
