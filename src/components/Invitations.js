@@ -6,6 +6,7 @@ import { Query } from 'react-apollo';
 import { Text, Card, CardItem, Body, Thumbnail, H3 } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 import { AcceptInvitationIcon, DeclineInvitationIcon } from './index';
+import defaultProfileImage from '../images/defaultProfile.jpg';
 
 const GET_MY_INVITATIONS = gql`
   {
@@ -141,7 +142,7 @@ export const Invitations = () => (
                   source={
                     item.inviter.profileImageUrl
                       ? { uri: `https://${item.inviter.profileImageUrl}` }
-                      : require('../images/defaultProfile.jpg')
+                      : { uri: `${defaultProfileImage}` }
                   }
                 />
                 <Text>{`Invitation from ${item.inviter.username}:`}</Text>
