@@ -5,7 +5,8 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Text, Card, CardItem, Body, Thumbnail, H3 } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
-import { AcceptInvitationIcon, DeclineInvitationIcon } from './index';
+import { AcceptInvitationIcon } from './AcceptInvitationIcon';
+import { DeclineInvitationIcon } from './DeclineInvitationIcon';
 import defaultProfileImage from '../images/defaultProfile.jpg';
 
 const GET_MY_INVITATIONS = gql`
