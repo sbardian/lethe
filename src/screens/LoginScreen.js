@@ -143,15 +143,16 @@ export class LoginScreen extends Component {
       outputRange: [88, 60],
     });
 
+    const { navigation } = this.props;
+    const { menuExpanded, slidePage, pageScroll } = this.state;
+
     return (
       <TokenContext.Consumer>
         {({ token, setToken }) => {
-          const { navigation } = this.props;
           if (token) {
             navigation.navigate('Home');
             return null;
           }
-          const { menuExpanded, slidePage, pageScroll } = this.state;
           return (
             <Container>
               <Content contentContainerStyle={{ flex: 1 }}>
