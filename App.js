@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import NativeTachyons from 'react-native-style-tachyons';
 import { AsyncStorage, StyleSheet } from 'react-native';
 import { Root } from 'native-base';
-import { AppLoading, Font } from 'expo';
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
 import { ApolloClient } from 'apollo-client';
 import { from, split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
@@ -100,18 +101,18 @@ export default class App extends Component {
                 // android
                 // uri: 'http://10.0.3.2:9999/graphql',
                 // ios
-                uri: 'http://localhost:9999/graphql',
+                // uri: 'http://localhost:9999/graphql',
                 // now
-                // uri: 'https://letheapi-drnljuhskx.now.sh/graphql',
+                uri: 'https://letheapi-drnljuhskx.now.sh/graphql',
               });
 
               const wsLink = new WebSocketLink({
                 // android
                 // uri: 'wss://10.0.3.2:9999/subscriptions',
                 // ios
-                uri: 'wss://localhost:9999/subscriptions',
+                // uri: 'wss://localhost:9999/subscriptions',
                 // now
-                // uri: `wss://letheapi-drnljuhskx.now.sh/subscriptions`,
+                uri: `wss://letheapi-drnljuhskx.now.sh/subscriptions`,
                 options: {
                   reconnect: true,
                   connectionParams: {
