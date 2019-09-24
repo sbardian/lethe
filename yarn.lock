@@ -1230,10 +1230,10 @@
     resolve-from "^5.0.0"
     slugify "^1.3.4"
 
-"@expo/dev-tools@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.6.1.tgz#5b9c4851a4da91fff4c333e79f26dc8d7dd46f84"
-  integrity sha512-Um4/SswIY1lKYXeneJx0+VpwcecIEKmHNR0jYEnCkWxiy7Og+RpDnIgH34S+8xLJrFN7AF83k3kfzsOzrjRtiQ==
+"@expo/dev-tools@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.6.2.tgz#e6235455a8da643a5f79342198df01e75d5edc1e"
+  integrity sha512-qzJ2PUChdQH3MaGHf9cThy9YVE8XBHctxpHrMrGmiZXoCWrwwHjFtZPRu3o0PN9gfVrw/7jTguWIJGGl9G7CdA==
   dependencies:
     "@expo/config" "^2.1.5"
     base64url "3.0.1"
@@ -1400,16 +1400,17 @@
   dependencies:
     lodash "^4.17.4"
 
-"@expo/webpack-config@^0.7.5":
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.7.5.tgz#34e11a42d9b4dc5fb1aaee230060f364bb0784fa"
-  integrity sha512-soCFrj7zeBBpMbQO2A0g1EpYd/brO33O8BXgIxavXuusbj10X/30Gs9ZVBWqWLXiGdFA11PKuDmushASD0by0w==
+"@expo/webpack-config@^0.7.6":
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.7.6.tgz#96332dfafdecd474385644854fa4086f3dbfe550"
+  integrity sha512-zCYhUaZMdiaoA76A6P8oYYb5U6MF0FqRenCV45Ok3FdCGR4ml4OE0Ek7TUnpk+b00/lzroF0fcPDvMdMLSbruA==
   dependencies:
     "@babel/core" "^7.0.0"
     "@babel/polyfill" "^7.2.5"
     "@babel/runtime" "^7.3.4"
     "@expo/config" "^2.1.5"
     "@expo/webpack-pwa-manifest-plugin" "^1.2.5"
+    "@types/yup" "^0.26.24"
     babel-loader "^8.0.5"
     brotli-webpack-plugin "^1.1.0"
     case-sensitive-paths-webpack-plugin "^2.2.0"
@@ -1441,6 +1442,7 @@
     webpack-manifest-plugin "^2.0.4"
     webpack-merge "^4.2.1"
     workbox-webpack-plugin "^3.6.3"
+    yup "^0.27.0"
 
 "@expo/webpack-pwa-manifest-plugin@^1.2.5":
   version "1.2.5"
@@ -1464,10 +1466,10 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@^56.2.3":
-  version "56.2.3"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-56.2.3.tgz#43e5c3b65001c43e6dc182d063b756107c680370"
-  integrity sha512-FpZjEKLJ/9fc3s0cwvsloYznqTDOMMhxERu41TB8UkizGlsRLuIuBaTXqMwbUYai66nO/aJMQcF/fcKsQW8JAg==
+"@expo/xdl@^56.2.4":
+  version "56.2.4"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-56.2.4.tgz#c5293972342a7197a5fd1d8ea5f2c849918da528"
+  integrity sha512-Nb9GfRBroXCl7l2z6HriTL+JY8LyzHvyaXpxi++U/QNMJc1OLFecSojP3CUJ30DGRIn4CGiX1AGeiGfJyKE8Yw==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^2.1.5"
@@ -1477,7 +1479,7 @@
     "@expo/osascript" "^2.0.6-alpha.0"
     "@expo/schemer" "^1.2.8"
     "@expo/spawn-async" "1.5.0"
-    "@expo/webpack-config" "^0.7.5"
+    "@expo/webpack-config" "^0.7.6"
     "@types/webpack" "^4.32.1"
     "@types/webpack-dev-server" "^3.1.7"
     analytics-node "3.3.0"
@@ -1853,6 +1855,11 @@
 "@types/websql@^0.0.27":
   version "0.0.27"
   resolved "http://registry.npmjs.org/@types/websql/-/websql-0.0.27.tgz#621a666a7f02018e7cbb4abab956a25736c27d71"
+
+"@types/yup@^0.26.24":
+  version "0.26.24"
+  resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.26.24.tgz#c24170b3a5c867b4fabd49fcc42fe45f780cb153"
+  integrity sha512-x0bhHnYjH5mZit4HivUYbTMO4LouOTGwp/LLxSL1mbJYVwNJtHYESH0ed2bwM1lkI2yDmsoCDYJnWEgHeJDACg==
 
 "@types/zen-observable@^0.8.0":
   version "0.8.0"
@@ -5269,18 +5276,18 @@ expo-asset@~6.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.1.1.tgz#db806307ae0579d5e19a56cd5449fde91c978030"
-  integrity sha512-/dnAGdJO5ZMLaA0lHqe8mG8GKHCsePxO+ShMe3AjGa9kQle20OJG4NnBzKRgDJ7VSk11y4wtwHA++e1j+NjITA==
+expo-cli@3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.1.2.tgz#6b2bf82da5693b141ed1d148e54f7ebe49528a93"
+  integrity sha512-z5Nb5IiI43B7wZugLh4yj2FoN+aSUNLA6xrxZCltZJGdwJcwa/EC6PQv55qQe5jo/4SBk15iQCfCS5AQRfKyrw==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^2.1.5"
-    "@expo/dev-tools" "^0.6.1"
+    "@expo/dev-tools" "^0.6.2"
     "@expo/json-file" "^8.1.12-alpha.0"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "^56.2.3"
+    "@expo/xdl" "^56.2.4"
     "@types/untildify" "^3.0.0"
     ansi-regex "^4.1.0"
     axios "0.19.0"
@@ -5861,6 +5868,11 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
+
+fn-name@~2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/fn-name/-/fn-name-2.0.1.tgz#5214d7537a4d06a4a301c0cc262feb84188002e7"
+  integrity sha1-UhTXU3pNBqSjAcDMJi/rhBiAAuc=
 
 follow-redirects@1.5.10:
   version "1.5.10"
@@ -10411,6 +10423,11 @@ prop-types@^15.6.2:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+property-expr@^1.5.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-1.5.1.tgz#22e8706894a0c8e28d58735804f6ba3a3673314f"
+  integrity sha512-CGuc0VUTGthpJXL36ydB6jnbyOf/rAHFvmVrJlH+Rg0DqqLFQGAP6hIaxD/G0OAmBJPhXDHuEJigrp0e0wFV6g==
+
 protoduck@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/protoduck/-/protoduck-5.0.1.tgz#03c3659ca18007b69a50fd82a7ebcc516261151f"
@@ -12350,6 +12367,11 @@ symbol-observable@^1.0.2, symbol-observable@^1.0.4, symbol-observable@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
+synchronous-promise@^2.0.6:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/synchronous-promise/-/synchronous-promise-2.0.10.tgz#e64c6fd3afd25f423963353043f4a68ebd397fd8"
+  integrity sha512-6PC+JRGmNjiG3kJ56ZMNWDPL8hjyghF5cMXIFOKg+NiwwEZZIvxTWd0pinWKyD227odg9ygF8xVhhz7gb8Uq7A==
+
 table@^5.2.3:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/table/-/table-5.2.3.tgz#cde0cc6eb06751c009efab27e8c820ca5b67b7f2"
@@ -12641,6 +12663,11 @@ topo@3.x.x:
   integrity sha512-IgpPtvD4kjrJ7CRA3ov2FhWQADwv+Tdqbsf1ZnPUSAtCJ9e1Z44MmoSGDXGk4IppoZA7jd/QRkNddlLJWlUZsQ==
   dependencies:
     hoek "6.x.x"
+
+toposort@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
+  integrity sha1-riF2gXXRVZ1IvvNUILL0li8JwzA=
 
 tough-cookie@>=2.3.3:
   version "3.0.1"
@@ -13781,6 +13808,18 @@ yargs@^9.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^7.0.0"
+
+yup@^0.27.0:
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/yup/-/yup-0.27.0.tgz#f8cb198c8e7dd2124beddc2457571329096b06e7"
+  integrity sha512-v1yFnE4+u9za42gG/b/081E7uNW9mUj3qtkmelLbW5YPROZzSH/KUUyJu9Wt8vxFJcT9otL/eZopS0YK1L5yPQ==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    fn-name "~2.0.1"
+    lodash "^4.17.11"
+    property-expr "^1.5.0"
+    synchronous-promise "^2.0.6"
+    toposort "^2.0.2"
 
 zen-observable-ts@^0.8.15, zen-observable-ts@^0.8.6:
   version "0.8.15"
