@@ -4,7 +4,7 @@
     "description": "This project is really great.",
     "slug": "lethe",
     "privacy": "unlisted",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "35.0.0",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.sbardian.lethe"
