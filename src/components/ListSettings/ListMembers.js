@@ -1,12 +1,11 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
 import { Alert, FlatList, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { Mutation, Query } from 'react-apollo';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button, Icon, Text, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
-import { adopt } from 'react-adopt';
 
 const GET_LIST_USERS = gql`
   query getLists($id_is: String!) {
@@ -32,24 +31,15 @@ const REMOVE_FROM_LIST = gql`
   }
 `;
 
-const GetUsers = ({ listId, render }) => (
-  <Query query={GET_LIST_USERS} variables={{ id_is: listId }}>
-    {render}
-  </Query>
-);
+export const ListMembers = ({ listId, navigation }) => {
+  const { loading, error, data } = useQuery(GET_LIST_USERS, {
+    variables: {
+      id_is: listId,
+    },
+  });
 
-GetUsers.displayName = 'GetUsers';
-
-GetUsers.propTypes = {
-  listId: PropTypes.string.isRequired,
-  render: PropTypes.func.isRequired,
-};
-
-const RemoveUser = ({ render }) => (
-  <Mutation
-    mutation={REMOVE_FROM_LIST}
-    update={() => {}}
-    onComplete={() => {
+  const [removeFromList] = useMutation(REMOVE_FROM_LIST, {
+    onComplete: () => {
       Toast.show({
         text: `User removed from list.`,
         buttonText: 'Ok',
@@ -57,121 +47,100 @@ const RemoveUser = ({ render }) => (
         position: 'bottom',
         duration: 3000,
       });
-    }}
-    onError={error => {
+    },
+    onError: mutationError => {
       Toast.show({
-        text: `List title update failed: ${error.message}`,
+        text: `List title update failed: ${mutationError.message}`,
         buttonText: 'Ok',
         type: 'danger',
         position: 'bottom',
         duration: 3000,
       });
-    }}
-  >
-    {(mutation, result) => render({ mutation, result })}
-  </Mutation>
-);
+    },
+  });
 
-RemoveUser.displayName = 'RemoveUser';
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+  if (error) {
+    return <Text>Error: ${error.message}</Text>;
+  }
 
-RemoveUser.propTypes = {
-  render: PropTypes.func.isRequired,
-};
+  const { getLists } = data;
+  const [{ owner, users }] = getLists;
 
-const Composed = adopt({
-  getUsers: GetUsers,
-  removeFromList: RemoveUser,
-});
-
-export class ListMembers extends Component {
-  render() {
-    const { listId, navigation } = this.props;
-    return (
-      <Composed listId={listId}>
-        {({ getUsers, removeFromList }) => {
-          if (getUsers.loading) {
-            return <Text>Loading...</Text>;
-          }
-          const { owner, users } = getUsers.data.getLists[0];
-          return (
-            <View>
-              <View style={[s.flx_row, s.jcsb]}>
-                <View style={[s.flx_row, s.jcfs, s.pa3]}>
-                  <Icon style={[s.f5, s.ltext]} type="Feather" name="users" />
-                  <Text style={[s.asc, s.pl3, s.pr3, s.ltext]}>List Users</Text>
-                </View>
-                <Button
-                  transparent
-                  onPress={() =>
-                    navigation.navigate('SendInvitation', {
-                      listId,
-                    })
-                  }
-                >
-                  <Icon
-                    name="person-add"
-                    type="MaterialIcons"
-                    style={{ color: '#666' }}
-                  />
-                </Button>
-              </View>
-              <FlatList
-                data={users}
-                renderItem={({ item }) => (
-                  <View
-                    style={[
-                      s.flx_row,
-                      s.jcsb,
-                      s.aic,
-                      s.pa2,
-                      s.bg_offWhite,
-                      s.ma1,
-                    ]}
-                  >
-                    <Text>{item.username}</Text>
-                    <Text>{item.email}</Text>
-                    {owner === item.id ? <Text>Owner</Text> : null}
-                    <TouchableOpacity
-                      onPress={() =>
-                        Alert.alert(
-                          'Remove User',
-                          `Are you sure you want to remove ${
-                            item.username
-                          } from list?`,
-                          [
+  return (
+    <View>
+      <View style={[s.flx_row, s.jcsb]}>
+        <View style={[s.flx_row, s.jcfs, s.pa3]}>
+          <Icon style={[s.f5, s.ltext]} type="Feather" name="users" />
+          <Text style={[s.asc, s.pl3, s.pr3, s.ltext]}>List Users</Text>
+        </View>
+        <Button
+          transparent
+          onPress={() => {
+            navigation.navigate('SendInvitation', {
+              listId,
+            });
+          }}
+        >
+          <Icon
+            name="person-add"
+            type="MaterialIcons"
+            style={{ color: '#666' }}
+          />
+        </Button>
+      </View>
+      <FlatList
+        data={users}
+        renderItem={({ item }) => (
+          <View style={[s.flx_row, s.jcsb, s.aic, s.pa2, s.bg_offWhite, s.ma1]}>
+            <Text>{item.username}</Text>
+            <Text>{item.email}</Text>
+            {owner === item.id ? <Text>Owner</Text> : null}
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert(
+                  'Remove User',
+                  `Are you sure you want to remove ${item.username} from list?`,
+                  [
+                    {
+                      text: 'Cancel',
+                      onPress: () => {},
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'OK',
+                      onPress: () =>
+                        removeFromList({
+                          variables: {
+                            listId,
+                            userId: item.id,
+                          },
+                          refetchQueries: [
                             {
-                              text: 'Cancel',
-                              onPress: () => {},
-                              style: 'cancel',
-                            },
-                            {
-                              text: 'OK',
-                              onPress: async () =>
-                                removeFromList.mutation({
-                                  variables: {
-                                    listId,
-                                    userId: item.id,
-                                  },
-                                }),
+                              query: GET_LIST_USERS,
+                              variables: {
+                                id_is: listId,
+                              },
                             },
                           ],
-                          { cancelable: false },
-                        )
-                      }
-                    >
-                      <Icon name="delete" type="Feather" />
-                    </TouchableOpacity>
-                  </View>
-                )}
-                keyExtractor={item => item.id}
-              />
-            </View>
-          );
-        }}
-      </Composed>
-    );
-  }
-}
+                        }),
+                    },
+                  ],
+                  { cancelable: false },
+                );
+              }}
+            >
+              <Icon name="delete" type="Feather" />
+            </TouchableOpacity>
+          </View>
+        )}
+        keyExtractor={item => item.id}
+      />
+    </View>
+  );
+};
 
 ListMembers.displayName = 'ListMembers';
 

@@ -1,36 +1,35 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { AddListItemForm } from '../components';
 import { Screen } from './Screen';
 
-export class AddListItemScreen extends Component {
-  static navigationOptions = {
-    title: 'Add List Item',
-    headerStyle: {
-      backgroundColor: '#FF5254',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };
+export const AddListItemScreen = ({ navigation }) => {
+  const listId = navigation.getParam('listId');
 
-  render() {
-    const { navigation } = this.props;
-    const listId = navigation.getParam('listId');
-    return (
-      <Screen>
-        <AddListItemForm listId={listId} navigation={navigation} />
-      </Screen>
-    );
-  }
-}
+  return (
+    <Screen>
+      <AddListItemForm listId={listId} navigation={navigation} />
+    </Screen>
+  );
+};
+
+AddListItemScreen.navigationOptions = {
+  title: 'Add List Item',
+  headerStyle: {
+    backgroundColor: '#FF5254',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
 
 AddListItemScreen.displayName = 'AddListItemForm';
 
 AddListItemScreen.propTypes = {
   navigation: PropTypes.shape({
+    getParam: PropTypes.func.isRequired,
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };

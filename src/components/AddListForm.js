@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
 
 const ADD_LIST = gql`
@@ -28,64 +28,51 @@ const GET_MY_LISTS = gql`
   }
 `;
 
-export class AddListForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-    };
+export const AddListForm = ({ navigation }) => {
+  const [title, setTitle] = React.useState('');
+
+  const onTitleChange = value => {
+    setTitle(value);
+  };
+
+  const [createNewList, { loading, error }] = useMutation(ADD_LIST, {
+    variables: {
+      title,
+    },
+    onCompleted: () => navigation.navigate('Lists'),
+  });
+
+  if (loading) {
+    return <Text>Loading . . . </Text>;
+  }
+  if (error) {
+    return <Text>Error: ${error.message}</Text>;
   }
 
-  onTitleChange(value) {
-    this.setState({
-      title: value,
-    });
-  }
-
-  render() {
-    const { navigation } = this.props;
-    const { title } = this.state;
-
-    return (
-      <View>
-        <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-          <Item stackedLabel>
-            <Label>Title</Label>
-            <Input
-              id="ListTitle"
-              onChangeText={value => this.onTitleChange(value)}
-            />
-          </Item>
-        </Form>
-        <Mutation
-          mutation={ADD_LIST}
-          onCompleted={() => {
-            navigation.navigate('Lists');
-          }}
-        >
-          {(createNewList, { loading }) => (
-            <Button
-              block
-              light
-              style={{ marginLeft: 20, marginRight: 20, marginBottom: 20 }}
-              disabled={loading}
-              onPress={async () => {
-                await createNewList({
-                  refetchQueries: [{ query: GET_MY_LISTS }],
-                  variables: {
-                    title,
-                  },
-                });
-              }}
-            >
-              <Text>Create</Text>
-            </Button>
-          )}
-        </Mutation>
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
+        <Item stackedLabel>
+          <Label>Title</Label>
+          <Input id="ListTitle" onChangeText={value => onTitleChange(value)} />
+        </Item>
+      </Form>
+      <Button
+        block
+        light
+        style={{ marginLeft: 20, marginRight: 20, marginBottom: 20 }}
+        disabled={loading}
+        onPress={() => {
+          createNewList({
+            refetchQueries: [{ query: GET_MY_LISTS }],
+          });
+        }}
+      >
+        <Text>Create</Text>
+      </Button>
+    </View>
+  );
+};
 
 AddListForm.displayName = 'AddListForm';
 

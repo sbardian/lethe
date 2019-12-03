@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
+import { useMutation } from '@apollo/react-hooks';
 
 const UPDATE_ITEM = gql`
   mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
@@ -33,83 +33,67 @@ const GET_LIST_ITEMS = gql`
   }
 `;
 
-export class EditItemForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-    };
-  }
+export const EditItemForm = ({ navigation, listId, item }) => {
+  const [title, setTitle] = React.useState('');
 
-  onTitleChange(value) {
-    this.setState({
-      title: value,
-    });
-  }
+  const onTitleChange = value => {
+    setTitle(value);
+  };
 
-  render() {
-    const { navigation, listId, item } = this.props;
-    const { title } = this.state;
-    return (
-      <View>
-        <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-          <Item stackedLabel>
-            <Label>Title</Label>
-            <Input
-              id="ItemTitle"
-              placeholder={item.title}
-              onChangeText={value => this.onTitleChange(value)}
-            />
-          </Item>
-        </Form>
-        <Mutation
-          mutation={UPDATE_ITEM}
-          onCompleted={() => {
-            navigation.goBack();
-          }}
-        >
-          {(updateItem, { loading }) => (
-            <Button
-              block
-              light
-              style={{ marginLeft: 20, marginRight: 20, marginBottom: 20 }}
-              disabled={loading}
-              onPress={async () => {
-                updateItem({
-                  refetchQueries: [
-                    {
-                      query: GET_LIST_ITEMS,
-                      variables: {
-                        id_is: listId,
-                      },
-                    },
-                  ],
-                  variables: {
-                    title,
-                    itemId: item.id,
-                    status: item.status,
-                  },
-                });
-              }}
-            >
-              <Text>Save</Text>
-            </Button>
-          )}
-        </Mutation>
-      </View>
-    );
-  }
-}
+  const [updateItem] = useMutation(UPDATE_ITEM, {
+    refetchQueries: [
+      {
+        query: GET_LIST_ITEMS,
+        variables: {
+          id_is: listId,
+        },
+      },
+    ],
+    variables: {
+      title,
+      itemId: item.id,
+      status: item.status,
+    },
+    awaitRefetchQueries: true,
+  });
+
+  return (
+    <View>
+      <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
+        <Item stackedLabel>
+          <Label>Title</Label>
+          <Input
+            id="ItemTitle"
+            placeholder={item.title}
+            onChangeText={value => onTitleChange(value)}
+          />
+        </Item>
+      </Form>
+      <Button
+        block
+        light
+        style={{ marginLeft: 20, marginRight: 20, marginBottom: 20 }}
+        onPress={() => {
+          updateItem({ onCompleted: navigation.goBack() });
+        }}
+      >
+        <Text>Save</Text>
+      </Button>
+    </View>
+  );
+};
 
 EditItemForm.displayName = 'EditItemForm';
 
 EditItemForm.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
   }).isRequired,
   listId: PropTypes.string.isRequired,
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    status: PropTypes.bool.isRequired,
   }).isRequired,
 };

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated, StyleSheet, View, Easing } from 'react-native';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import { Button, Text, Form, Input, Item, Label } from 'native-base';
 
 const styles = StyleSheet.create({
@@ -21,253 +21,225 @@ const SIGN_UP = gql`
   }
 `;
 
-export class CreateAccountForm extends Component {
-  constructor(props) {
-    super(props);
-    this.usernameBounce = new Animated.Value(1);
-    this.emailBounce = new Animated.Value(1);
-    this.passwordBounce = new Animated.Value(1);
-    this.passwordConfBounce = new Animated.Value(1);
-    this.state = {
-      username: '',
-      email: '',
-      password: '',
-      passwordConf: '',
-    };
-  }
+export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
+  const usernameBounce = new Animated.Value(1);
+  const emailBounce = new Animated.Value(1);
+  const passwordBounce = new Animated.Value(1);
+  const passwordConfBounce = new Animated.Value(1);
 
-  componentDidUpdate() {
-    this.animate();
-  }
+  const [username, setUsername] = React.useState();
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
+  const [passwordConf, setPasswordConf] = React.useState();
+  const [invalid, setInvalid] = React.useState(true);
 
-  onEmailChange(value) {
-    this.setState({
-      email: value,
-    });
-  }
-
-  onUsernameChange(value) {
-    this.setState({
-      username: value,
-    });
-  }
-
-  onPasswordChange(value) {
-    this.setState({
-      password: value,
-    });
-  }
-
-  onPasswordConfChange(value) {
-    this.setState({
-      passwordConf: value,
-    });
-  }
-
-  animate() {
-    const { pageScroll } = this.props;
+  const animate = () => {
     if (pageScroll) {
-      this.usernameBounce.setValue(1);
-      this.emailBounce.setValue(1);
-      this.passwordBounce.setValue(1);
-      this.passwordConfBounce.setValue(1);
+      usernameBounce.setValue(1);
+      emailBounce.setValue(1);
+      passwordBounce.setValue(1);
+      passwordConfBounce.setValue(1);
     }
     Animated.stagger(100, [
-      Animated.timing(this.usernameBounce, {
+      Animated.timing(usernameBounce, {
         toValue: 0,
         duration: 300,
         easing: Easing.in,
       }),
-      Animated.timing(this.emailBounce, {
+      Animated.timing(emailBounce, {
         toValue: 0,
         duration: 300,
         easing: Easing.in,
       }),
-      Animated.timing(this.passwordBounce, {
+      Animated.timing(passwordBounce, {
         toValue: 0,
         duration: 300,
         easing: Easing.in,
       }),
-      Animated.timing(this.passwordConfBounce, {
+      Animated.timing(passwordConfBounce, {
         toValue: 0,
         duration: 300,
         easing: Easing.in,
       }),
     ]).start();
+  };
+
+  React.useEffect(() => {
+    animate();
+  });
+
+  const onEmailChange = value => {
+    setEmail(value);
+  };
+
+  const onUsernameChange = value => {
+    setUsername(value);
+  };
+
+  const onPasswordChange = value => {
+    setPassword(value);
+  };
+
+  const onPasswordConfChange = value => {
+    setPasswordConf(value);
+  };
+
+  const usernameBounceForm = usernameBounce.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-300, 100],
+  });
+  const emailBounceForm = emailBounce.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-300, 300],
+  });
+  const passwordBounceForm = passwordBounce.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-300, 300],
+  });
+  const passwordConfBounceForm = passwordConfBounce.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-300, 300],
+  });
+
+  React.useEffect(() => {
+    if (
+      username &&
+      email &&
+      password &&
+      passwordConf &&
+      password === passwordConf
+    ) {
+      setInvalid(false);
+    }
+  }, [username, email, password, passwordConf]);
+
+  const [signUp, { loading, error }] = useMutation(SIGN_UP, {
+    variables: {
+      username,
+      email,
+      password,
+    },
+  });
+
+  if (loading) {
+    return <Text>Loading . . . </Text>;
+  }
+  if (error) {
+    return <Text>Error: ${error.message}</Text>;
   }
 
-  // bounceInCreateForm() {
-  //   this.createAccountFormBounce.setValue(1);
-  //   Animated.timing(this.createAccountFormBounce, {
-  //     toValue: 0,
-  //     duration: 1500,
-  //     easing: Easing.bounce,
-  //   }).start();
-  // }
-
-  render() {
-    // const bounceForm = this.createAccountFormBounce.interpolate({
-    //   inputRange: [0, 1],
-    //   outputRange: [-300, 300],
-    // });
-    const usernameBounceForm = this.usernameBounce.interpolate({
-      inputRange: [0, 1],
-      outputRange: [-300, 100],
-    });
-    const emailBounceForm = this.emailBounce.interpolate({
-      inputRange: [0, 1],
-      outputRange: [-300, 300],
-    });
-    const passwordBounceForm = this.passwordBounce.interpolate({
-      inputRange: [0, 1],
-      outputRange: [-300, 300],
-    });
-    const passwordConfBounceForm = this.passwordConfBounce.interpolate({
-      inputRange: [0, 1],
-      outputRange: [-300, 300],
-    });
-
-    let valid = true;
-    const { onSetToken } = this.props;
-    const { username, email, password, passwordConf } = this.state;
-
-    return (
-      <View>
-        <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-          <Animated.View
-            style={[
-              styles.formStyle,
-              {
-                transform: [
-                  {
-                    translateX: usernameBounceForm,
-                  },
-                ],
-              },
-            ]}
-          >
-            <Item floatingLabel>
-              <Label style={{ color: 'white' }}>Username</Label>
-              <Input
-                style={{ color: 'white' }}
-                id="username"
-                value={username}
-                autoCapitalize="none"
-                onChangeText={value => this.onUsernameChange(value)}
-              />
-            </Item>
-          </Animated.View>
-          <Animated.View
-            style={[
-              styles.formStyle,
-              {
-                transform: [
-                  {
-                    translateX: emailBounceForm,
-                  },
-                ],
-              },
-            ]}
-          >
-            <Item floatingLabel>
-              <Label style={{ color: 'white' }}>Email</Label>
-              <Input
-                style={{ color: 'white' }}
-                id="email"
-                value={email}
-                autoCapitalize="none"
-                onChangeText={value => this.onEmailChange(value)}
-              />
-            </Item>
-          </Animated.View>
-          <Animated.View
-            style={[
-              styles.formStyle,
-              {
-                transform: [
-                  {
-                    translateX: passwordBounceForm,
-                  },
-                ],
-              },
-            ]}
-          >
-            <Item floatingLabel>
-              <Label style={{ color: 'white' }}>Password</Label>
-              <Input
-                style={{ color: 'white' }}
-                id="password"
-                value={password}
-                secureTextEntry
-                autoCapitalize="none"
-                onChangeText={value => this.onPasswordChange(value)}
-              />
-            </Item>
-          </Animated.View>
-          <Animated.View
-            style={[
-              styles.formStyle,
-              {
-                transform: [
-                  {
-                    translateX: passwordConfBounceForm,
-                  },
-                ],
-              },
-            ]}
-          >
-            <Item floatingLabel>
-              <Label style={{ color: 'white' }}>Password Confirmation</Label>
-              <Input
-                style={{ color: 'white' }}
-                id="passwordConf"
-                value={passwordConf}
-                secureTextEntry
-                autoCapitalize="none"
-                onChangeText={value => this.onPasswordConfChange(value)}
-              />
-            </Item>
-          </Animated.View>
-        </Form>
-        <Mutation
-          mutation={SIGN_UP}
-          onCompleted={data => onSetToken(data.signup.token)}
+  return (
+    <View>
+      <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
+        <Animated.View
+          style={[
+            styles.formStyle,
+            {
+              transform: [
+                {
+                  translateX: usernameBounceForm,
+                },
+              ],
+            },
+          ]}
         >
-          {signUp => {
-            if (
-              username &&
-              email &&
-              password &&
-              passwordConf &&
-              password === passwordConf
-            ) {
-              valid = false;
-            }
-            return (
-              <Button
-                block
-                light
-                style={{ marginRight: 20, marginLeft: 20 }}
-                disabled={valid}
-                onPress={async () => {
-                  await signUp({
-                    variables: {
-                      username,
-                      email,
-                      password,
-                    },
-                  });
-                }}
-              >
-                <Text>Create Account</Text>
-              </Button>
-            );
-          }}
-        </Mutation>
-      </View>
-    );
-  }
-}
+          <Item floatingLabel>
+            <Label style={{ color: 'white' }}>Username</Label>
+            <Input
+              style={{ color: 'white' }}
+              id="username"
+              value={username}
+              autoCapitalize="none"
+              onChangeText={value => onUsernameChange(value)}
+            />
+          </Item>
+        </Animated.View>
+        <Animated.View
+          style={[
+            styles.formStyle,
+            {
+              transform: [
+                {
+                  translateX: emailBounceForm,
+                },
+              ],
+            },
+          ]}
+        >
+          <Item floatingLabel>
+            <Label style={{ color: 'white' }}>Email</Label>
+            <Input
+              style={{ color: 'white' }}
+              id="email"
+              value={email}
+              autoCapitalize="none"
+              onChangeText={value => onEmailChange(value)}
+            />
+          </Item>
+        </Animated.View>
+        <Animated.View
+          style={[
+            styles.formStyle,
+            {
+              transform: [
+                {
+                  translateX: passwordBounceForm,
+                },
+              ],
+            },
+          ]}
+        >
+          <Item floatingLabel>
+            <Label style={{ color: 'white' }}>Password</Label>
+            <Input
+              style={{ color: 'white' }}
+              id="password"
+              value={password}
+              secureTextEntry
+              autoCapitalize="none"
+              onChangeText={value => onPasswordChange(value)}
+            />
+          </Item>
+        </Animated.View>
+        <Animated.View
+          style={[
+            styles.formStyle,
+            {
+              transform: [
+                {
+                  translateX: passwordConfBounceForm,
+                },
+              ],
+            },
+          ]}
+        >
+          <Item floatingLabel>
+            <Label style={{ color: 'white' }}>Password Confirmation</Label>
+            <Input
+              style={{ color: 'white' }}
+              id="passwordConf"
+              value={passwordConf}
+              secureTextEntry
+              autoCapitalize="none"
+              onChangeText={value => onPasswordConfChange(value)}
+            />
+          </Item>
+        </Animated.View>
+      </Form>
+      <Button
+        block
+        light
+        style={{ marginRight: 20, marginLeft: 20 }}
+        disabled={invalid}
+        onPress={async () => {
+          signUp({ onCompleted: data => onSetToken(data.signup.token) });
+        }}
+      >
+        <Text>Create Account</Text>
+      </Button>
+    </View>
+  );
+};
 
 CreateAccountForm.displayName = 'CreateAccountForm';
 

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { styles as s } from 'react-native-style-tachyons';
 import { Form, Input, Item, Label, Text } from 'native-base';
 import { UpdateTitleButton } from './UpdateTitleButton';
@@ -19,110 +19,94 @@ const GET_LIST = gql`
   }
 `;
 
-export class ListSettings extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newTitle: '',
-      orgTitle: props.title,
-      titleNotChanged: true,
-      deleteConfirmed: true,
-    };
-  }
+export const ListSettings = ({ title, navigation, listId }) => {
+  const [newTitle, setNewTitle] = React.useState('');
+  const [orgTitle] = React.useState(title);
+  const [titleNotChanged, setTitleNotChanged] = React.useState(true);
+  const [deleteConfirmed, setDeleteConfirmed] = React.useState(true);
 
-  onTitleChange(value) {
-    this.setState({
-      newTitle: value,
-      titleNotChanged: false,
-    });
-  }
+  const onTitleChange = value => {
+    setNewTitle(value);
+    setTitleNotChanged(false);
+  };
 
-  onDeleteTitleChange(value) {
-    const { orgTitle } = this.state;
+  const onDeleteTitleChange = value => {
     if (orgTitle === value) {
-      this.setState({
-        deleteConfirmed: false,
-      });
+      setDeleteConfirmed(false);
     } else {
-      this.setState({
-        deleteConfirmed: true,
-      });
+      setDeleteConfirmed(true);
     }
+  };
+
+  const handleTitleSave = value => {
+    setNewTitle(value);
+    setTitleNotChanged(true);
+  };
+
+  const { loading, error, data } = useQuery(GET_LIST, {
+    variables: { id_is: listId },
+  });
+
+  if (loading) {
+    return <Text>Loading . . . </Text>;
+  }
+  if (error) {
+    return <Text>Error: ${error.message}</Text>;
   }
 
-  handleTitleSave(value) {
-    this.setState({
-      newTitle: value,
-      titleNotChanged: true,
-    });
-  }
+  const { getLists } = data;
 
-  render() {
-    const { listId, navigation } = this.props;
-    const { titleNotChanged, deleteConfirmed, newTitle, orgTitle } = this.state;
-    return (
-      <Query query={GET_LIST} variables={{ id_is: listId }}>
-        {({ loading, error, data: { getLists = [] } }) => {
-          if (loading) {
-            return <Text>Loading . . . </Text>;
-          }
-          if (error) {
-            return <Text>Error: ${error.message}</Text>;
-          }
-          const { id } = getLists[0];
-          return (
-            <View>
-              <Form>
-                <View style={[s.flx_row, s.jcsa, s.pb4, s.pr3, s.pl3]}>
-                  <Item stackedLabel>
-                    <Label>Title</Label>
-                    <Input
-                      autoCapitalize="none"
-                      placeholder={orgTitle}
-                      id="ListTitle"
-                      onChangeText={value => this.onTitleChange(value)}
-                    />
-                  </Item>
-                  <UpdateTitleButton
-                    listId={id}
-                    newTitle={newTitle}
-                    titleNotChanged={titleNotChanged}
-                    onTitleSave={() => this.handleTitleSave()}
-                  />
-                </View>
-              </Form>
-              <Form>
-                <View style={[s.flx_row, s.jcsa, s.pb4, s.pr3, s.pl3]}>
-                  <Item stackedLabel>
-                    <Label>Enter list title to confirm delete:</Label>
-                    <Input
-                      autoCapitalize="none"
-                      placeholder={orgTitle}
-                      id="DeleteListTitle"
-                      onChangeText={value => this.onDeleteTitleChange(value)}
-                    />
-                  </Item>
-                  <DeleteListButton
-                    active={deleteConfirmed}
-                    navigation={navigation}
-                    listId={id}
-                    title={orgTitle}
-                  />
-                </View>
-              </Form>
-              <View style={{ paddingBottom: 40 }}>
-                {<ListMembers navigation={navigation} listId={id} />}
-              </View>
-              <View style={{ paddingBottom: 40 }}>
-                {<ListInvitations navigation={navigation} listId={id} />}
-              </View>
-            </View>
-          );
-        }}
-      </Query>
-    );
-  }
-}
+  const [{ id }] = getLists;
+
+  return (
+    <View>
+      <Form>
+        <View style={[s.flx_row, s.jcsa, s.pb4, s.pr3, s.pl3]}>
+          <Item stackedLabel>
+            <Label>Title</Label>
+            <Input
+              autoCapitalize="none"
+              placeholder={orgTitle}
+              id="ListTitle"
+              onChangeText={value => onTitleChange(value)}
+            />
+          </Item>
+          <UpdateTitleButton
+            listId={id}
+            newTitle={newTitle}
+            titleNotChanged={titleNotChanged}
+            onTitleSave={() => handleTitleSave()}
+          />
+        </View>
+      </Form>
+      <Form>
+        <View style={[s.flx_row, s.jcsa, s.pb4, s.pr3, s.pl3]}>
+          <Item stackedLabel>
+            <Label>Enter list title to confirm delete:</Label>
+            <Input
+              autoCapitalize="none"
+              placeholder={orgTitle}
+              id="DeleteListTitle"
+              onChangeText={value => onDeleteTitleChange(value)}
+            />
+          </Item>
+          <DeleteListButton
+            active={deleteConfirmed}
+            navigation={navigation}
+            listId={id}
+            title={orgTitle}
+          />
+        </View>
+      </Form>
+      <View style={{ paddingBottom: 40 }}>
+        {<ListMembers navigation={navigation} listId={id} />}
+      </View>
+      <View style={{ paddingBottom: 40 }}>
+        {<ListInvitations navigation={navigation} listId={id} />}
+      </View>
+    </View>
+  );
+};
 
 ListSettings.displayName = 'ListSettings';
 

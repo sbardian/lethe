@@ -1,9 +1,9 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Easing, View } from 'react-native';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import { Button, Icon, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 
@@ -29,80 +29,73 @@ const GET_MY_LISTS = gql`
   }
 `;
 
-export class DeleteListButton extends Component {
-  spinValue = new Animated.Value(0);
+export const DeleteListButton = ({ navigation, listId, active }) => {
+  const [deleteList, { loading }] = useMutation(DELETE_LIST, {
+    onCompleted: () => {
+      navigation.navigate('Lists');
+    },
+    onError: error => {
+      Toast.show({
+        text: `Delete Failed: ${error.message}`,
+        buttonText: 'Ok',
+        type: 'danger',
+        position: 'bottom',
+        duration: 3000,
+      });
+    },
+  });
+  const spinValue = new Animated.Value(0);
 
-  componentDidMount() {
-    this.animateLoading();
-  }
-
-  animateLoading() {
-    this.spinValue.setValue(0);
-    Animated.timing(this.spinValue, {
+  const animateLoading = () => {
+    spinValue.setValue(0);
+    Animated.timing(spinValue, {
       toValue: 1,
       duration: 4000,
       easing: Easing.linear,
-    }).start(() => this.animateLoading());
-  }
+    }).start(() => animateLoading());
+  };
 
-  render() {
-    const spin = this.spinValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0deg', '360deg'],
-    });
-    const { active, listId, navigation } = this.props;
+  React.useEffect(() => {
+    animateLoading();
+  }, []);
 
-    return (
-      <Mutation
-        mutation={DELETE_LIST}
-        onCompleted={() => {
-          navigation.navigate('Lists');
-        }}
-        onError={error => {
-          Toast.show({
-            text: `Delete Failed: ${error.message}`,
-            buttonText: 'Ok',
-            type: 'danger',
-            position: 'bottom',
-            duration: 3000,
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  return (
+    <View>
+      <Button
+        style={[s.mt3]}
+        warning
+        transparent
+        disabled={active}
+        onPress={() => {
+          deleteList({
+            refetchQueries: [{ query: GET_MY_LISTS }],
+            variables: {
+              listId,
+            },
           });
         }}
       >
-        {(deleteList, { loading }) => (
-          <View>
-            <Button
-              style={[s.mt3]}
-              warning
-              transparent
-              disabled={active}
-              onPress={async () =>
-                deleteList({
-                  refetchQueries: [{ query: GET_MY_LISTS }],
-                  variables: {
-                    listId,
-                  },
-                })
-              }
-            >
-              {loading && (
-                <Animated.View style={{ transform: [{ rotate: spin }] }}>
-                  <Icon
-                    name="loading"
-                    type="MaterialCommunityIcons"
-                    style={{ color: '#f0ad4e' }}
-                  />
-                </Animated.View>
-              )}
-              {!loading && (
-                <Icon name="delete-forever" type="MaterialCommunityIcons" />
-              )}
-            </Button>
-          </View>
+        {loading && (
+          <Animated.View style={{ transform: [{ rotate: spin }] }}>
+            <Icon
+              name="loading"
+              type="MaterialCommunityIcons"
+              style={{ color: '#f0ad4e' }}
+            />
+          </Animated.View>
         )}
-      </Mutation>
-    );
-  }
-}
+        {!loading && (
+          <Icon name="delete-forever" type="MaterialCommunityIcons" />
+        )}
+      </Button>
+    </View>
+  );
+};
 
 DeleteListButton.displayName = 'DeleteListButton';
 

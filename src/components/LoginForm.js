@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import { Button, Text, Form, Input, Item, Label } from 'native-base';
 
 const LOGIN = gql`
@@ -13,94 +13,78 @@ const LOGIN = gql`
   }
 `;
 
-export class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
+export const LoginForm = ({ onSetToken }) => {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
-  onUsernameChange(value) {
-    this.setState({
-      username: value,
-    });
-  }
+  const onUsernameChange = value => {
+    setUsername(value);
+  };
 
-  onPasswordChange(value) {
-    this.setState({
-      password: value,
-    });
-  }
+  const onPasswordChange = value => {
+    setPassword(value);
+  };
 
-  render() {
-    const { username, password } = this.state;
-    const { onSetToken } = this.props;
+  const [userLogin, { loading, error }] = useMutation(LOGIN, {
+    onCompleted: data => onSetToken(data.login.token),
+    onError: () => {},
+    variables: {
+      username,
+      password,
+    },
+  });
 
-    return (
+  return (
+    <View>
+      <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
+        <Item floatingLabel>
+          <Label style={{ color: 'white' }}>Username</Label>
+          <Input
+            style={{ color: 'white' }}
+            id="username"
+            value={username}
+            autoCapitalize="none"
+            onChangeText={value => onUsernameChange(value)}
+          />
+        </Item>
+        <Item floatingLabel>
+          <Label style={{ color: 'white' }}>Password</Label>
+          <Input
+            style={{ color: 'white' }}
+            id="password"
+            value={password}
+            secureTextEntry
+            autoCapitalize="none"
+            onChangeText={value => onPasswordChange(value)}
+          />
+        </Item>
+      </Form>
       <View>
-        <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-          <Item floatingLabel>
-            <Label style={{ color: 'white' }}>Username</Label>
-            <Input
-              style={{ color: 'white' }}
-              id="username"
-              value={username}
-              autoCapitalize="none"
-              onChangeText={value => this.onUsernameChange(value)}
-            />
-          </Item>
-          <Item floatingLabel>
-            <Label style={{ color: 'white' }}>Password</Label>
-            <Input
-              style={{ color: 'white' }}
-              id="password"
-              value={password}
-              secureTextEntry
-              autoCapitalize="none"
-              onChangeText={value => this.onPasswordChange(value)}
-            />
-          </Item>
-        </Form>
-        <Mutation
-          mutation={LOGIN}
-          errorPolicy="all"
-          onCompleted={data => {
-            onSetToken(data.login.token);
+        <Button
+          block
+          light
+          style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
+          disabled={loading}
+          onPress={async () => {
+            userLogin({
+              variables: {
+                username,
+                password,
+              },
+            });
           }}
-          onError={() => {}}
         >
-          {(userLogin, { loading, error }) => (
-            <View>
-              <Button
-                block
-                light
-                style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
-                disabled={loading}
-                onPress={async () => {
-                  await userLogin({
-                    variables: {
-                      username,
-                      password,
-                    },
-                  });
-                }}
-              >
-                <Text>Login</Text>
-              </Button>
-              {error && (
-                <Text style={{ color: 'white', alignSelf: 'center' }}>
-                  {error.message}
-                </Text>
-              )}
-            </View>
-          )}
-        </Mutation>
+          <Text>Login</Text>
+        </Button>
+        {error && (
+          <Text style={{ color: 'white', alignSelf: 'center' }}>
+            {error.message}
+          </Text>
+        )}
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
 LoginForm.displayName = 'LoginForm';
 

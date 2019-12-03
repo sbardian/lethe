@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import { Button, Icon, Text, Toast } from 'native-base';
 
 const ACCEPT_INVITATION = gql`
@@ -49,51 +49,49 @@ const GET_MY_INVITATIONS = gql`
   }
 `;
 
-export const AcceptInvitationIcon = ({ invitationId }) => (
-  <Mutation
-    mutation={ACCEPT_INVITATION}
-    onCompleted={() =>
+export const AcceptInvitationIcon = ({ invitationId }) => {
+  const [acceptInvitation, { loading }] = useMutation(ACCEPT_INVITATION, {
+    onCompleted: () => {
       Toast.show({
         text: 'List joined!',
         buttonText: 'Okay',
         type: 'success',
         position: 'bottom',
         duration: 3000,
-      })
-    }
-    onError={error =>
+      });
+    },
+    onError: error => {
       Toast.show({
         text: `An error has occured: ${error.message}`,
         buttonText: 'Okay',
         type: 'danger',
         position: 'bottom',
         duration: 3000,
-      })
-    }
-  >
-    {(acceptInvitation, { loading }) => (
-      <Button
-        iconLeft
-        light
-        info
-        disabled={loading}
-        onPress={async () => {
-          await acceptInvitation({
-            refetchQueries: [
-              {
-                query: GET_MY_INVITATIONS,
-              },
-            ],
-            variables: { invitationId },
-          });
-        }}
-      >
-        <Icon type="Ionicons" name="md-add-circle" />
-        <Text>Accept</Text>
-      </Button>
-    )}
-  </Mutation>
-);
+      });
+    },
+    refetchQueries: [
+      {
+        query: GET_MY_INVITATIONS,
+      },
+    ],
+    variables: { invitationId },
+  });
+
+  return (
+    <Button
+      iconLeft
+      light
+      info
+      disabled={loading}
+      onPress={() => {
+        acceptInvitation();
+      }}
+    >
+      <Icon type="Ionicons" name="md-add-circle" />
+      <Text>Accept</Text>
+    </Button>
+  );
+};
 
 AcceptInvitationIcon.displayName = 'AcceptInvitationIcon';
 

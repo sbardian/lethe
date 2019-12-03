@@ -1,36 +1,30 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Grid } from 'react-native-easy-grid';
 import { AddListFab, Lists } from '../components';
 import { Screen } from './Screen';
 
-export class ListsScreen extends Component {
-  static navigationOptions = {
-    title: 'Lists',
-    headerStyle: {
-      backgroundColor: '#8CD19D',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };
+export const ListsScreen = ({ navigation }) => (
+  <Screen fab={<AddListFab navigation={navigation} />}>
+    <Grid>
+      <Row>
+        <Lists navigation={navigation} />
+      </Row>
+    </Grid>
+  </Screen>
+);
 
-  render() {
-    const { navigation } = this.props;
-
-    return (
-      <Screen fab={<AddListFab navigation={navigation} />}>
-        <Grid>
-          <Row>
-            <Lists navigation={navigation} />
-          </Row>
-        </Grid>
-      </Screen>
-    );
-  }
-}
+ListsScreen.navigationOptions = {
+  title: 'Lists',
+  headerStyle: {
+    backgroundColor: '#8CD19D',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
 
 ListsScreen.displayName = 'ListsScreen';
 

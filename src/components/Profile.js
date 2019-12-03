@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable global-require */
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Alert,
   Image,
@@ -10,9 +10,9 @@ import {
   View,
 } from 'react-native';
 import { Text, Icon, Item, Label, Input } from 'native-base';
-import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { oneLine } from 'common-tags';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import { ReactNativeFile } from 'apollo-upload-client';
@@ -88,24 +88,17 @@ const UPLOAD_PROFILE_IMAGE = gql`
   }
 `;
 
-export class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      image: null,
-      fileToUpload: null,
-      permissionStatus: true,
-      editUsername: false,
-      defaultImage: defaultProfileImage,
-    };
-  }
+export const Profile = () => {
+  const [image, setImage] = React.useState(null);
+  const [fileToUpload, setFileToUpload] = React.useState(null);
+  const [noPermissionsGranted, setNoPermissionsGranted] = React.useState(false);
+  const [editUsername, setEditUsername] = React.useState(false);
+  const [defaultImage] = React.useState(defaultProfileImage);
 
-  async componentDidMount() {
+  const askForPermissions = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     if (status !== 'granted') {
-      this.setState({
-        permissionStatus: true,
-      });
+      setNoPermissionsGranted(true);
       Alert.alert(
         'Profile Image',
         oneLine`You have not granted permission to access your images,
@@ -124,19 +117,19 @@ export class Profile extends Component {
         { cancelable: true },
       );
     } else {
-      this.setState({
-        permissionStatus: false,
-      });
+      setNoPermissionsGranted(false);
     }
-  }
-
-  onImageUploadSuccess = () => {
-    this.setState({
-      image: null,
-    });
   };
 
-  pickImage = async () => {
+  React.useEffect(() => {
+    askForPermissions();
+  }, []);
+
+  const onImageUploadSuccess = () => {
+    setImage(null);
+  };
+
+  const pickImage = async () => {
     const pickerResult = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3],
@@ -150,144 +143,124 @@ export class Profile extends Component {
         name: `profileImage.${ext}`,
         type: `image/${ext}`,
       });
-      this.setState({ image: pickerResult.uri, fileToUpload: file });
+      setImage(pickerResult.uri);
+      setFileToUpload(file);
     }
   };
 
-  enableUsernameEdit = () => {
-    const { editUsername } = this.state;
-    this.setState({
-      editUsername: !editUsername,
-    });
+  const enableUsernameEdit = () => {
+    setEditUsername(!editUsername);
   };
 
-  render() {
-    const {
-      image,
-      defaultImage,
-      editUsername,
-      permissionStatus,
-      fileToUpload,
-    } = this.state;
+  const { loading: queryLoading, error: queryError, data } = useQuery(
+    GET_MY_INFO,
+  );
 
-    return (
-      <Query query={GET_MY_INFO}>
-        {({ loading, error, data: { getMyInfo } = [] }) => {
-          if (loading) return <Text>Loading...</Text>;
-          if (error) return <Text>Error {error.message}</Text>;
+  const [profileImageUpload] = useMutation(UPLOAD_PROFILE_IMAGE, {
+    variables: {
+      file: fileToUpload,
+    },
+    onError: () => {},
+    optimisticResponse: {
+      __typename: 'Mutation',
+      profileImageUpload: {
+        __typename: 'User',
+        profileImageUrl: image,
+      },
+    },
+  });
 
-          const { username, email, profileImageUrl } = getMyInfo;
-
-          let myImage = profileImageUrl;
-
-          return (
-            <View style={styles.container}>
-              <View style={styles.headerContainer}>
-                <ImageBackground
-                  source={backgroundImage}
-                  style={styles.backgroundImage}
-                >
-                  <View style={styles.profileImage}>
-                    <TouchableOpacity
-                      disabled={permissionStatus}
-                      onPress={this.pickImage}
-                    >
-                      {!image && (
-                        <Image
-                          style={styles.userImage}
-                          source={
-                            myImage
-                              ? { uri: `https://${myImage}` }
-                              : defaultImage
-                          }
-                        />
-                      )}
-                    </TouchableOpacity>
-                    <Mutation
-                      mutation={UPLOAD_PROFILE_IMAGE}
-                      onCompleted={() => {
-                        myImage = null;
-                        this.onImageUploadSuccess();
-                      }}
-                      onError={() => {}}
-                      optimisticResponse={{
-                        __typename: 'Mutation',
-                        profileImageUpload: {
-                          __typename: 'User',
-                          profileImageUrl: image,
-                        },
-                      }}
-                    >
-                      {profileImageUpload => (
-                        <TouchableOpacity
-                          disabled={permissionStatus}
-                          onPress={() =>
-                            profileImageUpload({
-                              refetchQueries: [
-                                {
-                                  query: GET_MY_INFO,
-                                },
-                              ],
-                              variables: {
-                                file: fileToUpload,
-                              },
-                            })
-                          }
-                        >
-                          {image && (
-                            <View style={styles.profileImage}>
-                              <Image
-                                style={styles.saveUserImage}
-                                source={{ uri: image }}
-                              />
-                              <Text>Click image to confirm and upload</Text>
-                            </View>
-                          )}
-                        </TouchableOpacity>
-                      )}
-                    </Mutation>
-                    {!editUsername && (
-                      <TouchableOpacity onPress={this.enableUsernameEdit}>
-                        <Text style={styles.text}>{username}</Text>
-                      </TouchableOpacity>
-                    )}
-                    {editUsername && (
-                      <View style={[s.flx_row, s.pa3, s.jcsb]}>
-                        <Item style={[s.flx_i]} stackedLabel>
-                          <Label style={[s.white]}>Username</Label>
-                          <Input
-                            style={[s.white]}
-                            placeholder={username}
-                            id="ListTitle"
-                            onChangeText={() => {}}
-                          />
-                        </Item>
-                        <Icon
-                          style={[s.white, s.pt4]}
-                          name="edit-2"
-                          type="Feather"
-                        />
-                        <TouchableOpacity onPress={this.enableUsernameEdit}>
-                          <Icon
-                            style={[s.white, s.pt4]}
-                            name="cancel"
-                            type="MaterialIcons"
-                          />
-                        </TouchableOpacity>
-                      </View>
-                    )}
-                  </View>
-                </ImageBackground>
-              </View>
-              <View style={styles.contentContainer}>
-                <Text>Email: {email}</Text>
-              </View>
-            </View>
-          );
-        }}
-      </Query>
-    );
+  if (queryLoading) {
+    return <Text>Loading . . . </Text>;
   }
-}
+  if (queryError) {
+    return <Text>Error: ${queryError.message}</Text>;
+  }
+
+  const {
+    getMyInfo: { username, email, profileImageUrl },
+  } = data;
+
+  let myImage = profileImageUrl;
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <ImageBackground
+          source={backgroundImage}
+          style={styles.backgroundImage}
+        >
+          <View style={styles.profileImage}>
+            <TouchableOpacity
+              disabled={noPermissionsGranted}
+              onPress={pickImage}
+            >
+              {!image && (
+                <Image
+                  style={styles.userImage}
+                  source={
+                    myImage ? { uri: `https://${myImage}` } : defaultImage
+                  }
+                />
+              )}
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={noPermissionsGranted}
+              onPress={() => {
+                profileImageUpload({
+                  refetchQueries: [
+                    {
+                      query: GET_MY_INFO,
+                    },
+                  ],
+                  onCompleted: () => {
+                    myImage = null;
+                    onImageUploadSuccess();
+                  },
+                });
+              }}
+            >
+              {image && (
+                <View style={styles.profileImage}>
+                  <Image style={styles.saveUserImage} source={{ uri: image }} />
+                  <Text>Click image to confirm and upload</Text>
+                </View>
+              )}
+            </TouchableOpacity>
+            {!editUsername && (
+              <TouchableOpacity onPress={enableUsernameEdit}>
+                <Text style={styles.text}>{username}</Text>
+              </TouchableOpacity>
+            )}
+            {editUsername && (
+              <View style={[s.flx_row, s.pa3, s.jcsb]}>
+                <Item style={[s.flx_i]} stackedLabel>
+                  <Label style={[s.white]}>Username</Label>
+                  <Input
+                    style={[s.white]}
+                    placeholder={username}
+                    id="ListTitle"
+                    onChangeText={() => {}}
+                  />
+                </Item>
+                <Icon style={[s.white, s.pt4]} name="edit-2" type="Feather" />
+                <TouchableOpacity onPress={enableUsernameEdit}>
+                  <Icon
+                    style={[s.white, s.pt4]}
+                    name="cancel"
+                    type="MaterialIcons"
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>
+        </ImageBackground>
+      </View>
+      <View style={styles.contentContainer}>
+        <Text>Email: {email}</Text>
+      </View>
+    </View>
+  );
+};
 
 Profile.displayName = 'Profile';

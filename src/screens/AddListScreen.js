@@ -1,31 +1,25 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { AddListForm } from '../components';
 import { Screen } from './Screen';
 
-export class AddListScreen extends Component {
-  static navigationOptions = {
-    title: 'Add List',
-    headerStyle: {
-      backgroundColor: '#8CD19D',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };
+export const AddListScreen = ({ navigation }) => (
+  <Screen>
+    <AddListForm navigation={navigation} />
+  </Screen>
+);
 
-  render() {
-    const { navigation } = this.props;
-
-    return (
-      <Screen>
-        <AddListForm navigation={navigation} />
-      </Screen>
-    );
-  }
-}
+AddListScreen.navigationOptions = {
+  title: 'Add List',
+  headerStyle: {
+    backgroundColor: '#8CD19D',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
 
 AddListScreen.displayName = 'AddListScreen';
 

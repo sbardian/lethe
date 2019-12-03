@@ -1,35 +1,30 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Grid } from 'react-native-easy-grid';
 import { Profile } from '../components';
 import { Screen } from './Screen';
 
-export class ProfileScreen extends Component {
-  static navigationOptions = {
-    title: 'Profile',
-    headerStyle: {
-      backgroundColor: '#5CACC4',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };
+export const ProfileScreen = ({ navigation }) => (
+  <Screen>
+    <Grid>
+      <Row>
+        <Profile navigation={navigation} />
+      </Row>
+    </Grid>
+  </Screen>
+);
 
-  render() {
-    const { navigation } = this.props;
-    return (
-      <Screen>
-        <Grid>
-          <Row>
-            <Profile navigation={navigation} />
-          </Row>
-        </Grid>
-      </Screen>
-    );
-  }
-}
+ProfileScreen.navigationOptions = {
+  title: 'Profile',
+  headerStyle: {
+    backgroundColor: '#5CACC4',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
 
 ProfileScreen.displayName = 'ProfileScreen';
 

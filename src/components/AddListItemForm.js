@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
+import { useMutation } from '@apollo/react-hooks';
 
 const ADD_ITEM = gql`
   mutation createNewItem($listId: String!, $title: String!) {
@@ -33,77 +33,57 @@ const GET_LIST_ITEMS = gql`
   }
 `;
 
-export class AddListItemForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-    };
-  }
+export const AddListItemForm = ({ navigation, listId }) => {
+  const [title, setTitle] = React.useState('');
 
-  onTitleChange(value) {
-    this.setState({
-      title: value,
-    });
-  }
+  const [createNewItem] = useMutation(ADD_ITEM, {
+    refetchQueries: [
+      {
+        query: GET_LIST_ITEMS,
+        variables: {
+          id_is: listId,
+        },
+      },
+    ],
+    variables: {
+      title,
+      listId,
+    },
+  });
 
-  render() {
-    const { navigation, listId } = this.props;
-    const { title } = this.state;
-    return (
-      <View>
-        <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
-          <Item stackedLabel>
-            <Label>Title</Label>
-            <Input
-              id="ItemTitle"
-              onChangeText={value => this.onTitleChange(value)}
-            />
-          </Item>
-        </Form>
-        <Mutation
-          mutation={ADD_ITEM}
-          g
-          onCompleted={() => {
-            navigation.goBack();
-          }}
-        >
-          {(createNewItem, { loading }) => (
-            <Button
-              block
-              light
-              style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
-              disabled={loading}
-              onPress={async () => {
-                createNewItem({
-                  refetchQueries: [
-                    {
-                      query: GET_LIST_ITEMS,
-                      variables: {
-                        id_is: listId,
-                      },
-                    },
-                  ],
-                  variables: {
-                    title,
-                    listId,
-                  },
-                });
-              }}
-            >
-              <Text>Create</Text>
-            </Button>
-          )}
-        </Mutation>
-      </View>
-    );
-  }
-}
+  const onTitleChange = value => {
+    setTitle(value);
+  };
+
+  return (
+    <View>
+      <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
+        <Item stackedLabel>
+          <Label>Title</Label>
+          <Input id="ItemTitle" onChangeText={value => onTitleChange(value)} />
+        </Item>
+      </Form>
+      <Button
+        block
+        light
+        style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
+        onPress={() => {
+          createNewItem({
+            onCompleted: navigation.goBack(),
+          });
+        }}
+      >
+        <Text>Create</Text>
+      </Button>
+    </View>
+  );
+};
 
 AddListItemForm.displayName = 'AddListItemForm';
 
 AddListItemForm.propTypes = {
   navigation: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
     navigate: PropTypes.func.isRequired,
   }).isRequired,
   listId: PropTypes.string.isRequired,
