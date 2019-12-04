@@ -7,7 +7,7 @@ import { Root } from 'native-base';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { TokenProvider } from './src/context';
-import { LetheApolloClient } from './src/components/LetheApolloClient';
+import { LetheApolloClient } from './src/components';
 
 NativeTachyons.build(
   {
