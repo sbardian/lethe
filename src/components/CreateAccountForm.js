@@ -66,7 +66,7 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
 
   React.useEffect(() => {
     animate();
-  });
+  }, [pageScroll]);
 
   const onEmailChange = value => {
     setEmail(value);
@@ -118,6 +118,10 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
       username,
       email,
       password,
+    },
+    onCompleted: data => {
+      console.log('data: ', data);
+      onSetToken(data.signup.token);
     },
   });
 
@@ -231,8 +235,8 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
         light
         style={{ marginRight: 20, marginLeft: 20 }}
         disabled={invalid}
-        onPress={async () => {
-          signUp({ onCompleted: data => onSetToken(data.signup.token) });
+        onPress={() => {
+          signUp();
         }}
       >
         <Text>Create Account</Text>
