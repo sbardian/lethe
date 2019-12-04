@@ -13,4 +13,3 @@ export { SendInvitationForm } from './SendInvitationForm';
 export { AddItemFab } from './AddItemFab';
 export { Profile } from './Profile';
 export { EditItemForm } from './EditItemForm';
-export { LetheApolloClient } from './LetheApolloClient';
