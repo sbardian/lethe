@@ -156,11 +156,19 @@ export const Profile = () => {
     GET_MY_INFO,
   );
 
+  let myImage;
+
   const [profileImageUpload] = useMutation(UPLOAD_PROFILE_IMAGE, {
     variables: {
       file: fileToUpload,
     },
-    onError: () => {},
+    onError: error => {
+      console.log('Error uploading image. ', error);
+    },
+    onCompleted: () => {
+      myImage = image.uri;
+      onImageUploadSuccess();
+    },
     optimisticResponse: {
       __typename: 'Mutation',
       profileImageUpload: {
@@ -181,7 +189,7 @@ export const Profile = () => {
     getMyInfo: { username, email, profileImageUrl },
   } = data;
 
-  let myImage = profileImageUrl;
+  myImage = profileImageUrl;
 
   return (
     <View style={styles.container}>
@@ -206,17 +214,13 @@ export const Profile = () => {
             </TouchableOpacity>
             <TouchableOpacity
               disabled={noPermissionsGranted}
-              onPress={() => {
-                profileImageUpload({
+              onPress={async () => {
+                await profileImageUpload({
                   refetchQueries: [
                     {
                       query: GET_MY_INFO,
                     },
                   ],
-                  onCompleted: () => {
-                    myImage = null;
-                    onImageUploadSuccess();
-                  },
                 });
               }}
             >
