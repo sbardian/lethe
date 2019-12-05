@@ -59,11 +59,14 @@ export const SendInvitationForm = ({ listId, navigation }) => {
     variables: { id_is: listId },
   });
 
-  const [{ title: defaultTitle }] = getLists;
-
   const [createInvitation, { loading: mutationLoading }] = useMutation(
     SEND_INVITATION,
     {
+      variables: {
+        listId,
+        title,
+        invitee,
+      },
       onCompleted: () => {
         Toast.show({
           text: `Invitation has been successfully sent`,
@@ -84,11 +87,6 @@ export const SendInvitationForm = ({ listId, navigation }) => {
           onClose: () => navigation.navigate('Items', { listId }),
         });
       },
-      variables: {
-        listId,
-        title,
-        invitee,
-      },
     },
   );
 
@@ -98,6 +96,8 @@ export const SendInvitationForm = ({ listId, navigation }) => {
   if (error) {
     return <Text>Error: ${error.message}</Text>;
   }
+
+  const [{ title: defaultTitle }] = getLists;
 
   return (
     <View>
@@ -126,31 +126,7 @@ export const SendInvitationForm = ({ listId, navigation }) => {
           light
           style={{ marginLeft: 20, marginRight: 20 }}
           disabled={mutationLoading}
-          onPress={() => {
-            createInvitation({
-              onCompleted: () => {
-                Toast.show({
-                  text: `Invitation has been successfully sent`,
-                  buttonText: 'Ok',
-                  type: 'success',
-                  position: 'bottom',
-                  duration: 3000,
-                  onClose: () =>
-                    navigation.navigate('ListSettings', { listId }),
-                });
-              },
-              onError: mutationError => {
-                Toast.show({
-                  text: `Failed to send invitation: ${mutationError.message}`,
-                  buttonText: 'Ok',
-                  type: 'danger',
-                  position: 'bottom',
-                  duration: 3000,
-                  onClose: () => navigation.navigate('Items', { listId }),
-                });
-              },
-            });
-          }}
+          onPress={() => createInvitation()}
         >
           <Text>OK</Text>
         </Button>

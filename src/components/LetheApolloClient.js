@@ -58,7 +58,6 @@ export const LetheApolloClient = () => {
   );
 
   const authLink = setContext(async (_, { headers }) => {
-    // await AsyncStorage.removeItem('@letheStore:token');
     if (token) {
       return {
         headers: {
@@ -70,7 +69,7 @@ export const LetheApolloClient = () => {
     return null;
   });
 
-  const link = from([authLink, /* errorLink, */ terminatingLink]);
+  const link = from([authLink, terminatingLink]);
 
   const client = new ApolloClient({
     link,

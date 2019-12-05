@@ -63,6 +63,7 @@ export const Lists = ({ navigation }) => {
       return prev;
     },
   });
+
   return (
     <FlatList
       data={lists}
@@ -85,6 +86,7 @@ export const Lists = ({ navigation }) => {
     />
   );
 };
+
 Lists.displayName = 'Lists';
 
 Lists.propTypes = {

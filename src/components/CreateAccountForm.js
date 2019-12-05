@@ -120,7 +120,6 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
       password,
     },
     onCompleted: data => {
-      console.log('data: ', data);
       onSetToken(data.signup.token);
     },
   });

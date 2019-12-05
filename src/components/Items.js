@@ -235,7 +235,7 @@ export const Items = ({ navigation, listId }) => {
             <TouchableOpacity
               style={{ flexGrow: 1 }}
               disabled={loading}
-              onPress={async () => {
+              onPress={() => {
                 deleteItem({
                   refetchQueries: [
                     {

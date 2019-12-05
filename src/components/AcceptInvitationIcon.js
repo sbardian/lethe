@@ -83,9 +83,7 @@ export const AcceptInvitationIcon = ({ invitationId }) => {
       light
       info
       disabled={loading}
-      onPress={() => {
-        acceptInvitation();
-      }}
+      onPress={() => acceptInvitation()}
     >
       <Icon type="Ionicons" name="md-add-circle" />
       <Text>Accept</Text>

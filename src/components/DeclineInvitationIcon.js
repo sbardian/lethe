@@ -93,14 +93,6 @@ export const DeclineInvitationIcon = ({
         duration: 3000,
       });
     },
-    refetchQueries: [
-      {
-        query: GET_MY_INVITATIONS,
-      },
-      {
-        query: GET_MY_INFO,
-      },
-    ],
     variables: { invitationId },
   });
 
@@ -109,8 +101,8 @@ export const DeclineInvitationIcon = ({
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...buttonProps}
       disabled={loading}
-      onPress={async () => {
-        await declineInvitation({
+      onPress={() => {
+        declineInvitation({
           refetchQueries: [
             {
               query: GET_MY_INVITATIONS,
@@ -119,7 +111,6 @@ export const DeclineInvitationIcon = ({
               query: GET_MY_INFO,
             },
           ],
-          variables: { invitationId },
         });
       }}
     >

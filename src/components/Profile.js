@@ -89,11 +89,10 @@ const UPLOAD_PROFILE_IMAGE = gql`
 `;
 
 export const Profile = () => {
-  const [image, setImage] = React.useState(null);
+  // const [image, setImage] = React.useState(null);
   const [fileToUpload, setFileToUpload] = React.useState(null);
   const [noPermissionsGranted, setNoPermissionsGranted] = React.useState(false);
   const [editUsername, setEditUsername] = React.useState(false);
-  const [defaultImage] = React.useState(defaultProfileImage);
 
   const askForPermissions = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -125,10 +124,6 @@ export const Profile = () => {
     askForPermissions();
   }, []);
 
-  const onImageUploadSuccess = () => {
-    setImage(null);
-  };
-
   const pickImage = async () => {
     const pickerResult = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -143,7 +138,6 @@ export const Profile = () => {
         name: `profileImage.${ext}`,
         type: `image/${ext}`,
       });
-      setImage(pickerResult.uri);
       setFileToUpload(file);
     }
   };
@@ -156,8 +150,6 @@ export const Profile = () => {
     GET_MY_INFO,
   );
 
-  let myImage;
-
   const [profileImageUpload] = useMutation(UPLOAD_PROFILE_IMAGE, {
     variables: {
       file: fileToUpload,
@@ -166,14 +158,13 @@ export const Profile = () => {
       console.log('Error uploading image. ', error);
     },
     onCompleted: () => {
-      myImage = image.uri;
-      onImageUploadSuccess();
+      setFileToUpload(null);
     },
     optimisticResponse: {
       __typename: 'Mutation',
       profileImageUpload: {
         __typename: 'User',
-        profileImageUrl: image,
+        profileImageUrl: fileToUpload,
       },
     },
   });
@@ -189,8 +180,6 @@ export const Profile = () => {
     getMyInfo: { username, email, profileImageUrl },
   } = data;
 
-  myImage = profileImageUrl;
-
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -203,19 +192,21 @@ export const Profile = () => {
               disabled={noPermissionsGranted}
               onPress={pickImage}
             >
-              {!image && (
+              {!fileToUpload && (
                 <Image
                   style={styles.userImage}
                   source={
-                    myImage ? { uri: `https://${myImage}` } : defaultImage
+                    profileImageUrl
+                      ? { uri: `https://${profileImageUrl}` }
+                      : defaultProfileImage
                   }
                 />
               )}
             </TouchableOpacity>
             <TouchableOpacity
               disabled={noPermissionsGranted}
-              onPress={async () => {
-                await profileImageUpload({
+              onPress={() => {
+                profileImageUpload({
                   refetchQueries: [
                     {
                       query: GET_MY_INFO,
@@ -224,9 +215,12 @@ export const Profile = () => {
                 });
               }}
             >
-              {image && (
+              {fileToUpload && (
                 <View style={styles.profileImage}>
-                  <Image style={styles.saveUserImage} source={{ uri: image }} />
+                  <Image
+                    style={styles.saveUserImage}
+                    source={{ uri: fileToUpload.uri }}
+                  />
                   <Text>Click image to confirm and upload</Text>
                 </View>
               )}

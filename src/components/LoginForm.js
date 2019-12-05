@@ -26,12 +26,12 @@ export const LoginForm = ({ onSetToken }) => {
   };
 
   const [userLogin, { loading, error }] = useMutation(LOGIN, {
-    onCompleted: data => onSetToken(data.login.token),
-    onError: () => {},
     variables: {
       username,
       password,
     },
+    onCompleted: data => onSetToken(data.login.token),
+    onError: () => {},
   });
 
   return (
@@ -65,7 +65,7 @@ export const LoginForm = ({ onSetToken }) => {
           light
           style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
           disabled={loading}
-          onPress={async () => {
+          onPress={() => {
             userLogin({
               variables: {
                 username,

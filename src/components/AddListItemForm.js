@@ -37,14 +37,7 @@ export const AddListItemForm = ({ navigation, listId }) => {
   const [title, setTitle] = React.useState('');
 
   const [createNewItem] = useMutation(ADD_ITEM, {
-    refetchQueries: [
-      {
-        query: GET_LIST_ITEMS,
-        variables: {
-          id_is: listId,
-        },
-      },
-    ],
+    onCompleted: navigation.goBack(),
     variables: {
       title,
       listId,
@@ -69,7 +62,14 @@ export const AddListItemForm = ({ navigation, listId }) => {
         style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
         onPress={() => {
           createNewItem({
-            onCompleted: navigation.goBack(),
+            refetchQueries: [
+              {
+                query: GET_LIST_ITEMS,
+                variables: {
+                  id_is: listId,
+                },
+              },
+            ],
           });
         }}
       >
