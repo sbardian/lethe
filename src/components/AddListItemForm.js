@@ -37,7 +37,6 @@ export const AddListItemForm = ({ navigation, listId }) => {
   const [title, setTitle] = React.useState('');
 
   const [createNewItem] = useMutation(ADD_ITEM, {
-    onCompleted: navigation.goBack(),
     variables: {
       title,
       listId,
@@ -70,6 +69,7 @@ export const AddListItemForm = ({ navigation, listId }) => {
                 },
               },
             ],
+            onCompleted: navigation.goBack(),
           });
         }}
       >
