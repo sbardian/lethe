@@ -154,9 +154,6 @@ export const Profile = () => {
     variables: {
       file: fileToUpload,
     },
-    onError: error => {
-      console.log('Error uploading image. ', error);
-    },
     onCompleted: () => {
       setFileToUpload(null);
     },
