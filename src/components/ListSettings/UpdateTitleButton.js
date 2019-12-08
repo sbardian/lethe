@@ -7,6 +7,19 @@ import { useMutation } from '@apollo/react-hooks';
 import { Button, Icon, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 
+const GET_MY_LISTS = gql`
+  {
+    getMyInfo {
+      id
+      lists {
+        id
+        title
+        owner
+      }
+    }
+  }
+`;
+
 const UPDATE_LIST = gql`
   mutation updateList($listId: String!, $title: String!) {
     updateList(listId: $listId, title: $title) {
@@ -71,12 +84,20 @@ export const UpdateTitleButton = ({
         warning
         transparent
         disabled={titleNotChanged}
-        onPress={async () => {
-          await updateList({
+        onPress={() => {
+          updateList({
             variables: {
               listId,
               title: newTitle,
             },
+            refetchQueries: [
+              {
+                query: GET_MY_LISTS,
+                variables: {
+                  id_is: listId,
+                },
+              },
+            ],
           });
         }}
       >
