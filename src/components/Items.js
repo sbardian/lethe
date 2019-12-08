@@ -108,7 +108,6 @@ export const Items = ({ navigation, listId }) => {
     document: ITEM_ADDED,
     variables: { listId },
     updateQuery: (prev, { subscriptionData }) => {
-      console.log('prev: ', prev);
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.itemAdded;
       if (!prev.list.items.some(item => item.id === id)) {
