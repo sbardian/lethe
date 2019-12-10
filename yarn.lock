@@ -1608,10 +1608,10 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@57.2.0":
-  version "57.2.0"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.2.0.tgz#5e7ca0473fe305c0e1033c6c559d85da81e7113e"
-  integrity sha512-ybI98qc/29e1gijarbXUiGzsoZBqBzcHC2CevZagsprNyTqf1rYWhm6000kGdGZxM379R3FE96fJN63MYNLFEg==
+"@expo/xdl@57.2.1":
+  version "57.2.1"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.2.1.tgz#9e3daa6e597cce7595a2844fed2b49857ad29060"
+  integrity sha512-ITRey8tSz2NlZ/KyII0OMi70kubNHdUumJHkCiuGU8+zzWpgbBQXyaucQNEenBA+8Zec6cytSEEYO+/E2cMxRg==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^2.5.2"
@@ -5558,10 +5558,10 @@ expo-asset@~7.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.11.0.tgz#20ba55db4c4e0b4f889babef9fcd2adb6093c944"
-  integrity sha512-zari2YetYbvM53bKKe5Sj7YaTFXOipdZCxlsCWdmQUVowHbDZwTO7ojhK0iPlkfQT2gd2lDgfSuaImh3g/pN4w==
+expo-cli@3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.11.1.tgz#ded8e248e2b08e26cb8e5ed057d9ff1927389251"
+  integrity sha512-efLwUDLhn37+P06sxFzuszgRWssUVJOTlVab/w4hGYi0mYI/0weSHiZggA/NXJfdeLikZrTR7Wk5OChRPHyRiQ==
   dependencies:
     "@expo/build-tools" "0.1.0-alpha.8"
     "@expo/bunyan" "3.0.2"
@@ -5571,7 +5571,7 @@ expo-cli@3.11.0:
     "@expo/package-manager" "^0.0.1"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "57.2.0"
+    "@expo/xdl" "57.2.1"
     "@types/cli-table" "^0.3.0"
     "@types/untildify" "^3.0.0"
     ansi-regex "^4.1.0"
