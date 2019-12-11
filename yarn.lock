@@ -2164,13 +2164,14 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@^57.1.2":
-  version "57.3.1"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.3.1.tgz#c7f0e0fad61f1a3c7bab61e9c9c654a72b71222e"
-  integrity sha512-G3SAQ1mrVmzxuh3uKnd21xpGPUk/+mAzUgbC7RsT0O+PN1KpbYxFmtrLYmlS5rmkDWM8OVf/ke9UMzb3Kqx0XQ==
+"@expo/xdl@57.2.1":
+  version "57.2.1"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.2.1.tgz#9e3daa6e597cce7595a2844fed2b49857ad29060"
+  integrity sha512-ITRey8tSz2NlZ/KyII0OMi70kubNHdUumJHkCiuGU8+zzWpgbBQXyaucQNEenBA+8Zec6cytSEEYO+/E2cMxRg==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^2.5.2"
+    "@expo/image-utils" "^0.2.9"
     "@expo/json-file" "^8.2.2"
     "@expo/ngrok" "2.4.3"
     "@expo/osascript" "^2.0.7"
@@ -2190,6 +2191,7 @@
     freeport-async "2.0.0"
     fs-extra "6.0.1"
     getenv "0.7.0"
+    glob "7.1.2"
     glob-promise "3.4.0"
     globby "6.1.0"
     hasbin "1.2.3"
@@ -2215,19 +2217,24 @@
     pacote "9.3.0"
     pascal-case "2.0.1"
     plist "2.1.0"
+    pretty-bytes "5.2.0"
     probe-image-size "4.0.0"
     querystring "0.2.0"
     raven "2.6.3"
+    read-chunk "2.1.0"
     read-last-lines "1.6.0"
     replace-string "1.1.0"
     request "2.88.0"
     request-promise-native "1.0.5"
+    resolve-from "5.0.0"
     semver "5.5.0"
     serialize-error "^5.0.0"
     slugid "1.1.0"
+    slugify "1.3.1"
     source-map-support "0.4.18"
     split "1.0.1"
     tar "4.4.6"
+    tempy "0.3.0"
     tree-kill "1.2.0"
     url "0.11.0"
     url-join "4.0.0"
@@ -6372,10 +6379,10 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.10.2:
-  version "3.10.2"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.10.2.tgz#fa19b201ccd9a4515ddf9beef0638cdeea19ba26"
-  integrity sha512-cF2d7ghrf7pewWIE8blh1IPoCKIDEPWMkRpypFJ5jgapmdwFGQGbUDFbIylBQv+MALdRsmIiS84ikuV72/gE8w==
+expo-cli@3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.11.1.tgz#ded8e248e2b08e26cb8e5ed057d9ff1927389251"
+  integrity sha512-efLwUDLhn37+P06sxFzuszgRWssUVJOTlVab/w4hGYi0mYI/0weSHiZggA/NXJfdeLikZrTR7Wk5OChRPHyRiQ==
   dependencies:
     "@expo/build-tools" "0.1.0-alpha.8"
     "@expo/bunyan" "3.0.2"
@@ -6385,7 +6392,7 @@ expo-cli@3.10.2:
     "@expo/package-manager" "^0.0.1"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "^57.1.2"
+    "@expo/xdl" "57.2.1"
     "@types/cli-table" "^0.3.0"
     "@types/untildify" "^3.0.0"
     ansi-regex "^4.1.0"
@@ -11576,6 +11583,11 @@ prettier@^1.16.4:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
   integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
 
+pretty-bytes@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-5.2.0.tgz#96c92c6e95a0b35059253fb33c03e260d40f5a1f"
+  integrity sha512-ujANBhiUsl9AhREUDUEY1GPOharMGm8x8juS7qOHybcLi7XsKfrYQ88hSly1l2i0klXHTDYrlL8ihMCG55Dc3w==
+
 pretty-bytes@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-4.0.2.tgz#b2bf82e7350d65c6c33aa95aaa5a4f6327f61cd9"
@@ -12226,6 +12238,14 @@ react@^16.3.2:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+read-chunk@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/read-chunk/-/read-chunk-2.1.0.tgz#6a04c0928005ed9d42e1a6ac5600e19cbc7ff655"
+  integrity sha1-agTAkoAF7Z1C4aasVgDhnLx/9lU=
+  dependencies:
+    pify "^3.0.0"
+    safe-buffer "^5.1.1"
+
 read-chunk@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/read-chunk/-/read-chunk-3.2.0.tgz#2984afe78ca9bfbbdb74b19387bf9e86289c16ca"
@@ -12581,6 +12601,11 @@ resolve-cwd@^2.0.0:
   dependencies:
     resolve-from "^3.0.0"
 
+resolve-from@5.0.0, resolve-from@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-5.0.0.tgz#c35225843df8f776df21c57557bc087e9dfdfc69"
+  integrity sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==
+
 resolve-from@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-3.0.0.tgz#b22c7af7d9d6881bc8b6e653335eebcb0a188748"
@@ -12588,11 +12613,6 @@ resolve-from@^3.0.0:
 resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
-
-resolve-from@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-5.0.0.tgz#c35225843df8f776df21c57557bc087e9dfdfc69"
-  integrity sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==
 
 resolve-url@^0.2.1:
   version "0.2.1"
@@ -13155,6 +13175,11 @@ slugid@1.1.0:
   integrity sha1-4J8AiZwJ9acFjtw23UnwRv1QqCo=
   dependencies:
     uuid "^2.0.1"
+
+slugify@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.3.1.tgz#f572127e8535329fbc6c1edb74ab856b61ad7de2"
+  integrity sha512-6BwyhjF5tG5P8s+0DPNyJmBSBePG6iMyhjvIW5zGdA3tFik9PtK+yNkZgTeiroCRGZYgkHftFA62tGVK1EI9Kw==
 
 slugify@^1.3.4:
   version "1.3.4"
@@ -13837,7 +13862,7 @@ temp@0.8.3:
     os-tmpdir "^1.0.0"
     rimraf "~2.2.6"
 
-tempy@^0.3.0:
+tempy@0.3.0, tempy@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/tempy/-/tempy-0.3.0.tgz#6f6c5b295695a16130996ad5ab01a8bd726e8bf8"
   integrity sha512-WrH/pui8YCwmeiAoxV+lpRH9HpRtgBhSR2ViBPgpGb/wnYDzp21R4MN45fsCGvLROvY67o3byhJRYRONJyImVQ==
