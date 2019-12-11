@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AsyncStorage } from 'react-native';
 import { createUploadLink } from 'apollo-upload-client';
 import { ApolloClient } from 'apollo-boost';
@@ -87,4 +88,12 @@ export const LetheApolloClient = ({ children }) => {
   });
 
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
+};
+
+LetheApolloClient.defaultProps = {
+  children: () => {},
+};
+
+LetheApolloClient.propTypes = {
+  children: PropTypes.node,
 };
