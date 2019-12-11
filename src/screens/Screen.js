@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Content } from 'native-base';
+import { Container } from 'native-base';
 
 export const Screen = ({ children, fab }) => (
   <Container>
-    <Content>{children}</Content>
+    {children}
     {fab}
   </Container>
 );

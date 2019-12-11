@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Animated, TouchableOpacity } from 'react-native';
-import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
+// import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
+import ViewPager from '@react-native-community/viewpager';
 import { Container, Content, Button, Text } from 'native-base';
 import { TokenContext } from '../context';
 import { LoginForm, CreateAccountForm } from '../components';
@@ -112,30 +113,30 @@ export const LoginScreen = ({ navigation }) => {
           )}
           {menuExpanded && (
             <View style={{ flex: 1, backgroundColor: '#7b6ed6' }}>
-              <IndicatorViewPager
+              <ViewPager
                 initialPage={slidePage}
                 style={{ height: 800 }}
                 onPageScroll={() => setPageScroll(false)}
-                indicator={
-                  // eslint-disable-next-line react/jsx-wrap-multilines
-                  <PagerDotIndicator
-                    pageCount={2}
-                    style={{ height: 40, top: -40 }}
-                    dotStyle={{ backgroundColor: '#666' }}
-                    selectedDotStyle={{ backgroundColor: '#7b6ed6' }}
-                  />
-                }
+                // indicator={
+                //   // eslint-disable-next-line react/jsx-wrap-multilines
+                //   <PagerDotIndicator
+                //     pageCount={2}
+                //     style={{ height: 40, top: -40 }}
+                //     dotStyle={{ backgroundColor: '#666' }}
+                //     selectedDotStyle={{ backgroundColor: '#7b6ed6' }}
+                //   />
+                // }
               >
-                <View>
+                <View key="0">
                   <LoginForm pageScroll={pageScroll} onSetToken={setToken} />
                 </View>
-                <View>
+                <View key="1">
                   <CreateAccountForm
                     pageScroll={pageScroll}
                     onSetToken={setToken}
                   />
                 </View>
-              </IndicatorViewPager>
+              </ViewPager>
             </View>
           )}
         </View>

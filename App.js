@@ -8,6 +8,7 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { TokenProvider } from './src/context';
 import { LetheApolloClient } from './src/components/LetheApolloClient';
+import { AppContainer } from './src/navigator';
 
 NativeTachyons.build(
   {
@@ -52,10 +53,13 @@ export default () => {
       />
     );
   }
+
   return (
     <Root>
       <TokenProvider>
-        <LetheApolloClient />
+        <LetheApolloClient>
+          <AppContainer />
+        </LetheApolloClient>
       </TokenProvider>
     </Root>
   );

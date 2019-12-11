@@ -8,20 +8,30 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { getMainDefinition } from 'apollo-utilities';
-import { Navigator } from '../navigator';
 import { TokenContext } from '../context';
 
-export const LetheApolloClient = () => {
+export const LetheApolloClient = ({ children }) => {
   const { token, setToken } = React.useContext(TokenContext);
 
-  if (!token) {
-    AsyncStorage.getItem('@letheStore:token').then(authToken => {
-      if (authToken) {
-        return setToken(authToken);
-      }
-      return Promise.resolve();
-    });
-  }
+  React.useEffect(() => {
+    if (!token) {
+      AsyncStorage.getItem('@letheStore:token').then(authToken => {
+        if (authToken) {
+          return setToken(authToken);
+        }
+        return Promise.resolve();
+      });
+    }
+  }, [token]);
+
+  // if (!token) {
+  //   AsyncStorage.getItem('@letheStore:token').then(authToken => {
+  //     if (authToken) {
+  //       return setToken(authToken);
+  //     }
+  //     return Promise.resolve();
+  //   });
+  // }
 
   const httpLink = createUploadLink({
     // const httpLink = createHttpLink({
@@ -76,9 +86,5 @@ export const LetheApolloClient = () => {
     cache: new InMemoryCache(),
   });
 
-  return (
-    <ApolloProvider client={client}>
-      <Navigator />
-    </ApolloProvider>
-  );
+  return <ApolloProvider client={client}>{children}</ApolloProvider>;
 };

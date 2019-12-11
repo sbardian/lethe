@@ -1,9 +1,10 @@
-import { createStackNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { LoginNavigator } from './LoginNavigator';
 import { AppNavigator } from './AppNavigator';
 import { stackConfig } from './config';
 
-export const Navigator = createStackNavigator(
+const Navigator = createStackNavigator(
   {
     Login: {
       screen: LoginNavigator,
@@ -14,3 +15,5 @@ export const Navigator = createStackNavigator(
   },
   stackConfig,
 );
+
+export const AppContainer = createAppContainer(Navigator);
