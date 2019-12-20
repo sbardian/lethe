@@ -1913,10 +1913,10 @@
     resolve-from "^5.0.0"
     slugify "^1.3.4"
 
-"@expo/dev-tools@^0.9.3":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.9.3.tgz#72e05e967529ba1f9c3a629018d2920452156fc1"
-  integrity sha512-6bZu/YMLpF8DL7s9wAbvM1ldJgePxm4yheEI5e5ALThowvVvSd045v/PM35gGzhUPkC3TJW4uAI9yAS8EP6GZA==
+"@expo/dev-tools@^0.9.4":
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.9.4.tgz#d9511c48e225a1d92f3e76367df603c7a32c0933"
+  integrity sha512-N4kE4DzbxNdKHqgSZtHL59aOU7NNUI7UAfEVqvN/Urzk1wYa0obqIZc7C/2QtIk71EbL6ucykgBcwH3FWYH/7A==
   dependencies:
     "@expo/config" "^2.5.3"
     base64url "3.0.1"
@@ -2173,10 +2173,10 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@^57.4.1":
-  version "57.4.1"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.4.1.tgz#21a4bd708a073b5fdaa135f5fef38aaee5520c44"
-  integrity sha512-9dfYdv7muM89UoFZeZ1IK/gKF96hucC+LbbR6jgooC9XRqGdirvNjuYInLLTEajFaGWR3RjHwBrFtsuqIVMHBQ==
+"@expo/xdl@^57.4.2":
+  version "57.4.2"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.4.2.tgz#ae025c10ccd388229111f080c0c9803a4380f0e9"
+  integrity sha512-k6vv8HTNWMiNNJEB7FxQuLbO8ScwFbze+lsBoQGvkf7LmVqi4epc94T2tKNjU809kb0Iu2NS+gc6OjIZGOpCTw==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^2.5.3"
@@ -6710,20 +6710,20 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.11.2:
-  version "3.11.2"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.11.2.tgz#00f86dea58b3993aa36f6f319b746ebd6cc936c8"
-  integrity sha512-7LsJtNOwfJ5JGuTpunK4fdWbXRLSHbAbt8Ytbt6lrDDSOCbP+5A236razC/iEfNBePi8YSnd+gvMrZKOWY/1wA==
+expo-cli@3.11.3:
+  version "3.11.3"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.11.3.tgz#8338bc6c5f7537c58b098a634c8182557455ccc0"
+  integrity sha512-cvBMQTIEoLIK1me+50jJm8q4jc4wriokMeManctBui/7/D+C3PzeyeFwCNmV7CecbQIx039+eQ/zPZDO+B2TqA==
   dependencies:
     "@expo/build-tools" "0.1.3"
     "@expo/bunyan" "3.0.2"
     "@expo/config" "^2.5.3"
-    "@expo/dev-tools" "^0.9.3"
+    "@expo/dev-tools" "^0.9.4"
     "@expo/json-file" "^8.2.3"
     "@expo/package-manager" "^0.0.2"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "^57.4.1"
+    "@expo/xdl" "^57.4.2"
     "@types/cli-table" "^0.3.0"
     "@types/untildify" "^3.0.0"
     ansi-regex "^4.1.0"
