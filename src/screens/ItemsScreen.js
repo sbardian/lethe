@@ -31,7 +31,7 @@ ItemsScreen.navigationOptions = ({ navigation }) => {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
-    headerRight: (
+    headerRight: () => (
       <Button
         transparent
         onPress={() => {

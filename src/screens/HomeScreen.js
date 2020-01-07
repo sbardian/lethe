@@ -86,7 +86,7 @@ HomeScreen.navigationOptions = ({ navigation }) => ({
   headerTitleStyle: {
     fontWeight: 'bold',
   },
-  headerRight: (
+  headerRight: () => (
     <TokenContext.Consumer>
       {({ removeToken }) => (
         <Button
