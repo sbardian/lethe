@@ -23,7 +23,7 @@
     "expo": "36.0.2",
     "expo-cli": "3.11.5",
     "expo-font": "8.0.0",
-    "expo-image-picker": "8.0.1",
+    "expo-image-picker": "8.0.2",
     "expo-permissions": "8.0.0",
     "faker": "4.1.0",
     "global": "4.4.0",
