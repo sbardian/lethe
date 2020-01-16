@@ -12505,9 +12505,10 @@ react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-native-device-detection@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-device-detection/-/react-native-device-detection-0.2.0.tgz#4a74367b147b173b249a009592401c93f9915797"
+react-native-device-detection@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-device-detection/-/react-native-device-detection-0.2.1.tgz#6b50bf7bf9137a395f9dfd0f2b1d01aeee170a49"
+  integrity sha512-0ErWdxoB4DPLuzzjgS3nUyzauo1YoJ0QjQJZMjx0dr3MGdF3SE9T3Lb2lKj3kPsTQYy5qnlWZ24DmQkHZlIjgw==
 
 react-native-drawer@2.5.1:
   version "2.5.1"
