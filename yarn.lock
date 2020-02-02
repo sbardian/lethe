@@ -12498,10 +12498,10 @@ react-native-easy-grid@0.2.2:
   dependencies:
     lodash "^4.17.15"
 
-react-native-gesture-handler@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.4.tgz#5c1842498d38c31e23afd6e4da166d98986cb4ad"
-  integrity sha512-JNwxLkTg1gKHsANjJBNNzDxerxM6NilIPXZOVq8xvEc2SZAPkC5zTijP4knWRtX0Q5y704Uz7DqBClkNp0S4Uw==
+react-native-gesture-handler@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.5.tgz#513d6d65c4e24efd6d69be0006c7cd3bc9045358"
+  integrity sha512-viypCSRpo064BdpkVL2FnPLZiEK3piJ1WZxydFXgeZj+avJxd6VnTFoh9+IDFk2M0Eadoy6D1ZV1TqBMGHtqGg==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     hammerjs "git+https://github.com/naver/hammer.js.git"
