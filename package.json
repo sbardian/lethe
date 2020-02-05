@@ -29,7 +29,7 @@
     "global": "4.4.0",
     "graphql": "14.6.0",
     "graphql-subscriptions": "1.1.0",
-    "graphql-tag": "2.10.2",
+    "graphql-tag": "2.10.3",
     "graphql-tools": "4.0.6",
     "lodash": "4.17.15",
     "native-base": "2.13.8",
