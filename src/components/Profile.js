@@ -194,7 +194,7 @@ export const Profile = () => {
                   style={styles.userImage}
                   source={
                     profileImageUrl
-                      ? { uri: `https://${profileImageUrl}` }
+                      ? { uri: `https://${profileImageUrl}/profileImage.jpg` }
                       : defaultProfileImage
                   }
                 />
