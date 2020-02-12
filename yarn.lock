@@ -1657,10 +1657,10 @@
     resolve-from "^5.0.0"
     slugify "^1.3.4"
 
-"@expo/dev-tools@0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.10.0.tgz#37080abc9301eebbe15d2aa437da63de8be7af0e"
-  integrity sha512-tNH9gPJ9MApOi4hui/L/Kc3dN2o45Wp1+VXuzRebLGwpAkuWG/R1YQJq+f/m9vBIXrxbDTIPX3qEVtBt+t5e7g==
+"@expo/dev-tools@0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.10.1.tgz#ef7069426b3d4e0f27f9f57e10fb71637676f4cc"
+  integrity sha512-x309ydc5p1hMVUF0jEoS1/zmdaPuIocfS0RT8W1/ixlWzycDq4JZWpAPAdmRozhM1nZtR1asWW2UFsMIu+gNeg==
   dependencies:
     "@expo/config" "2.6.0"
     base64url "3.0.1"
@@ -1784,10 +1784,10 @@
     "@expo/spawn-async" "^1.5.0"
     exec-async "^2.2.0"
 
-"@expo/package-manager@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@expo/package-manager/-/package-manager-0.0.4.tgz#0596b823340a8067f490b2275e3545ffb16ed816"
-  integrity sha512-hUXjjKY6L8q3grEshJ/gCpB8uQ1RLveSL5sVUOhtEQMbjDdYyoHiIAP80xbpZvCLmDcBAifRkiSNIHVUyrW1qw==
+"@expo/package-manager@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@expo/package-manager/-/package-manager-0.0.5.tgz#4dd10df7a93c28cd7f2d8fcf8ce84de1f44fc95f"
+  integrity sha512-rACiYPfhHS4rwykw00PaTJSMkCRl5S7U3pC187rzi1vaET35kI6xcI7z/yYqztvzHsJQ9Y/S1PmVM8+DJIKIYw==
   dependencies:
     "@expo/spawn-async" "^1.5.0"
     ansi-regex "^5.0.0"
@@ -1831,15 +1831,15 @@
     fs-extra "^8.1.0"
     lodash "^4.17.15"
 
-"@expo/traveling-fastlane-darwin@1.11.4":
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-darwin/-/traveling-fastlane-darwin-1.11.4.tgz#bc83ea2a3c8fa2cb1c7daedf1514c5839b4f1f45"
-  integrity sha512-1rNq4yMHGfmYhUJuBH5lKpmHVAa5QjgXbv3MoMqsFrlnwzDaq4qHSs6s/RWHw+gmk5lASEhmW32ALArAxX9ceA==
+"@expo/traveling-fastlane-darwin@1.11.5":
+  version "1.11.5"
+  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-darwin/-/traveling-fastlane-darwin-1.11.5.tgz#6f1a6050001d7300f89c4958c6c8df144c54b329"
+  integrity sha512-RVSa/TQU//qVTShO7HC7P81z60s562hOAi5hMAsoNCxiCkX/kEuLWOsBvo/mn384ppic4Z6+kld3ZIG+TK1tHw==
 
-"@expo/traveling-fastlane-linux@1.11.4":
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-linux/-/traveling-fastlane-linux-1.11.4.tgz#4e9c3533726528fb220100cb7cce2fcba02d1758"
-  integrity sha512-QFMX3XoSIBvhQ/neIE/m0wnBmeC48MEEjGsSZ1J2JdK5bHg4eWbVm7hGWqnMwV6awEjg02KaroupOqohs3NGWg==
+"@expo/traveling-fastlane-linux@1.11.5":
+  version "1.11.5"
+  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-linux/-/traveling-fastlane-linux-1.11.5.tgz#425718cc93de94640626f85e1e6eedd58755676f"
+  integrity sha512-yp3JeJzv0nkS9L5qD+Cc+wB1AsUwdv8c2xRrNWmkaGXXnNgARVg8Xwa11qQIfG0Lk2ZiYUZ6AshWhM7FsSVYYQ==
 
 "@expo/vector-icons@10.0.6":
   version "10.0.6"
@@ -1916,10 +1916,10 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@57.5.0":
-  version "57.5.0"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.5.0.tgz#fbffdc074501f19740106202697ee9207005a9fa"
-  integrity sha512-hUBcsp/e/jViPMrxzKAYZ9FebPB9N9JFR5w7JI2NUIqJr23Oc++8wqj2eKX9gHJXCZr4PA/raY7IWwO0A2WZ1w==
+"@expo/xdl@57.5.1":
+  version "57.5.1"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.5.1.tgz#918644c259a0f9f478d37097ba35a8a3d4c6a768"
+  integrity sha512-Fe3T6FifTJuI5supmuKFmJXsMYFBFygcoqhySGw213V8tJn7/pl/nsx/00cJ+kLVu+2Ja+ulsF+T3hpdJB8eiw==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "2.6.0"
@@ -1952,6 +1952,7 @@
     internal-ip "4.3.0"
     invariant "2.2.4"
     joi "14.0.4"
+    js-yaml "^3.13.1"
     latest-version "5.1.0"
     lodash "4.17.15"
     md5hex "1.0.0"
@@ -6546,20 +6547,20 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.12.0:
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.12.0.tgz#e8b902feecfc146291efe47280f948fc5849c006"
-  integrity sha512-w9M1C7Fx9SifoMYpRAr6RMFEZ/nvfhinZ20s0MwlDFA0nz66TTy4d0wCfeQdO2ULqqVKKrUKP1w7IA48azoCxg==
+expo-cli@3.12.1:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.12.1.tgz#87cba190b5090a9fcbfc0a29ca3ca989832a8a11"
+  integrity sha512-tmcMV2hUe2jeiZznOYir7c2n2hm+VpVEm9O8lik7bJpy96+trbc8eR8Na7KpmjvUtg3bf7u9HqXevPRwcPNN1A==
   dependencies:
     "@expo/build-tools" "0.1.3"
     "@expo/bunyan" "3.0.2"
     "@expo/config" "2.6.0"
-    "@expo/dev-tools" "0.10.0"
+    "@expo/dev-tools" "0.10.1"
     "@expo/json-file" "^8.2.5"
-    "@expo/package-manager" "^0.0.4"
+    "@expo/package-manager" "0.0.5"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "57.5.0"
+    "@expo/xdl" "57.5.1"
     "@types/cli-table" "^0.3.0"
     "@types/untildify" "^3.0.0"
     ansi-regex "^4.1.0"
@@ -6605,8 +6606,8 @@ expo-cli@3.12.0:
     validator "10.5.0"
     wordwrap "1.0.0"
   optionalDependencies:
-    "@expo/traveling-fastlane-darwin" "1.11.4"
-    "@expo/traveling-fastlane-linux" "1.11.4"
+    "@expo/traveling-fastlane-darwin" "1.11.5"
+    "@expo/traveling-fastlane-linux" "1.11.5"
 
 expo-constants@~8.0.0:
   version "8.0.0"
