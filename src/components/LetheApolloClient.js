@@ -39,18 +39,26 @@ export const LetheApolloClient = ({ children }) => {
     // android
     // uri: 'http://10.0.3.2:9999/graphql',
     // ios
-    uri: 'http://localhost:9999/graphql',
+    // uri: 'http://localhost:9999/graphql',
     // now
     // uri: 'https://letheapi-drnljuhskx.now.sh/graphql',
+    // docker local dev
+    // uri: 'http://lethe.localhost/graphql',
+    // heroku
+    uri: 'https://letheapi.herokuapp.com/graphql',
   });
 
   const wsLink = new WebSocketLink({
     // android
     // uri: 'wss://10.0.3.2:9999/subscriptions',
     // ios
-    uri: 'wss://localhost:9999/subscriptions',
+    // uri: 'wss://localhost:9999/subscriptions',
     // now
     // uri: `wss://letheapi-drnljuhskx.now.sh/subscriptions`,
+    // docker local dev
+    // uri: 'wss://lethe.localhost/subscriptions',
+    // heroku
+    uri: 'https://letheapi.herokuapp.com/subscriptions',
     options: {
       reconnect: true,
       connectionParams: {
