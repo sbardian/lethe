@@ -34,7 +34,7 @@ const GET_MY_INVITATIONS = gql`
 `;
 
 const INVITATION_ADDED = gql`
-  subscription invitationAdded {
+  subscription onInvitationAdded {
     invitationAdded {
       id
       title
@@ -55,7 +55,7 @@ const INVITATION_ADDED = gql`
 `;
 
 const INVITATION_DELETED = gql`
-  subscription invitationDeleted {
+  subscription onInvitationDeleted {
     invitationDeleted {
       id
       title
@@ -86,11 +86,14 @@ export const Invitations = () => {
     return <Text>Error: ${error.message}</Text>;
   }
 
-  const { getMyInfo: { invitations } } = data;
+  const {
+    getMyInfo: { invitations },
+  } = data;
 
   subscribeToMore({
     document: INVITATION_ADDED,
     updateQuery: (prev, { subscriptionData }) => {
+      console.log('test');
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.invitationAdded;
       if (!prev.getMyInfo.invitations.some(invite => invite.id === id)) {
@@ -130,44 +133,50 @@ export const Invitations = () => {
       return prev;
     },
   });
+
   return (
     <FlatList
       bordered
       data={invitations}
-      renderItem={({ item }) => (
-        <Card>
-          <CardItem header bordered>
-            <Thumbnail
-              circle
-              small
-              style={{ marginRight: 10 }}
-              source={
-                item.inviter.profileImageUrl
-                  ? { uri: `https://${item.inviter.profileImageUrl}` }
-                  : { uri: `${defaultProfileImage}` }
-              }
-            />
-            <Text>{`Invitation from ${item.inviter.username}:`}</Text>
-          </CardItem>
-          <CardItem>
-            <Body>
-              <H3>{item.title}</H3>
-            </Body>
-          </CardItem>
-          <View style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}>
-            <AcceptInvitationIcon invitationId={item.id} />
-            <DeclineInvitationIcon
-              buttonProps={{
-                iconLeft: true,
-                light: true,
-                info: true,
-              }}
-              buttonText="Decline"
-              invitationId={item.id}
-            />
-          </View>
-        </Card>
-      )}
+      renderItem={({ item }) => {
+        console.log('item: ', item);
+        return (
+          <Card>
+            <CardItem header bordered>
+              <Thumbnail
+                circle
+                small
+                style={{ marginRight: 10 }}
+                source={
+                  item.inviter.profileImageUrl
+                    ? {
+                        uri: `https://${item.inviter.profileImageUrl}/profileImage.jpg`,
+                      }
+                    : { uri: `${defaultProfileImage}` }
+                }
+              />
+              <Text>{`Invitation from ${item.inviter.username}:`}</Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <H3>{item.title}</H3>
+              </Body>
+            </CardItem>
+            <View style={(s.flx_i, [s.flx_row, s.jcsa, s.aic, s.pa3])}>
+              <AcceptInvitationIcon invitationId={item.id} />
+              <DeclineInvitationIcon
+                buttonProps={{
+                  iconLeft: true,
+                  light: true,
+                  info: true,
+                }}
+                buttonText="Decline"
+                invitationId={item.id}
+              />
+            </View>
+          </Card>
+        );
+      }}
       keyExtractor={item => item.id}
     />
   );
