@@ -110,16 +110,14 @@ export const Items = ({ navigation, listId }) => {
     updateQuery: (prev, { subscriptionData }) => {
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.itemAdded;
-      if (!prev.list.items.some(item => item.id === id)) {
+      const [list] = prev.getLists;
+      if (!list.items.some(item => item.id === id)) {
         const newItems = {
           ...prev,
           getLists: [
             {
-              ...prev.list,
-              items: [
-                { ...subscriptionData.data.itemAdded },
-                ...prev.list.items,
-              ],
+              ...list,
+              items: [{ ...subscriptionData.data.itemAdded }, ...list.items],
             },
           ],
         };
@@ -134,13 +132,14 @@ export const Items = ({ navigation, listId }) => {
     updateQuery: (prev, { subscriptionData }) => {
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.itemDeleted;
-      if (prev.list.items.some(item => item.id === id)) {
-        const filteredItems = prev.list.items.filter(item => item.id !== id);
+      const [list] = prev.getLists;
+      if (list.items.some(item => item.id === id)) {
+        const filteredItems = list.items.filter(item => item.id !== id);
         const newItems = {
           ...prev,
           getLists: [
             {
-              ...prev.list,
+              ...list,
               items: [...filteredItems],
             },
           ],
@@ -156,13 +155,14 @@ export const Items = ({ navigation, listId }) => {
     updateQuery: (prev, { subscriptionData }) => {
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.itemEdited;
-      if (prev.list.items.some(item => item.id === id)) {
-        const noneEditItems = prev.list.items.filter(item => item.id !== id);
+      const [list] = prev.getLists;
+      if (list.items.some(item => item.id === id)) {
+        const noneEditItems = list.items.filter(item => item.id !== id);
         const newItems = {
           ...prev,
           getLists: [
             {
-              ...prev.list,
+              ...list,
               items: [
                 ...noneEditItems,
                 { ...subscriptionData.data.itemEdited },
