@@ -110,9 +110,9 @@ export const ListInvitations = ({ listId }) => {
                 small
                 style={{ marginRight: 10 }}
                 source={
-                  item.inviter.profileImageUrl
+                  item.invitee.profileImageUrl
                     ? {
-                        uri: `https://${item.inviter.profileImageUrl}`,
+                        uri: `https://${item.invitee.profileImageUrl}/profileImage.jpg`,
                       }
                     : require('../../images/defaultProfile.jpg')
                 }
