@@ -10,6 +10,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { getMainDefinition } from 'apollo-utilities';
 import { TokenContext } from '../context';
+import getEnvVars from '../../environment';
 
 export const LetheApolloClient = ({ children }) => {
   const { token, setToken } = React.useContext(TokenContext);
@@ -25,40 +26,45 @@ export const LetheApolloClient = ({ children }) => {
     }
   }, [token]);
 
-  // if (!token) {
-  //   AsyncStorage.getItem('@letheStore:token').then(authToken => {
-  //     if (authToken) {
-  //       return setToken(authToken);
-  //     }
-  //     return Promise.resolve();
-  //   });
-  // }
+  const { apiUrl, uri } = getEnvVars();
+
+  let httpUri;
+  let wssUri;
+  switch (uri) {
+    case 'android':
+      httpUri = 'http://10.0.3.2:9999/graphql';
+      wssUri = 'http://10.0.3.2:9999/subscriptions';
+      break;
+    case 'ios':
+      httpUri = 'http://localhost:9999/graphql';
+      wssUri = 'http://localhost:9999/subscriptions';
+      break;
+    case 'now':
+      httpUri = 'https://letheapi-drnljuhskx.now.sh/graphql';
+      wssUri = 'https://letheapi-drnljuhskx.now.sh/subscriptions';
+      break;
+    case 'docker':
+      httpUri = 'http://develop.localhost/graphql';
+      wssUri = 'http://develop.localhost/subscriptions';
+      break;
+    case 'heroku':
+      httpUri = 'https://letheapi.herokuapp.com/graphql';
+      wssUri = 'https://letheapi.herokuapp.com/subscriptions';
+      break;
+    case 'androidIos':
+      httpUri = `http://${apiUrl}graphql`;
+      wssUri = `http://${apiUrl}subscriptions`;
+      break;
+    default:
+      break;
+  }
 
   const httpLink = createUploadLink({
-    // const httpLink = createHttpLink({
-    // android
-    // uri: 'http://10.0.3.2:9999/graphql',
-    // ios
-    // uri: 'http://localhost:9999/graphql',
-    // now
-    // uri: 'https://letheapi-drnljuhskx.now.sh/graphql',
-    // docker local dev
-    // uri: 'http://lethe.localhost/graphql',
-    // heroku
-    uri: 'https://letheapi.herokuapp.com/graphql',
+    uri: httpUri,
   });
 
   const wsLink = new WebSocketLink({
-    // android
-    // uri: 'wss://10.0.3.2:9999/subscriptions',
-    // ios
-    // uri: 'wss://localhost:9999/subscriptions',
-    // now
-    // uri: `wss://letheapi-drnljuhskx.now.sh/subscriptions`,
-    // docker local dev
-    // uri: 'wss://lethe.localhost/subscriptions',
-    // heroku
-    uri: 'https://letheapi.herokuapp.com/subscriptions',
+    uri: wssUri,
     options: {
       reconnect: true,
       connectionParams: {
