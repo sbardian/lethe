@@ -6576,10 +6576,10 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.13.4:
-  version "3.13.4"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.13.4.tgz#c90971f5395336659fccf41a0ccb220d404fcac0"
-  integrity sha512-PQzx9xnzGMM0lcRKrU8H4sVMyBSC3riuh9++XRljZc200/NJ1dtjaMzssNPaR77bhtvIENRGla4X+ubgHBZQcA==
+expo-cli@3.13.5:
+  version "3.13.5"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.13.5.tgz#ab5dbfde3b6938cedc26808bf5643c4432a317f5"
+  integrity sha512-4jsIvd1HDK7713w+GKZpFQrADy8g5tT+crSSzWgsKWY5T0g+d/ZA3TzJIrLRqBesLCxeNPhVXGmZ6ebH5f2SIw==
   dependencies:
     "@expo/build-tools" "0.1.4"
     "@expo/bunyan" "3.0.2"
