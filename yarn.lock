@@ -10410,10 +10410,10 @@ native-base-shoutem-theme@0.3.1:
     lodash "^4.17.14"
     prop-types "^15.5.10"
 
-native-base@2.13.10:
-  version "2.13.10"
-  resolved "https://registry.yarnpkg.com/native-base/-/native-base-2.13.10.tgz#b583492bc759d16f28e6c3842a1600626d225256"
-  integrity sha512-/hm71XzSR+HoRhC25zr/fbt14wOQQNkDh4Vv6x42HywsjVKADv2X4GfsJABVmsXJP7fxTv+88GBV0tObiDz8sQ==
+native-base@2.13.11:
+  version "2.13.11"
+  resolved "https://registry.yarnpkg.com/native-base/-/native-base-2.13.11.tgz#702679a06b745a1f8733b1a660da73571cb93675"
+  integrity sha512-gvBqEx9iVKh34PbhjVwaKYxsmPZ6aU47LGNwiU2B+iII501kl3S6E22+03s8q4j3EHb8olY4Zc+B26eH/5UreQ==
   dependencies:
     blueimp-md5 "^2.5.0"
     clamp "^1.0.1"
