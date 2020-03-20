@@ -13164,10 +13164,10 @@ react-native-view-shot@3.0.2:
     stacktrace-parser "^0.1.3"
     whatwg-fetch "^3.0.0"
 
-react-navigation-stack@2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.3.2.tgz#d6cabb1f9b2a6386398e9891ec0659a2be048ee6"
-  integrity sha512-GObgU4hMWqNkE2ncJMzBXRstX7UXIrC+hFl8nulcbR8YtFjEiszgjGqkth5C4pLRp70NSZbNCdiGi290LjFulA==
+react-navigation-stack@2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.3.3.tgz#4f580826a23354483129d4d51515ab3cf64b958f"
+  integrity sha512-kQPEPzHYP1esxD6f2qKrqn9a63xnKK5nu9qJiEtKCzQJkM7gwwIz18lrNwEFKEWneHeYJUEmWcghPWpGHUSsSA==
   dependencies:
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
