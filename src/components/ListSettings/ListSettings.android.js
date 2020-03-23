@@ -99,10 +99,10 @@ export const ListSettings = ({ title, navigation, listId }) => {
         </View>
       </Form>
       <View style={{ paddingBottom: 40 }}>
-        {<ListMembers navigation={navigation} listId={id} />}
+        <ListMembers navigation={navigation} listId={id} />
       </View>
       <View style={{ paddingBottom: 40 }}>
-        {<ListInvitations navigation={navigation} listId={id} />}
+        <ListInvitations navigation={navigation} listId={id} />
       </View>
     </View>
   );
