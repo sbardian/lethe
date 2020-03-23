@@ -139,7 +139,6 @@ export const Invitations = () => {
       bordered
       data={invitations}
       renderItem={({ item }) => {
-        console.log('item: ', item);
         return (
           <Card>
             <CardItem header bordered>

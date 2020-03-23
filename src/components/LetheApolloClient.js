@@ -28,6 +28,8 @@ export const LetheApolloClient = ({ children }) => {
 
   const { apiUrl, uri } = getEnvVars();
 
+  console.log('uri: ', uri);
+
   let httpUri;
   let wssUri;
   switch (uri) {
