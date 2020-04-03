@@ -2487,10 +2487,10 @@
     xcode "^2.1.0"
     xml2js "^0.4.23"
 
-"@expo/dev-tools@0.10.24":
-  version "0.10.24"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.10.24.tgz#b1d0e44d96513e10e6db87d77342c6fb513a8633"
-  integrity sha512-c4zbZ4bz6Ye2HSOSlGk7YVm9p60R7UuD8gAgIxLShFmS+4C7N5aKuIaMMxnsittC/pZKmR4ap9umjICxYB55Tg==
+"@expo/dev-tools@0.10.26":
+  version "0.10.26"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.10.26.tgz#bd5b24d0929fa38451eed8c9829abf4de206265c"
+  integrity sha512-XAjJ6v7KvxmejFgylB3fGqu8CrUsWWwj171Pwot8OhKZH+cJ/4ljJaedGipQ2fex/ZCcjnUlNauUqu3vZowd/w==
   dependencies:
     "@expo/config" "3.0.4"
     base64url "3.0.1"
@@ -2621,10 +2621,10 @@
     "@expo/spawn-async" "^1.5.0"
     exec-async "^2.2.0"
 
-"@expo/package-manager@0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@expo/package-manager/-/package-manager-0.0.8.tgz#c4aaf268f469a86d08830f5925e7579b793dd271"
-  integrity sha512-lffl9UWyryDvo3t/rb3qf56YR1XHvqgYHjLjnzy6MrbbRD1GhVESi0N1JOxL2UAMMiP3Vu8c8VG4akfzSMKndQ==
+"@expo/package-manager@0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@expo/package-manager/-/package-manager-0.0.10.tgz#9bbc5a75df21a18c764b2de4953098b385de05b7"
+  integrity sha512-hJBmv/LTKTh8zAByZeRoYx8CLALT+b5wZqw1ynAe/TaOpVXPdVCvWYblUkDgNVR2akcJ/Ny7jDQlMWWvrGe0QA==
   dependencies:
     "@expo/spawn-async" "^1.5.0"
     ansi-regex "^5.0.0"
@@ -2635,6 +2635,7 @@
     npm-package-arg "^7.0.0"
     split "^1.0.1"
     stream "^0.0.2"
+    sudo-prompt "9.1.1"
 
 "@expo/plist@^0.0.1":
   version "0.0.1"
@@ -2748,17 +2749,17 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@57.8.10":
-  version "57.8.10"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.8.10.tgz#2f1725a7ccd3cc70da4eea23db6e31ef4cad8bef"
-  integrity sha512-rBMgNf7JMEflRq85/t++qk1j0H+mKiTaWoQGH4p863IYsGyBL4eq3nXuV6AoU04DkSK5HsfBXwdvjkw3x3Ch1g==
+"@expo/xdl@57.8.12":
+  version "57.8.12"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.8.12.tgz#4884a6c52f9bfea247887a390e8ae5c8d1a49d31"
+  integrity sha512-4RER4dOGb1MXlcqEEGM8GcQiMmintR66CdJa/WKDsbS1/j1Tktn7LQ6NqSxfNfSI2T7uH9RGPZ3f/VKtc0PclQ==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "3.0.4"
     "@expo/json-file" "8.2.7"
     "@expo/ngrok" "2.4.3"
     "@expo/osascript" "2.0.12"
-    "@expo/package-manager" "0.0.8"
+    "@expo/package-manager" "0.0.10"
     "@expo/plist" "^0.0.1"
     "@expo/schemer" "1.3.7"
     "@expo/spawn-async" "1.5.0"
@@ -7508,21 +7509,21 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.17.11:
-  version "3.17.11"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.17.11.tgz#018a2c25bda6b070bc7cf5b5b009ea529cd6492a"
-  integrity sha512-gzbjgTHRbr03DS/Lx5hpR59US3qOHEMyk4bp9WJNnnnx1/Uhrs3AW0rzml6Iermi674jOI5XNb55GkwPQBmGLA==
+expo-cli@3.17.14:
+  version "3.17.14"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.17.14.tgz#95eae92cba4e34f596bc81e40005e62027021b54"
+  integrity sha512-uvQgLZ6lYik/V4tTLEVhEtHncd1KupCyPUdGR3c8CAYWNgaujiWLmrYBnK/PXjJqm1dSS/w8ZGSY9gG9FEDiUg==
   dependencies:
     "@expo/build-tools" "0.1.4"
     "@expo/bunyan" "3.0.2"
     "@expo/config" "3.0.4"
-    "@expo/dev-tools" "0.10.24"
+    "@expo/dev-tools" "0.10.26"
     "@expo/json-file" "8.2.7"
-    "@expo/package-manager" "0.0.8"
+    "@expo/package-manager" "0.0.10"
     "@expo/plist" "^0.0.1"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "57.8.10"
+    "@expo/xdl" "57.8.12"
     "@types/cli-table" "^0.3.0"
     "@types/untildify" "^3.0.0"
     ansi-regex "^4.1.0"
@@ -15099,15 +15100,15 @@ subscriptions-transport-ws@0.9.8:
     symbol-observable "^1.0.4"
     ws "^3.0.0"
 
+sudo-prompt@9.1.1, sudo-prompt@^9.0.0:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/sudo-prompt/-/sudo-prompt-9.1.1.tgz#73853d729770392caec029e2470db9c221754db0"
+  integrity sha512-es33J1g2HjMpyAhz8lOR+ICmXXAqTuKbuXuUWLhOLew20oN9oUCgCJx615U/v7aioZg7IX5lIh9x34vwneu4pA==
+
 sudo-prompt@^8.2.0:
   version "8.2.5"
   resolved "https://registry.yarnpkg.com/sudo-prompt/-/sudo-prompt-8.2.5.tgz#cc5ef3769a134bb94b24a631cc09628d4d53603e"
   integrity sha512-rlBo3HU/1zAJUrkY6jNxDOC9eVYliG6nS4JA8u8KAshITd07tafMc/Br7xQwCSseXwJ2iCcHCE8SNWX3q8Z+kw==
-
-sudo-prompt@^9.0.0:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/sudo-prompt/-/sudo-prompt-9.1.1.tgz#73853d729770392caec029e2470db9c221754db0"
-  integrity sha512-es33J1g2HjMpyAhz8lOR+ICmXXAqTuKbuXuUWLhOLew20oN9oUCgCJx615U/v7aioZg7IX5lIh9x34vwneu4pA==
 
 supports-color@^2.0.0:
   version "2.0.0"
