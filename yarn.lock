@@ -2487,10 +2487,10 @@
     xcode "^2.1.0"
     xml2js "^0.4.23"
 
-"@expo/dev-tools@0.10.29":
-  version "0.10.29"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.10.29.tgz#d5e4b8078399230cc0811a28e37b4b19d91314c3"
-  integrity sha512-AlF3CKuSJHti0q7oLR91uYf2hl33mZIEWYy7H98EU+MaNUYet9j1XvTwav8GlpDHUnkH4XK0PwjJW2ehkQgx1A==
+"@expo/dev-tools@0.10.30":
+  version "0.10.30"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.10.30.tgz#61f4af71c64ad75fa8835496945a23f706ea6009"
+  integrity sha512-/MEI/sy5WUlBp+aI7NDseVW/SW3C/4zl1SKxMCQyNSaE6BzbHyswMjKd2pccbLlUURlo0ge8BrRrgpBgkIEIXg==
   dependencies:
     "@expo/config" "3.0.6"
     base64url "3.0.1"
@@ -2750,10 +2750,10 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@57.8.15":
-  version "57.8.15"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.8.15.tgz#d15ff31e7fcf1a68b46aa498fa049a2539e4b026"
-  integrity sha512-Q8BQnIs47+f36Ij/dAOaR8NpvuyjiQsRvlXShAv58p1GlGo6E3/xQLZKYzCuYfrBOA8Eq/WtakgHA22euyRmCA==
+"@expo/xdl@57.8.16":
+  version "57.8.16"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.8.16.tgz#b88abac24574f37b97704fda843b72db9a4c765f"
+  integrity sha512-nVoOcReJcU/AOXTLnAOmJCzQ6EonningpwMqdFclqE1EbsMFUm2c73ecF9A4jpt4tGQ7/pavicsbvVGaWMMuKA==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "3.0.6"
@@ -7510,21 +7510,21 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.17.17:
-  version "3.17.17"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.17.17.tgz#4c0f368daea5be3f7b130d6723e995b3adcc225d"
-  integrity sha512-bRZJWOXEVZhXstuYQ1CeiFKb/H0Qa6zg8JHRtbJWq1ZfKRmPYOVfG2GEgq14xrWR5nzjvEATQv8N58TwHAgKnw==
+expo-cli@3.17.18:
+  version "3.17.18"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.17.18.tgz#72f18ca7b8691ebb965de5c6ac175700d0c00532"
+  integrity sha512-Vcq9jdj8q8Q3VCmOyqOCxO/8L+qPenRgIWIfr6reIFyS89DUfTleeDASGqoFFe6VDoYmN5trBUR7w1MKWQdWpQ==
   dependencies:
     "@expo/build-tools" "0.1.4"
     "@expo/bunyan" "3.0.2"
     "@expo/config" "3.0.6"
-    "@expo/dev-tools" "0.10.29"
+    "@expo/dev-tools" "0.10.30"
     "@expo/json-file" "8.2.8"
     "@expo/package-manager" "0.0.13"
     "@expo/plist" "0.0.2"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "57.8.15"
+    "@expo/xdl" "57.8.16"
     "@types/cli-table" "^0.3.0"
     "@types/untildify" "^3.0.0"
     ansi-regex "^4.1.0"
