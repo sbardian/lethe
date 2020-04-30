@@ -2473,22 +2473,22 @@
     xcode "^2.1.0"
     xml2js "^0.4.23"
 
-"@expo/dev-server@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@expo/dev-server/-/dev-server-0.1.0.tgz#ae06e73f4c3941b1d6c2dd46b38b57ca773f3e1f"
-  integrity sha512-obvYXfNdniO6nRj4B6+r17gWKa/lJd/8DbNtNEWeVNfCinaDnL/J1e9Pp8AlHLMzySgjzIBPsPo3A1ZtGgBSxw==
+"@expo/dev-server@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@expo/dev-server/-/dev-server-0.1.1.tgz#513ea35afee0354005975c7252fa7cfb7ca8e021"
+  integrity sha512-n4F22KMPw/rlHAxPHrJMNEIHNuZtD4dtBGAagFlo9WgckeA5N5tVA97uQG6v8Btx7xcr8fVHuMH4tbVm1A7kSQ==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "3.2.0"
-    "@expo/metro-config" "0.1.0"
+    "@expo/metro-config" "0.1.1"
     "@react-native-community/cli-server-api" "4.8.0"
     body-parser "1.19.0"
     serialize-error "6.0.0"
 
-"@expo/dev-tools@0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.13.3.tgz#b2ededd82b91f91497195ca5c530f81842db99d9"
-  integrity sha512-GhIavOnSq7NZVlrkMmhZqaquDhbSmzUmhUhbh1R7Z6/tQ1xiV9QJdoxduRpoXHmUiytzumIqlGlL9J92/wQZXg==
+"@expo/dev-tools@0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@expo/dev-tools/-/dev-tools-0.13.4.tgz#0d1e78a7d1a4f1a26d6bc47e1727cf977741b52e"
+  integrity sha512-tEci2gfK+4bmR0ly/wjXrwFa8StbhgMebPb/cedHjFI0sATNOYCpW+BeiFkWrjxhVnSBPxwqlZt7Y0aBf1aDCw==
   dependencies:
     "@expo/config" "3.2.0"
     base64url "3.0.1"
@@ -2527,10 +2527,10 @@
     util.promisify "^1.0.0"
     write-file-atomic "^2.3.0"
 
-"@expo/metro-config@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@expo/metro-config/-/metro-config-0.1.0.tgz#a9071ebe7af21020091a177ad5fefb4d11cad656"
-  integrity sha512-1PgOcwUTdtgtAL6waGzQjdiTTmuWrH6fE1tGNr0i8uv1jiK1xbzoQkpxyGYNk3CYROisprSfi4FfLJjF/KzpEA==
+"@expo/metro-config@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@expo/metro-config/-/metro-config-0.1.1.tgz#646d3f2c07e03f3dc1464d51fd58a7325b0a7a79"
+  integrity sha512-6dLpAKdyXie+krcKSgqEs1ziCVpmHd4QiXFoHvCNQTuwipYJAQtYksZuQzePdFaqr2+peGPw3FS/ax4YeA55Pw==
   dependencies:
     "@expo/config" "3.2.0"
     metro-react-native-babel-transformer "^0.58.0"
@@ -2756,14 +2756,14 @@
     pouchdb-collections "^1.0.1"
     tiny-queue "^0.2.1"
 
-"@expo/xdl@57.9.0":
-  version "57.9.0"
-  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.9.0.tgz#0a1a99d1477aa6507847bc40f1e784d57744a233"
-  integrity sha512-KSOWTn7QmW8NZB/I5iFSykjKBaTt8NqSlzfrwO2aeTmjNGr73NXH9VFGSXzhfVTPqFLrqbZbO5QX0T+ERIiuQw==
+"@expo/xdl@57.9.1":
+  version "57.9.1"
+  resolved "https://registry.yarnpkg.com/@expo/xdl/-/xdl-57.9.1.tgz#45fe07a5153c40178460c331273aa2e4dc3d16c2"
+  integrity sha512-V0spOc0PqhjjFN4qHtPlJQhJADCJ3JG1UTuED6s/E34pXEtjb/PXk8+VFczSrDHTX90AuVgfpdYVLRh5gdqixw==
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/config" "3.2.0"
-    "@expo/dev-server" "0.1.0"
+    "@expo/dev-server" "0.1.1"
     "@expo/json-file" "8.2.13"
     "@expo/ngrok" "2.4.3"
     "@expo/osascript" "2.0.16"
@@ -7517,21 +7517,21 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-cli@3.20.0:
-  version "3.20.0"
-  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.20.0.tgz#2085bbe35da256b7ad6412fe83cf0add90b168a2"
-  integrity sha512-FylJAC8cw2utx+Jbd82OuowAW/o6b8wVUhBddGX40ZwdPhdpi9WpFF+kVb1ENBJfJRiM9qntI8+vU89zIZMHXw==
+expo-cli@3.20.1:
+  version "3.20.1"
+  resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-3.20.1.tgz#58f26d457faeb1048c1fe00d6c6755d582d61f56"
+  integrity sha512-jtSHI0VAehHhM+eqUtqpkqU3jYuvlkcSOJ5OwsF8CXC1DrpILkv41k92GhI2sog6XHkSW4CwSHUz7K0wls4Xcw==
   dependencies:
     "@expo/build-tools" "0.1.4"
     "@expo/bunyan" "3.0.2"
     "@expo/config" "3.2.0"
-    "@expo/dev-tools" "0.13.3"
+    "@expo/dev-tools" "0.13.4"
     "@expo/json-file" "8.2.13"
     "@expo/package-manager" "0.0.18"
     "@expo/plist" "0.0.4"
     "@expo/simple-spinner" "1.0.2"
     "@expo/spawn-async" "1.5.0"
-    "@expo/xdl" "57.9.0"
+    "@expo/xdl" "57.9.1"
     ansi-regex "^4.1.0"
     axios "0.19.0"
     babel-runtime "6.26.0"
