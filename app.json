@@ -4,7 +4,6 @@
     "description": "This project is really great.",
     "slug": "lethe",
     "privacy": "unlisted",
-    "sdkVersion": "36.0.0",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.sbardian.lethe"
@@ -12,7 +11,10 @@
     "android": {
       "package": "com.sbardian.lethe"
     },
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "icon": "./src/images/icon.png",
     "splash": {
@@ -23,6 +25,8 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": [
+      "**/*"
+    ]
   }
 }
