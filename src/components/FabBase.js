@@ -10,6 +10,7 @@ export const FabBase = ({
   iconType,
 }) => (
   <Fab
+    testID="fab-base"
     style={{ backgroundColor: `${backgroundColor}` }}
     position={position}
     onPress={onPress}
