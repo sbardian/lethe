@@ -3,3 +3,6 @@ node_modules/**/*
 npm-debug.*
 yarn-error.log
 environment.js
+
+# Coverage directory 
+coverage
