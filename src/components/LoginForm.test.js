@@ -20,7 +20,7 @@ describe('LoginForm', () => {
       expect(onSetToken).toHaveBeenCalledWith('this-is-a-mock-token'),
     );
   });
-  it('Login failure with error returned', () => {
+  it('Login failure with error returned', async () => {
     const { getByTestId, queryByText } = render(
       <LoginForm onSetToken={onSetToken} />,
     );
@@ -32,7 +32,7 @@ describe('LoginForm', () => {
       fireEvent.changeText(passwordInput, 'wrong-pass');
     });
     fireEvent.press(loginButton);
-    wait(() => expect(getByTestId('login-error')).toBeTruthy());
+    await wait(() => expect(getByTestId('login-error')).toBeTruthy());
     wait(() => expect(queryByText('the sadness').toBeTruthy()));
   });
 });
