@@ -36,7 +36,7 @@ export default () => {
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
     });
 
-  const handleLoadingFailure = err => {
+  const handleLoadingFailure = (err) => {
     // TODO: report to error service?
     // eslint-disable-next-line no-console
     console.error(err);

@@ -17,11 +17,11 @@ export const LoginForm = ({ onSetToken }) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const onUsernameChange = value => {
+  const onUsernameChange = (value) => {
     setUsername(value);
   };
 
-  const onPasswordChange = value => {
+  const onPasswordChange = (value) => {
     setPassword(value);
   };
 
@@ -30,7 +30,9 @@ export const LoginForm = ({ onSetToken }) => {
       username,
       password,
     },
-    onCompleted: data => onSetToken(data.login.token),
+    onCompleted: (resultData) => {
+      onSetToken(resultData.login.token);
+    },
     onError: () => {},
   });
 
@@ -40,27 +42,30 @@ export const LoginForm = ({ onSetToken }) => {
         <Item floatingLabel>
           <Label style={{ color: 'white' }}>Username</Label>
           <Input
+            testID="username"
             style={{ color: 'white' }}
             id="username"
             value={username}
             autoCapitalize="none"
-            onChangeText={value => onUsernameChange(value)}
+            onChangeText={(value) => onUsernameChange(value)}
           />
         </Item>
         <Item floatingLabel>
           <Label style={{ color: 'white' }}>Password</Label>
           <Input
+            testID="password"
             style={{ color: 'white' }}
             id="password"
             value={password}
             secureTextEntry
             autoCapitalize="none"
-            onChangeText={value => onPasswordChange(value)}
+            onChangeText={(value) => onPasswordChange(value)}
           />
         </Item>
       </Form>
       <View>
         <Button
+          testID="login"
           block
           light
           style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
@@ -77,7 +82,10 @@ export const LoginForm = ({ onSetToken }) => {
           <Text>Login</Text>
         </Button>
         {error && (
-          <Text style={{ color: 'white', alignSelf: 'center' }}>
+          <Text
+            testID="login-error"
+            style={{ color: 'white', alignSelf: 'center' }}
+          >
             {error.message}
           </Text>
         )}
