@@ -7,7 +7,7 @@ const navigation = {
 };
 
 describe('AddItemFab', () => {
-  it('Render an add list item fab', async () => {
+  it('Render an add list item fab and click', async () => {
     const { getByTestId } = render(
       <AddItemFab navigation={navigation} listId="mock-list-id" />,
     );

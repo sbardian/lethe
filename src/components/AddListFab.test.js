@@ -7,7 +7,7 @@ const navigation = {
 };
 
 describe('AddListFab', () => {
-  it('Render an add list fab', async () => {
+  it('Render an add list fab and click', async () => {
     const { getByTestId } = render(<AddListFab navigation={navigation} />);
     const addListFab = getByTestId('fab-base');
     expect(addListFab).toBeTruthy();
