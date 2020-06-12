@@ -9,9 +9,9 @@ const navigation = {
 describe('AddListFab', () => {
   it('Render an add list fab', async () => {
     const { getByTestId } = render(<AddListFab navigation={navigation} />);
-    const fabBase = getByTestId('fab-base');
-    expect(fabBase).toBeTruthy();
-    fireEvent.press(fabBase);
+    const addListFab = getByTestId('fab-base');
+    expect(addListFab).toBeTruthy();
+    fireEvent.press(addListFab);
     await wait(() =>
       expect(navigation.navigate).toHaveBeenCalledWith('AddList'),
     );
