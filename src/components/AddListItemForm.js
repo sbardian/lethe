@@ -36,26 +36,38 @@ const GET_LIST_ITEMS = gql`
 export const AddListItemForm = ({ navigation, listId }) => {
   const [title, setTitle] = React.useState('');
 
-  const [createNewItem] = useMutation(ADD_ITEM, {
+  const [createNewItem, { error, loading }] = useMutation(ADD_ITEM, {
     variables: {
       title,
       listId,
     },
   });
 
-  const onTitleChange = value => {
+  const onTitleChange = (value) => {
     setTitle(value);
   };
+
+  // if (loading) {
+  //   return <Text>Loading . . . </Text>;
+  // }
+  if (error) {
+    return <Text>{`Error: ${error.message}`}</Text>;
+  }
 
   return (
     <View>
       <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
         <Item stackedLabel>
           <Label>Title</Label>
-          <Input id="ItemTitle" onChangeText={value => onTitleChange(value)} />
+          <Input
+            testID="item-title"
+            id="ItemTitle"
+            onChangeText={(value) => onTitleChange(value)}
+          />
         </Item>
       </Form>
       <Button
+        testID="add-list-item-button"
         block
         light
         style={{ marginRight: 20, marginLeft: 20, marginBottom: 20 }}
@@ -84,7 +96,6 @@ AddListItemForm.displayName = 'AddListItemForm';
 AddListItemForm.propTypes = {
   navigation: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
-    navigate: PropTypes.func.isRequired,
   }).isRequired,
   listId: PropTypes.string.isRequired,
 };

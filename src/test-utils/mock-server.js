@@ -53,7 +53,30 @@ const handlers = [
       ]),
     );
   }),
-
+  graphql.mutation('createNewItem', (req, res, ctx) => {
+    const { listId, title } = req.variables;
+    if (listId && title) {
+      return res(
+        ctx.data({
+          createNewItem: {
+            __typename: 'Item',
+            id: 'mock-item-id',
+            title,
+            creator: 'mock-item-creator-id',
+            list: listId,
+            status: 'mock-item-status',
+          },
+        }),
+      );
+    }
+    return res(
+      ctx.errors([
+        {
+          message: 'An error has occured. . . the sadness',
+        },
+      ]),
+    );
+  }),
   graphql.mutation('acceptInvitation', (req, res, ctx) => {
     const { invitationId } = req.variables;
 

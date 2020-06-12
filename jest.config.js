@@ -9,4 +9,5 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   setupFiles: [...expoPreset.setupFiles, ...jestPreset.setupFiles],
+  clearMocks: true,
 };
