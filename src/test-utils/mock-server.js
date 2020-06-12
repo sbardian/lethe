@@ -30,25 +30,53 @@ const handlers = [
       }),
     );
   }),
+  graphql.mutation('createNewList', (req, res, ctx) => {
+    const { title } = req.variables;
 
-  graphql.mutation('', (req, res, ctx) => {
+    if (title) {
+      return res(
+        ctx.data({
+          createNewList: {
+            __typename: 'List',
+            id: 'mock-new-list-id',
+            title,
+            owner: 'mock-new-list-owner',
+          },
+        }),
+      );
+    }
+    return res(
+      ctx.errors([
+        {
+          message: 'An error has occured. . . the sadness',
+        },
+      ]),
+    );
+  }),
+
+  graphql.mutation('acceptInvitation', (req, res, ctx) => {
     const { invitationId } = req.variables;
 
     if (invitationId === 'mock-invitation-id') {
       return res(
         ctx.data({
-          id: 'mock-new-invitation-id',
-          inviter: {
-            id: 'mock-inviter-id',
+          acceptInvitation: {
+            __typename: 'Invitation',
+            id: 'mock-new-invitation-id',
+            inviter: {
+              __typename: 'Inviter',
+              id: 'mock-inviter-id',
+            },
+            invitee: {
+              __typename: 'Invitee',
+              id: 'mock-invitee-id',
+              username: 'mock-invitee-username',
+              profileImageUrl: 'http://mock-invitee-profile-image.com',
+              email: 'invitee@invite.com',
+            },
+            list: 'mock-new-invitation-list-id',
+            title: 'mock-new-invitation-title',
           },
-          invitee: {
-            id: 'mock-invitee-id',
-            username: 'mock-invitee-username',
-            profileImageUrl: 'http://mock-invitee-profile-image.com',
-            email: 'invitee@invite.com',
-          },
-          list: 'mock-new-invitation-list-id',
-          title: 'mock-new-invitation-title',
         }),
       );
     }
@@ -61,6 +89,13 @@ const handlers = [
         ]),
       );
     }
+    return res(
+      ctx.errors([
+        {
+          message: 'An error has occured. . . the sadness',
+        },
+      ]),
+    );
   }),
 
   graphql.mutation('profileImageUpload', (req, res, ctx) => {

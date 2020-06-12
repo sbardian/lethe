@@ -31,7 +31,7 @@ const GET_MY_LISTS = gql`
 export const AddListForm = ({ navigation }) => {
   const [title, setTitle] = React.useState('');
 
-  const onTitleChange = value => {
+  const onTitleChange = (value) => {
     setTitle(value);
   };
 
@@ -46,7 +46,7 @@ export const AddListForm = ({ navigation }) => {
     return <Text>Loading . . . </Text>;
   }
   if (error) {
-    return <Text>Error: ${error.message}</Text>;
+    return <Text>{`Error: ${error.message}`}</Text>;
   }
 
   return (
@@ -54,10 +54,15 @@ export const AddListForm = ({ navigation }) => {
       <Form style={{ paddingBottom: 40, paddingRight: 20 }}>
         <Item stackedLabel>
           <Label>Title</Label>
-          <Input id="ListTitle" onChangeText={value => onTitleChange(value)} />
+          <Input
+            testID="list-title"
+            id="ListTitle"
+            onChangeText={(value) => onTitleChange(value)}
+          />
         </Item>
       </Form>
       <Button
+        testID="add-list-button"
         block
         light
         style={{ marginLeft: 20, marginRight: 20, marginBottom: 20 }}
