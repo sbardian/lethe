@@ -36,8 +36,7 @@ const handlers = [
       return res(
         ctx.data({
           login: {
-            __typename: 'token',
-            id: 'some-id',
+            __typename: 'AuthResponse',
             token: 'this-is-a-mock-token',
           },
         }),
