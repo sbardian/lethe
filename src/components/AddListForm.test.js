@@ -31,7 +31,7 @@ describe('AddListForm', () => {
     expect(titleInput).toBeTruthy();
     expect(addListButton).toBeTruthy();
     fireEvent.press(addListButton);
-    await wait(() => expect(navigation.navigate).toHaveBeenCalledTimes(1));
+    await wait(() => expect(navigation.navigate).toHaveBeenCalledTimes(0));
     await wait(() =>
       expect(
         getByText(
