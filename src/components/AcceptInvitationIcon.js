@@ -60,7 +60,7 @@ export const AcceptInvitationIcon = ({ invitationId }) => {
         duration: 3000,
       });
     },
-    onError: error => {
+    onError: (error) => {
       Toast.show({
         text: `An error has occured: ${error.message}`,
         buttonText: 'Okay',
@@ -79,6 +79,7 @@ export const AcceptInvitationIcon = ({ invitationId }) => {
 
   return (
     <Button
+      testID="accept-invitation-button"
       iconLeft
       light
       info

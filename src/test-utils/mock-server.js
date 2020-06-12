@@ -7,17 +7,62 @@ const handlers = [
     return res(
       ctx.data({
         getMyInfo: {
-          id: 'some-id',
-          username: 'mockUsername',
-          email: 'mock@email.com',
-          profileImageUrl: 'https://source.unsplash.com/random/150x150',
+          id: 'my-mock-id',
           lists: {
-            title: 'mockTitle',
+            id: 'mock-list-id',
+            title: 'mock-list-title',
+            owner: 'mock-list-owner-id',
+          },
+          invitations: {
+            id: 'mock-invitation-id',
+            inviter: {
+              id: 'mock-inviter-id',
+            },
+            invitee: {
+              id: 'mock-invitee-id',
+              username: 'mock-invitee-username',
+              profileImageUrl: 'http://mock-profile-image.com/',
+              email: 'mock@email.com',
+            },
+            title: 'mock-invitation-title',
           },
         },
       }),
     );
   }),
+
+  graphql.mutation('', (req, res, ctx) => {
+    const { invitationId } = req.variables;
+
+    if (invitationId === 'mock-invitation-id') {
+      return res(
+        ctx.data({
+          id: 'mock-new-invitation-id',
+          inviter: {
+            id: 'mock-inviter-id',
+          },
+          invitee: {
+            id: 'mock-invitee-id',
+            username: 'mock-invitee-username',
+            profileImageUrl: 'http://mock-invitee-profile-image.com',
+            email: 'invitee@invite.com',
+          },
+          list: 'mock-new-invitation-list-id',
+          title: 'mock-new-invitation-title',
+        }),
+      );
+    }
+    if (invitationId === 'mock-invalid-invitation-id') {
+      return res(
+        ctx.errors([
+          {
+            message: 'An error has occured. . . the sadness',
+          },
+        ]),
+      );
+    }
+  }),
+
   graphql.mutation('profileImageUpload', (req, res, ctx) => {
     return res(
       ctx.data([
