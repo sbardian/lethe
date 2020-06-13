@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait, act } from '../test-utils/custom-renderer';
+import { render, fireEvent } from '../test-utils/custom-renderer';
 import { AcceptInvitationIcon } from './AcceptInvitationIcon';
 
 describe('AcceptInvitationIcon', () => {

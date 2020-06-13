@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, act, wait } from '../test-utils/custom-renderer';
+import { render, fireEvent, wait } from '../test-utils/custom-renderer';
 import { LoginForm } from './LoginForm';
 
 const onSetToken = jest.fn();
@@ -10,10 +10,8 @@ describe('LoginForm', () => {
     const usernameInput = getByTestId('username');
     const passwordInput = getByTestId('password');
     const loginButton = getByTestId('login');
-    act(() => {
-      fireEvent.changeText(usernameInput, 'bob');
-      fireEvent.changeText(passwordInput, 'bob');
-    });
+    fireEvent.changeText(usernameInput, 'bob');
+    fireEvent.changeText(passwordInput, 'bob');
     fireEvent.press(loginButton);
     await wait(() => expect(onSetToken).toHaveBeenCalledTimes(1));
     await wait(() =>
@@ -27,10 +25,8 @@ describe('LoginForm', () => {
     const usernameInput = getByTestId('username');
     const passwordInput = getByTestId('password');
     const loginButton = getByTestId('login');
-    act(() => {
-      fireEvent.changeText(usernameInput, 'bob');
-      fireEvent.changeText(passwordInput, 'wrong-pass');
-    });
+    fireEvent.changeText(usernameInput, 'bob');
+    fireEvent.changeText(passwordInput, 'wrong-pass');
     fireEvent.press(loginButton);
     await wait(() => expect(getByTestId('login-error')).toBeTruthy());
     wait(() => expect(queryByText('the sadness').toBeTruthy()));

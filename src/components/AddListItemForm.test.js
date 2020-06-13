@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait, act } from '../test-utils/custom-renderer';
+import { render, fireEvent, wait } from '../test-utils/custom-renderer';
 import { AddListItemForm } from './AddListItemForm';
 
 const navigation = {
@@ -16,12 +16,8 @@ describe('AddListItemForm', () => {
     const addItemButton = getByTestId('add-list-item-button');
     expect(titleInput).toBeTruthy();
     expect(addItemButton).toBeTruthy();
-    act(() => {
-      fireEvent.changeText(titleInput, 'New Item Title');
-    });
-    act(() => {
-      fireEvent.press(addItemButton);
-    });
+    fireEvent.changeText(titleInput, 'New Item Title');
+    fireEvent.press(addItemButton);
     await wait(() => expect(navigation.goBack).toHaveBeenCalledTimes(1));
   });
   it('Render add list form, create new list failure', async () => {
