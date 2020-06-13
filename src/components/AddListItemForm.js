@@ -36,7 +36,7 @@ const GET_LIST_ITEMS = gql`
 export const AddListItemForm = ({ navigation, listId }) => {
   const [title, setTitle] = React.useState('');
 
-  const [createNewItem, { error, loading }] = useMutation(ADD_ITEM, {
+  const [createNewItem, { error }] = useMutation(ADD_ITEM, {
     variables: {
       title,
       listId,
@@ -47,9 +47,6 @@ export const AddListItemForm = ({ navigation, listId }) => {
     setTitle(value);
   };
 
-  // if (loading) {
-  //   return <Text>Loading . . . </Text>;
-  // }
   if (error) {
     return <Text>{`Error: ${error.message}`}</Text>;
   }
