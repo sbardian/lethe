@@ -1,6 +1,6 @@
 import { graphql, setupWorker } from 'msw';
 
-console.log('🔥 up msw server');
+// console.log('🔥 up msw server');
 
 const handlers = [
   graphql.query('getMyInfo', (req, res, ctx) => {

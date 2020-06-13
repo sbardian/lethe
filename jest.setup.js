@@ -9,9 +9,9 @@ const server = setupServer(...handlers);
 beforeAll(async () => {
   try {
     server.listen();
-    console.log('Server status: 😺');
+    // console.log('Server status: 😺');
   } catch (error) {
-    console.log('Server status: 🙀');
+    // console.log('Server status: 🙀');
   }
 });
 // if you need to add a handler after calling setupServer for some specific test
