@@ -4061,27 +4061,10 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-<<<<<<< HEAD
-"@testing-library/dom@7.13.0":
-  version "7.13.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.13.0.tgz#d5cae2cbf13074ac637e3447e9f59a8cfac5f56d"
-  integrity sha512-EMgi1DaRaEH99gP+hurOdmMIiayZepARLJFntiFkVybCKmfVEfHaNKZumk4xvEsnr9AQqqLG5tpUzDfa9qXdPw==
-  dependencies:
-    "@babel/runtime" "^7.10.2"
-    aria-query "^4.0.2"
-    dom-accessibility-api "^0.4.5"
-    pretty-format "^25.5.0"
-
-"@testing-library/jest-dom@5.10.0":
-  version "5.10.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.10.0.tgz#6fc80de4760995b3b4281d2f3214e6bb95dd0754"
-  integrity sha512-t6e6Y6cu9cnTRwgNzgGtMn+bluLa/JkQ8j876g0XoZ6QKK/VBPPAIJ2PVWK4pjTD3U/BROP0o29cMwpZHcqltA==
-=======
 "@testing-library/jest-native@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-3.1.0.tgz#414c834dfb524ca82b86509d5479e365d4d5bbec"
   integrity sha512-MZdsTsD6xrP5V0FTz2gVPG00ZMoKn4WniRitUH40zZTQ0DfMa5CVDpkAd5ed6qX1coDwS8vSCZS/JGMIDYjRQQ==
->>>>>>> chore: update deps and tweak jest setup
   dependencies:
     chalk "^2.4.1"
     jest-diff "^24.0.0"
