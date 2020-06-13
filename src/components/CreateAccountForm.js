@@ -68,19 +68,19 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
     animate();
   }, [pageScroll]);
 
-  const onEmailChange = value => {
+  const onEmailChange = (value) => {
     setEmail(value);
   };
 
-  const onUsernameChange = value => {
+  const onUsernameChange = (value) => {
     setUsername(value);
   };
 
-  const onPasswordChange = value => {
+  const onPasswordChange = (value) => {
     setPassword(value);
   };
 
-  const onPasswordConfChange = value => {
+  const onPasswordConfChange = (value) => {
     setPasswordConf(value);
   };
 
@@ -119,7 +119,7 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
       email,
       password,
     },
-    onCompleted: data => {
+    onCompleted: (data) => {
       onSetToken(data.signup.token);
     },
   });
@@ -128,7 +128,9 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
     return <Text>Loading . . . </Text>;
   }
   if (error) {
-    return <Text>Error: ${error.message}</Text>;
+    return (
+      <Text testId="create-account-error">{`Error: ${error.message}`}</Text>
+    );
   }
 
   return (
@@ -149,11 +151,12 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
           <Item floatingLabel>
             <Label style={{ color: 'white' }}>Username</Label>
             <Input
+              testID="register-username"
               style={{ color: 'white' }}
               id="username"
               value={username}
               autoCapitalize="none"
-              onChangeText={value => onUsernameChange(value)}
+              onChangeText={(value) => onUsernameChange(value)}
             />
           </Item>
         </Animated.View>
@@ -172,11 +175,12 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
           <Item floatingLabel>
             <Label style={{ color: 'white' }}>Email</Label>
             <Input
+              testID="register-email"
               style={{ color: 'white' }}
               id="email"
               value={email}
               autoCapitalize="none"
-              onChangeText={value => onEmailChange(value)}
+              onChangeText={(value) => onEmailChange(value)}
             />
           </Item>
         </Animated.View>
@@ -195,12 +199,13 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
           <Item floatingLabel>
             <Label style={{ color: 'white' }}>Password</Label>
             <Input
+              testID="register-password"
               style={{ color: 'white' }}
               id="password"
               value={password}
               secureTextEntry
               autoCapitalize="none"
-              onChangeText={value => onPasswordChange(value)}
+              onChangeText={(value) => onPasswordChange(value)}
             />
           </Item>
         </Animated.View>
@@ -219,17 +224,19 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
           <Item floatingLabel>
             <Label style={{ color: 'white' }}>Password Confirmation</Label>
             <Input
+              testID="register-password-confirm"
               style={{ color: 'white' }}
               id="passwordConf"
               value={passwordConf}
               secureTextEntry
               autoCapitalize="none"
-              onChangeText={value => onPasswordConfChange(value)}
+              onChangeText={(value) => onPasswordConfChange(value)}
             />
           </Item>
         </Animated.View>
       </Form>
       <Button
+        testID="register-button"
         block
         light
         style={{ marginRight: 20, marginLeft: 20 }}

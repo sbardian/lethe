@@ -32,7 +32,6 @@ const handlers = [
   }),
   graphql.mutation('createNewList', (req, res, ctx) => {
     const { title } = req.variables;
-
     if (title) {
       return res(
         ctx.data({
@@ -79,7 +78,6 @@ const handlers = [
   }),
   graphql.mutation('acceptInvitation', (req, res, ctx) => {
     const { invitationId } = req.variables;
-
     if (invitationId === 'mock-invitation-id') {
       return res(
         ctx.data({
@@ -155,6 +153,26 @@ const handlers = [
               column: 2,
             },
           ],
+        },
+      ]),
+    );
+  }),
+  graphql.mutation('signUp', (req, res, ctx) => {
+    const { username, email, password } = req.variables;
+    if (username && email && password && !(password === 'forceFail')) {
+      return res(
+        ctx.data({
+          signup: {
+            __typename: 'AuthResponse',
+            token: 'signup-token',
+          },
+        }),
+      );
+    }
+    return res(
+      ctx.errors([
+        {
+          message: 'An error has occured. . . the sadness',
         },
       ]),
     );
