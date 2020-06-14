@@ -177,6 +177,38 @@ const handlers = [
       ]),
     );
   }),
+  graphql.mutation('', (req, res, ctx) => {
+    const { invitationId } = req.variables;
+    if (invitationId === 'mock-invitation-id') {
+      return res(
+        ctx.data([
+          {
+            deleteInvitation: {
+              __typename: 'Invitation',
+              id: invitationId,
+              inviter: {
+                __typename: 'Inviter',
+                id: 'mock-invitaion-inviter-id',
+              },
+              invitee: {
+                __typename: 'Invitee',
+                id: 'mock-invitation-invitee-id',
+              },
+              list: 'mock-invitation-list-id',
+              title: 'mock-invitation-title',
+            },
+          },
+        ]),
+      );
+    }
+    return res(
+      ctx.errors([
+        {
+          message: 'An error has occured. . . the sadness',
+        },
+      ]),
+    );
+  }),
 ];
 
 const worker = setupWorker(...handlers);

@@ -84,7 +84,7 @@ export const DeclineInvitationIcon = ({
         duration: 3000,
       });
     },
-    onError: error => {
+    onError: (error) => {
       Toast.show({
         text: `An error has occured: ${error.message}`,
         buttonText: 'Okay',
@@ -98,6 +98,7 @@ export const DeclineInvitationIcon = ({
 
   return (
     <Button
+      testID="decline-button"
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...buttonProps}
       disabled={loading}
