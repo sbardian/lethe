@@ -1,58 +1,98 @@
 import React from 'react';
-import { render, fireEvent, wait } from '../test-utils/custom-renderer';
+import {
+  render,
+  fireEvent,
+  wait,
+  cleanup,
+} from '../test-utils/custom-renderer';
 import { CreateAccountForm } from './CreateAccountForm';
 
 const onSetToken = jest.fn();
 
+afterEach(() => cleanup);
+
+const setup = () => {
+  const utils = render(
+    <CreateAccountForm pageScroll onSetToken={onSetToken} />,
+  );
+  const username = utils.getByTestId('register-username');
+  const email = utils.getByTestId('register-email');
+  const password = utils.getByTestId('register-password');
+  const passwordConf = utils.getByTestId('register-password-confirm');
+  const createButton = utils.getByTestId('register-button');
+  return {
+    ...utils,
+    username,
+    email,
+    password,
+    passwordConf,
+    createButton,
+  };
+};
+
+const setupCase = () => {
+  const utils = setup();
+  const changeInput = (elm, value) => {
+    fireEvent.changeText(elm, value);
+  };
+  return {
+    ...utils,
+    changeInput,
+  };
+};
+
 describe('CreateAccountForm', () => {
   it('Render create account form and click, success', async () => {
-    const { getByTestId, queryByText } = render(
-      <CreateAccountForm pageScroll onSetToken={onSetToken} />,
-    );
-    const username = getByTestId('register-username');
-    const email = getByTestId('register-email');
-    const password = getByTestId('register-password');
-    const passwordConf = getByTestId('register-password-confirm');
-    const createButton = getByTestId('register-button');
-    fireEvent.changeText(username, 'bob');
-    fireEvent.changeText(email, 'bob@mock.com');
-    fireEvent.changeText(password, 'bob');
-    fireEvent.changeText(passwordConf, 'bob');
+    const {
+      username,
+      email,
+      password,
+      passwordConf,
+      createButton,
+      changeInput,
+      queryByText,
+    } = setupCase();
+    changeInput(username, 'bob');
+    changeInput(email, 'bob@mock.com');
+    changeInput(password, 'bob');
+    changeInput(passwordConf, 'bob');
     fireEvent.press(createButton);
     await wait(() => expect(queryByText('Error')).toBeNull());
     await wait(() => expect(queryByText('Loading . . . ')).toBeNull());
     await wait(() => expect(onSetToken).toHaveBeenCalledTimes(1));
   });
   it('Render create account form, check disabling create account button', async () => {
-    const { getByTestId, queryByTestId } = render(
-      <CreateAccountForm pageScroll onSetToken={onSetToken} />,
-    );
-    const username = getByTestId('register-username');
-    const email = getByTestId('register-email');
-    const password = getByTestId('register-password');
-    const passwordConf = getByTestId('register-password-confirm');
-    const createButton = queryByTestId('register-button');
-    fireEvent.changeText(username, 'bob');
-    fireEvent.changeText(email, 'bob@mock.com');
-    fireEvent.changeText(password, 'bob');
-    fireEvent.changeText(passwordConf, 'wrong-password');
+    const {
+      username,
+      email,
+      password,
+      passwordConf,
+      createButton,
+      changeInput,
+    } = setupCase();
+    changeInput(username, 'bob');
+    changeInput(email, 'bob@mock.com');
+    changeInput(password, 'bob');
+    changeInput(passwordConf, 'wrong-password');
     expect(createButton).toBeDisabled();
-    fireEvent.changeText(passwordConf, 'bob');
+    changeInput(passwordConf, 'bob');
     expect(createButton).toBeEnabled();
   });
   it('Render create account form, check failed signup attempt', async () => {
-    const { getByTestId, queryByTestId, queryByText } = render(
-      <CreateAccountForm pageScroll onSetToken={onSetToken} />,
-    );
-    const username = getByTestId('register-username');
-    const email = getByTestId('register-email');
-    const password = getByTestId('register-password');
-    const passwordConf = getByTestId('register-password-confirm');
-    const createButton = queryByTestId('register-button');
-    fireEvent.changeText(username, 'bob');
-    fireEvent.changeText(email, 'bob@mock.com');
-    fireEvent.changeText(password, 'forceFail');
-    fireEvent.changeText(passwordConf, 'forceFail');
+    const {
+      username,
+      email,
+      password,
+      passwordConf,
+      createButton,
+      changeInput,
+      queryByTestId,
+      queryByText,
+    } = setupCase();
+    changeInput(username, 'bob');
+    changeInput(email, 'bob@mock.com');
+    changeInput(password, 'forceFail');
+    changeInput(passwordConf, 'forceFail');
     fireEvent.press(createButton);
     await wait(() => queryByTestId('create-account-error'));
     expect(
