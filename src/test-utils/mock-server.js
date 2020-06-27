@@ -1,4 +1,6 @@
-import { graphql, setupWorker } from 'msw';
+/* eslint-disable import/no-extraneous-dependencies */
+import { setupServer } from 'msw/node';
+import { graphql } from 'msw';
 
 // console.log('🔥 up msw server');
 
@@ -211,6 +213,6 @@ const handlers = [
   }),
 ];
 
-const worker = setupWorker(...handlers);
+const server = setupServer(...handlers);
 
-export { handlers, worker };
+export { handlers, server };
