@@ -53,9 +53,9 @@
     "subscriptions-transport-ws": "0.9.16"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "7.10.1",
-    "@babel/plugin-transform-flow-strip-types": "7.10.1",
-    "@babel/plugin-transform-runtime": "7.10.3",
+    "@babel/plugin-proposal-class-properties": "7.10.4",
+    "@babel/plugin-transform-flow-strip-types": "7.10.4",
+    "@babel/plugin-transform-runtime": "7.10.4",
     "@testing-library/jest-native": "3.1.0",
     "@testing-library/react-native": "5.0.3",
     "babel-eslint": "10.1.0",
