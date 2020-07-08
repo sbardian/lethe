@@ -33,7 +33,7 @@
     "graphql-subscriptions": "1.1.0",
     "graphql-tag": "2.10.3",
     "graphql-tools": "6.0.12",
-    "lodash": "4.17.17",
+    "lodash": "4.17.19",
     "native-base": "2.13.12",
     "prop-types": "15.7.2",
     "react": "16.9.0",
