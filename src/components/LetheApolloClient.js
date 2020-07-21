@@ -17,7 +17,7 @@ export const LetheApolloClient = ({ children }) => {
 
   React.useEffect(() => {
     if (!token) {
-      AsyncStorage.getItem('@letheStore:token').then(authToken => {
+      AsyncStorage.getItem('@letheStore:token').then((authToken) => {
         if (authToken) {
           return setToken(authToken);
         }
@@ -27,8 +27,6 @@ export const LetheApolloClient = ({ children }) => {
   }, [token]);
 
   const { apiUrl, uri } = getEnvVars();
-
-  console.log('uri: ', uri);
 
   let httpUri;
   let wssUri;
