@@ -3,7 +3,7 @@
   "scripts": {
     "format": "prettier --write \"**/*.{js,json,md}\"",
     "lint": "eslint",
-    "test": "jest --runInBand --detectOpenHandles"
+    "test": "jest"
   },
   "private": true,
   "dependencies": {
