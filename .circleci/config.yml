@@ -10,24 +10,16 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: yarn-v1-{{ checksum "yarn.lock" }}
-
-      - restore_cache:
           keys:
-            - node-v1-{{ checksum "package.json" }}
+            - yarn-v1-{{ checksum "yarn.lock" }}
             - node-v1-
 
       - run: yarn install --frozen-lockfile
 
       - save_cache:
-          key: yarn-v1-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
-      - save_cache:
-          key: node-v1-{{ checksum "package.json" }}
-          paths:
-            - node_modules
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - run: yarn lint
       - run: yarn test
