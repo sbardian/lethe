@@ -5,7 +5,7 @@ import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 import gql from 'graphql-tag';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 import Swipeable from 'react-native-swipeable';
 import { orderBy } from 'lodash';
 
@@ -111,7 +111,7 @@ export const Items = ({ navigation, listId }) => {
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.itemAdded;
       const [list] = prev.getLists;
-      if (!list.items.some(item => item.id === id)) {
+      if (!list.items.some((item) => item.id === id)) {
         const newItems = {
           ...prev,
           getLists: [
@@ -133,8 +133,8 @@ export const Items = ({ navigation, listId }) => {
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.itemDeleted;
       const [list] = prev.getLists;
-      if (list.items.some(item => item.id === id)) {
-        const filteredItems = list.items.filter(item => item.id !== id);
+      if (list.items.some((item) => item.id === id)) {
+        const filteredItems = list.items.filter((item) => item.id !== id);
         const newItems = {
           ...prev,
           getLists: [
@@ -156,8 +156,8 @@ export const Items = ({ navigation, listId }) => {
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.itemEdited;
       const [list] = prev.getLists;
-      if (list.items.some(item => item.id === id)) {
-        const noneEditItems = list.items.filter(item => item.id !== id);
+      if (list.items.some((item) => item.id === id)) {
+        const noneEditItems = list.items.filter((item) => item.id !== id);
         const newItems = {
           ...prev,
           getLists: [
@@ -282,7 +282,7 @@ export const Items = ({ navigation, listId }) => {
           </TouchableOpacity>
         </Swipeable>
       )}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
     />
   );
 };

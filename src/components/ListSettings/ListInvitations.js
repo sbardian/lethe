@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FlatList, View } from 'react-native';
 import { Body, Icon, Text, Card, Thumbnail, CardItem } from 'native-base';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { styles as s } from 'react-native-style-tachyons';
 import { DeclineInvitationIcon } from '../DeclineInvitationIcon';
 
@@ -138,7 +138,7 @@ export const ListInvitations = ({ listId }) => {
             </CardItem>
           </Card>
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );

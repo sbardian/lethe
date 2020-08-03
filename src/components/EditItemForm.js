@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 const UPDATE_ITEM = gql`
   mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
@@ -36,7 +36,7 @@ const GET_LIST_ITEMS = gql`
 export const EditItemForm = ({ navigation, listId, item }) => {
   const [title, setTitle] = React.useState('');
 
-  const onTitleChange = value => {
+  const onTitleChange = (value) => {
     setTitle(value);
   };
 
@@ -65,7 +65,7 @@ export const EditItemForm = ({ navigation, listId, item }) => {
           <Input
             id="ItemTitle"
             placeholder={item.title}
-            onChangeText={value => onTitleChange(value)}
+            onChangeText={(value) => onTitleChange(value)}
           />
         </Item>
       </Form>

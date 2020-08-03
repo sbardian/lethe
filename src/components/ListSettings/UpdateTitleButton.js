@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Easing, View } from 'react-native';
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { Button, Icon, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 
@@ -56,7 +56,7 @@ export const UpdateTitleButton = ({
   });
 
   const [updateList, { loading }] = useMutation(UPDATE_LIST, {
-    onCompleted: data => {
+    onCompleted: (data) => {
       onTitleSave(data.updateList.title);
       Toast.show({
         text: `List title has been updated.`,
@@ -66,7 +66,7 @@ export const UpdateTitleButton = ({
         duration: 3000,
       });
     },
-    onError: error => {
+    onError: (error) => {
       Toast.show({
         text: `List title update failed: ${error.message}`,
         buttonText: 'Ok',

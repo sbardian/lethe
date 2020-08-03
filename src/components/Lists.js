@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FlatList, TouchableOpacity, View, Text } from 'react-native';
 import { styles as s } from 'react-native-style-tachyons';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 const GET_MY_LISTS = gql`
   {
@@ -47,9 +47,9 @@ export const Lists = ({ navigation }) => {
     updateQuery: (prev, { subscriptionData }) => {
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.listDeleted;
-      if (prev.getMyInfo.lists.some(list => list.id === id)) {
+      if (prev.getMyInfo.lists.some((list) => list.id === id)) {
         const filteredLists = prev.getMyInfo.lists.filter(
-          list => list.id !== id,
+          (list) => list.id !== id,
         );
         const newLists = {
           ...prev,
@@ -82,7 +82,7 @@ export const Lists = ({ navigation }) => {
           </View>
         </TouchableOpacity>
       )}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
     />
   );
 };

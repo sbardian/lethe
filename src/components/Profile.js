@@ -12,7 +12,7 @@ import {
 import { Text, Icon, Item, Label, Input } from 'native-base';
 import gql from 'graphql-tag';
 import { oneLine } from 'common-tags';
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/client';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import { ReactNativeFile } from 'apollo-upload-client';

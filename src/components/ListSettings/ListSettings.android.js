@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { styles as s } from 'react-native-style-tachyons';
 import { Form, Input, Item, Label, Text } from 'native-base';
 import { UpdateTitleButton } from './UpdateTitleButton';
@@ -25,12 +25,12 @@ export const ListSettings = ({ title, navigation, listId }) => {
   const [titleNotChanged, setTitleNotChanged] = React.useState(true);
   const [deleteConfirmed, setDeleteConfirmed] = React.useState(true);
 
-  const onTitleChange = value => {
+  const onTitleChange = (value) => {
     setNewTitle(value);
     setTitleNotChanged(false);
   };
 
-  const onDeleteTitleChange = value => {
+  const onDeleteTitleChange = (value) => {
     if (orgTitle === value) {
       setDeleteConfirmed(false);
     } else {
@@ -38,7 +38,7 @@ export const ListSettings = ({ title, navigation, listId }) => {
     }
   };
 
-  const handleTitleSave = value => {
+  const handleTitleSave = (value) => {
     setNewTitle(value);
     setTitleNotChanged(true);
   };
@@ -68,7 +68,7 @@ export const ListSettings = ({ title, navigation, listId }) => {
               autoCapitalize="none"
               placeholder={orgTitle}
               id="ListTitle"
-              onChangeText={value => onTitleChange(value)}
+              onChangeText={(value) => onTitleChange(value)}
             />
           </Item>
           <UpdateTitleButton
@@ -87,7 +87,7 @@ export const ListSettings = ({ title, navigation, listId }) => {
               autoCapitalize="none"
               placeholder={orgTitle}
               id="DeleteListTitle"
-              onChangeText={value => onDeleteTitleChange(value)}
+              onChangeText={(value) => onDeleteTitleChange(value)}
             />
           </Item>
           <DeleteListButton

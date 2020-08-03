@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import { ApolloClient } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/client';
 // eslint-disable-next-line
 import fetch from 'node-fetch';
 import { InMemoryCache } from 'apollo-cache-inmemory';

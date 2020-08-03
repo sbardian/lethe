@@ -2,7 +2,7 @@
 import React from 'react';
 import { FlatList, View } from 'react-native';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Text, Card, CardItem, Body, Thumbnail, H3 } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 import { AcceptInvitationIcon } from './AcceptInvitationIcon';
@@ -96,7 +96,7 @@ export const Invitations = () => {
       console.log('test');
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.invitationAdded;
-      if (!prev.getMyInfo.invitations.some(invite => invite.id === id)) {
+      if (!prev.getMyInfo.invitations.some((invite) => invite.id === id)) {
         const newInvitations = {
           ...prev,
           getMyInfo: {
@@ -117,9 +117,9 @@ export const Invitations = () => {
     updateQuery: (prev, { subscriptionData }) => {
       if (!subscriptionData.data) return prev;
       const { id } = subscriptionData.data.invitationDeleted;
-      if (prev.getMyInfo.invitations.some(invite => invite.id === id)) {
+      if (prev.getMyInfo.invitations.some((invite) => invite.id === id)) {
         const filteredInvitations = prev.getMyInfo.invitations.filter(
-          invite => invite.id !== id,
+          (invite) => invite.id !== id,
         );
         const newInvitations = {
           ...prev,
@@ -176,7 +176,7 @@ export const Invitations = () => {
           </Card>
         );
       }}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
     />
   );
 };

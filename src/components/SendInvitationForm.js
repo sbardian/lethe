@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 import { Button, Form, Input, Item, Label, Text, Toast } from 'native-base';
 
 const SEND_INVITATION = gql`
@@ -43,11 +43,11 @@ export const SendInvitationForm = ({ listId, navigation }) => {
   const [title, setTitle] = React.useState('');
   const [invitee, setInvitee] = React.useState('');
 
-  const onTitleChange = value => {
+  const onTitleChange = (value) => {
     setTitle(value);
   };
 
-  const onInviteeChange = value => {
+  const onInviteeChange = (value) => {
     setInvitee(value);
   };
 
@@ -77,7 +77,7 @@ export const SendInvitationForm = ({ listId, navigation }) => {
           onClose: () => navigation.navigate('ListSettings', { listId }),
         });
       },
-      onError: mutationError => {
+      onError: (mutationError) => {
         Toast.show({
           text: `Failed to send invitation: ${mutationError.message}`,
           buttonText: 'Ok',
@@ -107,7 +107,7 @@ export const SendInvitationForm = ({ listId, navigation }) => {
           <Input
             placeholder={`Join my list ${defaultTitle}!`}
             id="InvitationTitle"
-            onChangeText={value => onTitleChange(value)}
+            onChangeText={(value) => onTitleChange(value)}
           />
         </Item>
         <Item stackedLabel>
@@ -116,7 +116,7 @@ export const SendInvitationForm = ({ listId, navigation }) => {
             placeholder="Username or Email"
             id="InvitationInvitee"
             autoCapitalize="none"
-            onChangeText={value => onInviteeChange(value)}
+            onChangeText={(value) => onInviteeChange(value)}
           />
         </Item>
       </Form>

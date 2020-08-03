@@ -1,17 +1,12 @@
 const expoPreset = require('jest-expo/jest-preset');
-const jestPreset = require('@testing-library/react-native/jest-preset');
 
 module.exports = {
   coverageDirectory: 'coverage',
-  preset: '@testing-library/react-native',
-  // transformIgnorePatterns: [
-  //   'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)',
-  // ],
-  // preset: 'jest-expo',
+  preset: 'react-native',
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*|@codler/react-native-keyboard-aware-scroll-view)',
+    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*|@codler/react-native-keyboard-aware-scroll-view|@expo/vector-icons/.*)',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  setupFiles: [...expoPreset.setupFiles, ...jestPreset.setupFiles],
+  setupFiles: [...expoPreset.setupFiles],
   clearMocks: true,
 };

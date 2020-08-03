@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gql from 'graphql-tag';
 import { Button, Form, Input, Item, Label, Text } from 'native-base';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 const ADD_ITEM = gql`
   mutation createNewItem($listId: String!, $title: String!) {

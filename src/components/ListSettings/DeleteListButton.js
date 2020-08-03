@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Easing, View } from 'react-native';
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { Button, Icon, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 
@@ -34,7 +34,7 @@ export const DeleteListButton = ({ navigation, listId, active }) => {
     onCompleted: () => {
       navigation.navigate('Lists');
     },
-    onError: error => {
+    onError: (error) => {
       Toast.show({
         text: `Delete Failed: ${error.message}`,
         buttonText: 'Ok',

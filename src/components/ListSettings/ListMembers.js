@@ -3,7 +3,7 @@ import React from 'react';
 import { Alert, FlatList, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 import { Button, Icon, Text, Toast } from 'native-base';
 import { styles as s } from 'react-native-style-tachyons';
 
@@ -48,7 +48,7 @@ export const ListMembers = ({ listId, navigation }) => {
         duration: 3000,
       });
     },
-    onError: mutationError => {
+    onError: (mutationError) => {
       Toast.show({
         text: `List title update failed: ${mutationError.message}`,
         buttonText: 'Ok',
@@ -136,7 +136,7 @@ export const ListMembers = ({ listId, navigation }) => {
             </TouchableOpacity>
           </View>
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );
