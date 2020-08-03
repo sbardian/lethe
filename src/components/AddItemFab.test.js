@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait } from '../test-utils/custom-renderer';
+import { render, fireEvent, waitFor } from '../test-utils/custom-renderer';
 import { AddItemFab } from './AddItemFab';
 
 const navigation = {
@@ -14,11 +14,11 @@ describe('AddItemFab', () => {
     const addItemFab = getByTestId('fab-base');
     expect(addItemFab).toBeTruthy();
     fireEvent.press(addItemFab);
-    await wait(() =>
+    await waitFor(() =>
       expect(navigation.navigate).toHaveBeenCalledWith('AddListItem', {
         listId: 'mock-list-id',
       }),
     );
-    await wait(() => expect(navigation.navigate).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(navigation.navigate).toHaveBeenCalledTimes(1));
   });
 });

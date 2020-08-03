@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait } from '../test-utils/custom-renderer';
+import { render, fireEvent, waitFor } from '../test-utils/custom-renderer';
 import { AddListForm } from './AddListForm';
 
 const navigation = {
@@ -16,8 +16,10 @@ describe('AddListForm', () => {
     expect(addListButton).toBeTruthy();
     fireEvent.changeText(titleInput, 'New List Title');
     fireEvent.press(addListButton);
-    await wait(() => expect(navigation.navigate).toHaveBeenCalledTimes(1));
-    await wait(() => expect(navigation.navigate).toHaveBeenCalledWith('Lists'));
+    await waitFor(() => expect(navigation.navigate).toHaveBeenCalledTimes(1));
+    await waitFor(() =>
+      expect(navigation.navigate).toHaveBeenCalledWith('Lists'),
+    );
   });
   it('Render add list form, create new list failure', async () => {
     const { getByTestId, getByText } = render(
@@ -28,8 +30,8 @@ describe('AddListForm', () => {
     expect(titleInput).toBeTruthy();
     expect(addListButton).toBeTruthy();
     fireEvent.press(addListButton);
-    await wait(() => expect(navigation.navigate).toHaveBeenCalledTimes(0));
-    await wait(() =>
+    await waitFor(() => expect(navigation.navigate).toHaveBeenCalledTimes(0));
+    await waitFor(() =>
       expect(
         getByText(
           'Error: GraphQL error: An error has occured. . . the sadness',

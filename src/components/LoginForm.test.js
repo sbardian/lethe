@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait } from '../test-utils/custom-renderer';
+import { render, fireEvent, waitFor } from '../test-utils/custom-renderer';
 import { LoginForm } from './LoginForm';
 
 const onSetToken = jest.fn();
@@ -13,13 +13,13 @@ describe('LoginForm', () => {
     fireEvent.changeText(usernameInput, 'bob');
     fireEvent.changeText(passwordInput, 'bob');
     fireEvent.press(loginButton);
-    await wait(() => expect(onSetToken).toHaveBeenCalledTimes(1));
-    await wait(() =>
+    await waitFor(() => expect(onSetToken).toHaveBeenCalledTimes(1));
+    await waitFor(() =>
       expect(onSetToken).toHaveBeenCalledWith('this-is-a-mock-token'),
     );
   });
   it('Login failure with error returned', async () => {
-    const { getByTestId, queryByText } = render(
+    const { getByTestId, queryByText, debug } = render(
       <LoginForm onSetToken={onSetToken} />,
     );
     const usernameInput = getByTestId('username');
@@ -28,7 +28,11 @@ describe('LoginForm', () => {
     fireEvent.changeText(usernameInput, 'bob');
     fireEvent.changeText(passwordInput, 'wrong-pass');
     fireEvent.press(loginButton);
-    await wait(() => expect(getByTestId('login-error')).toBeTruthy());
-    wait(() => expect(queryByText('the sadness').toBeTruthy()));
+    await waitFor(() => expect(getByTestId('login-error')).toBeTruthy());
+    await waitFor(() =>
+      expect(
+        queryByText('GraphQL error: An error has occured. . . the sadness'),
+      ).toBeTruthy(),
+    );
   });
 });

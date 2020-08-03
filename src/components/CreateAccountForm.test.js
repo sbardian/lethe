@@ -2,7 +2,7 @@ import React from 'react';
 import {
   render,
   fireEvent,
-  wait,
+  waitFor,
   cleanup,
 } from '../test-utils/custom-renderer';
 import { CreateAccountForm } from './CreateAccountForm';
@@ -57,9 +57,9 @@ describe('CreateAccountForm', () => {
     changeInput(password, 'bob');
     changeInput(passwordConf, 'bob');
     fireEvent.press(createButton);
-    await wait(() => expect(queryByText('Error')).toBeNull());
-    await wait(() => expect(queryByText('Loading . . . ')).toBeNull());
-    await wait(() => expect(onSetToken).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(queryByText('Error')).toBeNull());
+    await waitFor(() => expect(queryByText('Loading . . . ')).toBeNull());
+    await waitFor(() => expect(onSetToken).toHaveBeenCalledTimes(1));
   });
   it('Render create account form, check disabling create account button', async () => {
     const {
@@ -94,12 +94,12 @@ describe('CreateAccountForm', () => {
     changeInput(password, 'forceFail');
     changeInput(passwordConf, 'forceFail');
     fireEvent.press(createButton);
-    await wait(() => queryByTestId('create-account-error'));
+    await waitFor(() => queryByTestId('create-account-error'));
     expect(
       queryByText(
         'Error: GraphQL error: An error has occured. . . the sadness',
       ),
     ).toBeTruthy();
-    await wait(() => expect(onSetToken).toHaveBeenCalledTimes(0));
+    await waitFor(() => expect(onSetToken).toHaveBeenCalledTimes(0));
   });
 });
