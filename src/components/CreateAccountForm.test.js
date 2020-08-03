@@ -95,11 +95,13 @@ describe('CreateAccountForm', () => {
     changeInput(passwordConf, 'forceFail');
     fireEvent.press(createButton);
     await waitFor(() => queryByTestId('create-account-error'));
-    expect(
-      queryByText(
-        'Error: GraphQL error: An error has occured. . . the sadness',
-      ),
-    ).toBeTruthy();
+    await waitFor(() =>
+      expect(
+        queryByText(
+          'Error: GraphQL error: An error has occured. . . the sadness',
+        ),
+      ).toBeTruthy(),
+    );
     await waitFor(() => expect(onSetToken).toHaveBeenCalledTimes(0));
   });
 });
