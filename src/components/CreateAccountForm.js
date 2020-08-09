@@ -45,21 +45,25 @@ export const CreateAccountForm = ({ pageScroll, onSetToken }) => {
         toValue: 0,
         duration: 300,
         easing: Easing.in,
+        useNativeDriver: true,
       }),
       Animated.timing(emailBounce, {
         toValue: 0,
         duration: 300,
         easing: Easing.in,
+        useNativeDriver: true,
       }),
       Animated.timing(passwordBounce, {
         toValue: 0,
         duration: 300,
         easing: Easing.in,
+        useNativeDriver: true,
       }),
       Animated.timing(passwordConfBounce, {
         toValue: 0,
         duration: 300,
         easing: Easing.in,
+        useNativeDriver: true,
       }),
     ]).start();
   };

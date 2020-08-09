@@ -37,6 +37,7 @@ export const LoginScreen = ({ navigation }) => {
     Animated.spring(imageBounce, {
       toValue: 1,
       friction: 3,
+      useNativeDriver: true,
     }).start();
   };
 
@@ -44,7 +45,7 @@ export const LoginScreen = ({ navigation }) => {
     animateImage();
   }, []);
 
-  const openMenu = item => {
+  const openMenu = (item) => {
     setMenuExpanded(true);
     setSlidePage(item);
     setPageScroll(true);
