@@ -35,7 +35,7 @@
     "graphql-tools": "6.0.18",
     "jest-expo": "38.0.2",
     "lodash": "4.17.20",
-    "native-base": "2.13.13",
+    "native-base": "2.13.14",
     "prop-types": "15.7.2",
     "react": "16.11.0",
     "react-adopt": "0.6.0",
