@@ -68,7 +68,7 @@
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-react": "7.20.6",
     "husky": "4.2.5",
-    "lint-staged": "10.2.12",
+    "lint-staged": "10.2.13",
     "msw": "0.20.3",
     "node-fetch": "2.6.0",
     "prettier": "2.1.0",
