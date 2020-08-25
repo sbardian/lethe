@@ -27,7 +27,7 @@
     "expo-font": "8.2.2",
     "expo-image-picker": "8.4.0",
     "expo-permissions": "9.1.0",
-    "faker": "4.1.0",
+    "faker": "5.0.0",
     "global": "4.4.0",
     "graphql": "15.3.0",
     "graphql-subscriptions": "1.1.0",
