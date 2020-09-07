@@ -2888,10 +2888,10 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@testing-library/jest-native@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-3.3.0.tgz#ed037b264ece2c49f8465807355155d5f14cd6a5"
-  integrity sha512-wPFESHLnyOUBE0TnskJY76TdTSn9+UgnQlXIGMB1l4MIflefp9bG4dRlfrkj1Igtv6k8j1ScGYIywma8WetF0Q==
+"@testing-library/jest-native@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-3.4.1.tgz#ef7e8e4b78e2f2aac8d0be3b59373794db713abc"
+  integrity sha512-oqT4n5m7m6sGOIa33Ag+gPaeJZq4tjsCbELq6fzTHe2ltNm82fKw6hvqpVWERtoeWD5z3YIZIK1FhZvh2zcIDA==
   dependencies:
     chalk "^2.4.1"
     jest-diff "^24.0.0"
