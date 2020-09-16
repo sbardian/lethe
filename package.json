@@ -71,7 +71,7 @@
     "lint-staged": "10.3.0",
     "msw": "0.21.2",
     "node-fetch": "2.6.1",
-    "prettier": "2.1.1",
+    "prettier": "2.1.2",
     "react-test-renderer": "16.13.1"
   }
 }
