@@ -7283,7 +7283,15 @@ expo-cli@3.27.6:
     "@expo/traveling-fastlane-darwin" "1.15.1"
     "@expo/traveling-fastlane-linux" "1.15.1"
 
-expo-constants@9.1.1, expo-constants@~9.1.1:
+expo-constants@9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.2.0.tgz#e86a38793deaff9018878afac65bce2543c80a4c"
+  integrity sha512-WKwiEMvBgPrEPEyZKm21UUB2KWQux9OCWf6ZDORLTln7kO3rsbaJEprfWUWTP7AxyaLMYfN+/0WFHjZc25SZWQ==
+  dependencies:
+    fbjs "1.0.0"
+    uuid "^3.3.2"
+
+expo-constants@~9.1.1:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.1.1.tgz#bca141ee3d4550e308798128f66c6d9c6a206ca1"
   integrity sha512-zCa/wRARODHd6BSwxjBhidmao0AqQnKmLkl0tsVIoZlRyPDHsEaxNR/m+7wqGC7qiC+UpG1qRnvLOLwCGt2ihg==
@@ -7305,7 +7313,15 @@ expo-file-system@~9.0.1:
   dependencies:
     uuid "^3.4.0"
 
-expo-font@8.2.2, expo-font@~8.2.1:
+expo-font@8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-8.3.0.tgz#f41955d1f1bbb2fe706bf97fc94aa89f7e599a0a"
+  integrity sha512-WK3Oh3JwLjH/y94w1GPhE1Ix59WEJ9hTUKJBuvsM9SYqdN4N0DDb2VKhCH218HPdLURfyZnhMi2KrVycUWIUEQ==
+  dependencies:
+    fbjs "1.0.0"
+    fontfaceobserver "^2.1.0"
+
+expo-font@~8.2.1:
   version "8.2.2"
   resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-8.2.2.tgz#c67ee8d3841921a907464d67e8098baeed92bacf"
   integrity sha512-p/a7Ve+3LiR9ofn77U0UuuE6ZQiLVu3M1btiKUDe5efAp48D9GG41AevKQ7YnkfxTDdGJa0ACAtJAVsAD30jGA==
@@ -7349,15 +7365,20 @@ expo-location@~8.2.1:
   dependencies:
     invariant "^2.2.4"
 
-expo-permissions@9.1.0, expo-permissions@~9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-9.1.0.tgz#b830a9e8100d5650a874122b432a65ab1dfdf4c1"
-  integrity sha512-nNF8voeRSzMCIJzt27dmpHHm70ZiZh528GJJzHd9qX9aIgrN2j0WsrFI31p7Q8uPUI8HDCBbF7JmvO91GmFrhQ==
+expo-permissions@9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-9.3.0.tgz#b90c7e9e411d306c1c7ba2bae18d5c53c201affd"
+  integrity sha512-ylSJZVvEGJVFTKsFrUL2S6gCvFt+/o8TJ3xT4WaMjHe2/2Z7R8ng6NR47Kt54t7XBIV/SZ7DIY9uRiR7TPuNYA==
 
 expo-permissions@~9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-9.0.1.tgz#dc10b58654bbe39bbbed5827369942b01b08055e"
   integrity sha512-CosJgy8XQRN/OFG2JTQDcFxz3XTGi27coCMym/hVXWtQfk0z6PwdRG5IXHfLGuSckwIcgmirrwm2+Zc0X3MmNg==
+
+expo-permissions@~9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-9.1.0.tgz#b830a9e8100d5650a874122b432a65ab1dfdf4c1"
+  integrity sha512-nNF8voeRSzMCIJzt27dmpHHm70ZiZh528GJJzHd9qX9aIgrN2j0WsrFI31p7Q8uPUI8HDCBbF7JmvO91GmFrhQ==
 
 expo-pwa@0.0.37:
   version "0.0.37"
