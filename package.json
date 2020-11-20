@@ -72,6 +72,6 @@
     "msw": "0.22.1",
     "node-fetch": "2.6.1",
     "prettier": "2.2.0",
-    "react-test-renderer": "16.14.0"
+    "react-test-renderer": "17.0.1"
   }
 }
