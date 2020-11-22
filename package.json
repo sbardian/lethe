@@ -50,7 +50,7 @@
     "react-native-style-tachyons": "4.2.0",
     "react-native-swipeable": "0.6.0",
     "react-navigation": "4.0.10",
-    "react-navigation-stack": "2.10.1",
+    "react-navigation-stack": "2.10.2",
     "subscriptions-transport-ws": "0.9.18"
   },
   "devDependencies": {
