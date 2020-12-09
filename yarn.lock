@@ -7545,10 +7545,10 @@ expo-cli@3.28.6:
     "@expo/traveling-fastlane-darwin" "1.15.1"
     "@expo/traveling-fastlane-linux" "1.15.1"
 
-expo-constants@9.3.3:
-  version "9.3.3"
-  resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.3.3.tgz#e02b71109e0514d17aa7eacbad44f1277eca1ae8"
-  integrity sha512-QDjM4rbUiBCpWb4XJvkZHJnrrm40EcHBj3ZRhc/IcZVFt+BlsSHIg3YlZ0ncjikYswVGEY85kcJy1Kq1g6ib3w==
+expo-constants@9.3.4:
+  version "9.3.4"
+  resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.3.4.tgz#0fc8b6dca8feb6ddf095f016d4854f9f41e839f8"
+  integrity sha512-tZrZ4Ohdf9YWQK0dI2qU+ArugFaTrotFHmcZg12ehMIeJCy0xkPcEQpxhCECdrbD8zNiyGRog9jEA0dxWI7j9Q==
   dependencies:
     fbjs "1.0.0"
     uuid "^3.3.2"
