@@ -4,7 +4,7 @@ import React from 'react';
 import NativeTachyons from 'react-native-style-tachyons';
 import { StyleSheet } from 'react-native';
 import { Root } from 'native-base';
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
 import { TokenProvider } from './src/context';
 import { LetheApolloClient } from './src/components/LetheApolloClient';
