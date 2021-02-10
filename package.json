@@ -33,7 +33,7 @@
     "graphql": "15.5.0",
     "graphql-subscriptions": "1.2.0",
     "graphql-tag": "2.11.0",
-    "graphql-tools": "7.0.2",
+    "graphql-tools": "7.0.3",
     "jest-expo": "40.0.2",
     "lodash": "4.17.20",
     "native-base": "2.13.14",
