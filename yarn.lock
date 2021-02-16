@@ -3243,10 +3243,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
   integrity sha512-rk4sWFsmtOw8oyx8SD3KSvawwaK7gRBSEIy2TAwURyGt+3TizssXP1r8nx3zY+R7v2vYYHXZ+k2/GULAT/bcaQ==
 
-"@react-native-community/viewpager@4.2.2":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@react-native-community/viewpager/-/viewpager-4.2.2.tgz#e05d618829c589284326896c806200af90ae0986"
-  integrity sha512-XBAO/9gV0pb6VAqbaobdJp6slTgmf8TOAnIbERO1pKjIXoj2OrKYcma2VPB/02wzEzu7TE8jcbt3u6BT4fpXxA==
+"@react-native-community/viewpager@4.2.3":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/@react-native-community/viewpager/-/viewpager-4.2.3.tgz#ccff95a43f63f14c3b90edac00d1e05c99a79282"
+  integrity sha512-tb462+nvjlcjRoRUxManaabkRwqKi0fI2I0Ztub/zXzvS06JaVIyv7BHUqivkWRUKw4OGFkhQwkEc0spPHbV/A==
 
 "@react-navigation/core@^3.5.1":
   version "3.7.6"
