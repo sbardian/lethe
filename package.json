@@ -30,7 +30,7 @@
     "expo-permissions": "10.0.0",
     "faker": "5.5.3",
     "global": "4.4.0",
-    "graphql": "15.6.0",
+    "graphql": "15.6.1",
     "graphql-subscriptions": "1.2.1",
     "graphql-tag": "2.12.5",
     "graphql-tools": "7.0.5",
