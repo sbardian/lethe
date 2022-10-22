@@ -3776,10 +3776,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@4.14.182":
-  version "4.14.182"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
-  integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
+"@types/lodash@4.14.186":
+  version "4.14.186"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.186.tgz#862e5514dd7bd66ada6c70ee5fce844b06c8ee97"
+  integrity sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==
 
 "@types/lodash@^4.14.92":
   version "4.14.158"
@@ -3838,10 +3838,10 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
-"@types/react@18.0.17":
-  version "18.0.17"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.17.tgz#4583d9c322d67efe4b39a935d223edcc7050ccf4"
-  integrity sha512-38ETy4tL+rn4uQQi7mB81G7V1g0u2ryquNmsVIOKUAEIDK+3CUjZ6rSRpdvS99dNBnkLFL83qfmtLacGOTIhwQ==
+"@types/react@18.0.21":
+  version "18.0.21"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.21.tgz#b8209e9626bb00a34c76f55482697edd2b43cc67"
+  integrity sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -15565,14 +15565,14 @@ react-native-screens@2.18.1:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.18.1.tgz#47b9991c6f762d00d0ed3233e5283d523e859885"
   integrity sha512-r5WZLpmx2hHjC1RgMdPq5YpSU9tEhBpUaZ5M1SUtNIONyiLqQVxabhRCINdebIk4depJiIl7yw2Q85zJyeX6fw==
 
-react-native-style-tachyons@4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-style-tachyons/-/react-native-style-tachyons-4.2.2.tgz#13250c50202103b9c38872ea4aac72402559ca7a"
-  integrity sha512-GykOznPe9Z6ccCr6FK0znreIJN9oMzL2ejnzVv4Kn+NqXJeKe56v+/F2eTXbf291fZP31NU9x8cWOjNi7tO5XQ==
+react-native-style-tachyons@4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-style-tachyons/-/react-native-style-tachyons-4.2.3.tgz#87bb88c265b9ad65c2282408f76aad398dd96bb7"
+  integrity sha512-uooi/W3mK98ccnB+xZtkSlH3LkskfsPlG9VGK8v4NAOZrZxWCYvMq200xYd7fDYjnFER88wv49FnU77u6PyNBw==
   dependencies:
     "@types/color" "3.0.3"
-    "@types/lodash" "4.14.182"
-    "@types/react" "18.0.17"
+    "@types/lodash" "4.14.186"
+    "@types/react" "18.0.21"
     color "4.2.3"
     css-color-names "1.0.1"
     lodash "4.17.21"
